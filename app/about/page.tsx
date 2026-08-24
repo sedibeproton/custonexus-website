@@ -1,0 +1,70 @@
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import FadeSection from "@/components/componentsFadeSection";
+
+import AboutHero from "@/sections/about/AboutHero";
+import CTASection from "@/components/CTASection";
+
+export const metadata = {
+  title: "About | CustoNexus Technologies",
+  description:
+    "Learn about CustoNexus Technologies, our purpose, vision and commitment to improving healthcare through meaningful connections.",
+};
+
+import OurStory from "@/sections/about/OurStory";
+import WhyWeExist from "@/sections/about/WhyWeExist";
+import FoundationSection from "@/sections/about/FoundationSection";
+import VisionMission from "@/sections/about/VisionMission";
+import CoreValues from "@/sections/about/CoreValues";
+import LeadershipPhilosophy from "@/sections/about/LeadershipPhilosophy";
+import LookingAhead from "@/sections/about/LookingAhead";
+import TheDifference from "@/sections/about/TheDifference";
+
+export default function AboutPage() {
+  return (
+    <>
+      <Navbar />
+
+      <AboutHero />
+
+<FadeSection>
+  <OurStory />
+</FadeSection>
+
+<FadeSection>
+  <WhyWeExist />
+</FadeSection>
+
+<FadeSection>
+  <FoundationSection />
+</FadeSection>
+
+<FadeSection>
+  <VisionMission />
+</FadeSection>
+
+<FadeSection>
+  <CoreValues />
+</FadeSection>
+
+<FadeSection>
+  <LeadershipPhilosophy />
+</FadeSection>
+
+<FadeSection>
+  <TheDifference />
+</FadeSection>
+
+<FadeSection>
+  <CTASection
+    title="Let's Build Better Healthcare Together"
+    subtitle="Whether you're a healthcare practice, technology partner or organisation, we'd love to hear from you."
+    buttonText="Let's Talk"
+    buttonLink="/contact"
+  />
+</FadeSection>
+
+      <Footer />
+    </>
+  );
+}

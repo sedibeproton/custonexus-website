@@ -1,0 +1,102 @@
+﻿import Section from "@/components/Section";
+import AccentDots from "@/components/AccentDots";
+import FadeSection from "@/components/FadeSection";
+import ImageFrame from "@/components/ImageFrame";
+import Link from "next/link";
+import SectionHeader from "../components/SectionHeader";
+import AnimatedCard from "@/components/AnimatedCard";
+import { ArrowRight } from "lucide-react";
+
+const solutions = [
+  {
+    title: "Healthcare Solutions",
+    description:
+      "Supporting healthcare professionals and organisations with innovative solutions that improve care delivery and patient experiences.",
+    image: "/images/healthcare-partnership.jpg",
+    reverse: false,
+  },
+  {
+    title: "Technology Solutions",
+    description:
+      "Developing modern digital platforms, software, and intelligent technologies that strengthen healthcare systems.",
+    image: "/images/technology-innovation.jpg",
+    reverse: true,
+  },
+  {
+    title: "Professional Services",
+    description:
+      "Building trusted partnerships through strategic consulting, implementation, and long-term collaboration.",
+    image: "/images/strategic-partnership.jpg",
+    reverse: false,
+  },
+];
+
+export default function SolutionsPreview() {
+  return (
+    <Section
+      id="solutions"
+      className="scroll-mt-28 relative bg-gradient-to-b from-slate-50 to-white"
+    >
+      <div className="pointer-events-none absolute top-12 right-12 h-56 w-56 rounded-full bg-blue-100/30 blur-3xl" />
+      <div className="pointer-events-none absolute bottom-0 left-10 h-40 w-40 rounded-full bg-blue-50 blur-3xl" />
+
+      <div className="flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
+        <SectionHeader
+          eyebrow="Our Solutions"
+          title="Transforming Healthcare Together"
+          subtitle="We combine healthcare expertise, technology and trusted partnerships to improve healthcare experiences."
+        />
+        <AccentDots className="hidden lg:block" />
+      </div>
+
+      <div className="mt-20 space-y-20">
+        {solutions.map((solution, index) => (
+          <FadeSection key={solution.title} delay={index * 0.12}>
+            <AnimatedCard
+              className={
+                solution.reverse ? "lg:[&>*:first-child]:order-2" : ""
+              }
+            >
+              <div className="grid items-center gap-16 p-10 lg:grid-cols-2 lg:p-14">
+                <div>
+                  <p className="mb-4 text-sm font-bold tracking-[0.4em] text-blue-600">
+                    {(index + 1).toString().padStart(2, "0")}
+                  </p>
+
+                  <h3 className="text-4xl font-bold text-slate-900">
+                    {solution.title}
+                  </h3>
+
+                  <p className="mt-6 text-lg leading-9 text-slate-600">
+                    {solution.description}
+                  </p>
+
+                  <Link
+                    href="/solutions"
+                    className="mt-8 inline-flex items-center gap-3 font-semibold tracking-wide text-blue-700 transition-colors hover:text-blue-800"
+                  >
+                    Learn More
+                    <ArrowRight
+                      size={20}
+                      className="transition-transform duration-300 group-hover:translate-x-1"
+                    />
+                  </Link>
+                </div>
+
+                <div>
+                  <ImageFrame
+                    src={solution.image}
+                    alt={solution.title}
+                    width={900}
+                    height={720}
+                    className="w-full object-cover"
+                  />
+                </div>
+              </div>
+            </AnimatedCard>
+          </FadeSection>
+        ))}
+      </div>
+    </Section>
+  );
+}
