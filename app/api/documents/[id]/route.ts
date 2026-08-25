@@ -3,6 +3,10 @@ import { readFile } from "fs/promises";
 
 import { auth } from "@/lib/auth";
 import { getDocumentById } from "@/lib/documents";
+import {
+  canDisplayInline,
+  createContentDisposition,
+} from "@/lib/uploads";
 
 export async function GET(
   request: Request,
@@ -50,19 +54,22 @@ export async function GET(
     const url = new URL(request.url);
     const download = url.searchParams.get("download") === "true";
 
-    const disposition = download
-      ? "attachment"
-      : "inline";
+    const disposition =
+      !download && canDisplayInline(document.mimeType)
+        ? "inline"
+        : "attachment";
 
     return new Response(new Uint8Array(fileBuffer), {
       status: 200,
       headers: {
         "Content-Type": document.mimeType,
         "Content-Length": String(fileBuffer.length),
-        "Content-Disposition": `${disposition}; filename="${encodeURIComponent(
+        "Content-Disposition": createContentDisposition(
+          disposition,
           document.originalName
-        )}"`,
+        ),
         "Cache-Control": "private, no-store",
+        "X-Content-Type-Options": "nosniff",
       },
     });
   } catch (error) {

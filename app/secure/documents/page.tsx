@@ -1,213 +1,116 @@
 import { headers } from "next/headers";
-import { redirect } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import Link from "next/link";
+import { ChevronRight, File, Folder, HardDrive, LayoutDashboard, Upload } from "lucide-react";
 
 import { auth } from "@/lib/auth";
-import { getDocuments } from "@/lib/documents";
+import {
+  getDocumentsByFolder,
+  getFolderBreadcrumbs,
+  getFolderById,
+  getFolders,
+} from "@/lib/documents";
+import CreateFolderButton from "@/components/CreateFolderButton";
 import DeleteDocumentButton from "@/components/DeleteDocumentButton";
 
+type PageProps = { searchParams: Promise<{ folder?: string }> };
+
 function formatFileSize(size: number) {
-  if (size < 1024) {
-    return `${size} B`;
-  }
-
-  if (size < 1024 * 1024) {
-    return `${(size / 1024).toFixed(1)} KB`;
-  }
-
+  if (size < 1024) return `${size} B`;
+  if (size < 1024 * 1024) return `${(size / 1024).toFixed(1)} KB`;
   return `${(size / (1024 * 1024)).toFixed(1)} MB`;
 }
 
-function formatDate(date: string) {
-  return new Date(date).toLocaleString("en-ZA", {
-    dateStyle: "medium",
-    timeStyle: "short",
-  });
-}
+export default async function FileExplorerPage({ searchParams }: PageProps) {
+  const session = await auth.api.getSession({ headers: await headers() });
+  if (!session) redirect("/secure/login");
 
-export default async function SecureDocumentsPage() {
-  const session = await auth.api.getSession({
-    headers: await headers(),
-  });
+  const { folder: requestedFolderId } = await searchParams;
+  const folderId = requestedFolderId || null;
+  const currentFolder = folderId ? getFolderById(folderId) : undefined;
+  if (folderId && !currentFolder) notFound();
 
-  if (!session) {
-    redirect("/secure/login");
-  }
-
-  const documents = getDocuments();
+  const folders = getFolders(folderId);
+  const files = getDocumentsByFolder(folderId);
+  const breadcrumbs = folderId ? getFolderBreadcrumbs(folderId) : [];
+  const uploadHref = folderId
+    ? `/secure/upload?folder=${encodeURIComponent(folderId)}`
+    : "/secure/upload";
 
   return (
-    <main className="min-h-screen bg-slate-100 px-4 py-24 sm:px-6">
+    <main className="min-h-screen bg-slate-100 px-4 py-16 sm:px-6">
       <div className="mx-auto max-w-7xl">
-
-        {/* Header */}
-        <div className="mb-8 flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mb-6 flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <p className="text-sm font-semibold uppercase tracking-wide text-blue-700">
-              Founder Archive
-            </p>
-
-            <h1 className="mt-1 text-3xl font-bold text-slate-900 sm:text-4xl">
-              Documents
-            </h1>
-
-            <p className="mt-2 max-w-2xl text-slate-600">
-              Secure company documents and founder records.
-            </p>
+            <p className="text-sm font-semibold uppercase tracking-wide text-blue-700">Founder Archive</p>
+            <h1 className="mt-1 text-3xl font-bold text-slate-900 sm:text-4xl">Files</h1>
+            <p className="mt-2 text-slate-600">Browse and organise your secure company archive.</p>
           </div>
-
-          <div className="flex flex-wrap gap-3">
-            <Link
-              href="/secure/dashboard"
-              className="rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-700 transition hover:border-slate-300 hover:bg-slate-50"
-            >
-              ← Dashboard
-            </Link>
-
-            <Link
-              href="/secure/upload"
-              className="rounded-xl bg-blue-700 px-4 py-3 text-sm font-semibold text-white transition hover:bg-blue-800"
-            >
-              Upload Document
-            </Link>
-          </div>
+          <Link href="/secure/dashboard" className="inline-flex items-center gap-2 text-sm font-semibold text-slate-600 hover:text-blue-700">
+            <LayoutDashboard size={17} /> Dashboard
+          </Link>
         </div>
 
-        {/* Authenticated User */}
-        <div className="mb-6 rounded-2xl border border-slate-200 bg-white px-5 py-4">
-          <p className="text-xs font-medium uppercase tracking-wide text-slate-500">
-            Signed in as
-          </p>
-
-          <p className="mt-1 break-all text-sm font-semibold text-slate-900">
-            {session.user.email}
-          </p>
-        </div>
-
-        {/* Archive */}
         <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
-
-          {/* Archive Header */}
-          <div className="border-b border-slate-200 px-6 py-5 sm:px-8">
-            <div className="flex items-center justify-between gap-4">
-              <div>
-                <h2 className="text-xl font-bold text-slate-900">
-                  Secure Archive
-                </h2>
-
-                <p className="mt-1 text-sm text-slate-500">
-                  {documents.length === 1
-                    ? "1 document stored"
-                    : `${documents.length} documents stored`}
-                </p>
-              </div>
-
-              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-100 text-xl">
-                📁
-              </div>
-            </div>
-          </div>
-
-          {/* Empty State */}
-          {documents.length === 0 && (
-            <div className="px-6 py-16 text-center sm:px-8">
-              <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-slate-100 text-2xl">
-                📂
-              </div>
-
-              <h3 className="mt-5 text-xl font-bold text-slate-900">
-                No documents yet
-              </h3>
-
-              <p className="mx-auto mt-2 max-w-md text-slate-500">
-                Upload the first document to begin building the secure
-                CustoNexus Founder Archive.
-              </p>
-
-              <Link
-                href="/secure/upload"
-                className="mt-6 inline-flex rounded-xl bg-blue-700 px-5 py-3 text-sm font-semibold text-white transition hover:bg-blue-800"
-              >
-                Upload First Document
+          <div className="flex flex-col gap-4 border-b border-slate-200 p-5 sm:flex-row sm:items-center sm:justify-between">
+            <nav aria-label="Folder path" className="flex min-w-0 flex-wrap items-center gap-1 text-sm">
+              <Link href="/secure/documents" className="flex items-center gap-2 rounded-lg px-2 py-1 font-semibold text-blue-700 hover:bg-blue-50">
+                <HardDrive size={17} /> My files
+              </Link>
+              {breadcrumbs.map((folder) => (
+                <span key={folder.id} className="flex min-w-0 items-center gap-1">
+                  <ChevronRight size={16} className="text-slate-400" />
+                  <Link href={`/secure/documents?folder=${folder.id}`} className="max-w-48 truncate rounded-lg px-2 py-1 font-medium text-slate-700 hover:bg-slate-100">
+                    {folder.name}
+                  </Link>
+                </span>
+              ))}
+            </nav>
+            <div className="flex flex-wrap gap-3">
+              <CreateFolderButton parentId={folderId} />
+              <Link href={uploadHref} className="inline-flex items-center gap-2 rounded-xl bg-blue-700 px-4 py-3 text-sm font-semibold text-white hover:bg-blue-800">
+                <Upload size={18} /> Upload file
               </Link>
             </div>
-          )}
+          </div>
 
-          {/* Documents */}
-          {documents.length > 0 && (
-            <div className="divide-y divide-slate-200">
-              {documents.map((document) => (
-                <div
-                  key={document.id}
-                  className="p-6 transition hover:bg-slate-50 sm:p-8"
-                >
-                  <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
+          <div className="grid grid-cols-[minmax(0,1fr)_auto] border-b border-slate-200 bg-slate-50 px-6 py-3 text-xs font-semibold uppercase tracking-wide text-slate-500 sm:grid-cols-[minmax(0,1fr)_140px_230px]">
+            <span>Name</span><span className="hidden sm:block">Size</span><span>Actions</span>
+          </div>
 
-                    {/* Document Information */}
-                    <div className="flex min-w-0 gap-4">
-                      <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-blue-100 text-2xl">
-                        📄
-                      </div>
+          {folders.map((folder) => (
+            <div key={folder.id} className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 border-b border-slate-100 px-6 py-4 hover:bg-blue-50/40 sm:grid-cols-[minmax(0,1fr)_140px_230px]">
+              <Link href={`/secure/documents?folder=${folder.id}`} className="flex min-w-0 items-center gap-3 font-semibold text-slate-900">
+                <Folder className="shrink-0 fill-blue-100 text-blue-600" size={27} />
+                <span className="truncate">{folder.name}</span>
+              </Link>
+              <span className="hidden text-sm text-slate-400 sm:block">Folder</span>
+              <Link href={`/secure/documents?folder=${folder.id}`} className="text-sm font-semibold text-blue-700">Open</Link>
+            </div>
+          ))}
 
-                      <div className="min-w-0">
-                        <h3 className="break-words text-lg font-bold text-slate-900">
-                          {document.originalName}
-                        </h3>
+          {files.map((file) => (
+            <div key={file.id} className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 border-b border-slate-100 px-6 py-4 last:border-b-0 hover:bg-slate-50 sm:grid-cols-[minmax(0,1fr)_140px_230px]">
+              <Link href={`/secure/documents/${file.id}`} className="flex min-w-0 items-center gap-3 font-medium text-slate-900">
+                <File className="shrink-0 text-slate-500" size={25} />
+                <span className="truncate">{file.originalName}</span>
+              </Link>
+              <span className="hidden text-sm text-slate-500 sm:block">{formatFileSize(file.size)}</span>
+              <div className="flex flex-wrap items-center gap-3">
+                <Link href={`/api/documents/${file.id}?download=true`} className="text-sm font-semibold text-blue-700">Download</Link>
+                <DeleteDocumentButton documentId={file.id} documentName={file.originalName} compact />
+              </div>
+            </div>
+          ))}
 
-                        {document.description && (
-                          <p className="mt-1 break-words text-sm text-slate-600">
-                            {document.description}
-                          </p>
-                        )}
-
-                        <div className="mt-3 flex flex-wrap gap-2">
-                          <span className="rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-700">
-                            {document.category}
-                          </span>
-
-                          <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-600">
-                            {formatFileSize(document.size)}
-                          </span>
-
-                          <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-600">
-                            {document.mimeType}
-                          </span>
-                        </div>
-
-                        <p className="mt-3 text-xs text-slate-500">
-                          Uploaded {formatDate(document.createdAt)}
-                        </p>
-                      </div>
-                    </div>
-
-                    {/* Actions */}
-<div className="flex shrink-0 flex-wrap gap-3 lg:justify-end">
-  <Link
-    href={`/secure/documents/${document.id}`}
-    className="rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-700 transition hover:border-blue-200 hover:bg-blue-50 hover:text-blue-700"
-  >
-    Open
-  </Link>
-
-  <Link
-    href={`/api/documents/${document.id}?download=true`}
-    className="rounded-xl bg-blue-700 px-4 py-3 text-sm font-semibold text-white transition hover:bg-blue-800"
-  >
-    Download
-  </Link>
-
-  <DeleteDocumentButton
-    documentId={document.id}
-    documentName={document.originalName}
-  />
-</div>
-                  </div>
-                </div>
-              ))}
+          {folders.length === 0 && files.length === 0 && (
+            <div className="px-6 py-20 text-center">
+              <Folder className="mx-auto text-slate-300" size={52} />
+              <h2 className="mt-4 text-xl font-bold text-slate-900">This folder is empty</h2>
+              <p className="mt-2 text-slate-500">Create a folder or upload a file to get started.</p>
             </div>
           )}
         </div>
-
       </div>
     </main>
   );

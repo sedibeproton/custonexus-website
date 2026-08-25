@@ -4,7 +4,12 @@ import fs from "fs/promises";
 import path from "path";
 
 import { auth } from "@/lib/auth";
-import { insertDocument } from "@/lib/documents";
+import { getFolderById, insertDocument } from "@/lib/documents";
+import {
+  formatUploadLimit,
+  getMaxUploadSize,
+  getSafeStoredExtension,
+} from "@/lib/uploads";
 
 const UPLOAD_DIR = path.join(process.cwd(), "data", "documents");
 
@@ -28,6 +33,11 @@ export async function POST(request: Request) {
     const file = formData.get("file");
     const category = formData.get("category");
     const description = formData.get("description");
+    const requestedFolderId = formData.get("folderId");
+    const folderId =
+      typeof requestedFolderId === "string" && requestedFolderId
+        ? requestedFolderId
+        : null;
 
     if (!(file instanceof File)) {
       return Response.json(
@@ -36,19 +46,24 @@ export async function POST(request: Request) {
       );
     }
 
-    if (typeof category !== "string" || !category.trim()) {
+    if (file.size === 0) {
       return Response.json(
-        { error: "A document category is required." },
+        { error: "The selected file is empty." },
         { status: 400 }
       );
     }
 
-    // Maximum file size: 25 MB
-    const MAX_FILE_SIZE = 25 * 1024 * 1024;
+    if (folderId && !getFolderById(folderId)) {
+      return Response.json({ error: "Folder not found." }, { status: 404 });
+    }
 
-    if (file.size > MAX_FILE_SIZE) {
+    const maxFileSize = getMaxUploadSize();
+
+    if (file.size > maxFileSize) {
       return Response.json(
-        { error: "File size cannot exceed 25 MB." },
+        {
+          error: `File size cannot exceed ${formatUploadLimit(maxFileSize)}.`,
+        },
         { status: 400 }
       );
     }
@@ -59,7 +74,7 @@ export async function POST(request: Request) {
     const id = randomUUID();
 
     const originalName = file.name;
-    const extension = path.extname(originalName);
+    const extension = getSafeStoredExtension(originalName);
     const storedName = `${id}${extension}`;
 
     const filePath = path.join(UPLOAD_DIR, storedName);
@@ -74,7 +89,10 @@ export async function POST(request: Request) {
       id,
       name: storedName,
       originalName,
-      category: category.trim(),
+      category:
+        typeof category === "string" && category.trim()
+          ? category.trim()
+          : "File",
       description:
         typeof description === "string"
           ? description.trim()
@@ -85,6 +103,7 @@ export async function POST(request: Request) {
       uploadedBy: session.user.id,
       createdAt: now,
       updatedAt: now,
+      folderId,
     };
 
     // Save document metadata to SQLite

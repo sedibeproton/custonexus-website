@@ -110,14 +110,14 @@ export default async function SecureDashboardPage() {
                 href="/secure/documents"
                 className="rounded-xl bg-white px-5 py-3 text-sm font-semibold text-blue-700 transition hover:bg-blue-50"
               >
-                View Documents
+                Open Files
               </Link>
 
               <Link
                 href="/secure/upload"
                 className="rounded-xl border border-white/30 bg-white/10 px-5 py-3 text-sm font-semibold text-white backdrop-blur transition hover:bg-white/20"
               >
-                Upload Document
+                Upload File
               </Link>
 
             </div>
@@ -282,7 +282,7 @@ export default async function SecureDashboardPage() {
                 </p>
 
                 <p className="mt-4 text-sm font-semibold text-blue-700">
-                  Upload Document →
+                  Upload File →
                 </p>
               </Link>
 

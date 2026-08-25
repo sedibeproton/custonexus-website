@@ -2,187 +2,82 @@
 
 import { FormEvent, useState } from "react";
 import Link from "next/link";
+import { FileUp } from "lucide-react";
 
-const categories = [
-  "Constitution",
-  "Founder Documents",
-  "Company",
-  "Legal",
-  "Financial",
-  "Operations",
-  "Other",
-];
-
-export default function SecureUploadPage() {
+export default function UploadFilePage() {
   const [file, setFile] = useState<File | null>(null);
-  const [category, setCategory] = useState("Company");
-  const [description, setDescription] = useState("");
   const [uploading, setUploading] = useState(false);
   const [message, setMessage] = useState("");
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-
-    if (!file) {
-      setMessage("Please select a document.");
-      return;
-    }
+    if (!file) return setMessage("Please select a file.");
 
     setUploading(true);
     setMessage("");
 
     try {
       const formData = new FormData();
-
+      const folderId = new URLSearchParams(window.location.search).get("folder");
       formData.append("file", file);
-      formData.append("category", category);
-      formData.append("description", description);
+      if (folderId) formData.append("folderId", folderId);
 
-      const response = await fetch("/api/documents/upload", {
-        method: "POST",
-        body: formData,
-      });
+      const response = await fetch("/api/documents/upload", { method: "POST", body: formData });
+      const result = await response.json();
+      if (!response.ok) throw new Error(result.error || "Upload failed.");
 
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.error || "Upload failed.");
-      }
-
-      setMessage("Document uploaded successfully.");
-      setFile(null);
-      setDescription("");
-      setCategory("Company");
-
-      const fileInput = document.getElementById(
-        "document-file"
-      ) as HTMLInputElement | null;
-
-      if (fileInput) {
-        fileInput.value = "";
-      }
+      const destination = folderId
+        ? `/secure/documents?folder=${encodeURIComponent(folderId)}`
+        : "/secure/documents";
+      window.location.assign(destination);
     } catch (error) {
-      setMessage(
-        error instanceof Error
-          ? error.message
-          : "Unable to upload document."
-      );
-    } finally {
+      setMessage(error instanceof Error ? error.message : "Unable to upload file.");
       setUploading(false);
     }
   }
 
   return (
-    <main className="min-h-screen bg-slate-100 px-4 py-24 sm:px-6">
-      <div className="mx-auto max-w-4xl">
-        <div className="mb-6">
-          <Link
-            href="/secure/documents"
-            className="text-sm font-semibold text-blue-700 hover:text-blue-900"
-          >
-            ← Back to Documents
-          </Link>
-        </div>
+    <main className="min-h-screen bg-slate-100 px-4 py-20 sm:px-6">
+      <div className="mx-auto max-w-2xl">
+        <Link href="/secure/documents" className="text-sm font-semibold text-blue-700 hover:text-blue-900">
+          Back to files
+        </Link>
 
-        <div className="rounded-3xl bg-white p-6 shadow-sm sm:p-10">
-          <div>
-            <p className="text-sm font-semibold text-blue-700">
-              Secure Archive
-            </p>
-
-            <h1 className="mt-2 text-3xl font-bold text-slate-900">
-              Upload Document
-            </h1>
-
-            <p className="mt-2 max-w-2xl text-slate-600">
-              Add a confidential company document to the CustoNexus Founder
-              Archive.
-            </p>
+        <div className="mt-6 rounded-3xl bg-white p-6 shadow-sm sm:p-10">
+          <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-100 text-blue-700">
+            <FileUp size={27} />
           </div>
+          <h1 className="mt-6 text-3xl font-bold text-slate-900">Upload file</h1>
+          <p className="mt-2 text-slate-600">Choose any file to add it to the current folder.</p>
 
-          <form onSubmit={handleSubmit} className="mt-10 space-y-6">
-            <div>
-              <label
-                htmlFor="document-file"
-                className="block text-sm font-semibold text-slate-900"
-              >
-                Document
-              </label>
-
+          <form onSubmit={handleSubmit} className="mt-8">
+            <label
+              htmlFor="archive-file"
+              className="flex min-h-56 cursor-pointer flex-col items-center justify-center rounded-3xl border-2 border-dashed border-slate-300 bg-slate-50 p-8 text-center transition hover:border-blue-400 hover:bg-blue-50"
+            >
+              <FileUp size={38} className="text-blue-600" />
+              <span className="mt-4 font-semibold text-slate-900">
+                {file ? file.name : "Select a file"}
+              </span>
+              <span className="mt-2 text-sm text-slate-500">Any format, up to 25 MB by default</span>
               <input
-                id="document-file"
+                id="archive-file"
                 type="file"
-                onChange={(event) =>
-                  setFile(event.target.files?.[0] ?? null)
-                }
-                className="mt-2 block w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-700 file:mr-4 file:rounded-lg file:border-0 file:bg-blue-50 file:px-4 file:py-2 file:font-semibold file:text-blue-700 hover:file:bg-blue-100"
+                required
+                className="sr-only"
+                onChange={(event) => setFile(event.target.files?.[0] ?? null)}
               />
+            </label>
 
-              <p className="mt-2 text-xs text-slate-500">
-                Select the document you want to store in the secure archive.
-              </p>
-            </div>
+            {message && <p className="mt-4 rounded-xl bg-red-50 px-4 py-3 text-sm text-red-700">{message}</p>}
 
-            <div>
-              <label
-                htmlFor="category"
-                className="block text-sm font-semibold text-slate-900"
-              >
-                Category
-              </label>
-
-              <select
-                id="category"
-                value={category}
-                onChange={(event) => setCategory(event.target.value)}
-                className="mt-2 block w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-700 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
-              >
-                {categories.map((item) => (
-                  <option key={item} value={item}>
-                    {item}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            <div>
-              <label
-                htmlFor="description"
-                className="block text-sm font-semibold text-slate-900"
-              >
-                Description
-              </label>
-
-              <textarea
-                id="description"
-                value={description}
-                onChange={(event) => setDescription(event.target.value)}
-                rows={5}
-                placeholder="Optional description of this document..."
-                className="mt-2 block w-full resize-y rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-700 outline-none placeholder:text-slate-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
-              />
-            </div>
-
-            {message && (
-              <div className="rounded-xl bg-blue-50 px-4 py-3 text-sm font-medium text-blue-800">
-                {message}
-              </div>
-            )}
-
-            <div className="flex flex-col gap-3 sm:flex-row sm:justify-end">
-              <Link
-                href="/secure/documents"
-                className="inline-flex items-center justify-center rounded-xl border border-slate-300 px-5 py-3 text-sm font-semibold text-slate-700 transition hover:bg-slate-50"
-              >
-                Cancel
-              </Link>
-
+            <div className="mt-6 flex justify-end gap-3">
+              <Link href="/secure/documents" className="rounded-xl border border-slate-300 px-5 py-3 text-sm font-semibold text-slate-700">Cancel</Link>
               <button
-                type="submit"
-                disabled={uploading}
-                className="inline-flex items-center justify-center rounded-xl bg-blue-700 px-6 py-3 text-sm font-semibold text-white transition hover:bg-blue-800 disabled:cursor-not-allowed disabled:opacity-60"
+                disabled={!file || uploading}
+                className="rounded-xl bg-blue-700 px-6 py-3 text-sm font-semibold text-white hover:bg-blue-800 disabled:cursor-not-allowed disabled:opacity-50"
               >
-                {uploading ? "Uploading..." : "Upload Document"}
+                {uploading ? "Uploading..." : "Upload file"}
               </button>
             </div>
           </form>

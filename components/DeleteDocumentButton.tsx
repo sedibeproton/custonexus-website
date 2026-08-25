@@ -6,11 +6,13 @@ import { useRouter } from "next/navigation";
 type DeleteDocumentButtonProps = {
   documentId: string;
   documentName: string;
+  compact?: boolean;
 };
 
 export default function DeleteDocumentButton({
   documentId,
   documentName,
+  compact = false,
 }: DeleteDocumentButtonProps) {
   const router = useRouter();
   const [deleting, setDeleting] = useState(false);
@@ -64,7 +66,9 @@ export default function DeleteDocumentButton({
         type="button"
         onClick={handleDelete}
         disabled={deleting}
-        className="rounded-xl border border-red-200 bg-white px-4 py-3 text-sm font-semibold text-red-700 transition hover:border-red-300 hover:bg-red-50 disabled:cursor-not-allowed disabled:opacity-50"
+        className={compact
+          ? "text-sm font-semibold text-red-600 hover:text-red-800 disabled:opacity-50"
+          : "rounded-xl border border-red-200 bg-white px-4 py-3 text-sm font-semibold text-red-700 transition hover:border-red-300 hover:bg-red-50 disabled:cursor-not-allowed disabled:opacity-50"}
       >
         {deleting ? "Deleting..." : "Delete"}
       </button>
