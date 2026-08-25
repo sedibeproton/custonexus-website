@@ -1,79 +1,47 @@
-import Section from "@/components/Section";
-import SectionHeader from "@/components/SectionHeader";
-import AnimatedCard from "@/components/AnimatedCard";
-import {
-  ShieldCheck,
-  HeartHandshake,
-  Users,
-  Sparkles,
-} from "lucide-react";
+import { Globe2, HeartPulse, Lightbulb, ShieldCheck } from "lucide-react";
+import Container from "@/components/Container";
 
 const items = [
   {
     icon: ShieldCheck,
-    title: "Healthcare First",
-    description:
-      "Every decision begins with improving healthcare experiences.",
+    title: "Built on Trust",
+    description: "Integrity, transparency and accountability in all we do.",
   },
   {
-    icon: HeartHandshake,
-    title: "Trusted Partnerships",
-    description:
-      "Building lasting relationships through integrity and collaboration.",
+    icon: HeartPulse,
+    title: "Healthcare Focused",
+    description: "Dedicated to improving healthcare experiences.",
   },
   {
-    icon: Users,
-    title: "People Centred",
-    description:
-      "Technology exists to empower people, not replace them.",
+    icon: Lightbulb,
+    title: "Innovation Driven",
+    description: "Leveraging technology to solve real-world challenges.",
   },
   {
-    icon: Sparkles,
-    title: "Constitution Driven",
-    description:
-      "Guided by enduring principles that shape every decision we make.",
+    icon: Globe2,
+    title: "Global Mindset",
+    description: "Connecting people, partners and possibilities.",
   },
 ];
 
 export default function TrustSection() {
   return (
-    <Section className="bg-white border-y border-slate-200">
-
-      <div className="text-center">
-        <SectionHeader
-          eyebrow="Why CustoNexus"
-          title="Built on Trust. Committed to Better Healthcare."
-          subtitle="Everything we do is guided by a commitment to people, partnerships, innovation and excellence in healthcare."
-        />
-      </div>
-
-      <div className="mt-20 grid items-stretch gap-8 md:grid-cols-2 xl:grid-cols-4">
-
-        {items.map((item) => {
-          const Icon = item.icon;
-
-          return (
-            <AnimatedCard key={item.title} className="flex h-full flex-col p-8">
-              <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-50 to-blue-100 transition-transform duration-300 group-hover:scale-110">
-
-                <Icon className="h-8 w-8 text-blue-700" />
-
+    <section className="relative z-20 -mt-24 pb-10 sm:-mt-28 sm:pb-14">
+      <Container>
+        <div className="grid overflow-hidden rounded-3xl border border-white/80 bg-white/95 shadow-[0_24px_70px_rgba(15,48,105,0.16)] backdrop-blur md:grid-cols-2 xl:grid-cols-4">
+          {items.map(({ icon: Icon, title, description }, index) => (
+            <div key={title} className={`flex gap-4 p-6 sm:p-7 ${index ? "border-t border-slate-200 md:border-l md:border-t-0 xl:border-l" : ""} ${index === 2 ? "md:border-l-0 xl:border-l" : ""}`}>
+              <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-blue-50 text-blue-700">
+                <Icon size={27} strokeWidth={1.8} />
               </div>
-
-              <h3 className="mt-8 text-2xl font-bold text-slate-900">
-                {item.title}
-              </h3>
-
-              <p className="mt-4 leading-8 text-slate-600">
-                {item.description}
-              </p>
-
-            </AnimatedCard>
-          );
-        })}
-
-      </div>
-
-    </Section>
+              <div>
+                <h2 className="font-bold text-blue-950">{title}</h2>
+                <p className="mt-1 text-sm leading-6 text-slate-600">{description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </Container>
+    </section>
   );
 }

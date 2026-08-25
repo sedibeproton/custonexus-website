@@ -1,6 +1,6 @@
 import AccentDots from "@/components/AccentDots";
 import Section from "@/components/Section";
-import { Target, HeartHandshake, Sparkles } from "lucide-react";
+import { Target, HeartHandshake } from "lucide-react";
 import SectionHeader from "../components/SectionHeader";
 
 export default function Purpose() {

@@ -1,12 +1,16 @@
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import PageWrapper from "@/components/PageWrapper";
+import PageHero from "@/components/PageHero";
+import FadeSection from "@/components/FadeSection";
+import Container from "@/components/Container";
 import PrimaryButton from "@/components/PrimaryButton";
 import SecondaryButton from "@/components/SecondaryButton";
 
 export const metadata = {
-  title: "Contact | CustoNexus Technologies",
+  title: "Contact",
   description:
     "Get in touch with CustoNexus Technologies to explore healthcare partnerships, digital solutions, and service opportunities.",
+  alternates: { canonical: "/contact" },
+  openGraph: { url: "/contact" },
 };
 
 const contactMethods = [
@@ -32,27 +36,16 @@ const contactMethods = [
 
 export default function ContactPage() {
   return (
-    <>
-      <Navbar />
+    <PageWrapper>
+      <PageHero
+        eyebrow="Contact"
+        title="Start a high-value healthcare partnership."
+        subtitle="Reach out to discuss how CustoNexus can support your digital healthcare strategy with trusted delivery, operational clarity and meaningful outcomes."
+      />
 
-      <section className="bg-gradient-to-br from-slate-950 via-blue-900 to-blue-700 py-28 text-white">
-        <div className="mx-auto max-w-6xl px-8 text-center">
-          <p className="font-semibold uppercase tracking-[0.4em] text-blue-300">
-            Contact
-          </p>
-
-          <h1 className="mt-8 text-5xl font-extrabold leading-tight md:text-6xl">
-            Start a high-value healthcare partnership.
-          </h1>
-
-          <p className="mx-auto mt-10 max-w-3xl text-xl leading-9 text-blue-100">
-            Reach out to discuss how CustoNexus can support your digital healthcare strategy with trusted delivery, operational clarity and meaningful outcomes.
-          </p>
-        </div>
-      </section>
-
-      <section className="bg-white py-24">
-        <div className="mx-auto max-w-6xl px-8">
+      <FadeSection>
+      <section className="bg-white py-16 sm:py-24">
+        <Container>
           <div className="grid gap-8 lg:grid-cols-3">
             {contactMethods.map((method) => (
               <div
@@ -84,10 +77,10 @@ export default function ContactPage() {
               </span>
             </div>
           </div>
-        </div>
+        </Container>
       </section>
+      </FadeSection>
 
-      <Footer />
-    </>
+    </PageWrapper>
   );
 }

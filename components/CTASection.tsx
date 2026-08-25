@@ -16,7 +16,8 @@ export default function CTASection({
   buttonLink,
 }: CTASectionProps) {
   return (
-    <Section spacing="lg" className="bg-gradient-to-br from-slate-950 via-blue-900 to-blue-700 text-white">
+    <Section spacing="lg" className="relative isolate overflow-hidden bg-gradient-to-br from-blue-950 via-[#07327c] to-blue-700 text-white">
+      <div aria-hidden className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_80%_20%,rgba(96,165,250,0.28),transparent_32%)]" />
       <div className="mx-auto max-w-5xl text-center">
         <SectionHeader
           eyebrow=""

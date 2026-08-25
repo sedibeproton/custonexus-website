@@ -40,7 +40,7 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-xl border-b transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 border-b bg-white/95 backdrop-blur-xl transition-all duration-300 ${
         scrolled
           ? "border-slate-200 shadow-md"
           : "border-slate-200 shadow-sm"
@@ -48,7 +48,7 @@ export default function Navbar() {
     >
       <Container
         className={`flex items-center justify-between transition-all duration-300 ${
-          scrolled ? "py-4" : "py-5"
+          scrolled ? "py-3" : "py-4"
         }`}
       >
         <div
@@ -60,7 +60,7 @@ export default function Navbar() {
         </div>
 
         {/* Desktop Navigation */}
-        <nav className="hidden lg:flex items-center gap-8">
+        <nav className="hidden items-center gap-7 lg:flex xl:gap-9">
           {navItems.map((item) => (
             <NavLink
               key={item.href}
@@ -87,8 +87,8 @@ export default function Navbar() {
         </nav>
 
         {/* Desktop CTA */}
-        <div className="hidden md:block">
-          <PrimaryButton href="/contact">
+        <div className="hidden lg:block">
+          <PrimaryButton href="/contact" className="rounded-full px-7 py-3.5">
             Let&apos;s Talk
           </PrimaryButton>
         </div>

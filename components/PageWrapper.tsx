@@ -10,7 +10,7 @@ export default function PageWrapper({ children }: Props) {
   return (
     <>
       <Navbar />
-      <main>{children}</main>
+      <main className="flex-1 overflow-clip">{children}</main>
       <Footer />
     </>
   );

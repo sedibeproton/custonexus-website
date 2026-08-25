@@ -1,5 +1,4 @@
 import Section from "@/components/Section";
-import AccentDots from "@/components/AccentDots";
 import ImageFrame from "@/components/ImageFrame";
 import PrimaryButton from "@/components/PrimaryButton";
 import SectionHeader from "@/components/SectionHeader";
@@ -22,7 +21,7 @@ export default function AboutPreview() {
           <div className="absolute -left-8 top-8 -z-10 h-full w-full rounded-[36px] bg-gradient-to-br from-blue-100 to-blue-50"></div>
           <div className="relative group overflow-hidden rounded-[36px] border border-slate-200 bg-white shadow-2xl">
             <ImageFrame
-              src="/images/executive-presentation.jpg"
+                src="/images/executive-presentation-identity-v2.png"
               alt="About CustoNexus"
               width={600}
               height={700}

@@ -164,7 +164,7 @@ export default async function SecureDashboardPage() {
                 </h2>
 
                 <p className="mt-1 text-sm text-slate-600">
-                  Organise the company's important records.
+                  Organise the company&apos;s important records.
                 </p>
               </div>
             </div>

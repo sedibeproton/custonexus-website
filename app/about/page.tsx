@@ -1,14 +1,15 @@
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import FadeSection from "@/components/componentsFadeSection";
+import FadeSection from "@/components/FadeSection";
+import PageWrapper from "@/components/PageWrapper";
 
 import AboutHero from "@/sections/about/AboutHero";
 import CTASection from "@/components/CTASection";
 
 export const metadata = {
-  title: "About | CustoNexus Technologies",
+  title: "About",
   description:
     "Learn about CustoNexus Technologies, our purpose, vision and commitment to improving healthcare through meaningful connections.",
+  alternates: { canonical: "/about" },
+  openGraph: { url: "/about" },
 };
 
 import OurStory from "@/sections/about/OurStory";
@@ -17,13 +18,11 @@ import FoundationSection from "@/sections/about/FoundationSection";
 import VisionMission from "@/sections/about/VisionMission";
 import CoreValues from "@/sections/about/CoreValues";
 import LeadershipPhilosophy from "@/sections/about/LeadershipPhilosophy";
-import LookingAhead from "@/sections/about/LookingAhead";
 import TheDifference from "@/sections/about/TheDifference";
 
 export default function AboutPage() {
   return (
-    <>
-      <Navbar />
+    <PageWrapper>
 
       <AboutHero />
 
@@ -64,7 +63,6 @@ export default function AboutPage() {
   />
 </FadeSection>
 
-      <Footer />
-    </>
+    </PageWrapper>
   );
 }

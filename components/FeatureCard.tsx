@@ -15,17 +15,17 @@ export default function FeatureCard({
   return (
     <div className="
       group
-      rounded-3xl
+      rounded-[2rem]
       border
       border-slate-200
       bg-white
       p-8
-      shadow-sm
+      shadow-[0_12px_40px_rgba(15,48,105,0.07)]
       transition-all
       duration-500
-      hover:-translate-y-2
+      hover:-translate-y-1
       hover:border-blue-200
-      hover:shadow-xl
+      hover:shadow-[0_22px_55px_rgba(15,48,105,0.13)]
     ">
 
       <div className="mb-6 transition-transform duration-500 group-hover:scale-110">

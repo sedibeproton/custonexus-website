@@ -1,5 +1,4 @@
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import PageWrapper from "@/components/PageWrapper";
 import PageHero from "@/components/PageHero";
 import CTASection from "@/components/CTASection";
 import FadeSection from "@/components/FadeSection";
@@ -11,10 +10,17 @@ import Industries from "@/sections/solutions/Industries";
 import WhyCustoNexus from "@/sections/solutions/WhyCustoNexus";
 import FutureInnovation from "@/sections/solutions/FutureInnovation";
 
+export const metadata = {
+  title: "Healthcare Solutions",
+  description:
+    "Explore CustoNexus healthcare technology, medical solutions and professional services built to improve care and operational outcomes.",
+  alternates: { canonical: "/solutions" },
+  openGraph: { url: "/solutions" },
+};
+
 export default function SolutionsPage() {
   return (
-    <>
-      <Navbar />
+    <PageWrapper>
 
       <PageHero
         eyebrow="Solutions"
@@ -55,7 +61,6 @@ export default function SolutionsPage() {
         />
       </FadeSection>
 
-      <Footer />
-    </>
+    </PageWrapper>
   );
 }

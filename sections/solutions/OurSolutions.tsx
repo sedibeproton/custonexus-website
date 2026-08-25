@@ -6,6 +6,7 @@ import {
   Network,
   Lightbulb,
 } from "lucide-react";
+import Container from "@/components/Container";
 
 const solutions = [
   {
@@ -40,8 +41,8 @@ const solutions = [
 
 export default function OurSolutions() {
   return (
-    <section className="bg-slate-50 py-24">
-      <div className="mx-auto max-w-7xl px-8">
+    <section className="bg-slate-50 py-16 sm:py-24">
+      <Container>
 
         <SectionHeader
           eyebrow="Our Solutions"
@@ -89,7 +90,7 @@ export default function OurSolutions() {
           ))}
         </div>
 
-      </div>
+      </Container>
     </section>
   );
 }

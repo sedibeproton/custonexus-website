@@ -16,7 +16,7 @@ export default function Foundation() {
           <div className="absolute -right-8 top-8 -z-10 h-full w-full rounded-[36px] bg-gradient-to-bl from-blue-100 to-blue-50" />
           <div className="relative overflow-hidden rounded-[36px] border border-slate-200 bg-white shadow-2xl group">
             <ImageFrame
-              src="/images/founder-handshake.jpg"
+              src="/images/founder-handshake-identity-v2.png"
               alt="Founder collaborating with healthcare professionals"
               width={800}
               height={900}

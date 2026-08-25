@@ -1,6 +1,5 @@
-import Navbar from "../components/Navbar";
 import FadeSection from "../components/FadeSection";
-import Footer from "../components/Footer";
+import PageWrapper from "../components/PageWrapper";
 import AboutPreview from "../sections/AboutPreview";
 import CallToAction from "../sections/CallToAction";
 import ConstitutionPreview from "../sections/ConstitutionPreview";
@@ -13,15 +12,16 @@ import WhyChooseUs from "../sections/WhyChooseUs";
 
 
 export const metadata = {
-  title: "Home | CustoNexus Technologies",
+  title: "Home",
   description:
     "Discover CustoNexus Technologies — creating healthcare solutions through trusted partnerships, meaningful connections and technology that serves people.",
+  alternates: { canonical: "/" },
+  openGraph: { url: "/" },
 };
 
 export default function Home() {
   return (
-    <>
-      <Navbar />
+    <PageWrapper>
 
       <Hero />
 
@@ -57,7 +57,6 @@ export default function Home() {
         <CallToAction />
       </FadeSection>
 
-      <Footer />
-    </>
+    </PageWrapper>
   );
 }

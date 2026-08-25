@@ -1,6 +1,5 @@
 import Image from "next/image";
 import PrimaryButton from "@/components/PrimaryButton";
-import Section from "@/components/Section";
 
 export default function AboutHero() {
   return (

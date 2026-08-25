@@ -5,6 +5,8 @@ import {
   HeartPulse,
   Handshake,
 } from "lucide-react";
+import Section from "@/components/Section";
+import SectionHeader from "@/components/SectionHeader";
 
 const challenges = [
   {
@@ -35,22 +37,12 @@ const challenges = [
 
 export default function HealthcareChallenges() {
   return (
-    <section className="py-28">
-      <div className="mx-auto max-w-7xl px-8">
-        <div className="text-center">
-          <p className="font-semibold uppercase tracking-[0.35em] text-blue-700">
-            Healthcare Today
-          </p>
-
-          <h2 className="mt-6 text-5xl font-bold text-slate-900">
-            Understanding Today&apos;s Challenges
-          </h2>
-
-          <p className="mx-auto mt-8 max-w-3xl text-xl leading-9 text-slate-600">
-            Modern healthcare demands innovative solutions that strengthen
-            people, improve efficiency and create meaningful experiences.
-          </p>
-        </div>
+    <Section className="bg-white">
+        <SectionHeader
+          eyebrow="Healthcare Today"
+          title="Understanding Today’s Challenges"
+          subtitle="Modern healthcare demands innovative solutions that strengthen people, improve efficiency and create meaningful experiences."
+        />
 
         <div className="mt-20 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
           {challenges.map((challenge) => (
@@ -62,7 +54,6 @@ export default function HealthcareChallenges() {
             />
           ))}
         </div>
-      </div>
-    </section>
+    </Section>
   );
 }

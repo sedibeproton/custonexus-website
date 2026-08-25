@@ -2,6 +2,8 @@ import ImageFrame from "@/components/ImageFrame";
 import PrimaryButton from "@/components/PrimaryButton";
 import SecondaryButton from "@/components/SecondaryButton";
 import { ArrowDown } from "lucide-react";
+import Container from "@/components/Container";
+import FadeIn from "@/components/FadeIn";
 
 export default function AboutHero() {
   return (
@@ -10,7 +12,7 @@ export default function AboutHero() {
       {/* Background Image */}
 
       <ImageFrame
-        src="/images/about-hero.jpg"
+        src="/images/about-hero-identity-v2.png"
         alt="Healthcare professionals collaborating"
         fill
         priority
@@ -28,8 +30,9 @@ export default function AboutHero() {
 
       {/* Content */}
 
-      <div className="relative z-10 mx-auto max-w-7xl px-8">
+      <Container className="relative z-10">
 
+        <FadeIn>
         <div className="max-w-3xl">
 
           <p className="text-sm font-semibold uppercase tracking-[0.35em] text-blue-300">
@@ -38,7 +41,7 @@ export default function AboutHero() {
 
           <div className="mt-5 mb-8 h-1 w-24 rounded-full bg-blue-500" />
 
-          <h1 className="text-5xl font-bold leading-tight text-white md:text-7xl">
+          <h1 className="text-4xl font-bold leading-[1.08] tracking-[-0.04em] text-white sm:text-5xl md:text-7xl">
 
             Building Better Healthcare
 
@@ -60,13 +63,13 @@ export default function AboutHero() {
 
             <PrimaryButton href="#our-story">Read Our Story</PrimaryButton>
 
-            <SecondaryButton href="/constitution">Read Our Constitution</SecondaryButton>
+            <SecondaryButton href="/constitution" className="border-white text-white hover:bg-white hover:text-blue-800">Read Our Constitution</SecondaryButton>
 
           </div>
 
         </div>
-
-      </div>
+        </FadeIn>
+      </Container>
 
       {/* Scroll Indicator */}
 

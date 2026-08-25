@@ -1,23 +1,22 @@
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import PageWrapper from "@/components/PageWrapper";
 import PageHero from "@/components/PageHero";
 import FadeSection from "@/components/FadeSection";
-import CTASection from "@/components/CTASection";
 import ConstitutionChapter from "@/components/ConstitutionChapter";
 
 export const metadata = {
-  title: "The Constitution | CustoNexus Technologies",
+  title: "The Constitution",
   description:
     "The Constitution of CustoNexus Technologies — the enduring principles, commitments and standards that guide who we are, how we serve and the future we seek to build.",
+  alternates: { canonical: "/constitution" },
+  openGraph: { url: "/constitution" },
 };
 
 export default function ConstitutionPage() {
   return (
-    <>
-      <Navbar />
+    <PageWrapper>
 
       <PageHero
-        eyebrow="Founder&apos;s Edition"
+        eyebrow="Founder's Edition"
         title="The CustoNexus Constitution"
         subtitle="The enduring principles, commitments and standards upon which CustoNexus Technologies is built."
       />
@@ -4300,7 +4299,7 @@ export default function ConstitutionPage() {
           </p>
 
           <p>
-            We recognise that today's decisions become tomorrow's foundation.
+            We recognise that today&apos;s decisions become tomorrow&apos;s foundation.
           </p>
 
           <p>
@@ -4433,7 +4432,7 @@ export default function ConstitutionPage() {
           </p>
 
           <p>
-            The organisation is never simply a reflection of one person's
+            The organisation is never simply a reflection of one person&apos;s
             ambitions.
           </p>
 
@@ -4563,7 +4562,7 @@ export default function ConstitutionPage() {
           </p>
 
           <p>
-            Did we improve a patient's experience?
+            Did we improve a patient&apos;s experience?
           </p>
 
           <p>
@@ -4595,7 +4594,7 @@ export default function ConstitutionPage() {
             <br />
             One organisation more capable.
             <br />
-            One person's healthcare journey more meaningful.
+            One person&apos;s healthcare journey more meaningful.
           </p>
 
           <p>
@@ -4915,7 +4914,6 @@ export default function ConstitutionPage() {
       </FadeSection>
 
 
-      <Footer />
-    </>
+    </PageWrapper>
   );
 }
