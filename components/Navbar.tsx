@@ -62,7 +62,7 @@ export default function Navbar() {
         </div>
 
         {/* Desktop Navigation */}
-        <nav className="hidden items-center gap-5 lg:flex xl:gap-7">
+        <nav className="hidden items-center gap-5 xl:flex 2xl:gap-7">
           {navItems.map((item) => (
             <NavLink
               key={item.href}
@@ -89,7 +89,7 @@ export default function Navbar() {
         </nav>
 
         {/* Desktop CTA */}
-        <div className="hidden lg:block">
+        <div className="hidden xl:block">
           <PrimaryButton href="/contact" className="rounded-full px-7 py-3.5">
             Let&apos;s Talk
           </PrimaryButton>
@@ -98,7 +98,7 @@ export default function Navbar() {
         {/* Mobile Menu Button */}
         <button
           type="button"
-          className="inline-flex lg:hidden h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 transition hover:border-slate-300 hover:text-slate-950"
+          className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 transition hover:border-slate-300 hover:text-slate-950 xl:hidden"
           onClick={() => setMenuOpen((current) => !current)}
           aria-label="Toggle navigation"
           aria-expanded={menuOpen}
@@ -111,7 +111,7 @@ export default function Navbar() {
       <div
         className={`${
           menuOpen ? "block" : "hidden"
-        } lg:hidden border-t border-slate-200 bg-white/95 shadow-xl`}
+        } border-t border-slate-200 bg-white/95 shadow-xl xl:hidden`}
       >
         <Container className="py-6">
           <div className="flex flex-col gap-4">

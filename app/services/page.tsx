@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { ArrowRight, HeartPulse } from "lucide-react";
 
 import Container from "@/components/Container";
@@ -56,7 +57,7 @@ export default function ServicesPage() {
       />
 
       <FadeSection>
-        <section className="bg-slate-50 py-16 sm:py-24">
+        <section id="service-categories" className="scroll-mt-28 bg-slate-50 py-16 sm:py-24">
           <Container>
             <SectionHeader
               eyebrow="Explore Our Services"
@@ -122,12 +123,12 @@ export default function ServicesPage() {
                   <PrimaryButton href="/contact">
                     Discuss your needs <ArrowRight size={18} />
                   </PrimaryButton>
-                  <a
+                  <Link
                     href="/faqs"
                     className="inline-flex items-center rounded-full border border-blue-200 px-6 py-3 font-semibold text-blue-700 transition hover:border-blue-700 hover:bg-blue-50"
                   >
                     Read FAQs
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>

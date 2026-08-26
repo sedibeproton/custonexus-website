@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { ArrowRight, HelpCircle, MessageCircle, Plus } from "lucide-react";
 
 import Container from "@/components/Container";
@@ -115,7 +116,7 @@ export default function FAQsPage() {
               <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-slate-600">Tell us what you need to know. We will respond clearly and help you decide whether CustoNexus is the right partner for your goals.</p>
               <div className="mt-8 flex flex-wrap justify-center gap-4">
                 <PrimaryButton href="/contact">Contact Our Team <ArrowRight size={18} /></PrimaryButton>
-                <a href="/services" className="inline-flex items-center rounded-full border border-blue-200 px-6 py-3 font-semibold text-blue-700 transition hover:border-blue-700 hover:bg-blue-50">Explore Services</a>
+                <Link href="/services" className="inline-flex items-center rounded-full border border-blue-200 px-6 py-3 font-semibold text-blue-700 transition hover:border-blue-700 hover:bg-blue-50">Explore Services</Link>
               </div>
             </div>
           </Container>

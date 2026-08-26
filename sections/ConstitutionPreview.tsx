@@ -1,6 +1,8 @@
 import Section from "@/components/Section";
 import PrimaryButton from "@/components/PrimaryButton";
 import SectionHeader from "@/components/SectionHeader";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 
 export default function ConstitutionPreview() {
   return (
@@ -76,10 +78,17 @@ export default function ConstitutionPreview() {
               that meaningful connections are the foundation
               of exceptional healthcare.
             </p>
-            <div className="mt-10 flex items-center gap-2 font-semibold text-blue-700">
+            <Link
+              href="/constitution"
+              className="mt-10 inline-flex items-center gap-2 font-semibold text-blue-700 transition-colors hover:text-blue-800"
+            >
               Continue Reading
-              <span className="transition-transform group-hover:translate-x-1">→</span>
-            </div>
+              <ArrowRight
+                size={18}
+                aria-hidden
+                className="transition-transform group-hover:translate-x-1"
+              />
+            </Link>
 
             <div className="mt-8 h-20 bg-gradient-to-b from-transparent to-white" />
 

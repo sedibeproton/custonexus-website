@@ -12,7 +12,7 @@ import WhyChooseUs from "../sections/WhyChooseUs";
 
 
 export const metadata = {
-  title: "Home",
+  title: "Healthcare Technology, Medical Equipment & Services",
   description:
     "Discover CustoNexus Technologies — creating healthcare solutions through trusted partnerships, meaningful connections and technology that serves people.",
   alternates: { canonical: "/" },

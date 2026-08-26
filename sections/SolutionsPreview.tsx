@@ -9,25 +9,36 @@ import { ArrowRight } from "lucide-react";
 
 const solutions = [
   {
-    title: "Healthcare Solutions",
+    title: "Healthcare Technology",
     description:
-      "Supporting healthcare professionals and organisations with innovative solutions that improve care delivery and patient experiences.",
-    image: "/images/healthcare-partnership.jpg",
+      "Purpose-built websites, apps, platforms and connected digital solutions that improve healthcare workflows and experiences.",
+    image: "/images/healthcare-technology.jpg",
     reverse: false,
+    href: "/services/healthcare-technology",
   },
   {
-    title: "Technology Solutions",
+    title: "Medical Equipment & Consumables",
     description:
-      "Developing modern digital platforms, software, and intelligent technologies that strengthen healthcare systems.",
-    image: "/images/technology-innovation.jpg",
+      "Clinical equipment, monitoring devices, protective products and dependable consumables sourced around healthcare needs.",
+    image: "/images/solutions-healthcare.jpg",
     reverse: true,
+    href: "/services/medical-equipment-consumables",
   },
   {
     title: "Professional Services",
     description:
-      "Building trusted partnerships through strategic consulting, implementation, and long-term collaboration.",
-    image: "/images/strategic-partnership.jpg",
+      "Consulting, implementation, security and ongoing support designed around the realities of healthcare organisations.",
+    image: "/images/professional-services.jpg",
     reverse: false,
+    href: "/services/professional-services",
+  },
+  {
+    title: "Strategic Partnerships",
+    description:
+      "Connecting organisations with trusted expertise, products and opportunities that create sustainable healthcare value.",
+    image: "/images/strategic-partnerships.jpg",
+    reverse: true,
+    href: "/services/strategic-partnerships",
   },
 ];
 
@@ -72,8 +83,8 @@ export default function SolutionsPreview() {
                   </p>
 
                   <Link
-                    href="/solutions"
-                    className="mt-8 inline-flex items-center gap-3 font-semibold tracking-wide text-blue-700 transition-colors hover:text-blue-800"
+                    href={solution.href}
+                    className="group mt-8 inline-flex items-center gap-3 font-semibold tracking-wide text-blue-700 transition-colors hover:text-blue-800"
                   >
                     Learn More
                     <ArrowRight

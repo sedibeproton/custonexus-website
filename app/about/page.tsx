@@ -5,7 +5,7 @@ import AboutHero from "@/sections/about/AboutHero";
 import CTASection from "@/components/CTASection";
 
 export const metadata = {
-  title: "About",
+  title: "About CustoNexus Technologies",
   description:
     "Learn about CustoNexus Technologies, our purpose, vision and commitment to improving healthcare through meaningful connections.",
   alternates: { canonical: "/about" },

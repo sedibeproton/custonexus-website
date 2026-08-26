@@ -3,10 +3,12 @@ import SectionHeader from "@/components/SectionHeader";
 import {
   Laptop,
   Briefcase,
+  HeartPulse,
   Network,
-  Lightbulb,
+  ArrowRight,
 } from "lucide-react";
 import Container from "@/components/Container";
+import Link from "next/link";
 
 const solutions = [
   {
@@ -15,13 +17,23 @@ const solutions = [
     description:
       "Digital solutions that improve workflows, efficiency and healthcare experiences.",
     image: "/images/healthcare-technology.jpg",
+    href: "/services/healthcare-technology",
+  },
+  {
+    icon: <HeartPulse size={30} />,
+    title: "Medical Equipment & Consumables",
+    description:
+      "Essential clinical equipment, monitoring devices, protective products and everyday consumables.",
+    image: "/images/solutions-healthcare.jpg",
+    href: "/services/medical-equipment-consumables",
   },
   {
     icon: <Briefcase size={30} />,
     title: "Professional Services",
     description:
-      "Consulting and specialised support designed around the realities of healthcare organisations.",
+      "Consulting, implementation and specialised support designed around healthcare organisations.",
     image: "/images/professional-services.jpg",
+    href: "/services/professional-services",
   },
   {
     icon: <Network size={30} />,
@@ -29,13 +41,7 @@ const solutions = [
     description:
       "Connecting organisations with trusted expertise, products and opportunities that strengthen healthcare.",
     image: "/images/strategic-partnerships.jpg",
-  },
-  {
-    icon: <Lightbulb size={30} />,
-    title: "Innovation",
-    description:
-      "Exploring future-focused ideas that improve healthcare experiences and create meaningful impact.",
-    image: "/images/healthcare-innovation.jpg",
+    href: "/services/strategic-partnerships",
   },
 ];
 
@@ -84,6 +90,13 @@ export default function OurSolutions() {
                 </p>
 
                 <div className="mt-6 h-1 w-12 rounded-full bg-blue-700 transition-all duration-300 group-hover:w-20" />
+
+                <Link
+                  href={solution.href}
+                  className="mt-6 inline-flex items-center gap-2 font-semibold text-blue-700 transition-all hover:gap-3 hover:text-blue-800"
+                >
+                  Explore category <ArrowRight size={18} aria-hidden />
+                </Link>
               </div>
 
             </article>

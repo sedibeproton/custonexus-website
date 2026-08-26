@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useSyncExternalStore } from "react";
+import Link from "next/link";
 import {
   ArrowRight,
   BriefcaseBusiness,
@@ -15,6 +16,7 @@ import PrimaryButton from "@/components/PrimaryButton";
 
 type Category = {
   id: string;
+  detailHref: string;
   title: string;
   shortDescription: string;
   introduction: string;
@@ -35,6 +37,7 @@ type Category = {
 const categories: Category[] = [
   {
     id: "healthcare-technology",
+    detailHref: "/services/healthcare-technology",
     title: "Healthcare Technology",
     shortDescription:
       "Digital platforms, connected systems and purpose-built software for modern healthcare.",
@@ -93,6 +96,7 @@ const categories: Category[] = [
   },
   {
     id: "medical-equipment",
+    detailHref: "/services/medical-equipment-consumables",
     title: "Medical Equipment & Consumables",
     shortDescription:
       "Essential equipment, monitoring devices and consumables sourced around healthcare needs.",
@@ -139,6 +143,7 @@ const categories: Category[] = [
   },
   {
     id: "professional-services",
+    detailHref: "/services/professional-services",
     title: "Professional Services",
     shortDescription:
       "Consulting, implementation and ongoing support designed around healthcare organisations.",
@@ -183,6 +188,7 @@ const categories: Category[] = [
   },
   {
     id: "strategic-partnerships",
+    detailHref: "/services/strategic-partnerships",
     title: "Strategic Partnerships",
     shortDescription:
       "Trusted collaborations that connect expertise, products and opportunities across healthcare.",
@@ -227,8 +233,31 @@ const categories: Category[] = [
   },
 ];
 
+function subscribeToHashChange(callback: () => void) {
+  window.addEventListener("hashchange", callback);
+  return () => window.removeEventListener("hashchange", callback);
+}
+
+function getCurrentHash() {
+  return window.location.hash.slice(1);
+}
+
 export default function ServiceCategoryExplorer() {
-  const [activeId, setActiveId] = useState(categories[0].id);
+  const requestedCategory = useSyncExternalStore(
+    subscribeToHashChange,
+    getCurrentHash,
+    () => "",
+  );
+  const activeId = categories.some(
+    (category) => category.id === requestedCategory,
+  )
+    ? requestedCategory
+    : categories[0].id;
+
+  const selectCategory = (categoryId: string) => {
+    window.history.pushState(null, "", `#${categoryId}`);
+    window.dispatchEvent(new HashChangeEvent("hashchange"));
+  };
   const activeCategory =
     categories.find((category) => category.id === activeId) ?? categories[0];
   const ActiveIcon = activeCategory.icon;
@@ -247,12 +276,12 @@ export default function ServiceCategoryExplorer() {
           return (
             <button
               key={category.id}
-              id={`${category.id}-tab`}
+              id={category.id}
               type="button"
               role="tab"
               aria-selected={isActive}
               aria-controls={`${category.id}-panel`}
-              onClick={() => setActiveId(category.id)}
+              onClick={() => selectCategory(category.id)}
               className={`group rounded-3xl border p-6 text-left transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-blue-200 ${
                 isActive
                   ? "-translate-y-1 border-blue-700 bg-blue-700 text-white shadow-xl shadow-blue-900/20"
@@ -291,11 +320,23 @@ export default function ServiceCategoryExplorer() {
         })}
       </div>
 
+      <div className="mt-6 flex flex-wrap justify-center gap-x-6 gap-y-3 text-sm">
+        {categories.map((category) => (
+          <Link
+            key={category.detailHref}
+            href={category.detailHref}
+            className="font-semibold text-blue-700 underline-offset-4 hover:text-blue-800 hover:underline"
+          >
+            View {category.title} details
+          </Link>
+        ))}
+      </div>
+
       <section
         key={activeCategory.id}
         id={`${activeCategory.id}-panel`}
         role="tabpanel"
-        aria-labelledby={`${activeCategory.id}-tab`}
+        aria-labelledby={activeCategory.id}
         className="mt-8 animate-[fadeIn_0.35s_ease-out] overflow-hidden rounded-[2rem] border border-blue-100 bg-white shadow-2xl shadow-blue-950/10"
       >
         <div className="bg-gradient-to-br from-blue-950 via-[#07327c] to-blue-700 p-8 text-white sm:p-10 lg:p-12">
