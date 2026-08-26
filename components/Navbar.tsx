@@ -18,6 +18,8 @@ const navItems: Array<{
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
   { href: "/solutions", label: "Solutions" },
+  { href: "/services", label: "Services" },
+  { href: "/faqs", label: "FAQs" },
   { href: "/constitution", label: "Constitution" },
   { href: "/contact", label: "Contact" },
 ];
@@ -60,7 +62,7 @@ export default function Navbar() {
         </div>
 
         {/* Desktop Navigation */}
-        <nav className="hidden items-center gap-7 lg:flex xl:gap-9">
+        <nav className="hidden items-center gap-5 lg:flex xl:gap-7">
           {navItems.map((item) => (
             <NavLink
               key={item.href}

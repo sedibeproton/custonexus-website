@@ -1,6 +1,6 @@
 ﻿import Container from "@/components/Container";
 import Link from "next/link";
-import { LockKeyhole, Mail, MapPin } from "lucide-react";
+import { LockKeyhole, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import Logo from "./Logo";
 
 export default function Footer() {
@@ -37,6 +37,16 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/services" className="transition hover:text-white">
+                  Services
+                </Link>
+              </li>
+              <li>
+                <Link href="/faqs" className="transition hover:text-white">
+                  FAQs
+                </Link>
+              </li>
+              <li>
                 <Link href="/contact" className="transition hover:text-white">
                   Contact
                 </Link>
@@ -49,7 +59,15 @@ export default function Footer() {
             <div className="space-y-4 text-slate-300">
               <div className="flex items-center gap-3">
                 <Mail size={18} className="text-blue-400" />
-                <a href="mailto:hello@custonexus.tech" className="transition hover:text-white">hello@custonexus.tech</a>
+                <a href="mailto:info@custonexus.com" className="transition hover:text-white">info@custonexus.com</a>
+              </div>
+              <div className="flex items-center gap-3">
+                <Phone size={18} className="text-blue-400" />
+                <a href="tel:+27722701087" className="transition hover:text-white">072 270 1087</a>
+              </div>
+              <div className="flex items-center gap-3">
+                <MessageCircle size={18} className="text-blue-400" />
+                <a href="https://wa.me/27722701087" target="_blank" rel="noreferrer" className="transition hover:text-white">WhatsApp us</a>
               </div>
               <div className="flex items-center gap-3">
                 <MapPin size={18} className="text-blue-400" />

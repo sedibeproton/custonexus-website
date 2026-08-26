@@ -75,7 +75,16 @@ const organizationJsonLd = {
   name: "CustoNexus Technologies",
   url: "https://custonexus.com",
   logo: "https://custonexus.com/logos/logo-mark.png",
-  email: "hello@custonexus.tech",
+  email: "info@custonexus.com",
+  telephone: "+27 72 270 1087",
+  contactPoint: {
+    "@type": "ContactPoint",
+    telephone: "+27 72 270 1087",
+    email: "info@custonexus.com",
+    contactType: "customer service",
+    areaServed: "ZA",
+    availableLanguage: "English",
+  },
   description:
     "Healthcare technology, professional services and trusted partnerships designed to improve healthcare experiences.",
 };
