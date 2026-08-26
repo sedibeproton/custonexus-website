@@ -1,44 +1,21 @@
-import FadeIn from "./FadeIn";
 import Container from "./Container";
+import FadeIn from "./FadeIn";
 
-interface PageHeroProps {
-  eyebrow: string;
-  title: string;
-  subtitle: string;
-}
+interface PageHeroProps { eyebrow: string; title: string; subtitle: string; }
 
-export default function PageHero({
-  eyebrow,
-  title,
-  subtitle,
-}: PageHeroProps) {
+export default function PageHero({ eyebrow, title, subtitle }: PageHeroProps) {
   return (
-    <section className="relative isolate overflow-hidden bg-gradient-to-br from-blue-950 via-[#07327c] to-blue-700 pb-20 pt-36 text-white sm:pb-28 sm:pt-44">
-      <Container className="relative z-10">
-        <FadeIn>
-        {/* Eyebrow */}
-        <p className="font-semibold uppercase tracking-[0.35em] text-blue-300">
-          {eyebrow}
-        </p>
-
-        {/* Heading */}
-        <h1 className="mt-5 max-w-5xl text-4xl font-extrabold leading-[1.08] sm:text-5xl lg:text-7xl">
-          {title}
-        </h1>
-
-        {/* Subtitle */}
-        <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-200 sm:mt-8 sm:text-xl sm:leading-9">
-          {subtitle}
-        </p>
-
-        </FadeIn>
-      </Container>
-
-      <div aria-hidden className="absolute inset-0 -z-10 overflow-hidden">
-        <div className="absolute left-1/2 top-1/2 h-[700px] w-[700px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-600/10 blur-3xl" />
-        <div className="absolute -right-20 top-24 h-72 w-72 rotate-12 border border-white/10 [clip-path:polygon(25%_0,75%_0,100%_50%,75%_100%,25%_100%,0_50%)]" />
-        <div className="absolute right-48 top-52 h-24 w-24 border border-blue-300/30 [clip-path:polygon(25%_0,75%_0,100%_50%,75%_100%,25%_100%,0_50%)]" />
+    <section className="relative isolate overflow-hidden bg-[#071a3d] pb-24 pt-40 text-white sm:pb-32 sm:pt-48">
+      <div aria-hidden className="absolute inset-0 -z-10">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_20%,rgba(46,118,255,0.35),transparent_34%),radial-gradient(circle_at_15%_95%,rgba(16,185,129,0.13),transparent_25%)]" />
+        <div className="absolute inset-0 opacity-[0.12] [background-image:linear-gradient(rgba(255,255,255,.13)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.13)_1px,transparent_1px)] [background-size:64px_64px] [mask-image:linear-gradient(to_right,black,transparent_80%)]" />
+        <div className="absolute -right-20 top-28 h-80 w-80 rotate-[24deg] rounded-[4rem] border border-white/10" />
       </div>
+      <Container><FadeIn><div className="max-w-5xl">
+        <p className="inline-flex items-center gap-3 text-xs font-bold uppercase tracking-[0.3em] text-blue-200 sm:text-sm"><span className="h-px w-9 bg-emerald-400" />{eyebrow}</p>
+        <h1 className="mt-7 text-4xl font-semibold leading-[1.04] tracking-[-0.045em] sm:text-6xl lg:text-7xl">{title}</h1>
+        <p className="mt-7 max-w-3xl border-l border-blue-400/50 pl-6 text-lg leading-8 text-blue-100 sm:text-xl sm:leading-9">{subtitle}</p>
+      </div></FadeIn></Container>
     </section>
   );
 }

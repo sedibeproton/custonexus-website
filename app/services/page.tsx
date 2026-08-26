@@ -57,7 +57,7 @@ export default function ServicesPage() {
       />
 
       <FadeSection>
-        <section id="service-categories" className="scroll-mt-28 bg-slate-50 py-16 sm:py-24">
+        <section id="service-categories" className="scroll-mt-28 bg-slate-50 py-12 sm:py-24">
           <Container>
             <SectionHeader
               eyebrow="Explore Our Services"
@@ -86,7 +86,7 @@ export default function ServicesPage() {
               {process.map((step) => (
                 <li
                   key={step.number}
-                  className="rounded-3xl border border-white/10 bg-white/[0.06] p-7 backdrop-blur-sm"
+                  className="rounded-2xl border border-white/10 bg-white/[0.06] p-5 backdrop-blur-sm sm:rounded-3xl sm:p-7"
                 >
                   <span className="text-sm font-bold tracking-[0.2em] text-blue-300">
                     {step.number}
@@ -103,7 +103,7 @@ export default function ServicesPage() {
       <FadeSection>
         <section className="bg-blue-50 py-16 sm:py-24">
           <Container>
-            <div className="grid items-center gap-10 rounded-[2rem] border border-blue-100 bg-white p-8 shadow-xl shadow-blue-950/5 lg:grid-cols-[0.75fr_1.25fr] lg:p-12">
+            <div className="grid items-center gap-7 rounded-3xl border border-blue-100 bg-white p-5 shadow-xl shadow-blue-950/5 sm:p-8 lg:grid-cols-[0.75fr_1.25fr] lg:gap-10 lg:rounded-[2rem] lg:p-12">
               <div className="flex h-24 w-24 items-center justify-center rounded-[2rem] bg-blue-700 text-white shadow-xl shadow-blue-700/20">
                 <HeartPulse size={45} aria-hidden />
               </div>
@@ -119,7 +119,7 @@ export default function ServicesPage() {
                   expertise and partner capabilities into one coordinated
                   engagement.
                 </p>
-                <div className="mt-8 flex flex-wrap gap-4">
+                <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-4">
                   <PrimaryButton href="/contact">
                     Discuss your needs <ArrowRight size={18} />
                   </PrimaryButton>

@@ -18,13 +18,13 @@ export default function Section({
   const spacingClass = {
     sm: "py-12 sm:py-16",
     md: "py-16 sm:py-20",
-    lg: "py-16 sm:py-24",
+    lg: "py-20 sm:py-28 lg:py-32",
   }[spacing];
 
   return (
     <section
       id={id}
-      className={`${spacingClass} ${className}`}
+      className={`relative isolate overflow-hidden ${spacingClass} ${className}`}
     >
       <Container>
         {children}

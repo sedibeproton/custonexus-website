@@ -120,6 +120,13 @@ export default async function SecureDashboardPage() {
                 Upload File
               </Link>
 
+              <Link
+                href="/secure/enquiries"
+                className="rounded-xl border border-white/30 bg-white/10 px-5 py-3 text-sm font-semibold text-white backdrop-blur transition hover:bg-white/20"
+              >
+                View Enquiries
+              </Link>
+
             </div>
 
           </div>

@@ -31,8 +31,14 @@ html {
 }
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f7f9fc;
+  --foreground: #0b1736;
+  --navy: #071a3d;
+  --blue: #165dff;
+  --blue-deep: #0b3fb5;
+  --green: #1a9c72;
+  --surface: rgba(255, 255, 255, 0.84);
+  --line: rgba(16, 52, 104, 0.12);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
@@ -41,10 +47,60 @@ html {
 
 
 body {
-  background: var(--background);
+  background:
+    radial-gradient(circle at 8% 6%, rgba(37, 99, 235, 0.08), transparent 24rem),
+    radial-gradient(circle at 92% 28%, rgba(16, 185, 129, 0.055), transparent 22rem),
+    var(--background);
   color: var(--foreground);
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
   overflow-x: hidden;
+}
+
+body::before {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  content: "";
+  pointer-events: none;
+  opacity: 0.32;
+  background-image: linear-gradient(rgba(15, 48, 105, 0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(15, 48, 105, 0.035) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: linear-gradient(to bottom, black, transparent 72%);
+}
+
+h1, h2, h3 {
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+.cn-glass {
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.78);
+  box-shadow: 0 24px 70px rgba(9, 32, 76, 0.1);
+  backdrop-filter: blur(20px);
+}
+
+.cn-card-shine {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.cn-card-shine::before {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  content: "";
+  opacity: 0;
+  background: radial-gradient(circle at var(--shine-x, 20%) 0%, rgba(37, 99, 235, 0.13), transparent 42%);
+  transition: opacity 400ms ease;
+}
+
+.cn-card-shine:hover::before {
+  opacity: 1;
 }
 
 :focus-visible {
@@ -64,6 +120,24 @@ body {
 
 .float-slower {
   animation: float 10s ease-in-out infinite;
+}
+
+@keyframes decor-drift {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
+  50% { transform: translate3d(8px, -12px, 0) rotate(2deg); }
+}
+
+@keyframes decor-drift-reverse {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
+  50% { transform: translate3d(-9px, 10px, 0) rotate(-2deg); }
+}
+
+.cn-decor-drift {
+  animation: decor-drift 15s ease-in-out infinite;
+}
+
+.cn-decor-drift-reverse {
+  animation: decor-drift-reverse 18s ease-in-out infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {

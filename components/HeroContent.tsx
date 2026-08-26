@@ -3,79 +3,40 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
-import { ArrowRight, BookOpen, HeartPulse, Users } from "lucide-react";
+import { ArrowRight, CheckCircle2, Code2, HeartPulse, ShieldCheck } from "lucide-react";
+import Container from "./Container";
 
-import Container from "@/components/Container";
-
-const reveal = {
-  hidden: { opacity: 0, y: 22 },
-  show: { opacity: 1, y: 0 },
-};
+const reveal = { hidden: { opacity: 0, y: 24 }, show: { opacity: 1, y: 0 } };
 
 export default function HeroContent() {
-  const reduceMotion = useReducedMotion();
-
+  const reduced = useReducedMotion();
   return (
-    <Container className="grid items-center gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:gap-8">
-      <motion.div
-        initial={reduceMotion ? "show" : "hidden"}
-        animate="show"
-        transition={{ staggerChildren: reduceMotion ? 0 : 0.1 }}
-        className="relative z-10"
-      >
-        <motion.p variants={reveal} transition={{ duration: 0.55 }} className="text-xs font-bold uppercase tracking-[0.25em] text-blue-700 sm:text-sm">
-          CustoNexus Technologies
-        </motion.p>
-
-        <motion.h1 variants={reveal} transition={{ duration: 0.65 }} className="mt-6 max-w-3xl text-5xl font-bold leading-[1.05] tracking-[-0.045em] text-blue-950 sm:text-6xl lg:text-[4.8rem]">
-          Together,<br />Better Healthcare<span className="text-blue-600">.</span>
-        </motion.h1>
-
-        <motion.div variants={reveal} className="mt-7 h-1 w-14 rounded-full bg-blue-600" />
-
-        <motion.p variants={reveal} transition={{ duration: 0.6 }} className="mt-7 max-w-xl text-lg leading-8 text-slate-600 sm:text-xl sm:leading-9">
-          Building trusted partnerships, innovative healthcare solutions and meaningful connections that improve healthcare experiences.
-        </motion.p>
-
-        <motion.div variants={reveal} className="mt-9 flex flex-col gap-4 sm:flex-row">
-          <Link href="/solutions" className="inline-flex items-center justify-center gap-5 rounded-xl bg-blue-700 px-7 py-4 font-semibold text-white shadow-lg shadow-blue-700/20 transition hover:-translate-y-1 hover:bg-blue-800 hover:shadow-xl">
-            Explore Our Solutions <ArrowRight size={20} />
-          </Link>
-          <Link href="/constitution" className="inline-flex items-center justify-center gap-3 rounded-xl border border-blue-600 bg-white/70 px-7 py-4 font-semibold text-blue-700 backdrop-blur transition hover:-translate-y-1 hover:bg-blue-50">
-            <BookOpen size={20} /> Read Our Constitution
-          </Link>
+    <Container className="grid items-center gap-16 lg:grid-cols-[0.92fr_1.08fr]">
+      <motion.div initial={reduced ? "show" : "hidden"} animate="show" transition={{ staggerChildren: reduced ? 0 : 0.09 }} className="relative z-10">
+        <motion.div variants={reveal} className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-white/80 px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-blue-800 shadow-sm backdrop-blur"><span className="h-2 w-2 rounded-full bg-emerald-500" /> Healthcare technology & solutions</motion.div>
+        <motion.h1 variants={reveal} className="mt-7 max-w-3xl text-5xl font-semibold leading-[0.98] tracking-[-0.055em] text-[#071a3d] sm:text-6xl lg:text-[5.25rem]">Together,<br /><span className="bg-gradient-to-r from-blue-700 to-blue-500 bg-clip-text text-transparent">Better Healthcare.</span></motion.h1>
+        <motion.p variants={reveal} className="mt-7 max-w-xl text-lg leading-8 text-slate-600 sm:text-xl">Technology, medical solutions and trusted partnerships designed around the people who make healthcare possible.</motion.p>
+        <motion.div variants={reveal} className="mt-9 flex flex-col gap-3 sm:flex-row">
+          <Link href="/services" className="group inline-flex items-center justify-center gap-3 rounded-2xl bg-blue-700 px-7 py-4 font-bold text-white shadow-[0_14px_35px_rgba(29,78,216,.25)] transition hover:-translate-y-0.5 hover:bg-blue-800">Explore services <ArrowRight size={19} className="transition group-hover:translate-x-1" /></Link>
+          <Link href="/contact" className="inline-flex items-center justify-center rounded-2xl border border-slate-200 bg-white/80 px-7 py-4 font-bold text-blue-950 shadow-sm backdrop-blur transition hover:-translate-y-0.5 hover:border-blue-300 hover:bg-white">Start a conversation</Link>
+        </motion.div>
+        <motion.div variants={reveal} className="mt-9 flex flex-wrap gap-x-6 gap-y-3 text-sm font-semibold text-slate-600">
+          {["Healthcare focused", "People-first delivery", "South African founded"].map((item) => <span key={item} className="flex items-center gap-2"><CheckCircle2 size={17} className="text-emerald-600" />{item}</span>)}
         </motion.div>
       </motion.div>
 
-      <motion.div
-        initial={reduceMotion ? { opacity: 1 } : { opacity: 0, x: 40 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: reduceMotion ? 0 : 0.9, ease: [0.22, 1, 0.36, 1] }}
-        className="relative mx-auto w-full max-w-3xl lg:translate-x-10"
-      >
-        <div aria-hidden className="absolute inset-10 rounded-full bg-blue-400/20 blur-3xl" />
-        <div className="relative aspect-[1.16/1] overflow-hidden [clip-path:polygon(24%_0,76%_0,100%_50%,76%_100%,24%_100%,0_50%)]">
-          <Image
-            src="/images/healthcare-technology.jpg"
-            alt="Healthcare professional using connected digital technology"
-            fill
-            priority
-            sizes="(max-width: 1024px) 90vw, 52vw"
-            className="object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-tr from-blue-950/20 via-transparent to-blue-400/10" />
+      <motion.div initial={reduced ? { opacity: 1 } : { opacity: 0, x: 45 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: reduced ? 0 : 0.9, ease: [0.22, 1, 0.36, 1] }} className="relative mx-auto w-full max-w-[700px]">
+        <div className="absolute -inset-8 rounded-[4rem] bg-blue-500/10 blur-3xl" />
+        <div className="relative aspect-[4/4.35] overflow-hidden rounded-[2.5rem] border-[8px] border-white bg-slate-200 shadow-[0_35px_100px_rgba(7,26,61,.22)] sm:aspect-[5/4]">
+          <Image src="/images/healthcare-technology.jpg" alt="Healthcare professional using connected digital technology" fill priority sizes="(max-width: 1024px) 92vw, 52vw" className="object-cover" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#071a3d]/50 via-transparent to-blue-400/10" />
+          <div className="absolute inset-x-5 bottom-5 rounded-2xl border border-white/20 bg-[#071a3d]/70 p-5 text-white backdrop-blur-xl sm:inset-x-7 sm:bottom-7">
+            <p className="text-xs font-bold uppercase tracking-[0.2em] text-blue-200">Our core speciality</p><p className="mt-2 text-xl font-semibold sm:text-2xl">Websites, apps & connected healthcare systems</p>
+          </div>
         </div>
-
-        <motion.div
-          animate={reduceMotion ? undefined : { y: [0, -9, 0] }}
-          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute left-0 top-1/2 flex h-20 w-20 -translate-x-2 -translate-y-1/2 items-center justify-center bg-blue-700 text-white shadow-xl [clip-path:polygon(25%_0,75%_0,100%_50%,75%_100%,25%_100%,0_50%)] sm:h-24 sm:w-24"
-        >
-          <HeartPulse size={38} />
-        </motion.div>
-        <div className="absolute bottom-[4%] left-[10%] flex h-20 w-20 items-center justify-center border border-blue-400 bg-white/90 text-blue-700 backdrop-blur [clip-path:polygon(25%_0,75%_0,100%_50%,75%_100%,25%_100%,0_50%)] sm:h-24 sm:w-24">
-          <Users size={36} />
-        </div>
+        <motion.div animate={reduced ? undefined : { y: [0, -9, 0] }} transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }} className="absolute -left-5 top-[18%] hidden rounded-2xl border border-white bg-white/90 p-4 text-blue-700 shadow-xl backdrop-blur sm:block"><Code2 size={27} /></motion.div>
+        <div className="absolute -right-4 top-[38%] hidden rounded-2xl border border-white bg-white/90 p-4 text-emerald-600 shadow-xl backdrop-blur sm:block"><HeartPulse size={27} /></div>
+        <div className="absolute -right-2 bottom-[12%] hidden items-center gap-3 rounded-2xl border border-white bg-white/90 px-4 py-3 shadow-xl backdrop-blur md:flex"><ShieldCheck className="text-blue-700" size={22} /><span className="text-sm font-bold text-blue-950">Built on trust</span></div>
       </motion.div>
     </Container>
   );

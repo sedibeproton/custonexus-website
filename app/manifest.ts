@@ -6,9 +6,12 @@ export default function manifest(): MetadataRoute.Manifest {
     short_name: "CustoNexus",
     description: "Healthcare technology, professional services and trusted partnerships.",
     start_url: "/",
+    scope: "/",
+    id: "/",
     display: "standalone",
-    background_color: "#ffffff",
-    theme_color: "#0757d3",
+    background_color: "#f7f9fc",
+    theme_color: "#071a3d",
+    categories: ["healthcare", "business", "technology"],
     icons: [
       {
         src: "/logos/logo-mark.png",

@@ -265,7 +265,7 @@ export default function ServiceCategoryExplorer() {
   return (
     <div>
       <div
-        className="grid gap-4 md:grid-cols-2 xl:grid-cols-4"
+        className="-mx-5 flex snap-x snap-mandatory gap-3 overflow-x-auto px-5 pb-4 [scrollbar-width:none] sm:mx-0 sm:grid sm:grid-cols-2 sm:overflow-visible sm:px-0 md:gap-4 xl:grid-cols-4"
         role="tablist"
         aria-label="Service categories"
       >
@@ -282,7 +282,7 @@ export default function ServiceCategoryExplorer() {
               aria-selected={isActive}
               aria-controls={`${category.id}-panel`}
               onClick={() => selectCategory(category.id)}
-              className={`group rounded-3xl border p-6 text-left transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-blue-200 ${
+              className={`group min-w-[82vw] snap-center rounded-3xl border p-5 text-left transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-blue-200 sm:min-w-0 sm:p-6 ${
                 isActive
                   ? "-translate-y-1 border-blue-700 bg-blue-700 text-white shadow-xl shadow-blue-900/20"
                   : "border-slate-200 bg-white text-slate-950 shadow-sm hover:-translate-y-1 hover:border-blue-200 hover:shadow-lg"
@@ -320,16 +320,35 @@ export default function ServiceCategoryExplorer() {
         })}
       </div>
 
-      <div className="mt-6 flex flex-wrap justify-center gap-x-6 gap-y-3 text-sm">
-        {categories.map((category) => (
-          <Link
-            key={category.detailHref}
-            href={category.detailHref}
-            className="font-semibold text-blue-700 underline-offset-4 hover:text-blue-800 hover:underline"
-          >
-            View {category.title} details
-          </Link>
-        ))}
+      <div className="mt-6 grid gap-3 sm:mt-8 sm:grid-cols-2 sm:gap-4 xl:grid-cols-4">
+        {categories.map((category) => {
+          const Icon = category.icon;
+
+          return (
+            <Link
+              key={category.detailHref}
+              href={category.detailHref}
+              className="group flex min-h-28 items-center gap-4 rounded-2xl border border-blue-100 bg-white p-4 text-left shadow-[0_12px_35px_rgba(15,48,105,0.07)] transition-all duration-300 hover:-translate-y-1 hover:border-blue-300 hover:shadow-[0_20px_45px_rgba(15,48,105,0.13)] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-blue-200 sm:min-h-36 sm:rounded-3xl sm:p-5"
+            >
+              <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-blue-50 text-blue-700 transition-colors group-hover:bg-blue-700 group-hover:text-white">
+                <Icon size={27} aria-hidden />
+              </span>
+              <span className="min-w-0">
+                <span className="block text-xs font-bold uppercase tracking-[0.18em] text-blue-600">
+                  View details
+                </span>
+                <span className="mt-2 block text-lg font-bold leading-6 text-slate-950">
+                  {category.title}
+                </span>
+                <ArrowRight
+                  size={18}
+                  aria-hidden
+                  className="mt-3 text-blue-700 transition-transform group-hover:translate-x-1"
+                />
+              </span>
+            </Link>
+          );
+        })}
       </div>
 
       <section
@@ -337,9 +356,9 @@ export default function ServiceCategoryExplorer() {
         id={`${activeCategory.id}-panel`}
         role="tabpanel"
         aria-labelledby={activeCategory.id}
-        className="mt-8 animate-[fadeIn_0.35s_ease-out] overflow-hidden rounded-[2rem] border border-blue-100 bg-white shadow-2xl shadow-blue-950/10"
+        className="mt-6 animate-[fadeIn_0.35s_ease-out] overflow-hidden rounded-3xl border border-blue-100 bg-white shadow-2xl shadow-blue-950/10 sm:mt-8 sm:rounded-[2rem]"
       >
-        <div className="bg-gradient-to-br from-blue-950 via-[#07327c] to-blue-700 p-8 text-white sm:p-10 lg:p-12">
+        <div className="bg-gradient-to-br from-blue-950 via-[#07327c] to-blue-700 p-6 text-white sm:p-10 lg:p-12">
           <div className="flex flex-col gap-6 sm:flex-row sm:items-center">
             <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-white text-blue-700 shadow-xl">
               <ActiveIcon size={31} aria-hidden />
@@ -358,9 +377,9 @@ export default function ServiceCategoryExplorer() {
           </div>
         </div>
 
-        <div className="p-6 sm:p-8 lg:p-10">
+        <div className="p-4 sm:p-8 lg:p-10">
           {activeCategory.featured && (
-            <article className="mb-7 overflow-hidden rounded-3xl border border-blue-200 bg-gradient-to-br from-blue-50 to-white p-7 sm:p-9">
+            <article className="mb-5 overflow-hidden rounded-2xl border border-blue-200 bg-gradient-to-br from-blue-50 to-white p-5 sm:mb-7 sm:rounded-3xl sm:p-9">
               <div className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
                 <div>
                   <span className="inline-flex rounded-full bg-blue-700 px-4 py-2 text-xs font-bold uppercase tracking-[0.2em] text-white">

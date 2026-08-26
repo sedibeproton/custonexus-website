@@ -2,20 +2,26 @@
 import Link from "next/link";
 import { LockKeyhole, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import Logo from "./Logo";
+import SocialLinks from "./SocialLinks";
+import { createWhatsAppUrl, whatsappMessages } from "@/lib/whatsapp";
 
 export default function Footer() {
   return (
-    <footer className="border-t border-blue-900 bg-gradient-to-br from-[#041534] via-blue-950 to-[#06276a] text-white">
-      <Container className="py-14 sm:py-16">
-        <div className="grid gap-12 lg:grid-cols-[1.3fr_0.7fr_0.8fr]">
+    <footer className="relative overflow-hidden border-t border-white/10 bg-[#050f25] text-white">
+      <div aria-hidden className="absolute inset-0 bg-[radial-gradient(circle_at_12%_25%,rgba(37,99,235,.2),transparent_28%),radial-gradient(circle_at_90%_80%,rgba(16,185,129,.1),transparent_23%)]" />
+      <Container className="relative py-16 sm:py-20">
+        <div className="grid gap-12 lg:grid-cols-[1.25fr_0.65fr_0.9fr]">
           <div>
-            <div className="inline-flex rounded-2xl bg-white px-4 py-2 shadow-lg"><Logo /></div>
+            <div className="inline-flex rounded-2xl bg-white px-4 py-2 shadow-2xl"><Logo /></div>
             <p className="mt-6 max-w-sm leading-8 text-slate-400">
               Strengthening healthcare through trusted partnerships, thoughtful innovation and people-first solutions.
             </p>
             <p className="mt-6 font-semibold text-blue-400">
               Building meaningful healthcare together.
             </p>
+            <div className="mt-8">
+              <SocialLinks />
+            </div>
           </div>
 
           <div>
@@ -67,7 +73,7 @@ export default function Footer() {
               </div>
               <div className="flex items-center gap-3">
                 <MessageCircle size={18} className="text-blue-400" />
-                <a href="https://wa.me/27722701087" target="_blank" rel="noreferrer" className="transition hover:text-white">WhatsApp us</a>
+                <a href={createWhatsAppUrl(whatsappMessages.general)} target="_blank" rel="noopener noreferrer" className="transition hover:text-white">WhatsApp us</a>
               </div>
               <div className="flex items-center gap-3">
                 <MapPin size={18} className="text-blue-400" />

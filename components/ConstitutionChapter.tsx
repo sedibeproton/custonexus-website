@@ -1,73 +1,46 @@
 import type { ReactNode } from "react";
-import Container from "@/components/Container";
+import { ArrowDownRight } from "lucide-react";
+import Container from "./Container";
 
 interface ConstitutionChapterProps {
-  number: number;
+  id: string;
+  number: string;
+  eyebrow: string;
   title: string;
-  quote?: string;
+  statement: string;
   children: ReactNode;
-  reflection?: string;
-  variant?: "default" | "soft";
+  principles: string[];
+  reflection: string;
+  inverted?: boolean;
 }
 
-export default function ConstitutionChapter({
-  number,
-  title,
-  quote,
-  children,
-  reflection,
-  variant = "default",
-}: ConstitutionChapterProps) {
+export default function ConstitutionChapter({ id, number, eyebrow, title, statement, children, principles, reflection, inverted = false }: ConstitutionChapterProps) {
   return (
-    <section
-      className={
-        variant === "soft"
-          ? "bg-slate-50 py-20 md:py-24"
-          : "bg-white py-20 md:py-24"
-      }
-    >
+    <section id={id} className={`scroll-mt-32 py-20 sm:py-28 ${inverted ? "bg-[#071a3d] text-white" : "bg-[#f7f9fc] text-slate-950"}`}>
       <Container>
-        <article className="mx-auto max-w-4xl">
-          {/* Chapter heading */}
-          <header className="mb-12 md:mb-14">
-            <div className="flex items-center gap-4">
-              <span className="h-px w-10 bg-blue-700" />
-
-              <p className="text-xs font-bold uppercase tracking-[0.4em] text-blue-700">
-                Chapter {number}
-              </p>
-            </div>
-
-            <div className="mt-6 max-w-4xl">
-              <h2 className="text-3xl font-bold leading-tight tracking-tight text-slate-900 md:text-5xl">
-                {title}
-              </h2>
-            </div>
-
-            {quote && (
-              <blockquote className="mt-8 max-w-3xl border-l-4 border-blue-200 pl-6 text-lg italic leading-8 text-slate-500 md:text-xl md:leading-9">
-                &ldquo;{quote}&rdquo;
-              </blockquote>
-            )}
+        <article className="grid gap-12 lg:grid-cols-[0.58fr_1.42fr] lg:gap-20">
+          <header className="lg:sticky lg:top-36 lg:self-start">
+            <div className={`text-7xl font-semibold tracking-[-0.07em] ${inverted ? "text-white/10" : "text-blue-950/[0.08]"}`}>{number}</div>
+            <p className={`mt-5 flex items-center gap-3 text-xs font-bold uppercase tracking-[0.28em] ${inverted ? "text-blue-200" : "text-blue-700"}`}><span className="h-px w-8 bg-emerald-500" />{eyebrow}</p>
+            <h2 className="mt-5 text-3xl font-semibold leading-tight tracking-[-0.035em] sm:text-4xl">{title}</h2>
           </header>
 
-          {/* Chapter content */}
-          <div className="space-y-7 text-base leading-8 text-slate-700 md:text-lg md:leading-9">
-            {children}
-          </div>
+          <div>
+            <blockquote className={`border-l-2 pl-6 text-2xl font-medium leading-10 sm:text-3xl sm:leading-[1.45] ${inverted ? "border-blue-400 text-blue-50" : "border-blue-600 text-blue-950"}`}>&ldquo;{statement}&rdquo;</blockquote>
+            <div className={`mt-10 space-y-6 text-lg leading-9 ${inverted ? "text-slate-300" : "text-slate-600"}`}>{children}</div>
 
-          {/* Reflection */}
-          {reflection && (
-            <aside className="mt-14 rounded-2xl border border-blue-100 bg-blue-50/70 p-7 md:mt-16 md:p-8">
-              <p className="text-xs font-bold uppercase tracking-[0.3em] text-blue-700">
-                Reflection
-              </p>
+            <div className={`mt-12 rounded-[1.75rem] border p-6 sm:p-8 ${inverted ? "border-white/10 bg-white/[0.06]" : "border-blue-100 bg-white shadow-[0_18px_55px_rgba(15,48,105,.07)]"}`}>
+              <p className={`text-xs font-bold uppercase tracking-[0.24em] ${inverted ? "text-blue-200" : "text-blue-700"}`}>We therefore commit to</p>
+              <ul className="mt-6 grid gap-4 sm:grid-cols-2">
+                {principles.map((principle) => <li key={principle} className="flex items-start gap-3 leading-7"><span className="mt-2.5 h-2 w-2 shrink-0 rounded-full bg-emerald-500" />{principle}</li>)}
+              </ul>
+            </div>
 
-              <p className="mt-4 text-base font-medium leading-7 text-slate-800 md:text-lg md:leading-8">
-                {reflection}
-              </p>
+            <aside className={`mt-8 flex items-start gap-4 rounded-2xl px-5 py-5 ${inverted ? "bg-blue-500/10 text-blue-100" : "bg-blue-50 text-blue-950"}`}>
+              <ArrowDownRight className="mt-1 shrink-0 text-emerald-500" size={22} aria-hidden />
+              <div><p className="text-xs font-bold uppercase tracking-[0.22em]">Question for reflection</p><p className="mt-2 font-medium leading-7">{reflection}</p></div>
             </aside>
-          )}
+          </div>
         </article>
       </Container>
     </section>

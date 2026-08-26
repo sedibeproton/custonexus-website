@@ -17,6 +17,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://custonexus.com"),
   applicationName: "CustoNexus Technologies",
+  manifest: "/manifest.webmanifest",
   generator: "Next.js",
   referrer: "origin-when-cross-origin",
 
@@ -100,9 +101,22 @@ const organizationJsonLd = {
       "@id": "https://custonexus.com/#organization",
       name: "CustoNexus Technologies",
       url: "https://custonexus.com",
-      logo: "https://custonexus.com/logos/logo-mark.png",
+      foundingDate: "2026",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://custonexus.com/logos/logo-mark.png",
+        contentUrl: "https://custonexus.com/logos/logo-mark.png",
+        width: 1024,
+        height: 1024,
+        caption: "CustoNexus Technologies",
+      },
       email: "info@custonexus.com",
       telephone: "+27 72 270 1087",
+      sameAs: [
+        "https://www.linkedin.com/company/custonexus-technologies/about/",
+        "https://www.facebook.com/profile.php?id=61593696335289",
+        "https://www.instagram.com/custonexus/",
+      ],
       contactPoint: {
         "@type": "ContactPoint",
         telephone: "+27 72 270 1087",

@@ -12,17 +12,17 @@ export default function AnimatedCard({
   return (
     <div
       className={`
-        group
-        rounded-[2rem]
+        cn-card-shine group
+        rounded-[1.75rem]
         border
         border-slate-200
-        bg-white
-        shadow-[0_12px_40px_rgba(15,48,105,0.07)]
+        bg-white/90 backdrop-blur-sm
+        shadow-[0_16px_50px_rgba(15,48,105,0.08)]
         transition-all
         duration-500
-        hover:-translate-y-1
+        hover:-translate-y-1.5
         hover:border-blue-200
-        hover:shadow-[0_22px_55px_rgba(15,48,105,0.13)]
+        hover:shadow-[0_28px_70px_rgba(15,48,105,0.15)]
         ${className}
       `}
     >

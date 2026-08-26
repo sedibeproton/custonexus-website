@@ -29,17 +29,16 @@ export default function PrimaryButton({
         inline-flex
         items-center
         justify-center
-        rounded-full
-        bg-blue-700
+        gap-2 rounded-2xl
+        bg-gradient-to-r from-blue-700 to-blue-600
         font-semibold
         text-white
         shadow-lg
-        shadow-blue-900/10
+        shadow-blue-900/20
         transition-all
         duration-300
-        hover:-translate-y-1
-        hover:bg-blue-800
-        hover:shadow-xl
+        hover:-translate-y-0.5
+        hover:shadow-[0_16px_36px_rgba(29,78,216,0.28)]
         active:scale-[0.98]
         focus:outline-none
         focus:ring-4

@@ -11,7 +11,7 @@ export default function AboutHero() {
       <div className="relative">
         <div className="w-full">
           <Image
-            src="/images/hero-healthcare.jpg"
+            src="/images/healthcare-technology.jpg"
             alt="About CustoNexus"
             width={2000}
             height={700}
