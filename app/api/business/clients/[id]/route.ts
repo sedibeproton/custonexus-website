@@ -1,0 +1,3 @@
+import { body,businessError,requireBusinessAccess } from "@/lib/business/api";import{getClient,saveClient}from"@/lib/business/service";
+export async function GET(_request:Request,{params}:{params:Promise<{id:string}>}){const auth=await requireBusinessAccess();if("error" in auth)return auth.error;const client=await getClient((await params).id);return client?Response.json({client}):Response.json({error:"Client not found."},{status:404});}
+export async function PATCH(request:Request,{params}:{params:Promise<{id:string}>}){const auth=await requireBusinessAccess();if("error" in auth)return auth.error;try{return Response.json({client:await saveClient(await body(request),auth.access.session.user.id,(await params).id)});}catch(error){return businessError(error);}}

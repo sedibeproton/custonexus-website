@@ -1,0 +1,3 @@
+import{body,businessError,requireBusinessAccess}from"@/lib/business/api";import{getInvoice,updateDraft}from"@/lib/business/service";
+export async function GET(_request:Request,{params}:{params:Promise<{id:string}>}){const auth=await requireBusinessAccess();if("error"in auth)return auth.error;const invoice=await getInvoice((await params).id);return invoice?Response.json({invoice}):Response.json({error:"Invoice not found."},{status:404});}
+export async function PATCH(request:Request,{params}:{params:Promise<{id:string}>}){const auth=await requireBusinessAccess();if("error"in auth)return auth.error;try{return Response.json(await updateDraft("invoice",(await params).id,await body(request)));}catch(error){return businessError(error);}}

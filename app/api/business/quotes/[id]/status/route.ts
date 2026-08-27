@@ -1,0 +1,2 @@
+import{body,businessError,requireBusinessAccess}from"@/lib/business/api";import{setQuoteStatus}from"@/lib/business/service";
+export async function POST(request:Request,{params}:{params:Promise<{id:string}>}){const auth=await requireBusinessAccess();if("error"in auth)return auth.error;try{const data=await body(request);return Response.json(await setQuoteStatus((await params).id,String(data.status||"")));}catch(error){return businessError(error);}}

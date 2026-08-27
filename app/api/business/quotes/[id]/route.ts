@@ -1,0 +1,3 @@
+import{body,businessError,requireBusinessAccess}from"@/lib/business/api";import{getQuote,updateDraft}from"@/lib/business/service";
+export async function GET(_request:Request,{params}:{params:Promise<{id:string}>}){const auth=await requireBusinessAccess();if("error"in auth)return auth.error;const quote=await getQuote((await params).id);return quote?Response.json({quote}):Response.json({error:"Quote not found."},{status:404});}
+export async function PATCH(request:Request,{params}:{params:Promise<{id:string}>}){const auth=await requireBusinessAccess();if("error"in auth)return auth.error;try{return Response.json(await updateDraft("quote",(await params).id,await body(request)));}catch(error){return businessError(error);}}

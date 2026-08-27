@@ -1,0 +1,3 @@
+import{body,businessError,requireBusinessAccess}from"@/lib/business/api";import{getCompanySettings,updateCompanySettings}from"@/lib/business/service";
+export async function GET(){const auth=await requireBusinessAccess(true);if("error"in auth)return auth.error;return Response.json({settings:await getCompanySettings()});}
+export async function PATCH(request:Request){const auth=await requireBusinessAccess(true);if("error"in auth)return auth.error;try{return Response.json({settings:await updateCompanySettings(await body(request),auth.access.session.user.id)});}catch(error){return businessError(error);}}

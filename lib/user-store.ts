@@ -18,5 +18,5 @@ export async function getStoredUserByEmail(email:string):Promise<StoredManagedUs
   if(getPersistenceBackend()==="postgres")return (await postgresRows<StoredManagedUser>('SELECT id,name,email,"emailVerified",role,"createdAt" FROM "user" WHERE lower(email)=$1',[email.toLowerCase()]))[0];
   return sqliteDb().prepare("SELECT id,name,email,emailVerified,role,createdAt FROM user WHERE lower(email)=?").get(email.toLowerCase()) as StoredManagedUser|undefined;
 }
-export async function promoteStoredUser(id:string){if(getPersistenceBackend()==="postgres")await postgresRows('UPDATE "user" SET role=\'admin\',"updatedAt"=$1 WHERE id=$2',[new Date(),id]);else sqliteDb().prepare("UPDATE user SET role='admin',updatedAt=? WHERE id=?").run(new Date(),id);}
+export async function promoteStoredUser(id:string){if(getPersistenceBackend()==="postgres")await postgresRows('UPDATE "user" SET role=\'admin\',"updatedAt"=$1 WHERE id=$2',[new Date(),id]);else sqliteDb().prepare("UPDATE user SET role='admin',updatedAt=? WHERE id=?").run(Date.now(),id);}
 export async function revokeStoredSessions(userId:string){if(getPersistenceBackend()==="postgres")await postgresRows('DELETE FROM "session" WHERE "userId"=$1',[userId]);else sqliteDb().prepare("DELETE FROM session WHERE userId=?").run(userId);}

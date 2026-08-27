@@ -5,6 +5,8 @@ import { getPersistenceBackend } from "@/lib/persistence-mode";
 
 export type AccountRole = "admin" | "user";
 
+const DEFAULT_FOUNDER_EMAIL = "gbhekizwe@gmail.com";
+
 type StoredUser = {
   id: string;
   email: string;
@@ -12,7 +14,7 @@ type StoredUser = {
 };
 
 export function getFounderEmail() {
-  return process.env.FOUNDER_EMAIL?.trim().toLowerCase() ?? "";
+  return process.env.FOUNDER_EMAIL?.trim().toLowerCase() || DEFAULT_FOUNDER_EMAIL;
 }
 
 export function isFounderEmail(email: string) {
@@ -41,7 +43,7 @@ export async function getAccountAccess(headers: Headers) {
     if (getPersistenceBackend() === "postgres") {
       await postgresRows('UPDATE "user" SET role = \'admin\', "updatedAt" = $1 WHERE id = $2', [new Date(), storedUser.id]);
     } else {
-      authDb?.prepare("UPDATE user SET role = 'admin', updatedAt = ? WHERE id = ?").run(new Date(), storedUser.id);
+      authDb?.prepare("UPDATE user SET role = 'admin', updatedAt = ? WHERE id = ?").run(Date.now(), storedUser.id);
     }
     storedUser.role = "admin";
   }

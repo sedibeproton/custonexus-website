@@ -1,0 +1,2 @@
+import{body,businessError,requireBusinessAccess}from"@/lib/business/api";import{convertQuoteToInvoice}from"@/lib/business/service";
+export async function POST(request:Request,{params}:{params:Promise<{id:string}>}){const auth=await requireBusinessAccess();if("error"in auth)return auth.error;try{const data=await body(request);return Response.json(await convertQuoteToInvoice((await params).id,auth.access.session.user.id,String(data.invoiceDate||""),String(data.dueDate||"")));}catch(error){return businessError(error);}}

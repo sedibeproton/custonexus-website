@@ -1,0 +1,2 @@
+import ClientForm from"@/components/secure/ClientForm";import SecurePageHeader from"@/components/secure/SecurePageHeader";import{requireSecurePage}from"@/lib/business/page-auth";
+export default async function NewClientPage(){await requireSecurePage();return <main className="min-h-screen bg-slate-100 px-4 py-16 sm:px-6"><div className="mx-auto max-w-5xl"><SecurePageHeader eyebrow="Clients" title="New client" description="Create a reusable client profile for future quotes and invoices."/><div className="mt-7"><ClientForm/></div></div></main>}

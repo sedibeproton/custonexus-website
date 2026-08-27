@@ -1,0 +1,3 @@
+import{body,businessError,requireBusinessAccess}from"@/lib/business/api";import{createQuote,listQuotes}from"@/lib/business/service";
+export async function GET(request:Request){const auth=await requireBusinessAccess();if("error"in auth)return auth.error;const url=new URL(request.url);return Response.json({quotes:(await listQuotes(url.searchParams.get("q")||"",url.searchParams.get("status")||"")).filter(Boolean)});}
+export async function POST(request:Request){const auth=await requireBusinessAccess();if("error"in auth)return auth.error;try{return Response.json(await createQuote(await body(request),auth.access.session.user.id),{status:201});}catch(error){return businessError(error);}}
