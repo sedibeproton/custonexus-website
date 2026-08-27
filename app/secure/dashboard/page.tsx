@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 import Link from "next/link";
 
 import { auth } from "@/lib/auth";
+import { getAccountAccess } from "@/lib/admin-access";
 import { getDocuments } from "@/lib/documents";
 
 function formatFileSize(size: number) {
@@ -25,15 +26,16 @@ function formatDate(date: string) {
 }
 
 export default async function SecureDashboardPage() {
-  const session = await auth.api.getSession({
-    headers: await headers(),
-  });
+  const requestHeaders = await headers();
+  const session = await auth.api.getSession({ headers: requestHeaders });
 
   if (!session) {
     redirect("/secure/login");
   }
 
-  const documents = getDocuments();
+  const access = await getAccountAccess(requestHeaders);
+
+  const documents = await getDocuments();
 
   const categories = Array.from(
     new Set(documents.map((document) => document.category))
@@ -126,6 +128,15 @@ export default async function SecureDashboardPage() {
               >
                 View Enquiries
               </Link>
+
+              {access?.isAdmin && (
+                <Link
+                  href="/secure/users"
+                  className="rounded-xl border border-white/30 bg-white/10 px-5 py-3 text-sm font-semibold text-white backdrop-blur transition hover:bg-white/20"
+                >
+                  Manage Users
+                </Link>
+              )}
 
             </div>
 

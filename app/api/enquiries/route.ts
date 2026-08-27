@@ -37,7 +37,7 @@ export async function POST(request: Request) {
     const projectType = clean(body.projectType, 80) || null;
     const role = clean(body.role, 120) || null;
     const location = clean(body.location, 160) || null;
-    insertEnquiry({ id, createdAt: new Date().toISOString(), intent, service, projectType, fullName, company, role, email, phone, location, preferredContact, details: JSON.stringify(details).slice(0, 20000) });
+    await insertEnquiry({ id, createdAt: new Date().toISOString(), intent, service, projectType, fullName, company, role, email, phone, location, preferredContact, details: JSON.stringify(details).slice(0, 20000) });
     console.info("New website enquiry stored", { id, service, intent, preferredContact });
     return Response.json({ success: true, reference });
   } catch (error) {

@@ -24,14 +24,14 @@ export async function POST(request: Request) {
     );
   }
 
-  if (parentId && !getFolderById(parentId)) {
+  if (parentId && !(await getFolderById(parentId))) {
     return Response.json({ error: "Parent folder not found." }, { status: 404 });
   }
 
   const now = new Date().toISOString();
 
   try {
-    insertFolder({
+    await insertFolder({
       id: randomUUID(),
       name,
       parentId,

@@ -33,7 +33,7 @@ export default async function SecureDashboardPage() {
     redirect("/secure/login");
   }
 
-  const documents = getDocuments();
+  const documents = await getDocuments();
 
   return (
     <main className="min-h-screen bg-slate-100 px-4 py-24 sm:px-6">

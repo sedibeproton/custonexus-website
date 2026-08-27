@@ -1,5 +1,4 @@
 import { headers } from "next/headers";
-import { readFile } from "fs/promises";
 
 import { auth } from "@/lib/auth";
 import { getDocumentById } from "@/lib/documents";
@@ -7,6 +6,7 @@ import {
   canDisplayInline,
   createContentDisposition,
 } from "@/lib/uploads";
+import { loadDocument } from "@/lib/storage/documents";
 
 export async function GET(
   request: Request,
@@ -28,7 +28,7 @@ export async function GET(
     const { id } = await context.params;
 
     // Find document metadata
-    const document = getDocumentById(id);
+    const document = await getDocumentById(id);
 
     if (!document) {
       return Response.json(
@@ -41,7 +41,7 @@ export async function GET(
     let fileBuffer: Buffer;
 
     try {
-      fileBuffer = await readFile(document.filePath);
+      fileBuffer = await loadDocument(document);
     } catch (error) {
       console.error("Unable to read document:", error);
 

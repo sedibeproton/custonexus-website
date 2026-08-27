@@ -27,12 +27,12 @@ export default async function FileExplorerPage({ searchParams }: PageProps) {
 
   const { folder: requestedFolderId } = await searchParams;
   const folderId = requestedFolderId || null;
-  const currentFolder = folderId ? getFolderById(folderId) : undefined;
+  const currentFolder = folderId ? await getFolderById(folderId) : undefined;
   if (folderId && !currentFolder) notFound();
 
-  const folders = getFolders(folderId);
-  const files = getDocumentsByFolder(folderId);
-  const breadcrumbs = folderId ? getFolderBreadcrumbs(folderId) : [];
+  const folders = await getFolders(folderId);
+  const files = await getDocumentsByFolder(folderId);
+  const breadcrumbs = folderId ? await getFolderBreadcrumbs(folderId) : [];
   const uploadHref = folderId
     ? `/secure/upload?folder=${encodeURIComponent(folderId)}`
     : "/secure/upload";

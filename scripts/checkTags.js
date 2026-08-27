@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
 const fs=require('fs');
 const p='app/constitution/page.tsx';
 const s=fs.readFileSync(p,'utf8');

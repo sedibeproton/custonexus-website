@@ -1,8 +1,8 @@
 import { headers } from "next/headers";
-import fs from "fs/promises";
 
 import { auth } from "@/lib/auth";
-import { getDocumentById, deleteDocument } from "@/lib/documents";
+import { getDocumentById, archiveDocument } from "@/lib/documents";
+import { removeLegacyLocalDocument } from "@/lib/storage/documents";
 
 export async function DELETE(
   request: Request,
@@ -24,7 +24,7 @@ export async function DELETE(
     const { id } = await context.params;
 
     // Find the document
-    const document = getDocumentById(id);
+    const document = await getDocumentById(id);
 
     if (!document) {
       return Response.json(
@@ -35,7 +35,7 @@ export async function DELETE(
 
     // Delete the physical file first
     try {
-      await fs.unlink(document.filePath);
+      await removeLegacyLocalDocument(document.filePath);
     } catch (error: unknown) {
       // If the file is already missing, continue with database cleanup.
       const code =
@@ -51,7 +51,7 @@ export async function DELETE(
     }
 
     // Delete the database record
-    deleteDocument(id);
+    await archiveDocument(id);
 
     return Response.json({
       success: true,

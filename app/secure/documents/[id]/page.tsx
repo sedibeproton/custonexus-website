@@ -44,7 +44,7 @@ export default async function DocumentDetailsPage({
 
   const { id } = await params;
 
-  const document = getDocumentById(id);
+  const document = await getDocumentById(id);
 
   if (!document) {
     notFound();

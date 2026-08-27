@@ -1,7 +1,5 @@
 ﻿import { headers } from "next/headers";
 import { randomUUID } from "crypto";
-import fs from "fs/promises";
-import path from "path";
 
 import { auth } from "@/lib/auth";
 import { getFolderById, insertDocument } from "@/lib/documents";
@@ -10,8 +8,7 @@ import {
   getMaxUploadSize,
   getSafeStoredExtension,
 } from "@/lib/uploads";
-
-const UPLOAD_DIR = path.join(process.cwd(), "data", "documents");
+import { discardStoredDocument, storeDocument } from "@/lib/storage/documents";
 
 export async function POST(request: Request) {
   try {
@@ -53,7 +50,7 @@ export async function POST(request: Request) {
       );
     }
 
-    if (folderId && !getFolderById(folderId)) {
+    if (folderId && !(await getFolderById(folderId))) {
       return Response.json({ error: "Folder not found." }, { status: 404 });
     }
 
@@ -68,22 +65,13 @@ export async function POST(request: Request) {
       );
     }
 
-    // Make sure storage directory exists
-    await fs.mkdir(UPLOAD_DIR, { recursive: true });
-
     const id = randomUUID();
 
     const originalName = file.name;
-    const extension = getSafeStoredExtension(originalName);
-    const storedName = `${id}${extension}`;
-
-    const filePath = path.join(UPLOAD_DIR, storedName);
-
     const buffer = Buffer.from(await file.arrayBuffer());
-
-    await fs.writeFile(filePath, buffer);
-
     const now = new Date().toISOString();
+    const storedName = `${id}${getSafeStoredExtension(originalName)}`;
+    const storage = await storeDocument({id,originalName,bytes:buffer,mimeType:file.type||"application/octet-stream",createdAt:new Date(now)});
 
     const document = {
       id,
@@ -97,17 +85,26 @@ export async function POST(request: Request) {
         typeof description === "string"
           ? description.trim()
           : null,
-      filePath,
+      filePath: storage.filePath,
+      objectKey: storage.objectKey,
       mimeType: file.type || "application/octet-stream",
       size: file.size,
       uploadedBy: session.user.id,
       createdAt: now,
       updatedAt: now,
       folderId,
+      archivedAt: null,
     };
 
     // Save document metadata to SQLite
-    insertDocument(document);
+    try {
+      await insertDocument(document);
+    } catch (error) {
+      await discardStoredDocument(storage).catch((cleanupError) => {
+        console.error("Unable to clean up document after metadata failure:", cleanupError);
+      });
+      throw error;
+    }
 
     return Response.json({
       success: true,

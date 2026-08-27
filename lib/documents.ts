@@ -1,125 +1,27 @@
 import Database from "better-sqlite3";
+import { postgresRows } from "@/lib/db/postgres";
+import { getPersistenceBackend } from "@/lib/persistence-mode";
 
-const db = new Database("./sqlite.db");
-db.pragma("foreign_keys = ON");
+const sqlite = getPersistenceBackend() === "sqlite" ? new Database("./sqlite.db") : null;
+sqlite?.pragma("foreign_keys = ON");
+sqlite?.exec(`CREATE TABLE IF NOT EXISTS folders (id TEXT PRIMARY KEY,name TEXT NOT NULL,parentId TEXT,createdBy TEXT NOT NULL,createdAt TEXT NOT NULL,updatedAt TEXT NOT NULL,FOREIGN KEY(parentId) REFERENCES folders(id) ON DELETE CASCADE,FOREIGN KEY(createdBy) REFERENCES user(id) ON DELETE CASCADE);CREATE TABLE IF NOT EXISTS documents (id TEXT PRIMARY KEY,name TEXT NOT NULL,originalName TEXT NOT NULL,category TEXT NOT NULL,description TEXT,filePath TEXT NOT NULL,mimeType TEXT NOT NULL,size INTEGER NOT NULL,uploadedBy TEXT NOT NULL,createdAt TEXT NOT NULL,updatedAt TEXT NOT NULL,folderId TEXT REFERENCES folders(id) ON DELETE SET NULL,FOREIGN KEY(uploadedBy) REFERENCES user(id) ON DELETE CASCADE)`);
+function sqliteDb(){if(!sqlite)throw new Error("SQLite persistence is disabled.");return sqlite;}
 
-db.exec(`
-  CREATE TABLE IF NOT EXISTS folders (
-    id TEXT PRIMARY KEY,
-    name TEXT NOT NULL,
-    parentId TEXT,
-    createdBy TEXT NOT NULL,
-    createdAt TEXT NOT NULL,
-    updatedAt TEXT NOT NULL,
-    FOREIGN KEY (parentId) REFERENCES folders(id) ON DELETE CASCADE,
-    FOREIGN KEY (createdBy) REFERENCES user(id) ON DELETE CASCADE
-  );
+export type DocumentRecord = { id:string; name:string; originalName:string; category:string; description:string|null; filePath:string|null; objectKey:string|null; mimeType:string; size:number; uploadedBy:string; createdAt:string; updatedAt:string; folderId:string|null; archivedAt:string|null };
+export type FolderRecord = { id:string; name:string; parentId:string|null; createdBy:string; createdAt:string; updatedAt:string };
+type PgDocument = { id:string; title:string; original_filename:string; object_key:string; category:string; description:string|null; mime_type:string; size_bytes:string; uploaded_by:string; created_at:Date; updated_at:Date; folder_id:string|null; archived_at:Date|null };
+type PgFolder = { id:string; name:string; parent_id:string|null; created_by:string; created_at:Date; updated_at:Date };
 
-  CREATE TABLE IF NOT EXISTS documents (
-    id TEXT PRIMARY KEY,
-    name TEXT NOT NULL,
-    originalName TEXT NOT NULL,
-    category TEXT NOT NULL,
-    description TEXT,
-    filePath TEXT NOT NULL,
-    mimeType TEXT NOT NULL,
-    size INTEGER NOT NULL,
-    uploadedBy TEXT NOT NULL,
-    createdAt TEXT NOT NULL,
-    updatedAt TEXT NOT NULL,
-    FOREIGN KEY (uploadedBy) REFERENCES user(id) ON DELETE CASCADE
-  );
-`);
+const mapDocument = (row:PgDocument):DocumentRecord => ({ id:row.id,name:row.title,originalName:row.original_filename,category:row.category,description:row.description,filePath:null,objectKey:row.object_key,mimeType:row.mime_type,size:Number(row.size_bytes),uploadedBy:row.uploaded_by,createdAt:row.created_at.toISOString(),updatedAt:row.updated_at.toISOString(),folderId:row.folder_id,archivedAt:row.archived_at?.toISOString()??null });
+const mapFolder = (row:PgFolder):FolderRecord => ({ id:row.id,name:row.name,parentId:row.parent_id,createdBy:row.created_by,createdAt:row.created_at.toISOString(),updatedAt:row.updated_at.toISOString() });
+const sqliteDocumentColumns = "*, NULL AS objectKey, NULL AS archivedAt";
 
-const documentColumns = db.prepare("PRAGMA table_info(documents)").all() as Array<{ name: string }>;
-
-if (!documentColumns.some((column) => column.name === "folderId")) {
-  db.exec("ALTER TABLE documents ADD COLUMN folderId TEXT REFERENCES folders(id) ON DELETE SET NULL");
-}
-
-export type DocumentRecord = {
-  id: string;
-  name: string;
-  originalName: string;
-  category: string;
-  description: string | null;
-  filePath: string;
-  mimeType: string;
-  size: number;
-  uploadedBy: string;
-  createdAt: string;
-  updatedAt: string;
-  folderId: string | null;
-};
-
-export type FolderRecord = {
-  id: string;
-  name: string;
-  parentId: string | null;
-  createdBy: string;
-  createdAt: string;
-  updatedAt: string;
-};
-
-export function getDocuments(): DocumentRecord[] {
-  return db.prepare("SELECT * FROM documents ORDER BY createdAt DESC").all() as DocumentRecord[];
-}
-
-export function getDocumentsByFolder(folderId: string | null): DocumentRecord[] {
-  const statement = folderId === null
-    ? db.prepare("SELECT * FROM documents WHERE folderId IS NULL ORDER BY originalName COLLATE NOCASE")
-    : db.prepare("SELECT * FROM documents WHERE folderId = ? ORDER BY originalName COLLATE NOCASE");
-
-  return (folderId === null ? statement.all() : statement.all(folderId)) as DocumentRecord[];
-}
-
-export function getDocumentById(id: string): DocumentRecord | undefined {
-  return db.prepare("SELECT * FROM documents WHERE id = ?").get(id) as DocumentRecord | undefined;
-}
-
-export function getFolders(parentId: string | null): FolderRecord[] {
-  const statement = parentId === null
-    ? db.prepare("SELECT * FROM folders WHERE parentId IS NULL ORDER BY name COLLATE NOCASE")
-    : db.prepare("SELECT * FROM folders WHERE parentId = ? ORDER BY name COLLATE NOCASE");
-
-  return (parentId === null ? statement.all() : statement.all(parentId)) as FolderRecord[];
-}
-
-export function getFolderById(id: string): FolderRecord | undefined {
-  return db.prepare("SELECT * FROM folders WHERE id = ?").get(id) as FolderRecord | undefined;
-}
-
-export function getFolderBreadcrumbs(id: string): FolderRecord[] {
-  const breadcrumbs: FolderRecord[] = [];
-  let current = getFolderById(id);
-
-  while (current && breadcrumbs.length < 100) {
-    breadcrumbs.unshift(current);
-    current = current.parentId ? getFolderById(current.parentId) : undefined;
-  }
-
-  return breadcrumbs;
-}
-
-export function insertFolder(folder: FolderRecord): void {
-  db.prepare(`
-    INSERT INTO folders (id, name, parentId, createdBy, createdAt, updatedAt)
-    VALUES (@id, @name, @parentId, @createdBy, @createdAt, @updatedAt)
-  `).run(folder);
-}
-
-export function insertDocument(document: DocumentRecord): void {
-  db.prepare(`
-    INSERT INTO documents (
-      id, name, originalName, category, description, filePath, mimeType,
-      size, uploadedBy, createdAt, updatedAt, folderId
-    ) VALUES (
-      @id, @name, @originalName, @category, @description, @filePath, @mimeType,
-      @size, @uploadedBy, @createdAt, @updatedAt, @folderId
-    )
-  `).run(document);
-}
-
-export function deleteDocument(id: string): void {
-  db.prepare("DELETE FROM documents WHERE id = ?").run(id);
-}
+export async function getDocuments():Promise<DocumentRecord[]> { if(getPersistenceBackend()==="postgres") return (await postgresRows<PgDocument>("SELECT * FROM documents WHERE archived_at IS NULL ORDER BY created_at DESC")).map(mapDocument); return sqliteDb().prepare(`SELECT ${sqliteDocumentColumns} FROM documents ORDER BY createdAt DESC`).all() as DocumentRecord[]; }
+export async function getDocumentsByFolder(folderId:string|null):Promise<DocumentRecord[]> { if(getPersistenceBackend()==="postgres"){const rows=folderId===null?await postgresRows<PgDocument>("SELECT * FROM documents WHERE folder_id IS NULL AND archived_at IS NULL ORDER BY original_filename"):await postgresRows<PgDocument>("SELECT * FROM documents WHERE folder_id=$1 AND archived_at IS NULL ORDER BY original_filename",[folderId]);return rows.map(mapDocument);} const statement=folderId===null?sqliteDb().prepare(`SELECT ${sqliteDocumentColumns} FROM documents WHERE folderId IS NULL ORDER BY originalName COLLATE NOCASE`):sqliteDb().prepare(`SELECT ${sqliteDocumentColumns} FROM documents WHERE folderId=? ORDER BY originalName COLLATE NOCASE`);return (folderId===null?statement.all():statement.all(folderId)) as DocumentRecord[]; }
+export async function getDocumentById(id:string):Promise<DocumentRecord|undefined> { if(getPersistenceBackend()==="postgres"){const row=(await postgresRows<PgDocument>("SELECT * FROM documents WHERE id=$1 AND archived_at IS NULL",[id]))[0];return row?mapDocument(row):undefined;} return sqliteDb().prepare(`SELECT ${sqliteDocumentColumns} FROM documents WHERE id=?`).get(id) as DocumentRecord|undefined; }
+export async function getFolders(parentId:string|null):Promise<FolderRecord[]> { if(getPersistenceBackend()==="postgres"){const rows=parentId===null?await postgresRows<PgFolder>("SELECT * FROM folders WHERE parent_id IS NULL ORDER BY name"):await postgresRows<PgFolder>("SELECT * FROM folders WHERE parent_id=$1 ORDER BY name",[parentId]);return rows.map(mapFolder);} const statement=parentId===null?sqliteDb().prepare("SELECT * FROM folders WHERE parentId IS NULL ORDER BY name COLLATE NOCASE"):sqliteDb().prepare("SELECT * FROM folders WHERE parentId=? ORDER BY name COLLATE NOCASE");return (parentId===null?statement.all():statement.all(parentId)) as FolderRecord[]; }
+export async function getFolderById(id:string):Promise<FolderRecord|undefined> { if(getPersistenceBackend()==="postgres"){const row=(await postgresRows<PgFolder>("SELECT * FROM folders WHERE id=$1",[id]))[0];return row?mapFolder(row):undefined;}return sqliteDb().prepare("SELECT * FROM folders WHERE id=?").get(id) as FolderRecord|undefined; }
+export async function getFolderBreadcrumbs(id:string):Promise<FolderRecord[]> { const result:FolderRecord[]=[];let current=await getFolderById(id);while(current&&result.length<100){result.unshift(current);current=current.parentId?await getFolderById(current.parentId):undefined;}return result; }
+export async function insertFolder(folder:FolderRecord){if(getPersistenceBackend()==="postgres")await postgresRows("INSERT INTO folders (id,name,parent_id,created_by,created_at,updated_at) VALUES ($1,$2,$3,$4,$5,$6)",[folder.id,folder.name,folder.parentId,folder.createdBy,folder.createdAt,folder.updatedAt]);else sqliteDb().prepare("INSERT INTO folders (id,name,parentId,createdBy,createdAt,updatedAt) VALUES (@id,@name,@parentId,@createdBy,@createdAt,@updatedAt)").run(folder);}
+export async function insertDocument(document:DocumentRecord){if(getPersistenceBackend()==="postgres"){if(!document.objectKey)throw new Error("R2 object key is required.");await postgresRows(`INSERT INTO documents (id,title,original_filename,object_key,category,description,mime_type,size_bytes,uploaded_by,folder_id,created_at,updated_at) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12)`,[document.id,document.name,document.originalName,document.objectKey,document.category,document.description,document.mimeType,document.size,document.uploadedBy,document.folderId,document.createdAt,document.updatedAt]);}else sqliteDb().prepare(`INSERT INTO documents (id,name,originalName,category,description,filePath,mimeType,size,uploadedBy,createdAt,updatedAt,folderId) VALUES (@id,@name,@originalName,@category,@description,@filePath,@mimeType,@size,@uploadedBy,@createdAt,@updatedAt,@folderId)`).run(document);}
+export async function archiveDocument(id:string){if(getPersistenceBackend()==="postgres")await postgresRows("UPDATE documents SET archived_at=now(),updated_at=now() WHERE id=$1",[id]);else sqliteDb().prepare("DELETE FROM documents WHERE id=?").run(id);}
