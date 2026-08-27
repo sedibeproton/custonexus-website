@@ -41,7 +41,12 @@ export default function EnquiryForm() {
       const result = await response.json();
       if (!response.ok) throw new Error(result.error || "Unable to submit enquiry.");
       setReference(result.reference); setStatus("success"); setStep(4);
-    } catch (error) { setStatus("error"); setMessage(error instanceof Error ? error.message : "Unable to submit enquiry."); }
+    } catch (error) {
+      setStatus("error");
+      setMessage(error instanceof TypeError
+        ? "We could not connect to the enquiry service. Please try again or contact us directly on WhatsApp."
+        : error instanceof Error ? error.message : "Unable to submit enquiry.");
+    }
   }
 
   if (status === "success") {

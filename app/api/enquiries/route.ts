@@ -1,6 +1,5 @@
 import { randomUUID } from "crypto";
 import { insertEnquiry } from "@/lib/enquiries";
-import { sendEnquiryNotification } from "@/lib/enquiry-notifications";
 
 const allowedServices = new Set(["healthcare-technology", "medical-equipment", "professional-services", "strategic-partnerships"]);
 const allowedIntents = new Set(["quote", "callback", "general"]);
@@ -40,10 +39,7 @@ export async function POST(request: Request) {
     const location = clean(body.location, 160) || null;
     insertEnquiry({ id, createdAt: new Date().toISOString(), intent, service, projectType, fullName, company, role, email, phone, location, preferredContact, details: JSON.stringify(details).slice(0, 20000) });
     console.info("New website enquiry stored", { id, service, intent, preferredContact });
-    let notificationSent = false;
-    try { notificationSent = await sendEnquiryNotification({ reference, intent, service, projectType, fullName, company, role, email, phone, location, preferredContact, details }); }
-    catch (error) { console.error("Enquiry notification error", { reference, error: error instanceof Error ? error.message : "Unknown error" }); }
-    return Response.json({ success: true, reference, notificationSent });
+    return Response.json({ success: true, reference });
   } catch (error) {
     console.error("Enquiry submission failed", error);
     return Response.json({ error: "We could not save your enquiry. Please contact us by WhatsApp or phone." }, { status: 500 });
