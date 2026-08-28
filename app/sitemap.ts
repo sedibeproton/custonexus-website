@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { servicePages } from "@/lib/service-pages";
 
 const siteUrl = "https://custonexus.com";
-const lastModified = new Date("2026-08-26");
+const lastModified = new Date("2026-08-28");
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const routes: MetadataRoute.Sitemap = [

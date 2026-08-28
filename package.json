@@ -9,6 +9,7 @@
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
     "test": "node --experimental-strip-types --test tests/*.test.mjs",
+    "test:smoke": "node scripts/smoke-test.mjs",
     "indexnow:submit": "node scripts/submit-indexnow.mjs",
     "audit:legacy-storage": "node scripts/audit-legacy-storage.mjs",
     "db:migrate": "node scripts/run-postgres-migrations.mjs",

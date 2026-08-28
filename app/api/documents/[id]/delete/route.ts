@@ -1,6 +1,6 @@
 import { headers } from "next/headers";
 
-import { auth } from "@/lib/auth";
+import { getAccountAccess } from "@/lib/admin-access";
 import { getDocumentById, archiveDocument } from "@/lib/documents";
 import { removeLegacyLocalDocument } from "@/lib/storage/documents";
 
@@ -10,11 +10,9 @@ export async function DELETE(
 ) {
   try {
     // Verify authentication
-    const session = await auth.api.getSession({
-      headers: await headers(),
-    });
+    const session = await getAccountAccess(await headers());
 
-    if (!session) {
+    if (!session?.isAdmin) {
       return Response.json(
         { error: "Unauthorized" },
         { status: 401 }

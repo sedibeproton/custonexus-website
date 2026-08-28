@@ -1,17 +1,19 @@
 "use client";
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 async function request(url:string,body?:unknown){const response=await fetch(url,{method:"POST",headers:{"Content-Type":"application/json"},body:body?JSON.stringify(body):undefined});const data=await response.json();if(!response.ok)throw new Error(data.error||"Request failed.");return data;}
 
 export function DocumentActions({kind,id,status,hasPdf}:{kind:"quote"|"invoice";id:string;status:string;hasPdf:boolean}){
-  const router=useRouter(),[busy,setBusy]=useState(false),[error,setError]=useState(""),[message,setMessage]=useState("");
-  async function act(path:string,body?:unknown){setBusy(true);setError("");setMessage("");try{const result=await request(`/api/business/${kind==="quote"?"quotes":"invoices"}/${id}/${path}`,body);if(path==="send")setMessage(`Quote sent to ${result.recipient}.`);router.refresh();}catch(cause){setError(cause instanceof Error?cause.message:"Request failed.");}finally{setBusy(false);}}
+  const router=useRouter(),[busy,setBusy]=useState(false),[error,setError]=useState(""),[message,setMessage]=useState(""),[canArchive,setCanArchive]=useState(false);
+  useEffect(()=>{void fetch("/api/business/settings").then(response=>setCanArchive(response.ok)).catch(()=>setCanArchive(false));},[]);
+  async function act(path:string,body?:unknown){setBusy(true);setError("");setMessage("");try{const result=await request(`/api/business/${kind==="quote"?"quotes":"invoices"}/${id}/${path}`,body);if(path==="send")setMessage(`Quote sent to ${result.recipient}.`);if(path==="archive"){router.push(`/secure/${kind==="quote"?"quotes":"invoices"}`);return;}router.refresh();}catch(cause){setError(cause instanceof Error?cause.message:"Request failed.");}finally{setBusy(false);}}
   return <div className="flex flex-wrap items-center gap-3">
     {status==="DRAFT"&&<button disabled={busy} onClick={()=>act("finalize")} className="rounded-xl bg-blue-700 px-5 py-3 text-sm font-bold text-white disabled:opacity-50">{busy?"Working…":"Finalize & archive PDF"}</button>}
     {kind==="quote"&&status==="SENT"&&<><button disabled={busy} onClick={()=>act("send")} className="rounded-xl bg-cyan-700 px-4 py-3 text-sm font-bold text-white disabled:opacity-50">Send to customer</button><button disabled={busy} onClick={()=>act("status",{status:"ACCEPTED"})} className="rounded-xl bg-emerald-700 px-4 py-3 text-sm font-bold text-white">Mark accepted</button><button disabled={busy} onClick={()=>act("status",{status:"DECLINED"})} className="rounded-xl border border-red-200 px-4 py-3 text-sm font-bold text-red-700">Mark declined</button></>}
     {kind==="invoice"&&!['PAID','CANCELLED','DRAFT'].includes(status)&&<button disabled={busy} onClick={()=>act("cancel")} className="rounded-xl border border-red-200 px-4 py-3 text-sm font-bold text-red-700">Cancel invoice</button>}
     {hasPdf&&<a href={`/api/business/${kind==="quote"?"quotes":"invoices"}/${id}/pdf`} className="rounded-xl border border-blue-200 px-5 py-3 text-sm font-bold text-blue-700">Download PDF</a>}
+    {canArchive&&<button disabled={busy} onClick={()=>window.confirm(`Remove this ${kind} from active records? The audit record will be retained.`)&&act("archive")} className="rounded-xl border border-red-200 px-4 py-3 text-sm font-bold text-red-700">Remove {kind}</button>}
     {(error||message)&&<p role="status" className={`w-full text-sm ${error?"text-red-700":"text-emerald-700"}`}>{error||message}</p>}
   </div>;
 }

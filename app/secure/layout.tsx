@@ -1,4 +1,7 @@
 import type { Metadata } from "next";
+import { headers } from "next/headers";
+import SecureNavigation from "@/components/secure/SecureNavigation";
+import { getAccountAccess } from "@/lib/admin-access";
 
 export const metadata: Metadata = {
   robots: {
@@ -10,6 +13,13 @@ export const metadata: Metadata = {
   },
 };
 
-export default function SecureLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return children;
+export default async function SecureLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+  const access = await getAccountAccess(await headers());
+
+  return (
+    <>
+      <SecureNavigation isAdmin={Boolean(access?.isAdmin)} />
+      <div id="main-content">{children}</div>
+    </>
+  );
 }

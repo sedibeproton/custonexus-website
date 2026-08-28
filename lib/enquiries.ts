@@ -24,3 +24,8 @@ export async function getEnquiries(): Promise<EnquiryRecord[]> {
   if (getPersistenceBackend() === "postgres") return (await postgresRows<PgEnquiry>("SELECT * FROM enquiries ORDER BY created_at DESC")).map(mapPg);
   return sqliteDb().prepare("SELECT * FROM enquiries ORDER BY createdAt DESC").all() as EnquiryRecord[];
 }
+
+export async function deleteEnquiry(id:string){
+  if(getPersistenceBackend()==="postgres")return postgresRows("DELETE FROM enquiries WHERE id=$1 RETURNING id",[id]);
+  return sqliteDb().prepare("DELETE FROM enquiries WHERE id=?").run(id);
+}

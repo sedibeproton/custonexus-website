@@ -1,5 +1,7 @@
 import { randomUUID } from "crypto";
 import { insertEnquiry } from "@/lib/enquiries";
+import { deleteEnquiry } from "@/lib/enquiries";
+import { requireBusinessAccess } from "@/lib/business/api";
 
 const allowedServices = new Set(["healthcare-technology", "medical-equipment", "professional-services", "strategic-partnerships"]);
 const allowedIntents = new Set(["quote", "callback", "general"]);
@@ -45,3 +47,5 @@ export async function POST(request: Request) {
     return Response.json({ error: "We could not save your enquiry. Please contact us by WhatsApp or phone." }, { status: 500 });
   }
 }
+
+export async function DELETE(request:Request){const auth=await requireBusinessAccess(true);if("error"in auth)return auth.error;let id="";try{id=clean((await request.json()).id,100);}catch{return Response.json({error:"Invalid request."},{status:400});}if(!id)return Response.json({error:"Enquiry ID is required."},{status:400});await deleteEnquiry(id);return Response.json({success:true});}

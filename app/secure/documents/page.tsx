@@ -9,9 +9,11 @@ import {
   getFolderBreadcrumbs,
   getFolderById,
   getFolders,
+  getAllFolders,
 } from "@/lib/documents";
 import CreateFolderButton from "@/components/CreateFolderButton";
-import DeleteDocumentButton from "@/components/DeleteDocumentButton";
+import ExplorerItemActions from "@/components/secure/ExplorerItemActions";
+import { getAccountAccess } from "@/lib/admin-access";
 
 type PageProps = { searchParams: Promise<{ folder?: string }> };
 
@@ -24,6 +26,7 @@ function formatFileSize(size: number) {
 export default async function FileExplorerPage({ searchParams }: PageProps) {
   const session = await auth.api.getSession({ headers: await headers() });
   if (!session) redirect("/secure/login");
+  const access=await getAccountAccess(await headers());
 
   const { folder: requestedFolderId } = await searchParams;
   const folderId = requestedFolderId || null;
@@ -33,6 +36,7 @@ export default async function FileExplorerPage({ searchParams }: PageProps) {
   const folders = await getFolders(folderId);
   const files = await getDocumentsByFolder(folderId);
   const breadcrumbs = folderId ? await getFolderBreadcrumbs(folderId) : [];
+  const allFolders=await getAllFolders();
   const uploadHref = folderId
     ? `/secure/upload?folder=${encodeURIComponent(folderId)}`
     : "/secure/upload";
@@ -85,7 +89,7 @@ export default async function FileExplorerPage({ searchParams }: PageProps) {
                 <span className="truncate">{folder.name}</span>
               </Link>
               <span className="hidden text-sm text-slate-400 sm:block">Folder</span>
-              <Link href={`/secure/documents?folder=${folder.id}`} className="text-sm font-semibold text-blue-700">Open</Link>
+              <ExplorerItemActions kind="folder" id={folder.id} name={folder.name} folders={allFolders} currentFolderId={folderId} isAdmin={Boolean(access?.isAdmin)}/>
             </div>
           ))}
 
@@ -98,7 +102,7 @@ export default async function FileExplorerPage({ searchParams }: PageProps) {
               <span className="hidden text-sm text-slate-500 sm:block">{formatFileSize(file.size)}</span>
               <div className="flex flex-wrap items-center gap-3">
                 <Link href={`/api/documents/${file.id}?download=true`} className="text-sm font-semibold text-blue-700">Download</Link>
-                <DeleteDocumentButton documentId={file.id} documentName={file.originalName} compact />
+                <ExplorerItemActions kind="file" id={file.id} name={file.originalName} folders={allFolders} currentFolderId={folderId} isAdmin={Boolean(access?.isAdmin)}/>
               </div>
             </div>
           ))}

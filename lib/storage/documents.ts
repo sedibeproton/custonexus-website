@@ -2,7 +2,7 @@ import { mkdir, readFile, unlink, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 
 import { getDocumentStorageBackend } from "@/lib/persistence-mode";
-import { buildDocumentObjectKey, deleteR2Object, readR2Object, uploadR2Object } from "@/lib/storage/r2";
+import { buildDocumentObjectKey, copyR2Object, deleteR2Object, readR2Object, uploadR2Object } from "@/lib/storage/r2";
 
 const localRoot=join(process.cwd(),"data","documents");
 
@@ -33,3 +33,5 @@ export async function discardStoredDocument(input:{objectKey:string|null;filePat
   if(input.objectKey)await deleteR2Object(input.objectKey);
   else if(input.filePath)await unlink(input.filePath);
 }
+
+export async function copyStoredDocument(sourceKey:string,destinationKey:string){await copyR2Object(sourceKey,destinationKey);}

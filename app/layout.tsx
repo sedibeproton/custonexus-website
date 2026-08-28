@@ -75,6 +75,7 @@ export const metadata: Metadata = {
     siteName: "CustoNexus Technologies",
     locale: "en_ZA",
     type: "website",
+    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "CustoNexus Technologies — Together, Better Healthcare" }],
   },
 
   twitter: {
@@ -82,6 +83,7 @@ export const metadata: Metadata = {
     title: "CustoNexus Technologies",
     description:
       "Trusted healthcare partnerships, innovative technology and meaningful connections.",
+    images: ["/opengraph-image"],
   },
 };
 
@@ -112,6 +114,7 @@ const organizationJsonLd = {
       },
       email: "info@custonexus.com",
       telephone: "+27 72 270 1087",
+      address: { "@type": "PostalAddress", addressCountry: "ZA" },
       sameAs: [
         "https://www.linkedin.com/company/custonexus-technologies/about/",
         "https://www.facebook.com/profile.php?id=61593696335289",

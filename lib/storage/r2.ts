@@ -1,5 +1,6 @@
 import {
   DeleteObjectCommand,
+  CopyObjectCommand,
   GetObjectCommand,
   HeadObjectCommand,
   PutObjectCommand,
@@ -60,6 +61,8 @@ export async function deleteR2Object(key:string) {
   const {client,bucket}=getClient();
   await client.send(new DeleteObjectCommand({Bucket:bucket,Key:key}));
 }
+
+export async function copyR2Object(sourceKey:string,destinationKey:string){const{client,bucket}=getClient();await client.send(new CopyObjectCommand({Bucket:bucket,Key:destinationKey,CopySource:`${bucket}/${sourceKey}`}));}
 
 export async function createR2DownloadUrl(key:string, expiresInSeconds=60) {
   const {client,bucket}=getClient();
