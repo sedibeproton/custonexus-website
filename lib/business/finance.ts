@@ -4,6 +4,8 @@ export type FinancialLineInput = {
   unit: string;
   unitPriceCents: number;
   discountCents: number;
+  discountType?: "CASH" | "PERCENT";
+  discountBasisPoints?: number;
 };
 
 export type FinancialTotals = {

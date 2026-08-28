@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowLeft, Building2, ShieldCheck, UsersRound } from "lucide-react";
+import { ArrowLeft, Building2, Landmark, ShieldCheck, UsersRound } from "lucide-react";
 import { requireSecurePage } from "@/lib/business/page-auth";
 
 export default async function AdministrationPage() {
@@ -7,6 +7,7 @@ export default async function AdministrationPage() {
   const areas = [
     { title: "User management", description: "Create accounts, reset passwords, assign administrator roles and remove access.", href: "/secure/users", action: "Manage users", icon: UsersRound },
     { title: "Company settings", description: "Maintain company identity, document terms, tax configuration and protected banking details.", href: "/secure/settings/company", action: "Open settings", icon: Building2 },
+    { title: "Bank accounts", description: "Add payment accounts and control which banking details can be selected on financial documents.", href: "/secure/settings/banking", action: "Manage bank accounts", icon: Landmark },
   ];
   return <main className="min-h-screen bg-slate-100 px-4 py-16 sm:px-6"><div className="mx-auto max-w-6xl">
     <Link href="/secure/dashboard" className="inline-flex items-center gap-2 text-sm font-bold text-blue-700"><ArrowLeft size={17}/> Workspace</Link>
