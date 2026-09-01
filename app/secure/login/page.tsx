@@ -2,7 +2,8 @@
 
 import { FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
-import { LockKeyhole } from "lucide-react";
+import Link from "next/link";
+import { ArrowLeft, LockKeyhole } from "lucide-react";
 import { authClient } from "@/lib/auth-client";
 
 export default function SecureLoginPage() {
@@ -38,6 +39,10 @@ export default function SecureLoginPage() {
   return (
     <main className="min-h-screen bg-slate-950 px-6 py-24 text-white">
       <div className="mx-auto max-w-md rounded-3xl bg-white p-8 text-slate-900 shadow-2xl">
+        <Link href="/" className="mb-7 inline-flex items-center gap-2 rounded-lg text-sm font-semibold text-blue-700 transition hover:text-blue-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2">
+          <ArrowLeft aria-hidden="true" size={17} />
+          Return to website
+        </Link>
         <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-100 text-blue-700">
           <LockKeyhole size={26} strokeWidth={2} />
         </div>

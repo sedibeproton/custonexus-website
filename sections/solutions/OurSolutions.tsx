@@ -23,7 +23,7 @@ const solutions = [
     icon: <HeartPulse size={30} />,
     title: "Medical Equipment & Consumables",
     description:
-      "Essential clinical equipment, monitoring devices, protective products and everyday consumables.",
+      "Medical equipment supply, servicing, calibration, repairs, protective products and everyday consumables.",
     image: "/images/solutions-healthcare.jpg",
     href: "/services/medical-equipment-consumables",
   },
@@ -31,7 +31,7 @@ const solutions = [
     icon: <Briefcase size={30} />,
     title: "Professional Services",
     description:
-      "Consulting, implementation and specialised support designed around healthcare organisations.",
+      "Healthcare-focused consulting and delivery, plus selected technology, electrical and electronic side projects.",
     image: "/images/professional-services.jpg",
     href: "/services/professional-services",
   },

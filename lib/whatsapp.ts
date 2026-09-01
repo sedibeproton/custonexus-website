@@ -7,9 +7,11 @@ export const whatsappMessages = {
   healthcareTechnology:
     "Hello CustoNexus Technologies, I would like to enquire about healthcare technology, website or app development.",
   medicalEquipment:
-    "Hello CustoNexus Technologies, I would like to enquire about medical equipment or consumables.",
+    "Hello CustoNexus Technologies, I would like to enquire about medical equipment, consumables, servicing, calibration or repairs.",
   professionalServices:
-    "Hello CustoNexus Technologies, I would like to enquire about your professional services.",
+    "Hello CustoNexus Technologies, I would like to enquire about professional services or a non-healthcare side project.",
+  sideProjects:
+    "Hello CustoNexus Technologies, I would like to discuss a non-healthcare side project.",
   strategicPartnerships:
     "Hello CustoNexus Technologies, I would like to discuss a strategic partnership.",
   solutions:

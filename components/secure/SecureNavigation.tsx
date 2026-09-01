@@ -31,7 +31,7 @@ export default function SecureNavigation({ isAdmin }: { isAdmin: boolean }) {
   async function signOut() {
     setSigningOut(true);
     await authClient.signOut();
-    router.push("/secure/login");
+    router.push("/");
     router.refresh();
   }
 

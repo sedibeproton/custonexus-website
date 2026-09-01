@@ -19,7 +19,7 @@ const solutions = [
   {
     title: "Medical Equipment & Consumables",
     description:
-      "Clinical equipment, monitoring devices, protective products and dependable consumables sourced around healthcare needs.",
+      "Medical equipment supply, servicing, calibration, repairs and dependable consumables for healthcare environments.",
     image: "/images/solutions-healthcare.jpg",
     reverse: true,
     href: "/services/medical-equipment-consumables",
@@ -27,7 +27,7 @@ const solutions = [
   {
     title: "Professional Services",
     description:
-      "Consulting, implementation, security and ongoing support designed around the realities of healthcare organisations.",
+      "Healthcare-focused consulting and delivery, with selected technology, electrical and electronic side projects for other customers.",
     image: "/images/professional-services.jpg",
     reverse: false,
     href: "/services/professional-services",

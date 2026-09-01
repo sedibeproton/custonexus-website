@@ -12,9 +12,9 @@ import WhyChooseUs from "../sections/WhyChooseUs";
 
 
 export const metadata = {
-  title: "Healthcare Technology, Medical Equipment & Services",
+  title: "Custom Technology, Medical Equipment & Services",
   description:
-    "Discover CustoNexus Technologies — creating healthcare solutions through trusted partnerships, meaningful connections and technology that serves people.",
+    "Discover CustoNexus custom websites and apps, hosting, medical equipment supply and servicing, professional services, side projects and trusted healthcare partnerships.",
   alternates: { canonical: "/" },
   openGraph: { url: "/" },
 };

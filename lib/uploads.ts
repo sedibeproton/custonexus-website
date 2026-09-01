@@ -1,10 +1,21 @@
 export const DEFAULT_MAX_UPLOAD_SIZE = 25 * 1024 * 1024;
+export const DEFAULT_ADMIN_MAX_UPLOAD_SIZE = 250 * 1024 * 1024;
 
 export function getMaxUploadSize() {
   const configuredSize = Number(process.env.MAX_UPLOAD_SIZE_MB);
 
   if (!Number.isFinite(configuredSize) || configuredSize <= 0) {
     return DEFAULT_MAX_UPLOAD_SIZE;
+  }
+
+  return Math.floor(configuredSize * 1024 * 1024);
+}
+
+export function getAdminMaxUploadSize() {
+  const configuredSize = Number(process.env.ADMIN_MAX_UPLOAD_SIZE_MB);
+
+  if (!Number.isFinite(configuredSize) || configuredSize <= 25) {
+    return DEFAULT_ADMIN_MAX_UPLOAD_SIZE;
   }
 
   return Math.floor(configuredSize * 1024 * 1024);

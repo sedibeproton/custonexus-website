@@ -51,7 +51,38 @@ for (const [passed, message] of checks) {
   if (!passed) failures.push(`Check failed: ${message}`);
 }
 
+const pageCache = new Map();
+const internalLinks = new Set();
+
+for (const path of publicPaths.filter((path) => !/\.(txt|xml|webmanifest)$/.test(path) && path !== "/opengraph-image")) {
+  const html = await (await fetch(`${baseUrl}${path}`)).text();
+  pageCache.set(path, html);
+  for (const match of html.matchAll(/href="(\/[^"?]*)/g)) {
+    const href = match[1].replaceAll("&amp;", "&");
+    if (!href.startsWith("/_next/") && !href.startsWith("/api/") && !href.startsWith("/secure/")) internalLinks.add(href);
+  }
+}
+
+for (const href of internalLinks) {
+  const [path, hash] = href.split("#");
+  const targetPath = path || "/";
+  let html = pageCache.get(targetPath);
+  if (!html) {
+    const response = await fetch(`${baseUrl}${targetPath}`, { redirect: "manual" });
+    if (!response.ok) {
+      failures.push(`Broken internal link: ${href} returned ${response.status}`);
+      continue;
+    }
+    html = await response.text();
+    pageCache.set(targetPath, html);
+  }
+  if (hash && !html.includes(`id="${decodeURIComponent(hash)}"`)) failures.push(`Missing anchor target: ${href}`);
+}
+
+console.log(`${failures.length ? "FAIL" : "PASS"} Checked ${internalLinks.size} internal links and anchor targets`);
+
 if (failures.length) {
+  failures.forEach((failure) => console.error(`- ${failure}`));
   console.error(`Smoke test failed with ${failures.length} issue(s).`);
   process.exit(1);
 }

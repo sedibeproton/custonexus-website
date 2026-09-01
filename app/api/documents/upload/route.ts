@@ -1,11 +1,12 @@
 ﻿import { headers } from "next/headers";
 import { randomUUID } from "crypto";
 
-import { auth } from "@/lib/auth";
+import { getAccountAccess } from "@/lib/admin-access";
 import { getFolderById, insertDocument } from "@/lib/documents";
 import {
   formatUploadLimit,
-  getMaxUploadSize,
+  DEFAULT_MAX_UPLOAD_SIZE,
+  getAdminMaxUploadSize,
   getSafeStoredExtension,
 } from "@/lib/uploads";
 import { discardStoredDocument, storeDocument } from "@/lib/storage/documents";
@@ -13,11 +14,9 @@ import { discardStoredDocument, storeDocument } from "@/lib/storage/documents";
 export async function POST(request: Request) {
   try {
     // Verify authentication
-    const session = await auth.api.getSession({
-      headers: await headers(),
-    });
+    const access = await getAccountAccess(await headers());
 
-    if (!session) {
+    if (!access) {
       return Response.json(
         { error: "Unauthorized" },
         { status: 401 }
@@ -31,6 +30,7 @@ export async function POST(request: Request) {
     const category = formData.get("category");
     const description = formData.get("description");
     const requestedFolderId = formData.get("folderId");
+    const adminExceptionRequested = formData.get("adminSizeException") === "true";
     const folderId =
       typeof requestedFolderId === "string" && requestedFolderId
         ? requestedFolderId
@@ -54,12 +54,15 @@ export async function POST(request: Request) {
       return Response.json({ error: "Folder not found." }, { status: 404 });
     }
 
-    const maxFileSize = getMaxUploadSize();
+    const adminException = access.isAdmin && adminExceptionRequested;
+    const maxFileSize = adminException ? getAdminMaxUploadSize() : DEFAULT_MAX_UPLOAD_SIZE;
 
     if (file.size > maxFileSize) {
       return Response.json(
         {
-          error: `File size cannot exceed ${formatUploadLimit(maxFileSize)}.`,
+          error: adminException
+            ? `The administrator exception allows files up to ${formatUploadLimit(maxFileSize)}.`
+            : `File size cannot exceed ${formatUploadLimit(DEFAULT_MAX_UPLOAD_SIZE)}. An administrator may approve an exception.`,
         },
         { status: 400 }
       );
@@ -89,7 +92,7 @@ export async function POST(request: Request) {
       objectKey: storage.objectKey,
       mimeType: file.type || "application/octet-stream",
       size: file.size,
-      uploadedBy: session.user.id,
+      uploadedBy: access.session.user.id,
       createdAt: now,
       updatedAt: now,
       folderId,

@@ -13,7 +13,7 @@ import FutureInnovation from "@/sections/solutions/FutureInnovation";
 export const metadata = {
   title: "Healthcare Solutions",
   description:
-    "Explore CustoNexus healthcare technology, medical solutions and professional services built to improve care and operational outcomes.",
+    "Explore custom websites and apps, medical equipment supply and servicing, consulting, project delivery, side projects and healthcare partnerships from CustoNexus.",
   alternates: { canonical: "/solutions" },
   openGraph: { url: "/solutions" },
 };
@@ -25,7 +25,7 @@ export default function SolutionsPage() {
       <PageHero
         eyebrow="Solutions"
         title="Purpose-Built for Healthcare."
-        subtitle="Innovative technology, trusted partnerships and professional services designed to improve healthcare experiences."
+        subtitle="Custom technology, dependable medical solutions, professional expertise and trusted partnerships designed around real organisational needs."
       />
 
       <FadeSection>

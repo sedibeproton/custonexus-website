@@ -56,6 +56,7 @@ const categories: Category[] = [
         "Mobile and progressive web apps",
         "Secure dashboards and internal tools",
         "Ongoing maintenance and optimisation",
+        "Website hosting and company email",
       ],
     },
     groups: [
@@ -99,7 +100,7 @@ const categories: Category[] = [
     detailHref: "/services/medical-equipment-consumables",
     title: "Medical Equipment & Consumables",
     shortDescription:
-      "Essential equipment, monitoring devices and consumables sourced around healthcare needs.",
+      "Medical equipment sourcing, servicing, calibration, repairs and dependable consumable supply.",
     introduction:
       "We help healthcare providers identify and source dependable equipment and day-to-day consumables, with attention to suitability, quality and continuity of supply.",
     icon: HeartPulse,
@@ -139,6 +140,17 @@ const categories: Category[] = [
           "Delivery, setup and product orientation",
         ],
       },
+      {
+        title: "Service, Calibration & Repairs",
+        description:
+          "Technical support for various medical devices, reviewed according to equipment type, condition and applicable requirements.",
+        items: [
+          "Preventive servicing and equipment checks",
+          "Calibration coordination and verification",
+          "Fault assessment and repairs",
+          "Parts and maintenance planning",
+        ],
+      },
     ],
   },
   {
@@ -146,7 +158,7 @@ const categories: Category[] = [
     detailHref: "/services/professional-services",
     title: "Professional Services",
     shortDescription:
-      "Consulting, implementation and ongoing support designed around healthcare organisations.",
+      "Healthcare-focused consulting and delivery, plus carefully selected side projects for other customers.",
     introduction:
       "Our professional services bring structure, specialist guidance and delivery support to technology and operational improvement initiatives.",
     icon: BriefcaseBusiness,
@@ -182,6 +194,17 @@ const categories: Category[] = [
           "Operational resilience planning",
           "Managed support and issue coordination",
           "Performance reviews and enhancement planning",
+        ],
+      },
+      {
+        title: "Non-Healthcare Side Projects",
+        description:
+          "Selected practical assignments for individuals and organisations outside healthcare, accepted after a feasibility and safety review.",
+        items: [
+          "Electrical appliance and electronics assessment or repair",
+          "Websites and business applications",
+          "Technology and operational consultations",
+          "Project planning and management",
         ],
       },
     ],

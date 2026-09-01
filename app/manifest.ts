@@ -4,7 +4,7 @@ export default function manifest(): MetadataRoute.Manifest {
   return {
     name: "CustoNexus Technologies",
     short_name: "CustoNexus",
-    description: "Healthcare technology, professional services and trusted partnerships.",
+    description: "Custom technology, medical equipment services, professional expertise, side projects and trusted partnerships.",
     start_url: "/",
     scope: "/",
     id: "/",

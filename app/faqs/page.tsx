@@ -58,6 +58,11 @@ const faqGroups = [
         answer:
           "Contact us by WhatsApp or phone on 072 270 1087, or email info@custonexus.com. Tell us what you need, your organisation type and any important timeline so we can recommend a sensible next step.",
       },
+      {
+        question: "Are the prices on the services pages final?",
+        answer:
+          "No. They are indicative South African rand ranges intended to help with early budgeting. The final quotation depends on scope, complexity, content, quantities, travel, parts, integrations, timelines and any specialist or third-party requirements. Work begins only after the written scope and price are agreed.",
+      },
     ],
   },
   {
@@ -67,7 +72,12 @@ const faqGroups = [
       {
         question: "Do you build healthcare websites and applications?",
         answer:
-          "Yes. Website and app development is one of our core specialities. We build healthcare and corporate websites, patient or client portals, custom web applications, progressive web apps, mobile experiences, secure dashboards and internal tools.",
+          "Yes. Website and app development is one of our core specialities. Every website is custom-designed and developed for the client; we do not use WordPress, purchased themes or generic page-builder templates. We build corporate and healthcare websites, booking systems, availability calendars, contact and enquiry forms, portals, custom applications, dashboards, payments and integrations.",
+      },
+      {
+        question: "How much does a custom website cost?",
+        answer:
+          "A focused custom website generally ranges from R3,000 to R8,000. Larger business websites with more pages, content, booking requests, availability calendars, advanced forms or tailored workflows generally range from R8,000 to R35,000. Advanced platforms with accounts, dashboards, payments, databases or integrations commonly start around R35,000 and may exceed R150,000. Custom mobile or multi-platform applications generally range from R30,000 to R100,000 or more. We confirm the exact price after understanding the page count, content, features and processes involved.",
       },
       {
         question: "Can you redesign or improve an existing website?",
@@ -77,7 +87,7 @@ const faqGroups = [
       {
         question: "Do you provide support after a website or application launches?",
         answer:
-          "Yes. Support can include maintenance, issue resolution, content or feature updates, performance reviews, security improvements and ongoing optimisation. The support arrangement is agreed according to the solution and your needs.",
+          "Yes. Website hosting and maintenance plans generally range from R120 to R600 or more per month and can include professional company email accounts. The final monthly fee depends on website scale, traffic, storage, update frequency, support requirements, mailbox quantity and email storage. Support can also include issue resolution, performance reviews, security improvements and ongoing optimisation.",
       },
       {
         question: "Can you integrate different systems or platforms?",
@@ -88,6 +98,11 @@ const faqGroups = [
         question: "How long does a website or app project take?",
         answer:
           "Timing depends on scope, integrations, content readiness and review cycles. We define the deliverables, milestones and expected timeline after discovery rather than applying one timeline to every project.",
+      },
+      {
+        question: "How does the website and app development process work?",
+        answer:
+          "We begin with discovery and a written scope, timeline, price and scope-based deposit. Once the deposit is received, we plan the project, allocate resources and collect your content, company information, logo, images and preferences. We then custom-design and develop the solution collaboratively, complete agreed revisions, obtain your approval and collect the remaining balance. The final stage is launch, production checking, handover and training, followed by hosting and maintenance where selected.",
       },
     ],
   },
@@ -115,6 +130,16 @@ const faqGroups = [
         answer:
           "Yes. Send the product description, specification, quantity, delivery location and required date to info@custonexus.com. We will confirm whether the requirement can be supported and provide the appropriate next steps.",
       },
+      {
+        question: "Do you service, calibrate or repair medical equipment?",
+        answer:
+          "Yes. We consider servicing, preventive maintenance, calibration and repair enquiries for various medical devices. Please provide the equipment type, manufacturer, model, serial number, condition, known fault and location. We confirm capability, parts availability and any applicable safety or compliance requirements before accepting the work.",
+      },
+      {
+        question: "How does an equipment supply, service or repair request work?",
+        answer:
+          "We collect the equipment or product details, assess suitability and feasibility, then issue a written quotation. A deposit may be required to secure stock, order parts, book specialists or activate the work. We complete the approved procurement or technical service, perform the relevant quality review, collect the remaining balance according to the quotation, and coordinate delivery or handover with available documentation and guidance.",
+      },
     ],
   },
   {
@@ -141,6 +166,16 @@ const faqGroups = [
         answer:
           "We agree on useful outcomes at the beginning. Measures may include reduced process friction, better user adoption, improved reliability, stronger information flow, clearer governance or defined operational improvements.",
       },
+      {
+        question: "Do you accept work outside the healthcare sector?",
+        answer:
+          "Yes, as selected side projects. Healthcare remains our main focus, but we may assist other customers with websites, applications, consultations, project management, electrical appliances and electronic devices. Every request is assessed individually for feasibility, safety, scope, parts availability and fit before it is accepted.",
+      },
+      {
+        question: "How are professional services and side projects delivered?",
+        answer:
+          "We begin by defining the challenge and assessing feasibility. We then provide the scope, deliverables, schedule, price and any required deposit or first milestone payment. During delivery we communicate progress and document material changes. The work is reviewed against agreed acceptance criteria, the outstanding balance is settled, and we complete the handover with any recommended follow-up support.",
+      },
     ],
   },
   {
@@ -166,6 +201,11 @@ const faqGroups = [
         question: "Do you offer customised or combined engagements?",
         answer:
           "Yes. A requirement may combine technology, equipment sourcing, professional expertise and partner capabilities. We structure the engagement around the actual need rather than forcing every client into a fixed package.",
+      },
+      {
+        question: "How does a strategic partnership progress?",
+        answer:
+          "We move from an initial opportunity discussion through alignment assessment, due diligence and a documented commercial framework. Approved opportunities may proceed to a paid planning stage, pilot or proof of concept. The parties then evaluate results and decide whether to conclude, refine or scale the relationship under clear governance, responsibilities and commercial terms.",
       },
     ],
   },

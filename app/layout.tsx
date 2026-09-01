@@ -27,13 +27,19 @@ export const metadata: Metadata = {
   },
 
   description:
-    "Trusted healthcare partnerships, innovative technology and meaningful connections improving healthcare experiences.",
+    "Custom websites and apps, hosting, medical equipment supply and servicing, professional services, side projects and healthcare partnerships from CustoNexus Technologies.",
 
   keywords: [
     "healthcare technology",
     "digital health solutions",
     "healthcare professional services",
     "medical solutions",
+    "medical equipment calibration South Africa",
+    "medical equipment repairs",
+    "custom website development South Africa",
+    "custom app development",
+    "website hosting and company email",
+    "electronics and appliance repairs",
     "healthcare partnerships",
     "CustoNexus Technologies",
   ],
@@ -70,7 +76,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "CustoNexus Technologies",
     description:
-      "Building Meaningful Connections Across Healthcare.",
+      "Custom technology, medical equipment services, professional expertise and trusted partnerships.",
     url: "/",
     siteName: "CustoNexus Technologies",
     locale: "en_ZA",
@@ -82,7 +88,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "CustoNexus Technologies",
     description:
-      "Trusted healthcare partnerships, innovative technology and meaningful connections.",
+      "Custom websites and apps, medical equipment services, professional expertise and trusted partnerships.",
     images: ["/opengraph-image"],
   },
 };
@@ -129,7 +135,15 @@ const organizationJsonLd = {
         availableLanguage: "English",
       },
       description:
-        "Healthcare technology, medical equipment, professional services and trusted partnerships designed to improve healthcare experiences.",
+        "Custom technology, website and app development, hosting, medical equipment supply and servicing, professional services, selected side projects and trusted healthcare partnerships.",
+      knowsAbout: [
+        "Custom website and application development",
+        "Website hosting and company email",
+        "Medical equipment supply, servicing and calibration",
+        "Professional consulting and project management",
+        "Electrical appliance and electronics side projects",
+        "Healthcare technology partnerships",
+      ],
     },
   ],
 };
