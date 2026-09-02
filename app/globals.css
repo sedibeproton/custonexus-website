@@ -145,6 +145,17 @@ p {
   50% { transform: translate3d(-9px, 10px, 0) rotate(-2deg); }
 }
 
+@keyframes home-scan {
+  0% { transform: translateY(0); opacity: 0; }
+  15% { opacity: 0.75; }
+  85% { opacity: 0.55; }
+  100% { transform: translateY(500px); opacity: 0; }
+}
+
+.cn-home-scan {
+  animation: home-scan 6s ease-in-out infinite;
+}
+
 .cn-decor-drift {
   animation: decor-drift 15s ease-in-out infinite;
 }

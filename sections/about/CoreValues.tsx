@@ -20,7 +20,7 @@ export default function CoreValues() {
         align="center"
       />
 
-      <div className="mt-20 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3 lg:gap-7">
         <FeatureCard
           icon={<ShieldCheck size={32} />}
           title="Integrity"

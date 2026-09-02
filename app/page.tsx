@@ -9,6 +9,7 @@ import Purpose from "../sections/Purpose";
 import SolutionsPreview from "../sections/SolutionsPreview";
 import TrustSection from "../sections/TrustSection";
 import WhyChooseUs from "../sections/WhyChooseUs";
+import DigitalCraftsmanship from "../sections/DigitalCraftsmanship";
 
 
 export const metadata = {
@@ -29,6 +30,10 @@ export default function Home() {
 
       <FadeSection>
         <TrustSection />
+      </FadeSection>
+
+      <FadeSection>
+        <DigitalCraftsmanship />
       </FadeSection>
 
       <FadeSection>

@@ -11,7 +11,7 @@ export default function LeadershipPhilosophy() {
         align="left"
       />
 
-      <div className="mt-6 space-y-6 text-lg leading-8 text-slate-600">
+      <div className="max-w-4xl space-y-5 text-lg leading-8 text-slate-600">
         <p>
           We lead by listening. Decisions are informed by clinicians, partners and the experiences of the people we serve.
         </p>

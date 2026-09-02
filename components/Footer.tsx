@@ -9,7 +9,7 @@ export default function Footer() {
   return (
     <footer className="relative overflow-hidden border-t border-white/10 bg-[#050f25] text-white">
       <div aria-hidden className="absolute inset-0 bg-[radial-gradient(circle_at_12%_25%,rgba(37,99,235,.2),transparent_28%),radial-gradient(circle_at_90%_80%,rgba(16,185,129,.1),transparent_23%)]" />
-      <Container className="relative py-16 sm:py-20">
+      <Container className="relative py-14 sm:py-16">
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.2fr_0.55fr_0.9fr_0.8fr] lg:gap-12">
           <div>
             <div className="inline-flex rounded-2xl bg-white px-4 py-2 shadow-2xl"><Logo /></div>
@@ -95,7 +95,7 @@ export default function Footer() {
 
         </div>
 
-        <div className="mt-10 border-t border-slate-800 pt-6">
+        <div className="mt-9 border-t border-slate-800 pt-6">
           <div className="flex flex-col justify-between gap-4 text-sm text-slate-500 md:flex-row md:items-center">
             <p>© 2026 CustoNexus Technologies. All Rights Reserved.</p>
             <Link href="/secure/login" className="inline-flex items-center gap-2 transition hover:text-white">

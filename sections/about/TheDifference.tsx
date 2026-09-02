@@ -45,7 +45,7 @@ export default function TheDifference() {
         subtitle="Our competitive advantage isn't simply what we build—it's how we think, how we serve and the principles that guide every decision."
       />
 
-      <div className="mt-20 grid gap-8 md:grid-cols-2">
+      <div className="grid gap-5 md:grid-cols-2 lg:gap-7">
         {items.map((item) => (
           <FeatureCard
             key={item.title}

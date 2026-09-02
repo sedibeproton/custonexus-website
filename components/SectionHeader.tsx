@@ -23,7 +23,7 @@ export default function SectionHeader({
   return (
     <div
       className={`
-        mb-10 sm:mb-14
+        mb-9 sm:mb-12
         ${alignment}
         transition-all
         duration-700
@@ -32,7 +32,7 @@ export default function SectionHeader({
       {eyebrow && <p className={`inline-flex items-center gap-3 text-xs font-bold uppercase tracking-[0.25em] sm:text-sm ${eyebrowColor}`}><span className={`h-px w-7 ${variant === "default" ? "bg-blue-500" : "bg-blue-300"}`} />{eyebrow}</p>}
 
       {showUnderline && (
-        <div className={`mb-7 mt-5 h-1 w-10 rounded-full ${underlineClass} ${align === "left" ? "" : "mx-auto"}`} />
+        <div className={`mb-6 mt-4 h-1 w-10 rounded-full ${underlineClass} ${align === "left" ? "" : "mx-auto"}`} />
       )}
 
       <h2
@@ -49,7 +49,7 @@ export default function SectionHeader({
       </h2>
 
       {subtitle && (
-        <p className={`mt-5 text-base leading-8 sm:text-lg sm:leading-9 ${subtitleColor} ${align === "left" ? "max-w-3xl" : "mx-auto max-w-3xl"}`}>
+        <p className={`mt-4 text-base leading-8 sm:text-lg sm:leading-9 ${subtitleColor} ${align === "left" ? "max-w-3xl" : "mx-auto max-w-3xl"}`}>
           {subtitle}
         </p>
       )}

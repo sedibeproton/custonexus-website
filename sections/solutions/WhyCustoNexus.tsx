@@ -37,7 +37,7 @@ export default function WhyCustoNexus() {
         subtitle="We are building more than healthcare technology. We are building trusted relationships, meaningful solutions, and a company committed to improving healthcare experiences for generations to come."
       />
 
-      <div className="grid gap-8 md:grid-cols-2">
+      <div className="grid gap-5 md:grid-cols-2 lg:gap-7">
         {reasons.map((reason) => (
           <div
             key={reason.number}
@@ -52,7 +52,7 @@ export default function WhyCustoNexus() {
               shadow-lg
               transition-all
               duration-500
-              hover:-translate-y-2
+              hover:-translate-y-1.5
               hover:border-blue-200
               hover:shadow-2xl
             "

@@ -13,13 +13,13 @@ export default function FoundationSection() {
         align="center"
       />
 
-      <div className="grid items-center gap-20 lg:grid-cols-2">
+      <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
         <div className="space-y-6 text-lg leading-9 text-slate-600">
           <p>
             It is more than a document. It is the foundation of our culture, our partnerships and our commitment to improving healthcare experiences.
           </p>
 
-          <div className="mt-12">
+          <div className="mt-8">
             <PrimaryButton href="/constitution">
               Read the Constitution
             </PrimaryButton>

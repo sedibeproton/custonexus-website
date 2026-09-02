@@ -1,6 +1,7 @@
 import Section from "@/components/Section";
 import ImageFrame from "@/components/ImageFrame";
 import SectionHeader from "@/components/SectionHeader";
+import PrimaryButton from "@/components/PrimaryButton";
 
 export default function Foundation() {
   return (
@@ -8,7 +9,7 @@ export default function Foundation() {
       <div className="pointer-events-none absolute top-16 right-16 h-64 w-64 rounded-full bg-blue-100/30 blur-3xl" />
       <div className="pointer-events-none absolute bottom-8 left-10 h-48 w-48 rounded-full bg-blue-50 blur-3xl" />
 
-      <div className="grid items-center gap-20 lg:grid-cols-2">
+      <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
 
         {/* Image */}
 
@@ -36,13 +37,6 @@ export default function Foundation() {
           />
 
           <p className="mt-6 text-lg leading-9 text-slate-600">
-            We connect healthcare professionals, organisations, technology,
-            and expertise to create solutions that improve patient care,
-            strengthen clinical outcomes, and simplify the way healthcare
-            is delivered.
-          </p>
-
-          <p className="mt-6 text-lg leading-9 text-slate-600">
             Every partnership we build and every solution we develop is
             guided by one enduring principle:
           </p>
@@ -52,6 +46,8 @@ export default function Foundation() {
           <blockquote className="mt-6 rounded-r-2xl border-l-4 border-blue-700 bg-slate-50 px-6 py-6 text-2xl font-semibold italic leading-relaxed text-slate-900">
             &ldquo;When healthcare works better together, everyone benefits.&rdquo;
           </blockquote>
+
+          <div className="mt-8"><PrimaryButton href="/constitution">Explore our guiding principles</PrimaryButton></div>
 
         </div>
 

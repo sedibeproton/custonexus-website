@@ -16,7 +16,7 @@ export default function PageSection({
   };
 
   return (
-    <section className={`py-28 ${backgrounds[background]}`}>
+    <section className={`py-16 sm:py-24 lg:py-28 ${backgrounds[background]}`}>
       {children}
     </section>
   );

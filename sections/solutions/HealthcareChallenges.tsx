@@ -44,7 +44,7 @@ export default function HealthcareChallenges() {
           subtitle="Modern healthcare demands innovative solutions that strengthen people, improve efficiency and create meaningful experiences."
         />
 
-        <div className="mt-20 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4 lg:gap-6">
           {challenges.map((challenge) => (
             <FeatureCard
               key={challenge.title}

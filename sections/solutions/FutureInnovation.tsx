@@ -28,7 +28,7 @@ export default function FutureInnovation() {
         subtitle="CustoNexus explores future-ready solutions that improve care, simplify operations and create more meaningful experiences for providers and patients."
       />
 
-      <div className="grid gap-8 md:grid-cols-3">
+      <div className="grid gap-5 md:grid-cols-3 lg:gap-7">
         {innovations.map((innovation) => (
           <div
             key={innovation.title}
@@ -42,7 +42,7 @@ export default function FutureInnovation() {
               shadow-lg
               transition-all
               duration-500
-              hover:-translate-y-2
+              hover:-translate-y-1.5
               hover:border-blue-200
               hover:shadow-2xl
             "

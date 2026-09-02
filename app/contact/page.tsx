@@ -31,7 +31,7 @@ export default function ContactPage() {
       <FadeSection>
         <section className="relative bg-[#f7f9fc] py-16 sm:py-24">
           <Container>
-            <div className="grid gap-10 xl:grid-cols-[0.64fr_1.36fr] xl:items-start">
+            <div className="grid gap-8 lg:gap-10 xl:grid-cols-[0.64fr_1.36fr] xl:items-start">
               <aside className="xl:sticky xl:top-32">
                 <p className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.25em] text-blue-700"><span className="h-px w-8 bg-emerald-500" />Start here</p>
                 <h2 className="mt-5 text-3xl font-semibold tracking-[-0.035em] text-blue-950 sm:text-4xl">A better first conversation starts with useful context.</h2>

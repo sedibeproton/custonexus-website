@@ -67,7 +67,7 @@ export default function ServicesPage() {
       />
 
       <FadeSection>
-        <section id="service-categories" className="scroll-mt-28 bg-slate-50 py-12 sm:py-24">
+        <section id="service-categories" className="scroll-mt-28 bg-slate-50 py-16 sm:py-24 lg:py-28">
           <Container>
             <SectionHeader
               eyebrow="Explore Our Services"
@@ -82,7 +82,7 @@ export default function ServicesPage() {
       <FadeSection>
         <section id="side-projects" className="scroll-mt-32 border-y border-cyan-100 bg-gradient-to-br from-cyan-50 via-white to-blue-50 py-16 sm:py-24">
           <Container>
-            <div className="rounded-[2rem] border border-blue-100 bg-white p-6 shadow-[0_25px_80px_rgba(15,48,105,0.10)] sm:p-10 lg:p-14">
+            <div className="rounded-[2rem] border border-blue-100 bg-white p-6 shadow-[0_25px_80px_rgba(15,48,105,0.10)] sm:p-9 lg:p-12">
               <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
                 <div>
                   <span className="inline-flex rounded-full bg-amber-100 px-4 py-2 text-xs font-bold uppercase tracking-[0.2em] text-amber-800">Services Beyond Healthcare</span>

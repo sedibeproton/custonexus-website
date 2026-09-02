@@ -13,7 +13,7 @@ export default function VisionMission() {
         align="center"
       />
 
-      <div className="mt-20 grid gap-8 lg:grid-cols-2">
+      <div className="grid gap-5 lg:grid-cols-2 lg:gap-7">
         <FeatureCard
           icon={<Eye size={32} />}
           title="Our Vision"

@@ -36,9 +36,9 @@ export default function ConstitutionPage() {
       </nav>
 
       <FadeSection>
-        <section className="relative overflow-hidden bg-white py-20 sm:py-28">
+        <section className="relative overflow-hidden bg-white py-16 sm:py-24 lg:py-28">
           <Container>
-            <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[0.7fr_1.3fr] lg:gap-20">
+            <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[0.7fr_1.3fr] lg:gap-16">
               <div>
                 <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-blue-700 text-white shadow-xl shadow-blue-700/20"><BookOpen size={30} aria-hidden /></div>
                 <p className="mt-7 text-xs font-bold uppercase tracking-[0.28em] text-blue-700">Preamble</p>
@@ -131,7 +131,7 @@ export default function ConstitutionPage() {
       </ConstitutionChapter></FadeSection>
 
       <FadeSection>
-        <section className="bg-white py-20 sm:py-28"><Container><div className="mx-auto max-w-6xl overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-blue-950 via-[#0a327d] to-blue-700 p-8 text-white shadow-[0_30px_90px_rgba(7,26,61,.22)] sm:p-14 lg:p-20">
+        <section className="bg-white py-16 sm:py-24"><Container><div className="mx-auto max-w-6xl overflow-hidden rounded-[2rem] bg-gradient-to-br from-blue-950 via-[#0a327d] to-blue-700 p-7 text-white shadow-[0_30px_90px_rgba(7,26,61,.22)] sm:rounded-[2.5rem] sm:p-12 lg:p-16">
           <ShieldCheck size={38} className="text-emerald-400" aria-hidden /><p className="mt-8 text-xs font-bold uppercase tracking-[0.3em] text-blue-200">The final declaration</p><h2 className="mt-5 max-w-4xl text-4xl font-semibold leading-tight tracking-[-0.04em] sm:text-6xl">We know why we are here.</h2>
           <div className="mt-10 grid gap-8 border-t border-white/15 pt-10 text-lg leading-8 text-blue-100 md:grid-cols-2"><p>We are here to strengthen healthcare through purposeful technology, dependable solutions and meaningful human connection.</p><p>We will lead with integrity, serve with care, learn with humility and build with the future in mind.</p></div>
           <p className="mt-12 max-w-3xl text-2xl font-semibold leading-10">Together, we accept the responsibility to make healthcare better—and to ensure CustoNexus always remembers that people are the purpose.</p>
@@ -140,7 +140,7 @@ export default function ConstitutionPage() {
       </FadeSection>
 
       <FadeSection>
-        <section className="bg-[#f7f9fc] py-20 sm:py-28">
+        <section className="bg-[#f7f9fc] py-16 sm:py-24">
           <Container>
             <div className="mx-auto max-w-4xl">
               <p className="flex items-center justify-center gap-3 text-xs font-bold uppercase tracking-[0.3em] text-blue-700"><span className="h-px w-8 bg-emerald-500" />Founder&apos;s Commitment<span className="h-px w-8 bg-emerald-500" /></p>

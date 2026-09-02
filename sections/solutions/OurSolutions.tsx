@@ -47,7 +47,7 @@ const solutions = [
 
 export default function OurSolutions() {
   return (
-    <section className="bg-slate-50 py-16 sm:py-24">
+    <section className="bg-slate-50 py-16 sm:py-24 lg:py-28">
       <Container>
 
         <SectionHeader
@@ -57,11 +57,11 @@ export default function OurSolutions() {
           align="center"
         />
 
-        <div className="grid gap-8 md:grid-cols-2">
+        <div className="grid gap-5 md:grid-cols-2 lg:gap-7">
           {solutions.map((solution) => (
             <article
               key={solution.title}
-              className="group overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl"
+              className="group overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white shadow-[0_12px_40px_rgba(15,48,105,0.07)] transition-all duration-500 hover:-translate-y-1.5 hover:border-blue-200 hover:shadow-[0_22px_55px_rgba(15,48,105,0.13)]"
             >
 
               <div className="relative aspect-[16/9] overflow-hidden">
@@ -80,7 +80,7 @@ export default function OurSolutions() {
                 </div>
               </div>
 
-              <div className="p-8">
+              <div className="p-6 sm:p-8">
                 <h3 className="text-2xl font-bold text-slate-900">
                   {solution.title}
                 </h3>

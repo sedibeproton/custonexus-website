@@ -44,7 +44,7 @@ export default function HowWeWork() {
         subtitle="Every partnership follows a structured process designed to deliver lasting value."
       />
 
-      <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4 lg:gap-6">
         {steps.map((step, index) => (
           <div
             key={step.title}
@@ -55,11 +55,11 @@ export default function HowWeWork() {
               border
               border-slate-200
               bg-white
-              p-8
+              p-6 sm:p-8
               shadow-lg
               transition-all
               duration-500
-              hover:-translate-y-2
+              hover:-translate-y-1.5
               hover:border-blue-200
               hover:shadow-2xl
             "

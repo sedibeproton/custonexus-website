@@ -249,7 +249,7 @@ export default function FAQsPage() {
       />
 
       <FadeSection>
-        <section className="border-b border-slate-200 bg-slate-50 py-10">
+        <section className="border-b border-slate-200 bg-slate-50 py-8 sm:py-10">
           <Container>
             <nav aria-label="FAQ categories" className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
               {categoryLinks.map(({ icon: Icon, label, href }) => (
@@ -268,7 +268,7 @@ export default function FAQsPage() {
           <Container>
             <SectionHeader eyebrow="Helpful Information" title="What Would You Like to Know?" subtitle="Choose a category above or browse the questions below. Every answer reflects our current services and engagement approach." />
 
-            <div className="mx-auto max-w-4xl space-y-14">
+            <div className="mx-auto max-w-4xl space-y-12 sm:space-y-14">
               {faqGroups.map((group) => (
                 <section key={group.id} id={group.id} className="scroll-mt-32" aria-labelledby={`${group.id}-title`}>
                   <div className="mb-6 flex items-center gap-3">
@@ -300,7 +300,7 @@ export default function FAQsPage() {
               <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-blue-700 text-white shadow-lg shadow-blue-700/20"><MessageCircle size={30} aria-hidden /></div>
               <h2 className="mt-7 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">Still have a question?</h2>
               <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-slate-600">Speak with us directly on 072 270 1087 or email info@custonexus.com. We will help you identify the right service or next step.</p>
-              <div className="mt-8 flex flex-wrap justify-center gap-4">
+              <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row sm:flex-wrap sm:gap-4">
                 <a href={createWhatsAppUrl(whatsappMessages.faqs)} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full bg-blue-700 px-7 py-4 font-semibold text-white shadow-lg transition hover:-translate-y-1 hover:bg-blue-800"><MessageCircle size={19} aria-hidden /> WhatsApp Us</a>
                 <a href="mailto:info@custonexus.com" className="inline-flex items-center gap-2 rounded-full border border-blue-200 px-7 py-4 font-semibold text-blue-700 transition hover:border-blue-700 hover:bg-blue-50"><Mail size={19} aria-hidden /> Email Us</a>
               </div>
