@@ -24,7 +24,7 @@ const navItems: NavItem[] = [
       { href: "/services/healthcare-technology", label: "Healthcare Technology", description: "Custom websites, apps, hosting and digital systems" },
       { href: "/services/medical-equipment-consumables", label: "Medical Equipment", description: "Supply, servicing, calibration and repairs" },
       { href: "/services/professional-services", label: "Professional Services", description: "Consulting, projects and selected side work" },
-      { href: "/services#side-projects", label: "Non-Healthcare Side Projects", description: "Electronics, appliances, websites, apps and project support" },
+      { href: "/services/side-projects", label: "Non-Healthcare Side Projects", description: "Electronics, appliances, websites, apps and project support" },
       { href: "/services/strategic-partnerships", label: "Strategic Partnerships", description: "Supplier, technology and growth collaboration" },
     ],
   },
@@ -73,8 +73,8 @@ export default function Navbar() {
   return (
     <header className="fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-5 sm:pt-4">
       <Container className={`rounded-[1.4rem] border transition-all duration-500 ${scrolled ? "border-white/70 bg-white/90 py-2 shadow-[0_14px_45px_rgba(8,31,73,0.14)] backdrop-blur-2xl" : "border-white/80 bg-white/75 py-3 shadow-[0_8px_30px_rgba(8,31,73,0.08)] backdrop-blur-xl"}`}>
-        <div className="flex items-center justify-between gap-5">
-          <div className={scrolled ? "origin-left scale-90 transition" : "transition"}><Logo /></div>
+        <div className="flex items-center justify-between gap-2 sm:gap-5">
+          <div className={`min-w-0 ${scrolled ? "origin-left scale-90 transition" : "transition"}`}><Logo /></div>
 
           <nav aria-label="Primary navigation" className="hidden items-center gap-1 xl:flex">
             {navItems.map((item) => item.children ? (

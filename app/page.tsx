@@ -16,7 +16,9 @@ export const metadata = {
   description:
     "Discover CustoNexus custom websites and apps, hosting, medical equipment supply and servicing, professional services, side projects and trusted healthcare partnerships.",
   alternates: { canonical: "/" },
-  openGraph: { url: "/" },
+  openGraph: { title: "Custom Technology, Medical Equipment & Services", description: "Discover CustoNexus custom websites and apps, hosting, medical equipment supply and servicing, professional services, side projects and trusted healthcare partnerships.", url: "/", images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "CustoNexus Technologies — Together, Better Healthcare" }] },
+  twitter: { card: "summary_large_image", title: "Custom Technology, Medical Equipment & Services", description: "Custom websites and apps, medical equipment services, consulting and healthcare partnerships from CustoNexus Technologies.", images: ["/opengraph-image"] },
+  robots: { index: true, follow: true },
 };
 
 export default function Home() {

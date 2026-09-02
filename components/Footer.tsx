@@ -10,7 +10,7 @@ export default function Footer() {
     <footer className="relative overflow-hidden border-t border-white/10 bg-[#050f25] text-white">
       <div aria-hidden className="absolute inset-0 bg-[radial-gradient(circle_at_12%_25%,rgba(37,99,235,.2),transparent_28%),radial-gradient(circle_at_90%_80%,rgba(16,185,129,.1),transparent_23%)]" />
       <Container className="relative py-16 sm:py-20">
-        <div className="grid gap-12 lg:grid-cols-[1.25fr_0.65fr_0.9fr]">
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.2fr_0.55fr_0.9fr_0.8fr] lg:gap-12">
           <div>
             <div className="inline-flex rounded-2xl bg-white px-4 py-2 shadow-2xl"><Logo /></div>
             <p className="mt-6 max-w-sm leading-8 text-slate-400">
@@ -57,6 +57,17 @@ export default function Footer() {
                   Contact
                 </Link>
               </li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="mb-6 text-xs font-bold uppercase tracking-[0.25em] text-blue-300">Services</h3>
+            <ul className="space-y-3 text-sm leading-6 text-slate-300">
+              <li><Link href="/services/healthcare-technology" className="transition hover:text-white">Custom Websites, Apps & Healthcare Technology</Link></li>
+              <li><Link href="/services/medical-equipment-consumables" className="transition hover:text-white">Medical Equipment & Consumables</Link></li>
+              <li><Link href="/services/professional-services" className="transition hover:text-white">Healthcare Consulting & Professional Services</Link></li>
+              <li><Link href="/services/strategic-partnerships" className="transition hover:text-white">Healthcare Partnerships</Link></li>
+              <li><Link href="/services/side-projects" className="transition hover:text-white">Side Projects Beyond Healthcare</Link></li>
             </ul>
           </div>
 

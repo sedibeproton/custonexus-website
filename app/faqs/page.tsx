@@ -30,7 +30,10 @@ export const metadata: Metadata = {
     description:
       "Learn what CustoNexus provides, how engagements work and how to discuss your healthcare technology, equipment or partnership needs.",
     url: "/faqs",
+    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "CustoNexus frequently asked questions" }],
   },
+  twitter: { card: "summary_large_image", title: "Frequently Asked Questions", description: "Answers about CustoNexus technology, equipment, consulting, side projects and partnerships.", images: ["/opengraph-image"] },
+  robots: { index: true, follow: true },
 };
 
 const faqGroups = [

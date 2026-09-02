@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowRight, CheckCircle2, ChevronRight } from "lucide-react";
+import { ArrowRight, CheckCircle2, ChevronRight, CircleHelp, Target, Users } from "lucide-react";
 
 import Container from "@/components/Container";
 import CTASection from "@/components/CTASection";
@@ -10,6 +11,7 @@ import PageHero from "@/components/PageHero";
 import PageWrapper from "@/components/PageWrapper";
 import SectionHeader from "@/components/SectionHeader";
 import { getServicePage, servicePages } from "@/lib/service-pages";
+import { serviceSeoDetails } from "@/lib/service-seo";
 
 const siteUrl = "https://custonexus.com";
 
@@ -90,7 +92,10 @@ export async function generateMetadata({
       title: service.pageTitle,
       description: service.description,
       url: path,
+      images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: `${service.title} from CustoNexus Technologies` }],
     },
+    twitter: { card: "summary_large_image", title: service.pageTitle, description: service.description, images: ["/opengraph-image"] },
+    robots: { index: true, follow: true },
   };
 }
 
@@ -104,6 +109,7 @@ export default async function ServiceDetailPage({
 
   const pageUrl = `${siteUrl}/services/${service.slug}`;
   const roadmap = serviceRoadmaps[service.slug];
+  const seo = serviceSeoDetails[service.slug];
   const structuredData = {
     "@context": "https://schema.org",
     "@graph": [
@@ -117,11 +123,30 @@ export default async function ServiceDetailPage({
       },
       {
         "@type": "Service",
+        "@id": `${pageUrl}#service`,
         name: service.title,
         description: service.description,
         url: pageUrl,
         provider: { "@type": "Organization", name: "CustoNexus Technologies", url: siteUrl },
         areaServed: { "@type": "Country", name: "South Africa" },
+      },
+      {
+        "@type": "WebPage",
+        "@id": `${pageUrl}#webpage`,
+        url: pageUrl,
+        name: service.pageTitle,
+        description: service.description,
+        isPartOf: { "@id": `${siteUrl}/#website` },
+        about: { "@id": `${pageUrl}#service` },
+        inLanguage: "en-ZA",
+      },
+      {
+        "@type": "FAQPage",
+        mainEntity: seo.faqs.map((item) => ({
+          "@type": "Question",
+          name: item.question,
+          acceptedAnswer: { "@type": "Answer", text: item.answer },
+        })),
       },
     ],
   };
@@ -138,6 +163,44 @@ export default async function ServiceDetailPage({
           <span aria-current="page" className="font-semibold text-slate-900">{service.title}</span>
         </Container>
       </nav>
+
+      <FadeSection>
+        <section className="bg-white py-16 sm:py-24">
+          <Container>
+            <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:gap-14">
+              <div className="relative aspect-[4/3] overflow-hidden rounded-3xl bg-slate-100 shadow-xl sm:rounded-[2rem]">
+                <Image src={seo.image} alt={seo.imageAlt} fill sizes="(max-width: 1024px) 100vw, 44vw" className="object-cover" />
+                <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-blue-950/35 via-transparent to-transparent" />
+              </div>
+              <div>
+                <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-50 text-blue-700"><Users aria-hidden size={24} /></span>
+                <h2 className="mt-5 text-3xl font-bold tracking-tight text-blue-950 sm:text-4xl">Who this service is for</h2>
+                <ul className="mt-6 grid gap-3 sm:grid-cols-2">
+                  {seo.audiences.map((item) => <li key={item} className="flex items-start gap-3 rounded-2xl border border-slate-200 bg-slate-50 p-4 text-sm leading-6 text-slate-700"><CheckCircle2 aria-hidden size={18} className="mt-0.5 shrink-0 text-blue-700" />{item}</li>)}
+                </ul>
+              </div>
+            </div>
+          </Container>
+        </section>
+      </FadeSection>
+
+      <FadeSection>
+        <section className="border-y border-slate-200 bg-slate-50 py-16 sm:py-24">
+          <Container>
+            <SectionHeader eyebrow="Need & Value" title="The Challenges We Address" subtitle={`Our ${service.title.toLowerCase()} work begins with the real requirement—not a predetermined product or generic package.`} />
+            <div className="grid gap-6 lg:grid-cols-2">
+              <article className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+                <h2 className="flex items-center gap-3 text-2xl font-bold text-slate-950"><CircleHelp aria-hidden className="text-blue-700" /> Common challenges</h2>
+                <ul className="mt-6 space-y-4">{seo.challenges.map((item) => <li key={item} className="flex items-start gap-3 leading-7 text-slate-600"><span aria-hidden className="mt-3 h-2 w-2 shrink-0 rounded-full bg-blue-600" />{item}</li>)}</ul>
+              </article>
+              <article className="rounded-3xl bg-gradient-to-br from-blue-950 to-blue-700 p-6 text-white shadow-xl sm:p-8">
+                <h2 className="flex items-center gap-3 text-2xl font-bold"><Target aria-hidden className="text-blue-200" /> Intended outcomes</h2>
+                <ul className="mt-6 space-y-4">{seo.outcomes.map((item) => <li key={item} className="flex items-start gap-3 leading-7 text-blue-50"><CheckCircle2 aria-hidden size={18} className="mt-1 shrink-0 text-blue-200" />{item}</li>)}</ul>
+              </article>
+            </div>
+          </Container>
+        </section>
+      </FadeSection>
 
       <FadeSection>
         <section className="bg-white py-16 sm:py-24">
@@ -203,6 +266,29 @@ export default async function ServiceDetailPage({
             </div>
             <div className="mt-7 rounded-2xl border border-blue-200 bg-white p-5 text-sm leading-7 text-slate-700 sm:p-6">
               <strong className="text-slate-950">Important:</strong> {service.pricingNote} All amounts are indicative South African rand ranges and may change when requirements are confirmed.
+            </div>
+          </Container>
+        </section>
+      </FadeSection>
+
+      <FadeSection>
+        <section className="bg-white py-16 sm:py-24">
+          <Container>
+            <SectionHeader eyebrow="Service FAQs" title={`Questions About ${service.title}`} subtitle="Clear answers to common questions before you submit an enquiry." />
+            <div className="mx-auto max-w-4xl space-y-4">
+              {seo.faqs.map((item) => <details key={item.question} className="group rounded-2xl border border-slate-200 bg-slate-50 open:border-blue-200 open:bg-white open:shadow-lg"><summary className="flex cursor-pointer list-none items-center justify-between gap-4 px-5 py-5 font-semibold text-slate-950 marker:hidden sm:px-7"><span>{item.question}</span><span aria-hidden className="text-2xl font-normal text-blue-700 transition group-open:rotate-45">+</span></summary><p className="px-5 pb-6 leading-8 text-slate-600 sm:px-7">{item.answer}</p></details>)}
+            </div>
+          </Container>
+        </section>
+      </FadeSection>
+
+      <FadeSection>
+        <section className="border-y border-slate-200 bg-slate-50 py-14 sm:py-20">
+          <Container>
+            <SectionHeader eyebrow="Related Capabilities" title="Explore Connected CustoNexus Services" subtitle="Many requirements involve more than one capability. Explore related services or contact us for help choosing the right starting point." />
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {servicePages.filter((item) => item.slug !== service.slug).map((item) => <Link key={item.slug} href={`/services/${item.slug}`} className="group rounded-2xl border border-slate-200 bg-white p-5 transition hover:-translate-y-1 hover:border-blue-300 hover:shadow-lg sm:p-6"><h2 className="text-lg font-bold text-slate-950">{item.title}</h2><p className="mt-2 text-sm leading-6 text-slate-600">{item.description}</p><span className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-blue-700">Explore service <ArrowRight aria-hidden size={16} className="transition group-hover:translate-x-1" /></span></Link>)}
+              {service.slug === "professional-services" && <Link href="/services/side-projects" className="group rounded-2xl border border-blue-200 bg-blue-50 p-5 transition hover:-translate-y-1 hover:shadow-lg sm:p-6"><h2 className="text-lg font-bold text-blue-950">Side Projects Beyond Healthcare</h2><p className="mt-2 text-sm leading-6 text-slate-600">Websites, applications, electrical and electronics work, consulting and project support for other sectors.</p><span className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-blue-700">Explore side projects <ArrowRight aria-hidden size={16} /></span></Link>}
             </div>
           </Container>
         </section>

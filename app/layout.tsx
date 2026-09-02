@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import BackgroundDecor from "@/components/BackgroundDecor";
@@ -13,6 +13,13 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+  themeColor: "#071a3d",
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://custonexus.com"),
@@ -47,10 +54,22 @@ export const metadata: Metadata = {
   authors: [{ name: "CustoNexus Technologies", url: "/" }],
   creator: "CustoNexus Technologies",
   publisher: "CustoNexus Technologies",
+  category: "Healthcare technology and professional services",
 
   alternates: { canonical: "/" },
 
   formatDetection: { email: false, address: false, telephone: false },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
 
   icons: {
     icon: [

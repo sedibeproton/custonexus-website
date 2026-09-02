@@ -12,7 +12,7 @@ import SectionHeader from "@/components/SectionHeader";
 import ServiceCategoryExplorer from "@/components/ServiceCategoryExplorer";
 
 export const metadata: Metadata = {
-  title: "Services",
+  title: "Healthcare Technology & Business Services",
   description:
     "Explore CustoNexus healthcare technology, websites and apps, medical equipment supply, servicing, calibration and repairs, professional services, side projects and partnerships.",
   alternates: { canonical: "/services" },
@@ -21,7 +21,10 @@ export const metadata: Metadata = {
     description:
       "Explore four connected service categories designed to help healthcare organisations operate, grow and serve people better.",
     url: "/services",
+    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "CustoNexus healthcare technology and business services" }],
   },
+  twitter: { card: "summary_large_image", title: "Healthcare Technology & Business Services", description: "Websites, apps, medical equipment services, consulting, side projects and healthcare partnerships.", images: ["/opengraph-image"] },
+  robots: { index: true, follow: true },
 };
 
 const process = [
@@ -99,7 +102,7 @@ export default function ServicesPage() {
 
               <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 <PrimaryButton href="/contact">Discuss a side project <ArrowRight size={18}/></PrimaryButton>
-                <Link href="/services/professional-services" className="inline-flex items-center justify-center rounded-full border border-blue-200 px-6 py-3 font-semibold text-blue-700 transition hover:border-blue-700 hover:bg-blue-50">View side-project pricing and process</Link>
+                <Link href="/services/side-projects" className="inline-flex items-center justify-center rounded-full border border-blue-200 px-6 py-3 font-semibold text-blue-700 transition hover:border-blue-700 hover:bg-blue-50">View side-project pricing and process</Link>
               </div>
             </div>
           </Container>

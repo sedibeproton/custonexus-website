@@ -8,6 +8,7 @@ const publicPaths = [
   "/services/medical-equipment-consumables",
   "/services/professional-services",
   "/services/strategic-partnerships",
+  "/services/side-projects",
   "/solutions",
   "/constitution",
   "/faqs",
@@ -53,14 +54,40 @@ for (const [passed, message] of checks) {
 
 const pageCache = new Map();
 const internalLinks = new Set();
+const pageTitles = new Map();
+const pageDescriptions = new Map();
 
-for (const path of publicPaths.filter((path) => !/\.(txt|xml|webmanifest)$/.test(path) && path !== "/opengraph-image")) {
+const htmlPaths = publicPaths.filter((path) => !/\.(txt|xml|webmanifest)$/.test(path) && path !== "/opengraph-image");
+
+for (const path of htmlPaths) {
   const html = await (await fetch(`${baseUrl}${path}`)).text();
   pageCache.set(path, html);
+  const title = html.match(/<title>([^<]+)<\/title>/i)?.[1]?.trim();
+  const description = html.match(/<meta name="description" content="([^"]+)"/i)?.[1]?.trim();
+  const canonical = path === "/" ? "https://custonexus.com" : `https://custonexus.com${path}`;
+  const h1Count = (html.match(/<h1(?:\s|>)/gi) || []).length;
+  if (!title) failures.push(`Missing title: ${path}`);
+  else if (pageTitles.has(title)) failures.push(`Duplicate title on ${path} and ${pageTitles.get(title)}: ${title}`);
+  else pageTitles.set(title, path);
+  if (!description) failures.push(`Missing meta description: ${path}`);
+  else if (pageDescriptions.has(description)) failures.push(`Duplicate meta description on ${path} and ${pageDescriptions.get(description)}`);
+  else pageDescriptions.set(description, path);
+  if (!html.includes(`rel="canonical" href="${canonical}"`)) failures.push(`Incorrect canonical URL: ${path}`);
+  if (h1Count !== 1) failures.push(`${path} contains ${h1Count} H1 elements; expected 1`);
+  if (html.includes('name="robots" content="noindex')) failures.push(`Public page is accidentally noindex: ${path}`);
+  if (!html.includes('property="og:title"') || !html.includes('property="og:description"') || !html.includes('property="og:image"')) failures.push(`Incomplete Open Graph metadata: ${path}`);
+  for (const match of html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/gi)) {
+    try { JSON.parse(match[1]); } catch { failures.push(`Invalid JSON-LD on ${path}`); }
+  }
   for (const match of html.matchAll(/href="(\/[^"?]*)/g)) {
     const href = match[1].replaceAll("&amp;", "&");
     if (!href.startsWith("/_next/") && !href.startsWith("/api/") && !href.startsWith("/secure/")) internalLinks.add(href);
   }
+}
+
+for (const path of htmlPaths) {
+  const sitemapUrl = path === "/" ? "https://custonexus.com" : `https://custonexus.com${path}`;
+  if (!sitemap.includes(`<loc>${sitemapUrl}</loc>`)) failures.push(`Sitemap is missing public page: ${path}`);
 }
 
 for (const href of internalLinks) {
@@ -80,6 +107,7 @@ for (const href of internalLinks) {
 }
 
 console.log(`${failures.length ? "FAIL" : "PASS"} Checked ${internalLinks.size} internal links and anchor targets`);
+console.log(`${failures.length ? "FAIL" : "PASS"} Checked ${htmlPaths.length} pages for unique metadata, canonicals, H1s, indexability, Open Graph and JSON-LD`);
 
 if (failures.length) {
   failures.forEach((failure) => console.error(`- ${failure}`));

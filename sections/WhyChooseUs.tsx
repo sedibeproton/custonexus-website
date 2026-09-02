@@ -53,7 +53,7 @@ export default function WhyChooseUs() {
             return (
               <div
                 key={pillar.title}
-                className="rounded-3xl border border-slate-200 bg-white p-10 shadow-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-xl"
+                className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-xl sm:p-10"
               >
                 <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-blue-100">
 

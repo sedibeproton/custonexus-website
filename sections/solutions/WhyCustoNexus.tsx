@@ -47,7 +47,8 @@ export default function WhyCustoNexus() {
               border
               border-slate-200
               bg-white
-              p-10
+              p-6
+              sm:p-10
               shadow-lg
               transition-all
               duration-500

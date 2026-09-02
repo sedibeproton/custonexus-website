@@ -11,10 +11,10 @@ const reveal = { hidden: { opacity: 0, y: 24 }, show: { opacity: 1, y: 0 } };
 export default function HeroContent() {
   const reduced = useReducedMotion();
   return (
-    <Container className="grid items-center gap-16 lg:grid-cols-[0.92fr_1.08fr]">
+    <Container className="grid items-center gap-10 lg:grid-cols-[0.92fr_1.08fr] lg:gap-16">
       <motion.div initial={reduced ? "show" : "hidden"} animate="show" transition={{ staggerChildren: reduced ? 0 : 0.09 }} className="relative z-10">
         <motion.div variants={reveal} className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-white/80 px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-blue-800 shadow-sm backdrop-blur"><span className="h-2 w-2 rounded-full bg-emerald-500" /> Healthcare technology & solutions</motion.div>
-        <motion.h1 variants={reveal} className="mt-7 max-w-3xl text-5xl font-semibold leading-[0.98] tracking-[-0.055em] text-[#071a3d] sm:text-6xl lg:text-[5.25rem]">Together,<br /><span className="bg-gradient-to-r from-blue-700 to-blue-500 bg-clip-text text-transparent">Better Healthcare.</span></motion.h1>
+        <motion.h1 variants={reveal} className="mt-7 max-w-3xl text-4xl font-semibold leading-[0.98] tracking-[-0.055em] text-[#071a3d] sm:text-6xl lg:text-[5.25rem]">Together,<br /><span className="bg-gradient-to-r from-blue-700 to-blue-500 bg-clip-text text-transparent">Better Healthcare.</span></motion.h1>
         <motion.p variants={reveal} className="mt-7 max-w-xl text-lg leading-8 text-slate-600 sm:text-xl">Technology, medical solutions and trusted partnerships designed around the people who make healthcare possible.</motion.p>
         <motion.div variants={reveal} className="mt-9 flex flex-col gap-3 sm:flex-row">
           <Link href="/services" className="group inline-flex items-center justify-center gap-3 rounded-2xl bg-blue-700 px-7 py-4 font-bold text-white shadow-[0_14px_35px_rgba(29,78,216,.25)] transition hover:-translate-y-0.5 hover:bg-blue-800">Explore services <ArrowRight size={19} className="transition group-hover:translate-x-1" /></Link>

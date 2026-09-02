@@ -15,7 +15,9 @@ export const metadata = {
   description:
     "Explore custom websites and apps, medical equipment supply and servicing, consulting, project delivery, side projects and healthcare partnerships from CustoNexus.",
   alternates: { canonical: "/solutions" },
-  openGraph: { url: "/solutions" },
+  openGraph: { title: "Healthcare Solutions from CustoNexus Technologies", description: "Explore custom technology, medical equipment services, consulting, side projects and healthcare partnerships.", url: "/solutions", images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "CustoNexus healthcare solutions" }] },
+  twitter: { card: "summary_large_image", title: "Healthcare Solutions from CustoNexus", description: "Custom technology, medical equipment services, consulting and healthcare partnerships.", images: ["/opengraph-image"] },
+  robots: { index: true, follow: true },
 };
 
 export default function SolutionsPage() {

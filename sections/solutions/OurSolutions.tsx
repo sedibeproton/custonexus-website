@@ -103,6 +103,15 @@ export default function OurSolutions() {
           ))}
         </div>
 
+        <div className="mt-8 flex flex-col gap-5 rounded-3xl border border-blue-200 bg-gradient-to-r from-blue-50 to-cyan-50 p-6 sm:flex-row sm:items-center sm:justify-between sm:p-8">
+          <div>
+            <p className="text-xs font-bold uppercase tracking-[0.2em] text-blue-700">Beyond Healthcare</p>
+            <h2 className="mt-2 text-2xl font-bold text-blue-950">Explore our dedicated Side Projects service</h2>
+            <p className="mt-2 max-w-3xl leading-7 text-slate-600">Custom websites and apps, selected electrical and electronics work, consulting and project support for customers in other sectors.</p>
+          </div>
+          <Link href="/services/side-projects" className="inline-flex shrink-0 items-center justify-center gap-2 rounded-2xl bg-blue-700 px-6 py-4 font-bold text-white transition hover:bg-blue-800">View Side Projects <ArrowRight size={18} aria-hidden /></Link>
+        </div>
+
       </Container>
     </section>
   );

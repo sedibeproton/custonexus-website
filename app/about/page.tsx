@@ -9,7 +9,9 @@ export const metadata = {
   description:
     "Learn about CustoNexus Technologies, our purpose, vision and commitment to improving healthcare through meaningful connections.",
   alternates: { canonical: "/about" },
-  openGraph: { url: "/about" },
+  openGraph: { title: "About CustoNexus Technologies", description: "Learn about our purpose, vision and commitment to meaningful healthcare technology, services and partnerships.", url: "/about", images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "About CustoNexus Technologies" }] },
+  twitter: { card: "summary_large_image", title: "About CustoNexus Technologies", description: "Our purpose, vision and commitment to better healthcare through technology and trusted partnerships.", images: ["/opengraph-image"] },
+  robots: { index: true, follow: true },
 };
 
 import OurStory from "@/sections/about/OurStory";

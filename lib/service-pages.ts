@@ -2,9 +2,9 @@ export const servicePages = [
   {
     slug: "healthcare-technology",
     title: "Healthcare Technology",
-    pageTitle: "Healthcare Technology & Custom Software",
+    pageTitle: "Custom Website, App & Healthcare Technology",
     description:
-      "Healthcare websites, mobile apps, patient portals, custom software, systems integration and digital transformation services from CustoNexus Technologies.",
+      "Custom websites, mobile apps, patient portals, business platforms, systems integration and healthcare technology services from CustoNexus Technologies in South Africa.",
     introduction:
       "We design and deliver practical digital solutions that help healthcare organisations communicate clearly, work efficiently and create better experiences for patients, professionals and partners.",
     highlights: [
@@ -34,9 +34,9 @@ export const servicePages = [
   {
     slug: "medical-equipment-consumables",
     title: "Medical Equipment & Consumables",
-    pageTitle: "Medical Equipment & Healthcare Consumables",
+    pageTitle: "Medical Equipment Supply, Calibration & Repairs",
     description:
-      "Source, service, calibrate and repair medical equipment, including autoclaves, diagnostic instruments, defibrillators, patient monitors, PPE and clinical consumables.",
+      "Medical equipment supply, servicing, calibration and repairs in South Africa, plus PPE, medical consumables, autoclaves, defibrillators and patient monitors.",
     introduction:
       "We help healthcare providers identify and source essential clinical equipment, monitoring devices and everyday consumables with attention to suitability, quality and continuity of supply.",
     highlights: [
@@ -65,9 +65,9 @@ export const servicePages = [
   {
     slug: "professional-services",
     title: "Professional Services",
-    pageTitle: "Healthcare Consulting & Professional Services",
+    pageTitle: "Healthcare Consulting & Project Management",
     description:
-      "Consulting, project delivery and managed support for healthcare organisations, with selected technology, electrical and electronic side projects for other customers.",
+      "Healthcare technology consulting, project planning, implementation support, digital strategy and managed services from CustoNexus Technologies in South Africa.",
     introduction:
       "Our professional services give healthcare organisations practical guidance and accountable delivery support for technology, operations and organisational improvement.",
     highlights: [

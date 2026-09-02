@@ -68,13 +68,13 @@ export default function SolutionsPreview() {
                 solution.reverse ? "lg:[&>*:first-child]:order-2" : ""
               }
             >
-              <div className="grid items-center gap-16 p-10 lg:grid-cols-2 lg:p-14">
+              <div className="grid items-center gap-8 p-5 sm:p-8 lg:grid-cols-2 lg:gap-16 lg:p-14">
                 <div>
                   <p className="mb-4 text-sm font-bold tracking-[0.4em] text-blue-600">
                     {(index + 1).toString().padStart(2, "0")}
                   </p>
 
-                  <h3 className="text-4xl font-bold text-slate-900">
+                  <h3 className="text-3xl font-bold text-slate-900 sm:text-4xl">
                     {solution.title}
                   </h3>
 
@@ -107,6 +107,10 @@ export default function SolutionsPreview() {
             </AnimatedCard>
           </FadeSection>
         ))}
+      </div>
+      <div className="mt-10 flex flex-col gap-4 rounded-3xl border border-blue-100 bg-blue-50 p-6 sm:flex-row sm:items-center sm:justify-between sm:p-8">
+        <div><h3 className="text-xl font-bold text-blue-950">Looking for support outside healthcare?</h3><p className="mt-2 text-slate-600">Explore custom digital work, selected appliance and electronics repairs, consulting and project support.</p></div>
+        <Link href="/services/side-projects" className="inline-flex shrink-0 items-center gap-2 font-bold text-blue-700 hover:text-blue-900">View Side Projects <ArrowRight size={18} aria-hidden /></Link>
       </div>
     </Section>
   );

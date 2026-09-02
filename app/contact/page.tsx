@@ -12,7 +12,9 @@ export const metadata: Metadata = {
   title: "Contact & Request a Quote",
   description: "Request a CustoNexus quote or callback for custom websites and apps, hosting, medical equipment, servicing, repairs, professional services, side projects or partnerships.",
   alternates: { canonical: "/contact" },
-  openGraph: { title: "Contact CustoNexus Technologies", description: "Tell us what you need and receive a focused response from CustoNexus Technologies.", url: "/contact" },
+  openGraph: { title: "Contact CustoNexus Technologies", description: "Request a quote, callback or service discussion with CustoNexus Technologies in South Africa.", url: "/contact", images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "Contact CustoNexus Technologies" }] },
+  twitter: { card: "summary_large_image", title: "Contact CustoNexus Technologies", description: "Request a quote, callback or service discussion.", images: ["/opengraph-image"] },
+  robots: { index: true, follow: true },
 };
 
 const methods = [

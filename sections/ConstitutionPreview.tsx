@@ -52,7 +52,7 @@ export default function ConstitutionPreview() {
 
         {/* Right */}
 
-        <div className="group max-w-lg rounded-3xl bg-white p-10 text-slate-900 shadow-2xl transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_25px_60px_rgba(0,0,0,0.18)]">
+        <div className="group max-w-lg rounded-3xl bg-white p-6 text-slate-900 shadow-2xl transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_25px_60px_rgba(0,0,0,0.18)] sm:p-10">
           <div className="mb-8 h-2 w-24 rounded-full bg-blue-700"></div>
 
           <p className="text-xs font-bold uppercase tracking-[0.35em] text-blue-700">

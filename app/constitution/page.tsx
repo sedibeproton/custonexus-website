@@ -13,7 +13,9 @@ export const metadata: Metadata = {
   title: "The CustoNexus Constitution",
   description: "The enduring purpose, principles and commitments that guide CustoNexus Technologies in how we lead, serve, innovate and build trust across healthcare.",
   alternates: { canonical: "/constitution" },
-  openGraph: { title: "The CustoNexus Constitution", description: "Our enduring standard for purposeful healthcare technology, trusted partnership and people-first service.", url: "/constitution" },
+  openGraph: { title: "The CustoNexus Constitution", description: "Our enduring standard for purposeful healthcare technology, trusted partnership and people-first service.", url: "/constitution", images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "The CustoNexus Constitution" }] },
+  twitter: { card: "summary_large_image", title: "The CustoNexus Constitution", description: "Our standard for purposeful healthcare technology, trusted partnership and people-first service.", images: ["/opengraph-image"] },
+  robots: { index: true, follow: true },
 };
 
 const navigation = [

@@ -22,7 +22,7 @@ export default function Purpose() {
 
         <div className="mt-20 grid gap-12 md:grid-cols-3">
 
-          <div className="rounded-3xl border border-slate-200 bg-slate-50 p-10 shadow-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-xl">
+          <div className="rounded-3xl border border-slate-200 bg-slate-50 p-6 shadow-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-xl sm:p-10">
             <Target className="mb-8 h-12 w-12 text-blue-600" />
 
             <h3 className="mb-4 text-2xl font-bold">
@@ -35,7 +35,7 @@ export default function Purpose() {
             </p>
           </div>
 
-          <div className="rounded-3xl border border-slate-200 bg-slate-50 p-10 shadow-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-xl">
+          <div className="rounded-3xl border border-slate-200 bg-slate-50 p-6 shadow-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-xl sm:p-10">
             <HeartHandshake className="mb-8 h-12 w-12 text-blue-600" />
 
             <h3 className="mb-4 text-2xl font-bold">
@@ -48,7 +48,7 @@ export default function Purpose() {
             </p>
           </div>
 
-          <div className="rounded-3xl border border-slate-200 bg-slate-50 p-10 shadow-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-xl">
+          <div className="rounded-3xl border border-slate-200 bg-slate-50 p-6 shadow-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-xl sm:p-10">
             <h3 className="mb-4 text-2xl font-bold">
               Our Vision
             </h3>
