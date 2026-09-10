@@ -8,7 +8,6 @@ export default function Hero() {
         <div className="cn-decor-drift absolute -right-32 top-24 h-[34rem] w-[34rem] rounded-full border border-blue-300/25" />
         <div className="cn-decor-drift-reverse absolute -right-10 top-52 h-80 w-80 rounded-full border border-blue-300/20" />
         <div className="absolute right-0 top-0 h-full w-[55%] opacity-[0.12] [background-image:linear-gradient(rgba(37,99,235,.2)_1px,transparent_1px),linear-gradient(90deg,rgba(37,99,235,.2)_1px,transparent_1px)] [background-size:54px_54px] [mask-image:linear-gradient(to_left,black,transparent)]" />
-        <div className="absolute -bottom-52 -left-[10%] h-72 w-[120%] -rotate-3 rounded-[50%] bg-gradient-to-r from-[#071a3d] via-[#0a327d] to-[#071a3d]" />
       </div>
       <HeroContent />
     </section>

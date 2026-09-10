@@ -21,14 +21,14 @@ import SectionHeader from "@/components/SectionHeader";
 import { createWhatsAppUrl, whatsappMessages } from "@/lib/whatsapp";
 
 export const metadata: Metadata = {
-  title: "Healthcare Services FAQs",
+  title: "Website, Software & Technology Services FAQs",
   description:
-    "Answers about CustoNexus healthcare technology, website and app development, medical equipment, consumables, professional services and partnerships.",
+    "Answers about CustoNexus business websites, redesigns, WordPress support, custom software, business systems and healthcare technology services.",
   alternates: { canonical: "/faqs" },
   openGraph: {
-    title: "Healthcare Services FAQs | CustoNexus Technologies",
+    title: "Technology Services FAQs | CustoNexus Technologies",
     description:
-      "Learn what CustoNexus provides, how engagements work and how to discuss your healthcare technology, equipment or partnership needs.",
+      "Learn how CustoNexus approaches websites, support, business systems, custom software and healthcare technology projects.",
     url: "/faqs",
     images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "CustoNexus frequently asked questions" }],
   },
@@ -44,17 +44,17 @@ const faqGroups = [
       {
         question: "What does CustoNexus Technologies do?",
         answer:
-          "CustoNexus provides services across four connected categories: Healthcare Technology, Medical Equipment and Consumables, Professional Services, and Strategic Partnerships. We help healthcare organisations access practical technology, products, expertise and trusted collaboration.",
+          "CustoNexus designs business websites, improves and maintains existing websites, supports suitable WordPress installations, and builds custom web applications, dashboards, portals, digital forms and database-backed systems. Healthcare technology remains an important specialisation.",
       },
       {
         question: "Who does CustoNexus work with?",
         answer:
-          "We work with healthcare practices, providers, organisations, technology companies, medical suppliers and strategic partners. Each engagement is shaped around the organisation’s requirements, operating environment and intended outcomes.",
+          "We can work with small and growing businesses, professional practices, consultants, startups, service organisations and healthcare organisations. Each enquiry is assessed according to the actual requirement and intended outcome.",
       },
       {
         question: "Where does CustoNexus operate?",
         answer:
-          "CustoNexus is based in South Africa and approaches healthcare with a global mindset. Delivery may be remote, on site or hybrid depending on the service, location, regulatory context and practical requirements.",
+          "CustoNexus is based in South Africa. Delivery may be remote, on site or hybrid depending on the service, location, access and practical requirements.",
       },
       {
         question: "How do we begin an enquiry?",
@@ -62,25 +62,25 @@ const faqGroups = [
           "Contact us by WhatsApp or phone on 072 270 1087, or email info@custonexus.com. Tell us what you need, your organisation type and any important timeline so we can recommend a sensible next step.",
       },
       {
-        question: "Are the prices on the services pages final?",
+        question: "How will my project be priced?",
         answer:
-          "No. They are indicative South African rand ranges intended to help with early budgeting. The final quotation depends on scope, complexity, content, quantities, travel, parts, integrations, timelines and any specialist or third-party requirements. Work begins only after the written scope and price are agreed.",
+          "We currently quote each project according to its scope. The written proposal accounts for content, functionality, users, integrations, timelines, support and any third-party costs before work begins.",
       },
     ],
   },
   {
     id: "technology",
-    title: "Healthcare Technology",
+    title: "Websites, Software & Technology",
     questions: [
       {
-        question: "Do you build healthcare websites and applications?",
+        question: "Do you build websites and applications outside healthcare?",
         answer:
-          "Yes. Website and app development is one of our core specialities. Every website is custom-designed and developed for the client; we do not use WordPress, purchased themes or generic page-builder templates. We build corporate and healthcare websites, booking systems, availability calendars, contact and enquiry forms, portals, custom applications, dashboards, payments and integrations.",
+          "Yes. Websites, business systems and selected custom software are primary CustoNexus services for businesses across sectors. Healthcare is an important specialisation, not a restriction on who can request technology work.",
       },
       {
-        question: "How much does a custom website cost?",
+        question: "How do I get a website quote?",
         answer:
-          "A focused custom website generally ranges from R3,000 to R8,000. Larger business websites with more pages, content, booking requests, availability calendars, advanced forms or tailored workflows generally range from R8,000 to R35,000. Advanced platforms with accounts, dashboards, payments, databases or integrations commonly start around R35,000 and may exceed R150,000. Custom mobile or multi-platform applications generally range from R30,000 to R100,000 or more. We confirm the exact price after understanding the page count, content, features and processes involved.",
+          "Use the project enquiry form and share the business type, pages, content readiness, required functionality and timeline. We will clarify the requirement and provide a written proposal rather than forcing the project into a generic package.",
       },
       {
         question: "Can you redesign or improve an existing website?",
@@ -88,9 +88,14 @@ const faqGroups = [
           "Yes. We can review an existing website’s structure, usability, responsiveness, content presentation, performance and search foundations, then recommend either focused improvements or a complete rebuild.",
       },
       {
+        question: "Can you support an existing WordPress website?",
+        answer:
+          "Yes. Although new CustoNexus websites are custom-built, we can support suitable existing WordPress websites with troubleshooting, updates, content changes, maintenance and improvement planning after an initial assessment.",
+      },
+      {
         question: "Do you provide support after a website or application launches?",
         answer:
-          "Yes. Website hosting and maintenance plans generally range from R120 to R600 or more per month and can include professional company email accounts. The final monthly fee depends on website scale, traffic, storage, update frequency, support requirements, mailbox quantity and email storage. Support can also include issue resolution, performance reviews, security improvements and ongoing optimisation.",
+          "Yes. Support can include hosting coordination, company email, content updates, issue resolution, performance reviews, maintenance and ongoing improvement under an agreed scope.",
       },
       {
         question: "Can you integrate different systems or platforms?",
@@ -160,6 +165,16 @@ const faqGroups = [
           "Not necessarily. We commonly work alongside internal technology, clinical, operational and leadership teams. Our role may be advisory, delivery-focused or supportive depending on the capability and capacity already available.",
       },
       {
+        question: "Can we contract a freelance technician when we have no technical team or are short-staffed?",
+        answer:
+          "Yes. Subject to capability and availability, CustoNexus can provide on-demand technical capacity for clearly defined work at an agreed hourly rate. We first confirm the technical discipline, tasks, location, working hours, access, tools, safety responsibilities, supervision and reporting requirements.",
+      },
+      {
+        question: "Can a healthcare facility contract CustoNexus for monthly technical support?",
+        answer:
+          "Yes. Healthcare facilities can request a recurring monthly arrangement for agreed equipment, operational or technology tasks. The proposal will define included hours, site attendance, response expectations, reporting, exclusions, escalation procedures and any additional work charged separately.",
+      },
+      {
         question: "How do you approach privacy and security?",
         answer:
           "Security and responsible information handling are considered throughout discovery, design and delivery. Applicable requirements, access controls and responsibilities are confirmed for each client environment and reflected in the agreed scope.",
@@ -215,7 +230,7 @@ const faqGroups = [
 ];
 
 const categoryLinks = [
-  { icon: Laptop, label: "Healthcare Technology", href: "#technology" },
+  { icon: Laptop, label: "Websites & Technology", href: "#technology" },
   { icon: HeartPulse, label: "Equipment & Consumables", href: "#equipment" },
   { icon: BriefcaseBusiness, label: "Professional Services", href: "#professional-services" },
   { icon: Handshake, label: "Strategic Partnerships", href: "#partnerships" },
@@ -245,7 +260,7 @@ export default function FAQsPage() {
       <PageHero
         eyebrow="Frequently Asked Questions"
         title="Helpful Answers. Clear Next Steps."
-        subtitle="Explore common questions about our healthcare technology, medical equipment, professional services and strategic partnerships."
+        subtitle="Explore common questions about business websites, redesigns, WordPress support, custom systems, professional services and healthcare technology."
       />
 
       <FadeSection>

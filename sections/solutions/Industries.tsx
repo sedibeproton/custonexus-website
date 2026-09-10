@@ -13,33 +13,33 @@ import {
 const industries = [
   {
     icon: <Building2 size={30} />,
-    title: "Hospitals",
+    title: "Small & Growing Businesses",
     description:
-      "Supporting hospitals with technology, partnerships and strategic solutions.",
+      "Professional websites and practical systems that can grow with the organisation.",
   },
   {
     icon: <Stethoscope size={30} />,
-    title: "Medical Practices",
+    title: "Professional Practices",
     description:
-      "Helping practices improve efficiency and patient experiences.",
+      "Clear service journeys, enquiries, bookings and dependable digital presentation.",
   },
   {
     icon: <HeartHandshake size={30} />,
-    title: "Allied Health",
+    title: "Healthcare Organisations",
     description:
-      "Supporting physiotherapists and other allied healthcare professionals.",
+      "Sector-aware websites, workflows, portals and specialised technology projects.",
   },
   {
     icon: <Package size={30} />,
-    title: "Healthcare Suppliers",
+    title: "Service Businesses",
     description:
-      "Connecting suppliers with opportunities that strengthen healthcare delivery.",
+      "Customer-facing forms, portals and systems that support consistent service delivery.",
   },
   {
     icon: <Cpu size={30} />,
-    title: "Technology Partners",
+    title: "Startups & Custom Projects",
     description:
-      "Collaborating with innovators to shape the future of healthcare.",
+      "Focused digital builds for validated ideas and specialised organisational requirements.",
   },
 ];
 
@@ -48,8 +48,8 @@ export default function Industries() {
     <Section spacing="lg" className="bg-slate-50">
       <SectionHeader
         eyebrow="Who We Serve"
-        title="Supporting the Healthcare Ecosystem"
-        subtitle="Our solutions are designed to support organisations across the healthcare landscape."
+        title="Supporting Organisations at Different Stages"
+        subtitle="The right solution depends on the business, its users and the process or opportunity it needs to improve."
       />
 
       <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3 lg:gap-7">

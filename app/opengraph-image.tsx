@@ -2,7 +2,7 @@ import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { ImageResponse } from "next/og";
 
-export const alt = "CustoNexus Technologies — Together, Better Healthcare";
+export const alt = "CustoNexus Technologies — websites, business systems and custom digital solutions";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -19,12 +19,12 @@ export default function OpenGraphImage() {
         </div>
 
         <div style={{ display: "flex", flexDirection: "column" }}>
-          <div style={{ color: "#0757d3", display: "flex", fontSize: 20, fontWeight: 700, letterSpacing: "4px", textTransform: "uppercase" }}>Building meaningful connections</div>
+          <div style={{ color: "#0757d3", display: "flex", fontSize: 20, fontWeight: 700, letterSpacing: "4px", textTransform: "uppercase" }}>Technology for South African organisations</div>
           <div style={{ display: "flex", flexDirection: "column", fontSize: 68, fontWeight: 800, letterSpacing: "-3px", lineHeight: 1.02, marginTop: "22px" }}>
-            <span>Together,</span>
-            <span>Better Healthcare.</span>
+            <span>Technology that helps</span>
+            <span>businesses work better.</span>
           </div>
-          <div style={{ color: "#52637e", display: "flex", fontSize: 24, lineHeight: 1.4, marginTop: "24px" }}>Technology · Professional Services · Trusted Partnerships</div>
+          <div style={{ color: "#52637e", display: "flex", fontSize: 24, lineHeight: 1.4, marginTop: "24px" }}>Websites · Business Systems · Custom Software</div>
         </div>
       </div>
 

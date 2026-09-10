@@ -43,19 +43,19 @@ export default function AboutHero() {
 
           <h1 className="text-4xl font-bold leading-[1.08] tracking-[-0.04em] text-white sm:text-5xl md:text-7xl">
 
-            Building Better Healthcare
+            Building Technology With Practical Purpose
 
             <span className="block text-blue-300">
-              Through Meaningful Connections.
+              For Businesses and Healthcare.
             </span>
 
           </h1>
 
           <p className="mt-7 max-w-2xl text-lg leading-8 text-slate-200 sm:text-xl sm:leading-9">
 
-            CustoNexus Technologies exists to strengthen healthcare through
-            trusted partnerships, innovative solutions, and technology that
-            puts people first.
+            CustoNexus Technologies is a young South African company building
+            professional websites, business systems and custom digital solutions,
+            with healthcare remaining an important long-term specialisation.
 
           </p>
 

@@ -11,12 +11,12 @@ import WhyCustoNexus from "@/sections/solutions/WhyCustoNexus";
 import FutureInnovation from "@/sections/solutions/FutureInnovation";
 
 export const metadata = {
-  title: "Healthcare Solutions",
+  title: "Business Technology Solutions",
   description:
-    "Explore custom websites and apps, medical equipment supply and servicing, consulting, project delivery, side projects and healthcare partnerships from CustoNexus.",
+    "Explore business websites, custom applications, dashboards, portals, workflow systems and healthcare technology solutions from CustoNexus.",
   alternates: { canonical: "/solutions" },
-  openGraph: { title: "Healthcare Solutions from CustoNexus Technologies", description: "Explore custom technology, medical equipment services, consulting, side projects and healthcare partnerships.", url: "/solutions", images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "CustoNexus healthcare solutions" }] },
-  twitter: { card: "summary_large_image", title: "Healthcare Solutions from CustoNexus", description: "Custom technology, medical equipment services, consulting and healthcare partnerships.", images: ["/opengraph-image"] },
+  openGraph: { title: "Business Technology Solutions from CustoNexus", description: "Websites, custom systems, workflow tools and healthcare technology for South African organisations.", url: "/solutions", images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "CustoNexus business technology solutions" }] },
+  twitter: { card: "summary_large_image", title: "Business Technology Solutions from CustoNexus", description: "Websites, custom systems and practical digital solutions.", images: ["/opengraph-image"] },
   robots: { index: true, follow: true },
 };
 
@@ -26,8 +26,8 @@ export default function SolutionsPage() {
 
       <PageHero
         eyebrow="Solutions"
-        title="Purpose-Built for Healthcare."
-        subtitle="Custom technology, dependable medical solutions, professional expertise and trusted partnerships designed around real organisational needs."
+        title="Digital Solutions Built Around Real Work."
+        subtitle="Websites, portals, dashboards, business applications and workflow tools for organisations that need technology to solve a specific problem."
       />
 
       <FadeSection>
@@ -56,9 +56,9 @@ export default function SolutionsPage() {
 
       <FadeSection>
         <CTASection
-          title="Let's Build Better Healthcare Together"
-          subtitle="Partner with CustoNexus Technologies to strengthen healthcare through meaningful connections."
-          buttonText="Let's Talk"
+          title="What Is Slowing Your Business Down?"
+          subtitle="Tell us what you want customers or staff to do more easily. We will help explore the right digital approach."
+          buttonText="Start a Project"
           buttonLink="/contact"
         />
       </FadeSection>

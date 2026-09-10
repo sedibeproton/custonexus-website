@@ -1,57 +1,25 @@
-import Section from "@/components/Section";
-import ImageFrame from "@/components/ImageFrame";
-import SectionHeader from "@/components/SectionHeader";
-import PrimaryButton from "@/components/PrimaryButton";
+import Image from "next/image";
+import Link from "next/link";
+import { ArrowRight, CheckCircle2 } from "lucide-react";
+
+import Container from "@/components/Container";
+
+const capabilities = ["Practice and healthcare websites", "Healthcare software and portals", "Digital workflows and connected systems", "Technology projects for suppliers and care organisations"];
 
 export default function Foundation() {
   return (
-    <Section className="relative bg-white">
-      <div className="pointer-events-none absolute top-16 right-16 h-64 w-64 rounded-full bg-blue-100/30 blur-3xl" />
-      <div className="pointer-events-none absolute bottom-8 left-10 h-48 w-48 rounded-full bg-blue-50 blur-3xl" />
-
-      <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
-
-        {/* Image */}
-
-        <div className="relative">
-          <div className="absolute -right-8 top-8 -z-10 h-full w-full rounded-[36px] bg-gradient-to-bl from-blue-100 to-blue-50" />
-          <div className="relative overflow-hidden rounded-[36px] border border-slate-200 bg-white shadow-2xl group">
-            <ImageFrame
-              src="/images/founder-handshake-identity-v2.png"
-              alt="Founder collaborating with healthcare professionals"
-              width={800}
-              height={900}
-              className="w-full h-full object-cover"
-            />
-          </div>
-        </div>
-
-        {/* Content */}
-
+    <section className="relative overflow-hidden bg-[#071a3d] py-16 text-white sm:py-24 lg:py-28">
+      <div aria-hidden className="absolute inset-0 bg-[radial-gradient(circle_at_85%_20%,rgba(37,99,235,.4),transparent_35%),radial-gradient(circle_at_10%_90%,rgba(16,185,129,.15),transparent_25%)]" />
+      <Container className="relative grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
         <div>
-          <SectionHeader
-            eyebrow="Our Foundation"
-            title="Great healthcare begins with meaningful connections."
-            subtitle="CustoNexus Technologies was founded on the belief that the strongest healthcare systems are built on trust, collaboration, and shared purpose. We connect healthcare professionals, organisations, technology, and expertise to create solutions that improve patient care, strengthen clinical outcomes, and simplify the way healthcare is delivered."
-            align="left"
-          />
-
-          <p className="mt-6 text-lg leading-9 text-slate-600">
-            Every partnership we build and every solution we develop is
-            guided by one enduring principle:
-          </p>
-
-          <div className="mt-10 h-px w-24 bg-blue-700" />
-
-          <blockquote className="mt-6 rounded-r-2xl border-l-4 border-blue-700 bg-slate-50 px-6 py-6 text-2xl font-semibold italic leading-relaxed text-slate-900">
-            &ldquo;When healthcare works better together, everyone benefits.&rdquo;
-          </blockquote>
-
-          <div className="mt-8"><PrimaryButton href="/constitution">Explore our guiding principles</PrimaryButton></div>
-
+          <p className="inline-flex items-center gap-3 text-xs font-bold uppercase tracking-[0.28em] text-blue-200"><span className="h-px w-8 bg-emerald-400" />Healthcare specialisation</p>
+          <h2 className="mt-6 text-4xl font-semibold leading-tight tracking-[-0.04em] sm:text-5xl">Built with healthcare in our DNA.</h2>
+          <p className="mt-6 max-w-2xl text-lg leading-8 text-blue-100">We serve businesses across sectors, while healthcare remains an important long-term specialisation. That perspective strengthens how we think about trust, usability, responsible information handling and dependable operations.</p>
+          <div className="mt-8 grid gap-3 sm:grid-cols-2">{capabilities.map((item) => <div key={item} className="flex items-start gap-3 rounded-2xl border border-white/10 bg-white/[0.06] p-4 text-sm font-semibold text-blue-50"><CheckCircle2 size={18} aria-hidden className="mt-0.5 shrink-0 text-emerald-300" />{item}</div>)}</div>
+          <Link href="/services/healthcare-technology" className="group mt-8 inline-flex items-center gap-2 rounded-2xl bg-white px-6 py-4 font-bold text-blue-950 transition hover:-translate-y-0.5 hover:bg-blue-50">Explore healthcare technology <ArrowRight size={18} aria-hidden className="transition group-hover:translate-x-1" /></Link>
         </div>
-
-      </div>
-    </Section>
+        <div className="relative aspect-[4/3] overflow-hidden rounded-[2rem] border border-white/15 shadow-2xl"><Image src="/images/solutions-healthcare.jpg" alt="Healthcare professionals using connected technology" fill sizes="(max-width: 1024px) 100vw, 44vw" className="object-cover" /><div className="absolute inset-0 bg-gradient-to-t from-blue-950/45 via-transparent to-transparent" /></div>
+      </Container>
+    </section>
   );
 }

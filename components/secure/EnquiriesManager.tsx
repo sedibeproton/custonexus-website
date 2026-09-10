@@ -32,9 +32,9 @@ export default function EnquiriesManager({ initialEnquiries, isAdmin }: { initia
               <p className="mt-1 text-sm text-slate-500">{new Date(enquiry.createdAt).toLocaleString("en-ZA")}</p>
             </div>
             <div className="flex gap-2">
-              <IconLink href={`tel:${enquiry.phone}`} label={`Call ${enquiry.fullName}`} icon={<Phone size={19} />} />
+              {enquiry.phone && <IconLink href={`tel:${enquiry.phone}`} label={`Call ${enquiry.fullName}`} icon={<Phone size={19} />} />}
               <IconLink href={`mailto:${enquiry.email}`} label={`Email ${enquiry.fullName}`} icon={<Mail size={19} />} />
-              <IconLink href={`https://wa.me/${whatsappNumber}`} label={`WhatsApp ${enquiry.fullName}`} icon={<MessageCircle size={19} />} external />
+              {whatsappNumber && <IconLink href={`https://wa.me/${whatsappNumber}`} label={`WhatsApp ${enquiry.fullName}`} icon={<MessageCircle size={19} />} external />}
               {isAdmin && <button type="button" onClick={() => void remove(enquiry)} aria-label={`Delete enquiry from ${enquiry.fullName}`} className="flex h-11 w-11 items-center justify-center rounded-xl bg-red-50 text-red-700 hover:bg-red-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600"><Trash2 size={19} /></button>}
             </div>
           </div>

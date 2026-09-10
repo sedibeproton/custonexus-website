@@ -14,10 +14,10 @@ export default function Footer() {
           <div>
             <div className="inline-flex rounded-2xl bg-white px-4 py-2 shadow-2xl"><Logo /></div>
             <p className="mt-6 max-w-sm leading-8 text-slate-400">
-              Strengthening healthcare through trusted partnerships, thoughtful innovation and people-first solutions.
+              Websites, business systems and custom digital solutions for South African businesses and healthcare organisations.
             </p>
             <p className="mt-6 font-semibold text-blue-400">
-              Building meaningful healthcare together.
+              Technology that helps organisations work better.
             </p>
             <div className="mt-8">
               <SocialLinks />
@@ -63,11 +63,13 @@ export default function Footer() {
           <div>
             <h3 className="mb-6 text-xs font-bold uppercase tracking-[0.25em] text-blue-300">Services</h3>
             <ul className="space-y-3 text-sm leading-6 text-slate-300">
-              <li><Link href="/services/healthcare-technology" className="transition hover:text-white">Custom Websites, Apps & Healthcare Technology</Link></li>
-              <li><Link href="/services/medical-equipment-consumables" className="transition hover:text-white">Medical Equipment & Consumables</Link></li>
-              <li><Link href="/services/professional-services" className="transition hover:text-white">Healthcare Consulting & Professional Services</Link></li>
+              <li><Link href="/services/business-websites" className="transition hover:text-white">Business Website Design</Link></li>
+              <li><Link href="/services/website-support" className="transition hover:text-white">Website Redesign, Maintenance & WordPress Support</Link></li>
+              <li><Link href="/services/business-systems" className="transition hover:text-white">Business Systems & Custom Software</Link></li>
+              <li><Link href="/services/healthcare-technology" className="transition hover:text-white">Healthcare Technology</Link></li>
+              <li><Link href="/services/professional-services" className="transition hover:text-white">Consulting, Projects & Technical Support</Link></li>
               <li><Link href="/services/strategic-partnerships" className="transition hover:text-white">Healthcare Partnerships</Link></li>
-              <li><Link href="/services/side-projects" className="transition hover:text-white">Side Projects Beyond Healthcare</Link></li>
+              <li><Link href="/services/medical-equipment-consumables" className="transition hover:text-white">Medical Equipment Enquiries</Link></li>
             </ul>
           </div>
 

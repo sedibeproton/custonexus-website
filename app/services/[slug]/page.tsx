@@ -16,6 +16,45 @@ import { serviceSeoDetails } from "@/lib/service-seo";
 const siteUrl = "https://custonexus.com";
 
 const serviceRoadmaps = {
+  "business-websites": {
+    title: "From First Conversation to a Confident Launch",
+    subtitle: "A practical process keeps the website focused on your customers, business goals and approved scope.",
+    note: "Your written proposal confirms deliverables, responsibilities, third-party costs, revisions, timeline and payment milestones before work begins.",
+    steps: [
+      { number: "01", title: "Tell Us About the Business", text: "Share what the business does, who it serves, what the website must achieve and any current brand, content, domain or hosting information." },
+      { number: "02", title: "Discovery & Recommendation", text: "We clarify the pages, customer journey, functionality, content responsibilities and the most suitable delivery approach." },
+      { number: "03", title: "Clear Proposal", text: "You receive a written scope with deliverables, assumptions, timeline, payment terms and what is not included." },
+      { number: "04", title: "Design & Build", text: "We design and develop the approved website, share progress and incorporate agreed feedback within scope." },
+      { number: "05", title: "Review & Test", text: "We check content, mobile behaviour, forms, links, performance foundations and agreed functionality before approval." },
+      { number: "06", title: "Launch & Support", text: "We complete production checks and provide the agreed hosting, handover, maintenance or future support path." },
+    ],
+  },
+  "website-support": {
+    title: "A Responsible Path From Website Problem to Improvement",
+    subtitle: "We assess the current website before deciding whether focused repairs, redesign or a clean rebuild is the right investment.",
+    note: "Work on an existing website depends on suitable access, backups, platform condition and an agreed risk and responsibility boundary.",
+    steps: [
+      { number: "01", title: "Share the Website", text: "Tell us what is not working, what should improve and whether the request is urgent, ongoing or part of a larger redesign." },
+      { number: "02", title: "Initial Assessment", text: "We review the visible experience and request the minimum technical information needed to assess feasibility." },
+      { number: "03", title: "Recommended Approach", text: "We explain whether repair, maintenance, redesign or rebuild is the most practical option." },
+      { number: "04", title: "Scope & Safeguards", text: "The proposal confirms access, backups, deliverables, limitations, responsibilities and expected results." },
+      { number: "05", title: "Improve & Verify", text: "We complete approved work and test the affected pages, forms, content or technical functions." },
+      { number: "06", title: "Handover or Ongoing Care", text: "We document the outcome and agree on future maintenance where ongoing support is useful." },
+    ],
+  },
+  "business-systems": {
+    title: "From Operational Friction to a Working Digital System",
+    subtitle: "Custom systems begin with the process and its users—not with features chosen in isolation.",
+    note: "Larger systems may be delivered in phases so that risk, cost and learning remain manageable.",
+    steps: [
+      { number: "01", title: "Define the Problem", text: "Show us the spreadsheet, paperwork, messages or repetitive process that is slowing the organisation down." },
+      { number: "02", title: "Map Users & Workflow", text: "We clarify who uses the process, what information moves through it, where decisions happen and what must be protected." },
+      { number: "03", title: "Scope the Right First Version", text: "We define a practical first release, responsibilities, acceptance criteria, integrations and future possibilities." },
+      { number: "04", title: "Build Collaboratively", text: "We develop the approved system in clear stages and review progress with the people who will use it." },
+      { number: "05", title: "Test With Real Scenarios", text: "The system is checked against agreed workflows, roles, data rules and operational scenarios before approval." },
+      { number: "06", title: "Launch, Train & Improve", text: "We deploy the system, support handover or training and plan responsible improvements based on real use." },
+    ],
+  },
   "healthcare-technology": {
     title: "From Your First Enquiry to a Confident Launch",
     subtitle: "A structured, collaborative process keeps expectations, responsibilities, payments and progress clear throughout your custom website or application project.",
@@ -253,19 +292,14 @@ export default async function ServiceDetailPage({
       <FadeSection>
         <section className="border-y border-blue-100 bg-blue-50 py-16 sm:py-24">
           <Container>
-            <SectionHeader eyebrow="Indicative Pricing" title={`Plan Your ${service.title} Budget`} subtitle="These ranges help with early planning. Your written quotation will confirm the exact scope, deliverables, assumptions and price before work begins." />
-            <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
-              {service.pricing.map((item) => (
-                <article key={item.title} className="rounded-3xl border border-blue-100 bg-white p-6 shadow-lg shadow-blue-950/5 sm:p-7">
-                  <span aria-hidden className="flex h-9 w-9 items-center justify-center rounded-full border-2 border-blue-700 text-lg font-black text-blue-700">R</span>
-                  <h2 className="mt-5 text-xl font-bold text-slate-950">{item.title}</h2>
-                  <p className="mt-3 text-lg font-bold text-blue-700">{item.range}</p>
-                  <p className="mt-4 text-sm leading-7 text-slate-600">{item.text}</p>
-                </article>
-              ))}
-            </div>
-            <div className="mt-7 rounded-2xl border border-blue-200 bg-white p-5 text-sm leading-7 text-slate-700 sm:p-6">
-              <strong className="text-slate-950">Important:</strong> {service.pricingNote} All amounts are indicative South African rand ranges and may change when requirements are confirmed.
+            <SectionHeader eyebrow="Clear Project Scoping" title="Receive a Quote Built Around the Actual Work" subtitle="We are currently pricing each engagement according to its real scope rather than forcing different businesses into a fixed package." />
+            <div className="mx-auto grid max-w-5xl gap-6 rounded-[2rem] border border-blue-100 bg-white p-6 shadow-xl shadow-blue-950/5 lg:grid-cols-[1fr_auto] lg:items-center lg:p-10">
+              <div>
+                <h2 className="text-2xl font-bold text-slate-950">Tell us what you are trying to improve.</h2>
+                <p className="mt-4 max-w-3xl leading-8 text-slate-600">We will clarify the requirement and provide a written proposal covering deliverables, responsibilities, assumptions, timing and price before work begins.</p>
+                <p className="mt-4 text-sm leading-7 text-slate-500">{service.pricingNote}</p>
+              </div>
+              <Link href="/contact" className="inline-flex items-center justify-center gap-2 rounded-2xl bg-blue-700 px-7 py-4 font-bold text-white shadow-lg shadow-blue-700/20 transition hover:-translate-y-0.5 hover:bg-blue-800">Request a quote <ArrowRight size={18} aria-hidden /></Link>
             </div>
           </Container>
         </section>

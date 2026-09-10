@@ -7,7 +7,7 @@ import CTASection from "@/components/CTASection";
 export const metadata = {
   title: "About CustoNexus Technologies",
   description:
-    "Learn about CustoNexus Technologies, our purpose, vision and commitment to improving healthcare through meaningful connections.",
+    "Learn about CustoNexus Technologies, a South African technology company building websites, business systems and healthcare technology with practical purpose.",
   alternates: { canonical: "/about" },
   openGraph: { title: "About CustoNexus Technologies", description: "Learn about our purpose, vision and commitment to meaningful healthcare technology, services and partnerships.", url: "/about", images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "About CustoNexus Technologies" }] },
   twitter: { card: "summary_large_image", title: "About CustoNexus Technologies", description: "Our purpose, vision and commitment to better healthcare through technology and trusted partnerships.", images: ["/opengraph-image"] },
@@ -58,9 +58,9 @@ export default function AboutPage() {
 
 <FadeSection>
   <CTASection
-    title="Let's Build Better Healthcare Together"
-    subtitle="Whether you're a healthcare practice, technology partner or organisation, we'd love to hear from you."
-    buttonText="Let's Talk"
+    title="Let’s Build Something Useful Together"
+    subtitle="Tell us about the website, system or technology challenge your organisation is ready to improve."
+    buttonText="Start a Project"
     buttonLink="/contact"
   />
 </FadeSection>

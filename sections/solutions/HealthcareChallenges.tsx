@@ -11,27 +11,27 @@ import SectionHeader from "@/components/SectionHeader";
 const challenges = [
   {
     icon: <Users size={30} />,
-    title: "Workforce Pressure",
+    title: "Manual Administration",
     description:
-      "Healthcare professionals work in demanding environments that require dependable support.",
+      "Spreadsheets, paperwork and repeated data entry can consume time and make information difficult to control.",
   },
   {
     icon: <MonitorSmartphone size={30} />,
-    title: "Digital Transformation",
+    title: "Outdated Digital Presence",
     description:
-      "Technology should simplify healthcare rather than create unnecessary complexity.",
+      "A slow, unclear or mobile-unfriendly website can weaken confidence before a conversation begins.",
   },
   {
     icon: <HeartPulse size={30} />,
-    title: "Patient Experience",
+    title: "Customer Experience",
     description:
-      "Exceptional care depends on meaningful experiences for patients and professionals alike.",
+      "Customers expect clear information, simple contact options and useful online processes.",
   },
   {
     icon: <Handshake size={30} />,
-    title: "Trusted Partnerships",
+    title: "Disconnected Systems",
     description:
-      "Long-term collaboration creates sustainable improvements across healthcare.",
+      "Information scattered across tools, files and messages makes consistent work harder.",
   },
 ];
 
@@ -39,9 +39,9 @@ export default function HealthcareChallenges() {
   return (
     <Section className="bg-white">
         <SectionHeader
-          eyebrow="Healthcare Today"
+          eyebrow="Common Business Friction"
           title="Understanding Today’s Challenges"
-          subtitle="Modern healthcare demands innovative solutions that strengthen people, improve efficiency and create meaningful experiences."
+          subtitle="We start with the practical problem: what customers cannot do, what staff repeat, and where information or responsibility becomes unclear."
         />
 
         <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4 lg:gap-6">

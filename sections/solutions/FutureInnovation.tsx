@@ -3,19 +3,19 @@ import SectionHeader from "@/components/SectionHeader";
 
 const innovations = [
   {
-    title: "Connected Care",
+    title: "Connected Experiences",
     description:
-      "Building seamless experiences between patients, clinicians and systems.",
+      "Creating coherent journeys between customers, teams, websites and business systems.",
   },
   {
     title: "Smart Operations",
     description:
-      "Streamlining workflows with technology that supports meaningful care.",
+      "Reducing repetitive work with practical technology designed around real operations.",
   },
   {
-    title: "Patient Centricity",
+    title: "Responsible Growth",
     description:
-      "Designing solutions that improve health outcomes and human experiences.",
+      "Building secure, maintainable solutions that can evolve as an organisation grows.",
   },
 ];
 
@@ -23,9 +23,9 @@ export default function FutureInnovation() {
   return (
     <Section spacing="lg" className="bg-white">
       <SectionHeader
-        eyebrow="Future Innovation"
-        title="The Healthcare Systems of Tomorrow"
-        subtitle="CustoNexus explores future-ready solutions that improve care, simplify operations and create more meaningful experiences for providers and patients."
+        eyebrow="Future Ready"
+        title="Technology That Can Grow With You"
+        subtitle="CustoNexus creates useful foundations today while considering how your customers, workflows and digital systems may need to evolve tomorrow."
       />
 
       <div className="grid gap-5 md:grid-cols-3 lg:gap-7">

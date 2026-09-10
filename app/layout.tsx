@@ -34,12 +34,23 @@ export const metadata: Metadata = {
   },
 
   description:
-    "Custom websites and apps, hosting, medical equipment supply and servicing, professional services, side projects and healthcare partnerships from CustoNexus Technologies.",
+    "Business websites, redesigns, maintenance, WordPress support, custom web applications and business systems from CustoNexus Technologies in South Africa.",
 
   keywords: [
     "healthcare technology",
+    "website design South Africa",
+    "business website development",
+    "website redesign South Africa",
+    "website maintenance South Africa",
+    "WordPress support South Africa",
+    "custom software development South Africa",
+    "business systems development",
+    "custom web applications South Africa",
     "digital health solutions",
     "healthcare professional services",
+    "freelance technician South Africa",
+    "healthcare facility technical support",
+    "contract technical services",
     "medical solutions",
     "medical equipment calibration South Africa",
     "medical equipment repairs",
@@ -54,7 +65,7 @@ export const metadata: Metadata = {
   authors: [{ name: "CustoNexus Technologies", url: "/" }],
   creator: "CustoNexus Technologies",
   publisher: "CustoNexus Technologies",
-  category: "Healthcare technology and professional services",
+  category: "Website development, business software and healthcare technology",
 
   alternates: { canonical: "/" },
 
@@ -95,19 +106,19 @@ export const metadata: Metadata = {
   openGraph: {
     title: "CustoNexus Technologies",
     description:
-      "Custom technology, medical equipment services, professional expertise and trusted partnerships.",
+      "Professional websites, business systems and custom digital solutions for South African organisations.",
     url: "/",
     siteName: "CustoNexus Technologies",
     locale: "en_ZA",
     type: "website",
-    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "CustoNexus Technologies — Together, Better Healthcare" }],
+    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "CustoNexus Technologies — websites, business systems and custom digital solutions" }],
   },
 
   twitter: {
     card: "summary_large_image",
     title: "CustoNexus Technologies",
     description:
-      "Custom websites and apps, medical equipment services, professional expertise and trusted partnerships.",
+      "Business websites, website support, custom applications and healthcare technology services.",
     images: ["/opengraph-image"],
   },
 };
@@ -154,12 +165,16 @@ const organizationJsonLd = {
         availableLanguage: "English",
       },
       description:
-        "Custom technology, website and app development, hosting, medical equipment supply and servicing, professional services, selected side projects and trusted healthcare partnerships.",
+        "South African technology company providing business website design, website support, custom applications, business systems, professional services and healthcare technology.",
       knowsAbout: [
-        "Custom website and application development",
+        "Business website design and development",
+        "Website redesign, maintenance and WordPress support",
+        "Custom web applications and business systems",
         "Website hosting and company email",
         "Medical equipment supply, servicing and calibration",
         "Professional consulting and project management",
+        "Freelance and contract technical support",
+        "Monthly healthcare facility technical support",
         "Electrical appliance and electronics side projects",
         "Healthcare technology partnerships",
       ],

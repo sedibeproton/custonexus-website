@@ -1,10 +1,94 @@
 export const servicePages = [
   {
+    slug: "business-websites",
+    title: "Business Websites",
+    pageTitle: "Business Website Design & Development South Africa",
+    description:
+      "Custom business website design and development for South African companies, professional practices, consultants, startups and growing organisations.",
+    introduction:
+      "We design and build professional websites that explain your value clearly, work beautifully on mobile devices and make it easy for potential customers to contact your business.",
+    highlights: [
+      "New business and professional websites",
+      "Custom design aligned with your brand",
+      "Mobile-friendly responsive development",
+      "Contact, enquiry and quotation forms",
+      "WhatsApp and booking integrations",
+      "SEO and performance foundations",
+      "Domain, hosting and company email assistance",
+    ],
+    sections: [
+      { title: "New Business Websites", text: "We create credible, custom websites for businesses that need a professional online presence, clearer service presentation and a practical path from visitor interest to enquiry." },
+      { title: "Designed Around Your Customers", text: "Page structure, messaging, calls to action and mobile behaviour are planned around what your customers need to understand and do—not around a generic theme." },
+      { title: "Useful Business Functionality", text: "Depending on scope, your website can include enquiries, quotation requests, WhatsApp contact, booking requests, availability calendars, payments, profiles, resources or other tailored workflows." },
+      { title: "Launch & Ongoing Support", text: "We can assist with domains, hosting, company email, production launch, maintenance and future improvements so the website remains useful as the business evolves." },
+    ],
+    pricing: [
+      { title: "New Website", range: "Request a tailored quote", text: "Your quotation reflects the number of pages, content readiness, design requirements, functionality, integrations and launch support required." },
+    ],
+    pricingNote: "We scope each website around the business, its audience and the outcomes it needs. You receive a clear written proposal before work begins.",
+  },
+  {
+    slug: "website-support",
+    title: "Website Redesign, Maintenance & WordPress Support",
+    pageTitle: "Website Redesign, Maintenance & WordPress Support",
+    description:
+      "Website redesign, maintenance, troubleshooting and WordPress support for South African businesses that need a faster, clearer and more dependable website.",
+    introduction:
+      "We help businesses improve websites that are outdated, difficult to manage, performing poorly or no longer supporting the way the organisation works.",
+    highlights: [
+      "Website redesign and modernisation",
+      "Mobile usability and content improvements",
+      "WordPress troubleshooting and support",
+      "Website maintenance and technical updates",
+      "Performance and reliability reviews",
+      "Contact-form and integration fixes",
+      "Ongoing support arrangements",
+    ],
+    sections: [
+      { title: "Website Redesign", text: "We assess the current website, identify what is limiting credibility or conversion, and recommend a focused improvement or a complete custom rebuild." },
+      { title: "Maintenance & Troubleshooting", text: "Support can cover content updates, broken functionality, forms, integrations, performance issues, backups and practical technical maintenance under an agreed scope." },
+      { title: "WordPress Support", text: "Although new CustoNexus websites are custom-built, we can support suitable existing WordPress websites with troubleshooting, updates, content changes and improvement planning." },
+      { title: "A Clear Support Path", text: "Before changing a live website, we clarify access, backups, risks, responsibilities, expected outcomes and whether the most responsible approach is repair, redesign or rebuild." },
+    ],
+    pricing: [
+      { title: "Redesign or Support", range: "Request an assessment", text: "We review the current website and define the work before proposing a once-off project or ongoing support arrangement." },
+    ],
+    pricingNote: "Website condition, platform, access, content, integrations and the urgency of the work determine the appropriate support model.",
+  },
+  {
+    slug: "business-systems",
+    title: "Business Systems & Custom Software",
+    pageTitle: "Custom Business Systems & Web Applications",
+    description:
+      "Custom web applications, dashboards, client portals, booking systems, digital forms, database applications and workflow automation for South African businesses.",
+    introduction:
+      "We explore and build practical digital systems around the way your organisation works—especially where spreadsheets, paperwork or repetitive processes are creating friction.",
+    highlights: [
+      "Custom web applications",
+      "Internal dashboards and reporting tools",
+      "Client and customer portals",
+      "Booking and availability systems",
+      "Digital forms and approval workflows",
+      "Database-backed business applications",
+      "Integrations and process automation",
+    ],
+    sections: [
+      { title: "Internal Business Systems", text: "We can build secure tools for managing clients, documents, requests, records, quotations, operational tasks and other structured business information." },
+      { title: "Customer-Facing Portals", text: "Booking journeys, client portals, application forms and self-service workflows can reduce repetitive administration while giving customers a clearer experience." },
+      { title: "Workflow & Database Applications", text: "Where spreadsheets or paper-based processes are becoming difficult to control, we can explore a database-backed application designed around the actual workflow." },
+      { title: "Integrations & Automation", text: "We assess APIs, information flows and repetitive tasks to identify responsible opportunities for integration and automation without promising unsupported connections." },
+    ],
+    pricing: [
+      { title: "Custom System", range: "Request a discovery consultation", text: "Complexity depends on users, roles, workflows, data, security, integrations, reporting and deployment requirements." },
+    ],
+    pricingNote: "Custom software is scoped in stages so the problem, users, responsibilities and acceptance criteria are understood before a build is approved.",
+  },
+  {
     slug: "healthcare-technology",
     title: "Healthcare Technology",
-    pageTitle: "Custom Website, App & Healthcare Technology",
+    pageTitle: "Healthcare Website & Software Development",
     description:
-      "Custom websites, mobile apps, patient portals, business platforms, systems integration and healthcare technology services from CustoNexus Technologies in South Africa.",
+      "Healthcare websites, software, portals, connected systems and specialised technology services from CustoNexus Technologies in South Africa.",
     introduction:
       "We design and deliver practical digital solutions that help healthcare organisations communicate clearly, work efficiently and create better experiences for patients, professionals and partners.",
     highlights: [
@@ -65,7 +149,7 @@ export const servicePages = [
   {
     slug: "professional-services",
     title: "Professional Services",
-    pageTitle: "Healthcare Consulting & Project Management",
+    pageTitle: "Healthcare Consulting, Project Management & Technical Support",
     description:
       "Healthcare technology consulting, project planning, implementation support, digital strategy and managed services from CustoNexus Technologies in South Africa.",
     introduction:
@@ -74,6 +158,8 @@ export const servicePages = [
       "Technology readiness assessments",
       "Digital strategy and roadmaps",
       "Project and implementation support",
+      "Freelance technicians for short-term technical work",
+      "Monthly technical support for healthcare facilities",
       "Security and access-control reviews",
       "Change, training and adoption support",
       "Managed support and optimisation",
@@ -82,16 +168,20 @@ export const servicePages = [
     sections: [
       { title: "Consulting & Strategy", text: "We connect technology decisions to clinical, operational and business priorities through assessments, roadmaps, platform evaluation and governance guidance." },
       { title: "Project & Change Delivery", text: "We provide project planning, implementation coordination, quality oversight, stakeholder communication, training and adoption support." },
+      { title: "Freelance Technical Support", text: "Companies without an internal technical team, or teams facing temporary staff shortages, can contract CustoNexus for defined technical tasks at agreed hourly rates. We confirm the skills, responsibilities, working hours, location, tools, access and supervision required before assigning support." },
+      { title: "Healthcare Facility Technical Support", text: "Healthcare facilities can arrange recurring monthly technical support for agreed equipment, operational and technology tasks. Each arrangement defines response expectations, included hours, site requirements, reporting, exclusions and escalation procedures." },
       { title: "Security, Support & Resilience", text: "We help organisations review access controls, strengthen operational resilience, coordinate support and plan meaningful enhancements over time." },
       { title: "Side Projects Beyond Healthcare", text: "Healthcare remains our primary focus, but we also accept suitable side projects from individuals and organisations in other sectors. These may include websites, applications, consultations, project management, and the assessment or repair of electrical appliances and electronic devices. Each request is evaluated individually for safety, feasibility, parts availability, scope and fit before we commit to the work." },
     ],
     pricing: [
       { title: "Consultation or Advisory Session", range: "R750 - R1,500 per hour", text: "Focused technology, operational, project or digital guidance. Larger assessments and written recommendations are quoted as a defined engagement." },
       { title: "Project Planning & Management", range: "R8,000 - R45,000+", text: "Fixed-scope or monthly support depending on project duration, complexity, stakeholders, reporting and level of delivery ownership." },
+      { title: "Freelance Technician", range: "Quoted hourly rate", text: "For defined technical tasks, temporary capacity gaps or short-staffed teams. The rate depends on the required discipline, complexity, working hours, location, travel, tools and safety requirements." },
+      { title: "Healthcare Facility Technical Support", range: "Custom monthly rate", text: "Recurring technical capacity under an agreed monthly scope. Pricing depends on included hours, equipment or systems covered, site frequency, response expectations, reporting and after-hours requirements." },
       { title: "Electrical or Electronics Assessment", range: "R50 - R750", text: "Initial assessment for suitable non-healthcare appliances or electronic devices. Pricing depends on the equipment type and diagnostic work required; collection, travel and specialist testing may be additional." },
       { title: "Electrical or Electronics Repair", range: "R50 - R5,000+", text: "Indicative labour range based on equipment type, fault and complexity. Components, replacement parts and external specialist work are quoted separately." },
     ],
-    pricingNote: "Side-project pricing depends on feasibility, safety, condition, parts availability and the work required. Custom websites and applications for non-healthcare customers follow the technology ranges above and remain fully custom-built rather than template-based.",
+    pricingNote: "Technical-support rates are confirmed only after the required skills, scope, hours, location, access, tools, safety responsibilities and service expectations are understood. Side-project pricing depends on feasibility, safety, condition, parts availability and the work required. Custom websites and applications for non-healthcare customers follow the technology ranges above and remain fully custom-built rather than template-based.",
   },
   {
     slug: "strategic-partnerships",

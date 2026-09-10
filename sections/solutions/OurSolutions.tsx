@@ -13,35 +13,35 @@ import Link from "next/link";
 const solutions = [
   {
     icon: <Laptop size={30} />,
-    title: "Healthcare Technology",
+    title: "Websites & Website Support",
     description:
-      "Digital solutions that improve workflows, efficiency and healthcare experiences.",
-    image: "/images/healthcare-technology.jpg",
-    href: "/services/healthcare-technology",
+      "New business websites, redesigns, maintenance and support for suitable existing WordPress websites.",
+    image: "/images/executive-presentation-identity-v2.png",
+    href: "/services/business-websites",
   },
   {
     icon: <HeartPulse size={30} />,
-    title: "Medical Equipment & Consumables",
+    title: "Business Systems",
     description:
-      "Medical equipment supply, servicing, calibration, repairs, protective products and everyday consumables.",
-    image: "/images/solutions-healthcare.jpg",
-    href: "/services/medical-equipment-consumables",
+      "Dashboards, portals, digital forms, booking workflows and database-backed applications.",
+    image: "/images/healthcare-technology.jpg",
+    href: "/services/business-systems",
   },
   {
     icon: <Briefcase size={30} />,
     title: "Professional Services",
     description:
-      "Healthcare-focused consulting and delivery, plus selected technology, electrical and electronic side projects.",
+      "Technology consulting, project delivery, hourly freelance technicians and structured implementation support.",
     image: "/images/professional-services.jpg",
     href: "/services/professional-services",
   },
   {
     icon: <Network size={30} />,
-    title: "Strategic Partnerships",
+    title: "Healthcare Technology",
     description:
-      "Connecting organisations with trusted expertise, products and opportunities that strengthen healthcare.",
-    image: "/images/strategic-partnerships.jpg",
-    href: "/services/strategic-partnerships",
+      "Websites, software, portals and connected digital solutions informed by healthcare environments.",
+    image: "/images/solutions-healthcare.jpg",
+    href: "/services/healthcare-technology",
   },
 ];
 
@@ -52,8 +52,8 @@ export default function OurSolutions() {
 
         <SectionHeader
           eyebrow="Our Solutions"
-          title="Designed Around Healthcare"
-          subtitle="Digital solutions, professional services and partnerships crafted to improve workflows, efficiency and patient experiences."
+          title="Designed Around the Work That Needs to Improve"
+          subtitle="Customer-facing websites, internal systems and technology support shaped around users, workflows and practical outcomes."
           align="center"
         />
 
@@ -105,11 +105,11 @@ export default function OurSolutions() {
 
         <div className="mt-8 flex flex-col gap-5 rounded-3xl border border-blue-200 bg-gradient-to-r from-blue-50 to-cyan-50 p-6 sm:flex-row sm:items-center sm:justify-between sm:p-8">
           <div>
-            <p className="text-xs font-bold uppercase tracking-[0.2em] text-blue-700">Beyond Healthcare</p>
-            <h2 className="mt-2 text-2xl font-bold text-blue-950">Explore our dedicated Side Projects service</h2>
-            <p className="mt-2 max-w-3xl leading-7 text-slate-600">Custom websites and apps, selected electrical and electronics work, consulting and project support for customers in other sectors.</p>
+            <p className="text-xs font-bold uppercase tracking-[0.2em] text-blue-700">Need a Starting Point?</p>
+            <h2 className="mt-2 text-2xl font-bold text-blue-950">Tell us what is slowing the business down.</h2>
+            <p className="mt-2 max-w-3xl leading-7 text-slate-600">You do not need to choose the technical solution first. Describe the customer or operational problem and we will help explore an appropriate approach.</p>
           </div>
-          <Link href="/services/side-projects" className="inline-flex shrink-0 items-center justify-center gap-2 rounded-2xl bg-blue-700 px-6 py-4 font-bold text-white transition hover:bg-blue-800">View Side Projects <ArrowRight size={18} aria-hidden /></Link>
+          <Link href="/contact" className="inline-flex shrink-0 items-center justify-center gap-2 rounded-2xl bg-blue-700 px-6 py-4 font-bold text-white transition hover:bg-blue-800">Discuss the problem <ArrowRight size={18} aria-hidden /></Link>
         </div>
 
       </Container>

@@ -68,16 +68,6 @@ const process = [
   { number: "06", title: "Handover & Support", text: "We hand over the completed solution or repaired item with relevant guidance. Hosting, maintenance, ongoing consulting or managed support can continue under a separate agreement." },
 ] as const;
 
-const pricing = [
-  { title: "Electrical or Electronics Assessment", range: "R50 - R750", text: "Depends on equipment type and diagnostic effort. Collection, travel and specialist testing may be quoted separately." },
-  { title: "Electrical or Electronics Repair", range: "R50 - R5,000+", text: "Indicative labour range. Components, replacement parts and specialist external work are additional where required." },
-  { title: "Custom Websites", range: "R3,000 - R150,000+", text: "From a custom starter website to an advanced web platform. Page count, content, workflows, booking, payments and integrations determine the final price." },
-  { title: "Custom Applications", range: "R30,000 - R100,000+", text: "Mobile, web or multi-platform applications are quoted according to features, users, integrations, security and operational complexity." },
-  { title: "Hosting, Maintenance & Email", range: "R120 - R600+ per month", text: "Ongoing plans depend on website scale, traffic, support needs, storage, backups and the number of company email accounts." },
-  { title: "Consulting & Advisory", range: "R750 - R1,500 per hour", text: "Focused technology, operational, planning or implementation advice. Larger assessments are quoted as defined engagements." },
-  { title: "Project Planning & Management", range: "R8,000 - R45,000+", text: "Pricing depends on project duration, complexity, stakeholders, reporting requirements and the required level of ownership." },
-] as const;
-
 const faqs = [
   { question: "What qualifies as a CustoNexus side project?", answer: "A side project is suitable non-healthcare work that aligns with our available technology, technical, consulting or project-delivery capability. Examples include custom websites and applications, selected electrical or electronic repairs, consulting and project management." },
   { question: "Is every side-project request accepted?", answer: "No. We review safety, feasibility, condition, parts availability, required expertise, scope, schedule and delivery fit before accepting work or issuing a final quotation." },
@@ -172,18 +162,8 @@ export default function SideProjectsPage() {
       <FadeSection>
         <section id="pricing" className="scroll-mt-32 border-y border-blue-100 bg-blue-50 py-16 sm:py-24">
           <Container>
-            <SectionHeader eyebrow="Indicative Pricing" title="Plan a Realistic Starting Budget" subtitle="These ranges support early planning. We confirm the exact scope and price in writing before approved work begins." />
-            <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-              {pricing.map((item) => (
-                <article key={item.title} className="rounded-3xl border border-blue-100 bg-white p-7 shadow-lg shadow-blue-950/5">
-                  <span aria-hidden className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-blue-700 text-lg font-black text-blue-700">R</span>
-                  <h2 className="mt-5 text-xl font-bold text-slate-950">{item.title}</h2>
-                  <p className="mt-3 text-lg font-bold text-blue-700">{item.range}</p>
-                  <p className="mt-4 text-sm leading-7 text-slate-600">{item.text}</p>
-                </article>
-              ))}
-            </div>
-            <p className="mt-7 rounded-2xl border border-blue-200 bg-white p-6 text-sm leading-7 text-slate-700"><strong className="text-slate-950">Important:</strong> Published ranges are estimates, not fixed offers. Parts, materials, travel, licences, domains, third-party services and unusual requirements may be quoted separately.</p>
+            <SectionHeader eyebrow="Scoped Quotations" title="Every Suitable Side Project Is Assessed Individually" subtitle="We confirm feasibility, safety, scope, responsibilities and price in writing before approved work begins." />
+            <div className="mx-auto max-w-4xl rounded-[2rem] border border-blue-100 bg-white p-7 text-center shadow-lg shadow-blue-950/5 sm:p-10"><h2 className="text-2xl font-bold text-blue-950">Share the item, problem or intended outcome.</h2><p className="mx-auto mt-4 max-w-2xl leading-8 text-slate-600">Parts, materials, travel, specialist services and third-party costs are identified during assessment where relevant.</p><Link href="/contact" className="mt-7 inline-flex items-center gap-2 rounded-2xl bg-blue-700 px-7 py-4 font-bold text-white">Request an assessment <ArrowRight size={18} aria-hidden /></Link></div>
           </Container>
         </section>
       </FadeSection>
@@ -191,8 +171,8 @@ export default function SideProjectsPage() {
       <FadeSection>
         <section className="bg-white py-14 sm:py-20">
           <Container className="flex flex-col items-center justify-between gap-6 rounded-[2rem] border border-slate-200 bg-slate-50 p-7 text-center sm:p-10 lg:flex-row lg:text-left">
-            <div><h2 className="text-2xl font-bold text-slate-950">Need to compare our core services?</h2><p className="mt-2 text-slate-600">Return to the four primary CustoNexus service categories.</p></div>
-            <Link href="/services#service-categories" className="inline-flex items-center gap-2 font-semibold text-blue-700 hover:text-blue-900">Explore all services <ArrowRight size={18} aria-hidden /></Link>
+            <div><h2 className="text-2xl font-bold text-slate-950">Need to compare our core services?</h2><p className="mt-2 text-slate-600">Explore websites, website support, business systems and specialist capabilities.</p></div>
+            <Link href="/services" className="inline-flex items-center gap-2 font-semibold text-blue-700 hover:text-blue-900">Explore all services <ArrowRight size={18} aria-hidden /></Link>
           </Container>
         </section>
       </FadeSection>

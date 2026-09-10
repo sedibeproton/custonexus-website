@@ -15,34 +15,30 @@ type NavItem = {
 
 const navItems: NavItem[] = [
   { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
   {
     href: "/services",
     label: "Services",
     children: [
       { href: "/services", label: "All Services", description: "Explore our complete service portfolio" },
-      { href: "/services/healthcare-technology", label: "Healthcare Technology", description: "Custom websites, apps, hosting and digital systems" },
-      { href: "/services/medical-equipment-consumables", label: "Medical Equipment", description: "Supply, servicing, calibration and repairs" },
-      { href: "/services/professional-services", label: "Professional Services", description: "Consulting, projects and selected side work" },
-      { href: "/services/side-projects", label: "Non-Healthcare Side Projects", description: "Electronics, appliances, websites, apps and project support" },
-      { href: "/services/strategic-partnerships", label: "Strategic Partnerships", description: "Supplier, technology and growth collaboration" },
+      { href: "/services/business-websites", label: "Business Websites", description: "New professional websites built to generate trust and enquiries" },
+      { href: "/services/website-support", label: "Website Support", description: "Redesigns, maintenance and WordPress support" },
+      { href: "/services/business-systems", label: "Business Systems", description: "Dashboards, portals, forms, applications and automation" },
+      { href: "/services/healthcare-technology", label: "Healthcare Technology", description: "Healthcare websites, software and connected systems" },
+      { href: "/services/professional-services", label: "Professional Services", description: "Consulting, project and flexible technical support" },
+      { href: "/services/strategic-partnerships", label: "Strategic Partnerships", description: "Technology, supplier and delivery collaboration" },
+      { href: "/services/medical-equipment-consumables", label: "Medical Equipment", description: "Specialist enquiries, servicing and consumables" },
     ],
   },
   { href: "/solutions", label: "Solutions" },
   {
-    href: "/constitution",
-    label: "Constitution",
+    href: "/about",
+    label: "About",
     children: [
-      { href: "/constitution", label: "Constitution Overview" },
-      { href: "/constitution#purpose", label: "Purpose Before Ambition" },
-      { href: "/constitution#people", label: "People at the Centre" },
-      { href: "/constitution#integrity", label: "Integrity Without Exception" },
-      { href: "/constitution#innovation", label: "Innovation With Purpose" },
-      { href: "/constitution#partnership", label: "Partnership Over Transaction" },
-      { href: "/constitution#stewardship", label: "Excellence as Stewardship" },
-      { href: "/constitution#continuity", label: "Carry Responsibility Forward" },
+      { href: "/about", label: "About CustoNexus", description: "Our company, purpose and approach" },
+      { href: "/constitution", label: "Our Constitution", description: "The principles behind how we build and serve" },
     ],
   },
+  { href: "/contact", label: "Contact" },
   {
     href: "/faqs",
     label: "FAQs",
@@ -82,8 +78,8 @@ export default function Navbar() {
                 <Link href={item.href} aria-current={isActive(item.href) ? "page" : undefined} className={`flex items-center gap-1 rounded-xl px-3 py-2 text-sm font-semibold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 ${isActive(item.href) ? "bg-blue-50 text-blue-800" : "text-slate-600 hover:bg-slate-50 hover:text-blue-800"}`}>
                   {item.label}<ChevronDown aria-hidden size={15} className="transition group-hover:rotate-180 group-focus-within:rotate-180" />
                 </Link>
-                <div className={`pointer-events-none absolute left-1/2 top-full z-50 w-80 -translate-x-1/2 translate-y-2 pt-3 opacity-0 transition duration-200 group-hover:pointer-events-auto group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:translate-y-0 group-focus-within:opacity-100 ${item.href === "/constitution" ? "w-[30rem]" : ""}`}>
-                  <div className={`grid gap-1 rounded-2xl border border-slate-200 bg-white p-3 shadow-[0_24px_65px_rgba(8,31,73,0.18)] ${item.href === "/constitution" ? "grid-cols-2" : ""}`}>
+                <div className={`pointer-events-none absolute left-1/2 top-full z-50 -translate-x-1/2 translate-y-2 pt-3 opacity-0 transition duration-200 group-hover:pointer-events-auto group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:translate-y-0 group-focus-within:opacity-100 ${item.href === "/services" ? "w-[42rem]" : "w-80"}`}>
+                  <div className={`grid gap-1 rounded-2xl border border-slate-200 bg-white p-3 shadow-[0_24px_65px_rgba(8,31,73,0.18)] ${item.href === "/services" ? "grid-cols-2" : ""}`}>
                     {item.children.map((child) => (
                       <Link key={child.href} href={child.href} className="rounded-xl px-4 py-3 transition hover:bg-blue-50 focus-visible:bg-blue-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600">
                         <span className="block text-sm font-bold text-slate-900">{child.label}</span>
@@ -100,7 +96,7 @@ export default function Navbar() {
 
           <div className="hidden items-center gap-3 xl:flex">
             <Link href="/secure/login" aria-label="Open Secure Archive" className="flex h-11 w-11 items-center justify-center rounded-xl border border-slate-200 text-slate-500 transition hover:border-blue-200 hover:text-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"><LockKeyhole aria-hidden size={18} /></Link>
-            <Link href="/contact" className="group inline-flex items-center gap-2 rounded-xl bg-blue-700 px-5 py-3 text-sm font-bold text-white shadow-lg shadow-blue-700/20 transition hover:-translate-y-0.5 hover:bg-blue-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2">Let&apos;s talk <ArrowUpRight aria-hidden size={17} className="transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" /></Link>
+            <Link href="/contact" className="group inline-flex items-center gap-2 rounded-xl bg-blue-700 px-5 py-3 text-sm font-bold text-white shadow-lg shadow-blue-700/20 transition hover:-translate-y-0.5 hover:bg-blue-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2">Start a project <ArrowUpRight aria-hidden size={17} className="transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" /></Link>
           </div>
 
           <button type="button" onClick={() => setOpen((value) => !value)} aria-expanded={open} aria-controls="mobile-navigation" aria-label={open ? "Close navigation" : "Open navigation"} className="flex h-11 w-11 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-800 transition hover:border-blue-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 xl:hidden">{open ? <X aria-hidden size={21} /> : <Menu aria-hidden size={21} />}</button>

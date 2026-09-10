@@ -3,6 +3,10 @@ export const whatsappMessages = {
     "Hello CustoNexus Technologies, I would like to learn more about your services.",
   contact:
     "Hello CustoNexus Technologies, I would like to discuss an enquiry with your team.",
+  project:
+    "Hi CustoNexus, I would like to discuss a website, business system or technology project.",
+  website:
+    "Hi CustoNexus, I would like to discuss a website project for my business.",
   faqs: "Hello CustoNexus Technologies, I have a question about your services.",
   healthcareTechnology:
     "Hello CustoNexus Technologies, I would like to enquire about healthcare technology, website or app development.",

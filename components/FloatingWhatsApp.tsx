@@ -5,6 +5,9 @@ import { usePathname } from "next/navigation";
 import { createWhatsAppUrl, whatsappMessages } from "@/lib/whatsapp";
 
 function getPageMessage(pathname: string) {
+  if (pathname.startsWith("/services/business-websites")) return whatsappMessages.website;
+  if (pathname.startsWith("/services/website-support")) return whatsappMessages.website;
+  if (pathname.startsWith("/services/business-systems")) return whatsappMessages.project;
   if (pathname.startsWith("/services/healthcare-technology")) {
     return whatsappMessages.healthcareTechnology;
   }
@@ -17,13 +20,13 @@ function getPageMessage(pathname: string) {
   if (pathname.startsWith("/services/strategic-partnerships")) {
     return whatsappMessages.strategicPartnerships;
   }
-  if (pathname.startsWith("/services")) return whatsappMessages.solutions;
-  if (pathname.startsWith("/solutions")) return whatsappMessages.solutions;
+  if (pathname.startsWith("/services")) return whatsappMessages.project;
+  if (pathname.startsWith("/solutions")) return whatsappMessages.project;
   if (pathname.startsWith("/faqs")) return whatsappMessages.faqs;
   if (pathname.startsWith("/contact")) return whatsappMessages.contact;
   if (pathname.startsWith("/about")) return whatsappMessages.about;
   if (pathname.startsWith("/constitution")) return whatsappMessages.constitution;
-  return whatsappMessages.general;
+  return whatsappMessages.project;
 }
 
 function WhatsAppIcon() {

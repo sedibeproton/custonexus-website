@@ -2,8 +2,9 @@ import { randomUUID } from "crypto";
 import { insertEnquiry } from "@/lib/enquiries";
 import { deleteEnquiry } from "@/lib/enquiries";
 import { requireBusinessAccess } from "@/lib/business/api";
+import { normalisePhone, validateEnquiryContact, validateEnquiryDetails } from "@/lib/enquiry-validation";
 
-const allowedServices = new Set(["healthcare-technology", "medical-equipment", "professional-services", "strategic-partnerships"]);
+const allowedServices = new Set(["business-website", "website-support", "business-system", "healthcare-technology", "medical-equipment", "professional-services", "strategic-partnerships"]);
 const allowedIntents = new Set(["quote", "callback", "general"]);
 const allowedContact = new Set(["call", "email", "whatsapp"]);
 
@@ -12,6 +13,9 @@ function clean(value: unknown, max = 2000) {
 }
 
 export async function POST(request: Request) {
+  const contentLength = Number(request.headers.get("content-length") || 0);
+  if (contentLength > 50_000) return Response.json({ error: "The enquiry is too large. Please shorten the information and try again." }, { status: 413 });
+
   let body: Record<string, unknown>;
   try { body = await request.json(); } catch { return Response.json({ error: "Invalid request." }, { status: 400 }); }
 
@@ -23,14 +27,19 @@ export async function POST(request: Request) {
   const fullName = clean(body.fullName, 120);
   const company = clean(body.company, 160);
   const email = clean(body.email, 200).toLowerCase();
-  const phone = clean(body.phone, 40);
+  const phone = normalisePhone(clean(body.phone, 40));
   const consent = body.consent === true;
-  const details: Record<string, unknown> = body.details && typeof body.details === "object"
+  const rawDetails: Record<string, unknown> = body.details && typeof body.details === "object" && !Array.isArray(body.details)
     ? body.details as Record<string, unknown>
     : {};
+  const details = Object.fromEntries(Object.entries(rawDetails).map(([key, value]) => [key.slice(0, 80), clean(value, 2000)]).filter(([, value]) => value));
 
   if (!allowedIntents.has(intent) || !allowedServices.has(service) || !allowedContact.has(preferredContact)) return Response.json({ error: "Choose valid enquiry options." }, { status: 400 });
-  if (!fullName || !company || !phone || !/^\S+@\S+\.\S+$/.test(email)) return Response.json({ error: "Provide your name, company, email and phone number." }, { status: 400 });
+  const validationErrors = {
+    ...validateEnquiryDetails({ requirements: details.requirements, timeline: details.timeline, currentWebsite: details.currentWebsite }),
+    ...validateEnquiryContact({ fullName, company, email, phone, preferredContact }),
+  };
+  if (Object.keys(validationErrors).length) return Response.json({ error: "Please correct the highlighted information.", fields: validationErrors }, { status: 400 });
   if (!consent) return Response.json({ error: "Please confirm that we may contact you about this enquiry." }, { status: 400 });
 
   try {

@@ -4,14 +4,14 @@ export default function manifest(): MetadataRoute.Manifest {
   return {
     name: "CustoNexus Technologies",
     short_name: "CustoNexus",
-    description: "Custom technology, medical equipment services, professional expertise, side projects and trusted partnerships.",
+    description: "Business websites, website support, custom systems and healthcare technology from CustoNexus Technologies.",
     start_url: "/",
     scope: "/",
     id: "/",
     display: "standalone",
     background_color: "#f7f9fc",
     theme_color: "#071a3d",
-    categories: ["healthcare", "business", "technology"],
+    categories: ["business", "technology", "productivity", "healthcare"],
     icons: [
       {
         src: "/logos/logo-mark.png",

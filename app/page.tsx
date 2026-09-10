@@ -1,69 +1,31 @@
-import FadeSection from "../components/FadeSection";
-import PageWrapper from "../components/PageWrapper";
-import AboutPreview from "../sections/AboutPreview";
-import CallToAction from "../sections/CallToAction";
-import ConstitutionPreview from "../sections/ConstitutionPreview";
-import Foundation from "../sections/Foundation";
-import Hero from "../sections/Hero";
-import Purpose from "../sections/Purpose";
-import SolutionsPreview from "../sections/SolutionsPreview";
-import TrustSection from "../sections/TrustSection";
-import WhyChooseUs from "../sections/WhyChooseUs";
-import DigitalCraftsmanship from "../sections/DigitalCraftsmanship";
-
+import FadeSection from "@/components/FadeSection";
+import PageWrapper from "@/components/PageWrapper";
+import AboutPreview from "@/sections/AboutPreview";
+import CallToAction from "@/sections/CallToAction";
+import DigitalCraftsmanship from "@/sections/DigitalCraftsmanship";
+import Foundation from "@/sections/Foundation";
+import Hero from "@/sections/Hero";
+import Purpose from "@/sections/Purpose";
+import SolutionsPreview from "@/sections/SolutionsPreview";
+import TrustSection from "@/sections/TrustSection";
+import WhyChooseUs from "@/sections/WhyChooseUs";
 
 export const metadata = {
-  title: "Custom Technology, Medical Equipment & Services",
-  description:
-    "Discover CustoNexus custom websites and apps, hosting, medical equipment supply and servicing, professional services, side projects and trusted healthcare partnerships.",
+  title: "Website Design & Custom Business Systems South Africa",
+  description: "Business website design, website redesign, maintenance, WordPress support, custom web applications and business systems from CustoNexus Technologies in South Africa.",
   alternates: { canonical: "/" },
-  openGraph: { title: "Custom Technology, Medical Equipment & Services", description: "Discover CustoNexus custom websites and apps, hosting, medical equipment supply and servicing, professional services, side projects and trusted healthcare partnerships.", url: "/", images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "CustoNexus Technologies — Together, Better Healthcare" }] },
-  twitter: { card: "summary_large_image", title: "Custom Technology, Medical Equipment & Services", description: "Custom websites and apps, medical equipment services, consulting and healthcare partnerships from CustoNexus Technologies.", images: ["/opengraph-image"] },
+  openGraph: { title: "Website Design & Custom Business Systems South Africa", description: "Professional websites, website support and custom digital systems for South African businesses and healthcare organisations.", url: "/", images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "CustoNexus Technologies — business websites and custom systems" }] },
+  twitter: { card: "summary_large_image", title: "Website Design & Custom Business Systems South Africa", description: "Professional websites, website support and custom digital systems for South African organisations.", images: ["/opengraph-image"] },
   robots: { index: true, follow: true },
 };
+
+const sections = [SolutionsPreview, DigitalCraftsmanship, Purpose, AboutPreview, TrustSection, WhyChooseUs, Foundation, CallToAction];
 
 export default function Home() {
   return (
     <PageWrapper>
-
       <Hero />
-
-      <FadeSection>
-        <TrustSection />
-      </FadeSection>
-
-      <FadeSection>
-        <DigitalCraftsmanship />
-      </FadeSection>
-
-      <FadeSection>
-        <AboutPreview />
-      </FadeSection>
-
-      <FadeSection>
-        <Foundation />
-      </FadeSection>
-
-      <FadeSection>
-        <SolutionsPreview />
-      </FadeSection>
-
-      <FadeSection>
-        <Purpose />
-      </FadeSection>
-
-      <FadeSection>
-        <WhyChooseUs />
-      </FadeSection>
-
-      <FadeSection>
-        <ConstitutionPreview />
-      </FadeSection>
-
-      <FadeSection>
-        <CallToAction />
-      </FadeSection>
-
+      {sections.map((SectionComponent, index) => <FadeSection key={index}><SectionComponent /></FadeSection>)}
     </PageWrapper>
   );
 }
