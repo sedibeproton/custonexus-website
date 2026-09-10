@@ -23,7 +23,7 @@ import { createWhatsAppUrl, whatsappMessages } from "@/lib/whatsapp";
 export const metadata: Metadata = {
   title: "Website, Software & Technology Services FAQs",
   description:
-    "Answers about CustoNexus business websites, redesigns, WordPress support, custom software, business systems and healthcare technology services.",
+    "Answers about CustoNexus custom website development, redesigns, support, custom software, business systems and healthcare technology services.",
   alternates: { canonical: "/faqs" },
   openGraph: {
     title: "Technology Services FAQs | CustoNexus Technologies",
@@ -44,7 +44,7 @@ const faqGroups = [
       {
         question: "What does CustoNexus Technologies do?",
         answer:
-          "CustoNexus designs business websites, improves and maintains existing websites, supports suitable WordPress installations, and builds custom web applications, dashboards, portals, digital forms and database-backed systems. Healthcare technology remains an important specialisation.",
+          "CustoNexus custom-designs and professionally develops purpose-built websites and web applications. We also improve and maintain existing websites, build dashboards, portals, digital forms and database-backed systems, and provide healthcare technology services. Selected WordPress support is available for suitable existing sites.",
       },
       {
         question: "Who does CustoNexus work with?",
@@ -90,7 +90,7 @@ const faqGroups = [
       {
         question: "Can you support an existing WordPress website?",
         answer:
-          "Yes. Although new CustoNexus websites are custom-built, we can support suitable existing WordPress websites with troubleshooting, updates, content changes, maintenance and improvement planning after an initial assessment.",
+          "Yes. WordPress is not our primary website-development identity, but we can support suitable existing WordPress websites with selected troubleshooting, updates, content changes, maintenance and improvement planning after an initial assessment.",
       },
       {
         question: "Do you provide support after a website or application launches?",
@@ -260,7 +260,7 @@ export default function FAQsPage() {
       <PageHero
         eyebrow="Frequently Asked Questions"
         title="Helpful Answers. Clear Next Steps."
-        subtitle="Explore common questions about business websites, redesigns, WordPress support, custom systems, professional services and healthcare technology."
+        subtitle="Explore common questions about custom websites, redesigns, website support, custom systems, professional services and healthcare technology."
       />
 
       <FadeSection>

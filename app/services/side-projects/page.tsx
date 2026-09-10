@@ -40,7 +40,7 @@ const capabilities = [
   {
     icon: Code2,
     title: "Custom Websites & Applications",
-    text: "Purpose-built websites, booking systems, availability calendars, forms, dashboards and applications for organisations in any sector. We do not use WordPress, purchased themes or generic templates.",
+    text: "Purpose-built websites, booking systems, availability calendars, forms, dashboards and applications for organisations in any sector, designed around the approved users and requirements.",
   },
   {
     icon: Wrench,
@@ -71,7 +71,7 @@ const process = [
 const faqs = [
   { question: "What qualifies as a CustoNexus side project?", answer: "A side project is suitable non-healthcare work that aligns with our available technology, technical, consulting or project-delivery capability. Examples include custom websites and applications, selected electrical or electronic repairs, consulting and project management." },
   { question: "Is every side-project request accepted?", answer: "No. We review safety, feasibility, condition, parts availability, required expertise, scope, schedule and delivery fit before accepting work or issuing a final quotation." },
-  { question: "Are side-project websites also custom-built?", answer: "Yes. Websites and applications for non-healthcare clients follow the same custom approach. We do not rely on WordPress, purchased themes or generic page-builder templates." },
+  { question: "Are side-project websites also custom-built?", answer: "Yes. Websites and applications for non-healthcare clients follow the same purpose-built approach, using suitable modern technologies while shaping the design and functionality around the approved requirements." },
 ] as const;
 
 export default function SideProjectsPage() {

@@ -10,7 +10,7 @@ import { createWhatsAppUrl, whatsappMessages } from "@/lib/whatsapp";
 
 export const metadata: Metadata = {
   title: "Contact & Start a Technology Project",
-  description: "Request a website, redesign, maintenance, WordPress support, business system, custom software or healthcare technology consultation from CustoNexus.",
+  description: "Request a custom website, redesign, maintenance, business system, custom software or healthcare technology consultation from CustoNexus.",
   alternates: { canonical: "/contact" },
   openGraph: { title: "Start a Project with CustoNexus Technologies", description: "Tell CustoNexus about your website, business system, software or healthcare technology requirement.", url: "/contact", images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "Contact CustoNexus Technologies" }] },
   twitter: { card: "summary_large_image", title: "Start a Project with CustoNexus Technologies", description: "Request a website, business system or technology consultation.", images: ["/opengraph-image"] },
@@ -32,7 +32,7 @@ export default function ContactPage() {
           <aside className="xl:sticky xl:top-32">
             <p className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.25em] text-blue-700"><span className="h-px w-8 bg-emerald-500" />Start here</p>
             <h2 className="mt-5 text-3xl font-semibold tracking-[-0.035em] text-blue-950 sm:text-4xl">A useful first conversation starts with the real problem.</h2>
-            <p className="mt-5 text-lg leading-8 text-slate-600">Request a new website, website redesign, maintenance, WordPress support, a custom business system, healthcare technology or professional project support.</p>
+            <p className="mt-5 text-lg leading-8 text-slate-600">Request a custom website, website redesign, technical maintenance, a custom business system, healthcare technology or professional project support.</p>
             <div className="mt-8 space-y-3">{methods.map(({ icon: Icon, label, value, href, external }) => <a key={label} href={href} target={external ? "_blank" : undefined} rel={external ? "noopener noreferrer" : undefined} className="group flex items-center gap-4 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm transition hover:-translate-y-0.5 hover:border-blue-300 hover:shadow-md"><span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-blue-700 transition group-hover:bg-blue-700 group-hover:text-white"><Icon size={21} aria-hidden /></span><span><span className="block text-xs font-bold uppercase tracking-wider text-slate-400">{label}</span><span className="mt-1 block font-semibold text-slate-900">{value}</span></span></a>)}</div>
             <div className="mt-7 flex items-start gap-3 rounded-2xl bg-blue-950 p-5 text-blue-100"><ShieldCheck className="mt-0.5 shrink-0 text-emerald-400" size={22} aria-hidden /><p className="text-sm leading-6">Your information is used only to understand and respond to your enquiry. Do not submit passwords, confidential patient information or sensitive system data.</p></div>
           </aside>

@@ -11,7 +11,7 @@ import SectionHeader from "@/components/SectionHeader";
 
 export const metadata: Metadata = {
   title: "Website, Business Software & Technology Services",
-  description: "Website design, redesign, maintenance, WordPress support, custom web applications, business systems and healthcare technology services in South Africa.",
+  description: "Custom website design and development, website redesign, technical support, custom web applications and business systems in South Africa.",
   alternates: { canonical: "/services" },
   openGraph: { title: "Technology Services for South African Businesses", description: "Professional websites, website support, custom business systems and healthcare technology from CustoNexus Technologies.", url: "/services", images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "CustoNexus technology services" }] },
   twitter: { card: "summary_large_image", title: "Technology Services for South African Businesses", description: "Websites, website support, custom systems and technology services.", images: ["/opengraph-image"] },
@@ -19,8 +19,8 @@ export const metadata: Metadata = {
 };
 
 const primary = [
-  { icon: MonitorSmartphone, title: "Business Websites", text: "New custom websites that build credibility, work well on mobile devices and create clear paths to enquiry.", href: "/services/business-websites", items: ["New websites", "Enquiry and contact journeys", "Bookings and WhatsApp", "Hosting and company email"] },
-  { icon: RefreshCw, title: "Website Redesign & Support", text: "Improve, repair or maintain an existing website, including suitable WordPress installations.", href: "/services/website-support", items: ["Website redesign", "Maintenance", "WordPress support", "Troubleshooting"] },
+  { icon: MonitorSmartphone, title: "Custom Website Development", text: "Purpose-built websites with professional UI, responsive frontend development and functionality shaped around the business.", href: "/services/business-websites", items: ["Custom UI and frontend", "Enquiry and contact journeys", "Bookings and integrations", "Hosting and deployment"] },
+  { icon: RefreshCw, title: "Website Redesign & Support", text: "Modernise, repair or maintain an existing website through practical design and technical improvements.", href: "/services/website-support", items: ["Website redesign", "Technical maintenance", "Responsive fixes", "Troubleshooting"] },
   { icon: Blocks, title: "Business Systems & Software", text: "Custom applications shaped around the workflows, customers and information your organisation manages.", href: "/services/business-systems", items: ["Dashboards and portals", "Bookings and forms", "Database applications", "Integrations and automation"] },
   { icon: BriefcaseBusiness, title: "Professional & Technical Services", text: "Technology consulting, project support and flexible technical capacity for defined organisational needs.", href: "/services/professional-services", items: ["Technology consulting", "Project support", "Freelance technicians", "Monthly facility support"] },
 ] as const;

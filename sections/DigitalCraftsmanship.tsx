@@ -24,7 +24,7 @@ export default function DigitalCraftsmanship() {
             <SectionHeader
               eyebrow="Website Design & Development"
               title="A website should help people trust your business and take the next step."
-              subtitle="We create new custom websites around your brand, customers and goals. We can also redesign outdated sites, maintain existing websites and support suitable WordPress installations."
+              subtitle="We custom-design and professionally develop purpose-built websites around your brand, customers and goals. We also redesign outdated sites and provide practical ongoing technical support."
               align="left"
               variant="inverted"
             />

@@ -12,7 +12,7 @@ import WhyChooseUs from "@/sections/WhyChooseUs";
 
 export const metadata = {
   title: "Website Design & Custom Business Systems South Africa",
-  description: "Business website design, website redesign, maintenance, WordPress support, custom web applications and business systems from CustoNexus Technologies in South Africa.",
+  description: "Custom website design and development, website redesign, custom web applications and business systems from CustoNexus Technologies in South Africa.",
   alternates: { canonical: "/" },
   openGraph: { title: "Website Design & Custom Business Systems South Africa", description: "Professional websites, website support and custom digital systems for South African businesses and healthcare organisations.", url: "/", images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "CustoNexus Technologies — business websites and custom systems" }] },
   twitter: { card: "summary_large_image", title: "Website Design & Custom Business Systems South Africa", description: "Professional websites, website support and custom digital systems for South African organisations.", images: ["/opengraph-image"] },

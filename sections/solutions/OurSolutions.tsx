@@ -15,7 +15,7 @@ const solutions = [
     icon: <Laptop size={30} />,
     title: "Websites & Website Support",
     description:
-      "New business websites, redesigns, maintenance and support for suitable existing WordPress websites.",
+      "Custom business websites, redesigns, responsive improvements and ongoing technical maintenance.",
     image: "/images/executive-presentation-identity-v2.png",
     href: "/services/business-websites",
   },

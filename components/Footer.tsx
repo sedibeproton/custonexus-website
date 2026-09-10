@@ -63,8 +63,8 @@ export default function Footer() {
           <div>
             <h3 className="mb-6 text-xs font-bold uppercase tracking-[0.25em] text-blue-300">Services</h3>
             <ul className="space-y-3 text-sm leading-6 text-slate-300">
-              <li><Link href="/services/business-websites" className="transition hover:text-white">Business Website Design</Link></li>
-              <li><Link href="/services/website-support" className="transition hover:text-white">Website Redesign, Maintenance & WordPress Support</Link></li>
+              <li><Link href="/services/business-websites" className="transition hover:text-white">Custom Website Design & Development</Link></li>
+              <li><Link href="/services/website-support" className="transition hover:text-white">Website Redesign, Maintenance & Support</Link></li>
               <li><Link href="/services/business-systems" className="transition hover:text-white">Business Systems & Custom Software</Link></li>
               <li><Link href="/services/healthcare-technology" className="transition hover:text-white">Healthcare Technology</Link></li>
               <li><Link href="/services/professional-services" className="transition hover:text-white">Consulting, Projects & Technical Support</Link></li>

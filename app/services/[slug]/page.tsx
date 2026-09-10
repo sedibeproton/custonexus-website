@@ -10,6 +10,7 @@ import FadeSection from "@/components/FadeSection";
 import PageHero from "@/components/PageHero";
 import PageWrapper from "@/components/PageWrapper";
 import SectionHeader from "@/components/SectionHeader";
+import TechnologyShowcase from "@/components/TechnologyShowcase";
 import { getServicePage, servicePages } from "@/lib/service-pages";
 import { serviceSeoDetails } from "@/lib/service-seo";
 
@@ -149,6 +150,7 @@ export default async function ServiceDetailPage({
   const pageUrl = `${siteUrl}/services/${service.slug}`;
   const roadmap = serviceRoadmaps[service.slug];
   const seo = serviceSeoDetails[service.slug];
+  const showcaseVariant = service.slug === "business-websites" ? "website" : service.slug === "website-support" ? "support" : service.slug === "business-systems" ? "systems" : null;
   const structuredData = {
     "@context": "https://schema.org",
     "@graph": [
@@ -207,10 +209,7 @@ export default async function ServiceDetailPage({
         <section className="bg-white py-16 sm:py-24">
           <Container>
             <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:gap-14">
-              <div className="relative aspect-[4/3] overflow-hidden rounded-3xl bg-slate-100 shadow-xl sm:rounded-[2rem]">
-                <Image src={seo.image} alt={seo.imageAlt} fill sizes="(max-width: 1024px) 100vw, 44vw" className="object-cover" />
-                <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-blue-950/35 via-transparent to-transparent" />
-              </div>
+              {showcaseVariant ? <TechnologyShowcase variant={showcaseVariant} /> : <div className="relative aspect-[4/3] overflow-hidden rounded-3xl bg-slate-100 shadow-xl sm:rounded-[2rem]"><Image src={seo.image} alt={seo.imageAlt} fill sizes="(max-width: 1024px) 100vw, 44vw" className="object-cover" /><div aria-hidden className="absolute inset-0 bg-gradient-to-t from-blue-950/35 via-transparent to-transparent" /></div>}
               <div>
                 <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-50 text-blue-700"><Users aria-hidden size={24} /></span>
                 <h2 className="mt-5 text-3xl font-bold tracking-tight text-blue-950 sm:text-4xl">Who this service is for</h2>
@@ -299,7 +298,7 @@ export default async function ServiceDetailPage({
                 <p className="mt-4 max-w-3xl leading-8 text-slate-600">We will clarify the requirement and provide a written proposal covering deliverables, responsibilities, assumptions, timing and price before work begins.</p>
                 <p className="mt-4 text-sm leading-7 text-slate-500">{service.pricingNote}</p>
               </div>
-              <Link href="/contact" className="inline-flex items-center justify-center gap-2 rounded-2xl bg-blue-700 px-7 py-4 font-bold text-white shadow-lg shadow-blue-700/20 transition hover:-translate-y-0.5 hover:bg-blue-800">Request a quote <ArrowRight size={18} aria-hidden /></Link>
+              <Link href="/contact" className="inline-flex items-center justify-center gap-2 rounded-2xl bg-blue-700 px-7 py-4 font-bold text-white shadow-lg shadow-blue-700/20 transition hover:-translate-y-0.5 hover:bg-blue-800">{service.slug === "business-websites" ? "Request a website quote" : "Request a quote"} <ArrowRight size={18} aria-hidden /></Link>
             </div>
           </Container>
         </section>
@@ -329,7 +328,7 @@ export default async function ServiceDetailPage({
       </FadeSection>
 
       <FadeSection>
-        <CTASection title={`Let’s Discuss ${service.title}`} subtitle="Tell us what your organisation needs and we will help identify a practical next step." buttonText="Contact CustoNexus" buttonLink="/contact" />
+        <CTASection title={`Let’s Discuss ${service.title}`} subtitle="Tell us what your organisation needs and we will help identify a practical next step." buttonText={service.slug === "business-websites" ? "Request a Website Quote" : "Contact CustoNexus"} buttonLink="/contact" />
       </FadeSection>
     </PageWrapper>
   );

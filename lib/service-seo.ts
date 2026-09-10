@@ -66,7 +66,7 @@ export const serviceSeoDetails: Record<string, ServiceSeoDetails> = {
       "A maintainable platform with an agreed hosting and support path",
     ],
     faqs: [
-      { question: "Do you build WordPress or template-based websites?", answer: "No. CustoNexus websites and web platforms are designed and developed for the specific client. We do not rely on WordPress, purchased themes or generic page-builder templates." },
+      { question: "How do you approach website development?", answer: "CustoNexus custom-designs and professionally develops websites around the client’s users, brand and requirements. We use appropriate modern frameworks, libraries and reusable components where they improve quality, while avoiding the limitations of forcing every project into a generic pre-made design." },
       { question: "Can you build booking systems and availability calendars?", answer: "Yes. Depending on the approved scope, a custom website can include booking requests, availability calendars, contact forms, payments, user accounts, dashboards, integrations and other business workflows." },
       { question: "Do you provide hosting, maintenance and company email?", answer: "Yes. We can provide hosting, maintenance and professional company email for solutions we deliver. The appropriate plan depends on traffic, storage, support needs, update frequency and mailbox requirements." },
     ],

@@ -20,8 +20,8 @@ const navItems: NavItem[] = [
     label: "Services",
     children: [
       { href: "/services", label: "All Services", description: "Explore our complete service portfolio" },
-      { href: "/services/business-websites", label: "Business Websites", description: "New professional websites built to generate trust and enquiries" },
-      { href: "/services/website-support", label: "Website Support", description: "Redesigns, maintenance and WordPress support" },
+      { href: "/services/business-websites", label: "Custom Websites", description: "Purpose-built websites, responsive frontend and custom functionality" },
+      { href: "/services/website-support", label: "Website Support", description: "Redesigns, maintenance, fixes and technical support" },
       { href: "/services/business-systems", label: "Business Systems", description: "Dashboards, portals, forms, applications and automation" },
       { href: "/services/healthcare-technology", label: "Healthcare Technology", description: "Healthcare websites, software and connected systems" },
       { href: "/services/professional-services", label: "Professional Services", description: "Consulting, project and flexible technical support" },

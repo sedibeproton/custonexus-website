@@ -1,24 +1,26 @@
 export const servicePages = [
   {
     slug: "business-websites",
-    title: "Business Websites",
-    pageTitle: "Business Website Design & Development South Africa",
+    title: "Custom Business Websites",
+    pageTitle: "Custom Website Design & Development South Africa",
     description:
       "Custom business website design and development for South African companies, professional practices, consultants, startups and growing organisations.",
     introduction:
-      "We design and build professional websites that explain your value clearly, work beautifully on mobile devices and make it easy for potential customers to contact your business.",
+      "We custom-design and professionally develop purpose-built websites around your brand, customers and business goals—not around the limitations of an off-the-shelf theme.",
     highlights: [
-      "New business and professional websites",
-      "Custom design aligned with your brand",
-      "Mobile-friendly responsive development",
+      "Custom UI and customer-journey design",
+      "Professionally coded responsive frontends",
+      "Custom functionality and web applications",
       "Contact, enquiry and quotation forms",
       "WhatsApp and booking integrations",
       "SEO and performance foundations",
+      "APIs, databases and authentication where required",
       "Domain, hosting and company email assistance",
     ],
     sections: [
-      { title: "New Business Websites", text: "We create credible, custom websites for businesses that need a professional online presence, clearer service presentation and a practical path from visitor interest to enquiry." },
-      { title: "Designed Around Your Customers", text: "Page structure, messaging, calls to action and mobile behaviour are planned around what your customers need to understand and do—not around a generic theme." },
+      { title: "Custom Website Development", text: "We design and professionally code purpose-built websites using modern web technologies selected for the approved requirements. Frameworks and reusable components may support delivery, but the experience is shaped around your business rather than assembled from a generic theme." },
+      { title: "Why Custom?", text: "A purpose-built approach gives the brand, customer journey and functionality room to reflect the actual business. It supports clearer differentiation, appropriate integrations and a website that can evolve as requirements grow." },
+      { title: "Designed Around Your Customers", text: "Page structure, messaging, calls to action and mobile behaviour are planned around what your customers need to understand and do—not around a pre-made layout." },
       { title: "Useful Business Functionality", text: "Depending on scope, your website can include enquiries, quotation requests, WhatsApp contact, booking requests, availability calendars, payments, profiles, resources or other tailored workflows." },
       { title: "Launch & Ongoing Support", text: "We can assist with domains, hosting, company email, production launch, maintenance and future improvements so the website remains useful as the business evolves." },
     ],
@@ -29,19 +31,19 @@ export const servicePages = [
   },
   {
     slug: "website-support",
-    title: "Website Redesign, Maintenance & WordPress Support",
-    pageTitle: "Website Redesign, Maintenance & WordPress Support",
+    title: "Website Maintenance & Technical Support",
+    pageTitle: "Website Redesign, Maintenance & Technical Support",
     description:
-      "Website redesign, maintenance, troubleshooting and WordPress support for South African businesses that need a faster, clearer and more dependable website.",
+      "Website redesign, maintenance and technical support for custom and suitable existing websites, with selected WordPress assistance where appropriate.",
     introduction:
       "We help businesses improve websites that are outdated, difficult to manage, performing poorly or no longer supporting the way the organisation works.",
     highlights: [
       "Website redesign and modernisation",
       "Mobile usability and content improvements",
-      "WordPress troubleshooting and support",
       "Website maintenance and technical updates",
       "Performance and reliability reviews",
       "Contact-form and integration fixes",
+      "Selected WordPress support",
       "Ongoing support arrangements",
     ],
     sections: [
@@ -113,7 +115,7 @@ export const servicePages = [
       { title: "Custom Mobile or Multi-Platform App", range: "R30,000 - R100,000+", text: "Purpose-built mobile, progressive web or multi-platform applications. The final scope depends on user roles, functionality, integrations, security, testing and release requirements." },
       { title: "Hosting, Maintenance & Company Email", range: "R120 - R600+ per month", text: "Hosting and maintenance plans can include professional company email accounts. Website size, traffic, storage, update frequency, support level, mailbox quantity and email storage determine the final monthly fee." },
     ],
-    pricingNote: "Every CustoNexus website is designed and developed specifically for the client. We do not build with WordPress, purchased themes or generic page-builder templates. Page count, content volume, booking and availability functions, forms, payments, integrations, user accounts and business processes determine the final quotation.",
+    pricingNote: "CustoNexus custom-designs and develops websites around the approved client requirements using appropriate modern technologies. Page count, content volume, booking and availability functions, forms, payments, integrations, user accounts and business processes determine the final quotation.",
   },
   {
     slug: "medical-equipment-consumables",
@@ -181,7 +183,7 @@ export const servicePages = [
       { title: "Electrical or Electronics Assessment", range: "R50 - R750", text: "Initial assessment for suitable non-healthcare appliances or electronic devices. Pricing depends on the equipment type and diagnostic work required; collection, travel and specialist testing may be additional." },
       { title: "Electrical or Electronics Repair", range: "R50 - R5,000+", text: "Indicative labour range based on equipment type, fault and complexity. Components, replacement parts and external specialist work are quoted separately." },
     ],
-    pricingNote: "Technical-support rates are confirmed only after the required skills, scope, hours, location, access, tools, safety responsibilities and service expectations are understood. Side-project pricing depends on feasibility, safety, condition, parts availability and the work required. Custom websites and applications for non-healthcare customers follow the technology ranges above and remain fully custom-built rather than template-based.",
+    pricingNote: "Technical-support rates are confirmed only after the required skills, scope, hours, location, access, tools, safety responsibilities and service expectations are understood. Side-project pricing depends on feasibility, safety, condition, parts availability and the work required. Custom websites and applications for non-healthcare customers are purpose-built around the approved requirements.",
   },
   {
     slug: "strategic-partnerships",

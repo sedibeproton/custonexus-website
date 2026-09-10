@@ -34,11 +34,13 @@ export const metadata: Metadata = {
   },
 
   description:
-    "Business websites, redesigns, maintenance, WordPress support, custom web applications and business systems from CustoNexus Technologies in South Africa.",
+    "Custom website design and development, website redesign, custom web applications and business systems from CustoNexus Technologies in South Africa.",
 
   keywords: [
     "healthcare technology",
     "website design South Africa",
+    "custom website design South Africa",
+    "custom web development South Africa",
     "business website development",
     "website redesign South Africa",
     "website maintenance South Africa",
@@ -167,8 +169,8 @@ const organizationJsonLd = {
       description:
         "South African technology company providing business website design, website support, custom applications, business systems, professional services and healthcare technology.",
       knowsAbout: [
-        "Business website design and development",
-        "Website redesign, maintenance and WordPress support",
+        "Custom website design and professional frontend development",
+        "Website redesign, maintenance and technical support",
         "Custom web applications and business systems",
         "Website hosting and company email",
         "Medical equipment supply, servicing and calibration",

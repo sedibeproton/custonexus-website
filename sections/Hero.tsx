@@ -2,7 +2,7 @@ import HeroContent from "@/components/HeroContent";
 
 export default function Hero() {
   return (
-    <section className="relative isolate min-h-[820px] overflow-hidden bg-[linear-gradient(145deg,#fbfdff_0%,#f3f7ff_52%,#eef5ff_100%)] pb-36 pt-36 sm:pt-44 lg:flex lg:items-center lg:pb-44">
+    <section className="relative isolate overflow-hidden bg-[linear-gradient(145deg,#fbfdff_0%,#f3f7ff_52%,#eef5ff_100%)] pb-20 pt-32 sm:pb-24 sm:pt-40 lg:flex lg:min-h-[780px] lg:items-center lg:pb-28 lg:pt-40">
       <div aria-hidden className="absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_78%_32%,rgba(37,99,235,0.18),transparent_32%),radial-gradient(circle_at_65%_65%,rgba(16,185,129,0.08),transparent_24%)]" />
         <div className="cn-decor-drift absolute -right-32 top-24 h-[34rem] w-[34rem] rounded-full border border-blue-300/25" />

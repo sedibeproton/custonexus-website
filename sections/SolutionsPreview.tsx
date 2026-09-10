@@ -5,9 +5,9 @@ import Container from "@/components/Container";
 import SectionHeader from "@/components/SectionHeader";
 
 const services = [
-  { icon: MonitorSmartphone, title: "Business Websites", text: "Professional, mobile-friendly websites designed to explain your value and turn visitor interest into enquiries.", href: "/services/business-websites", action: "Build a new website" },
+  { icon: MonitorSmartphone, title: "Custom Business Websites", text: "Purpose-built, professionally coded websites shaped around your brand, customer journey and required functionality.", href: "/services/business-websites", action: "Build a custom website" },
   { icon: RefreshCw, title: "Website Redesign", text: "Modernise an outdated, slow or ineffective website with clearer content, stronger usability and a better customer journey.", href: "/services/website-support", action: "Improve an existing site" },
-  { icon: Wrench, title: "Maintenance & WordPress Support", text: "Practical troubleshooting, updates and ongoing care for suitable existing websites, including WordPress installations.", href: "/services/website-support", action: "Get website support" },
+  { icon: Wrench, title: "Website Maintenance & Support", text: "Practical troubleshooting, responsive fixes, content updates and technical care for suitable existing websites.", href: "/services/website-support", action: "Get website support" },
   { icon: Blocks, title: "Custom Business Systems", text: "Dashboards, portals, booking tools, digital forms and database applications built around your workflow.", href: "/services/business-systems", action: "Explore business systems" },
   { icon: Code2, title: "Custom Software & Automation", text: "Purpose-built web applications, selected software development, integrations and responsible process automation.", href: "/services/business-systems", action: "Discuss custom software" },
   { icon: HeartPulse, title: "Healthcare Technology", text: "Websites, software and connected digital solutions shaped by an understanding of healthcare environments.", href: "/services/healthcare-technology", action: "Explore healthcare technology" },
