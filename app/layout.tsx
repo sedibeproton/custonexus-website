@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import BackgroundDecor from "@/components/BackgroundDecor";
+import GoogleAnalytics from "@/components/GoogleAnalytics";
 
 
 const geistSans = Geist({
@@ -202,6 +203,7 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-full flex flex-col">
+        <GoogleAnalytics />
         <a
           href="#main-content"
           className="fixed left-4 top-4 z-[100] -translate-y-24 rounded-full bg-blue-700 px-5 py-3 font-semibold text-white shadow-xl transition-transform focus:translate-y-0"

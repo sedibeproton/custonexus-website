@@ -298,7 +298,7 @@ export default async function ServiceDetailPage({
                 <p className="mt-4 max-w-3xl leading-8 text-slate-600">We will clarify the requirement and provide a written proposal covering deliverables, responsibilities, assumptions, timing and price before work begins.</p>
                 <p className="mt-4 text-sm leading-7 text-slate-500">{service.pricingNote}</p>
               </div>
-              <Link href="/contact" className="inline-flex items-center justify-center gap-2 rounded-2xl bg-blue-700 px-7 py-4 font-bold text-white shadow-lg shadow-blue-700/20 transition hover:-translate-y-0.5 hover:bg-blue-800">{service.slug === "business-websites" ? "Request a website quote" : "Request a quote"} <ArrowRight size={18} aria-hidden /></Link>
+              <Link href={service.slug === "business-websites" ? "/free-website-review" : "/contact"} className="inline-flex items-center justify-center gap-2 rounded-2xl bg-blue-700 px-7 py-4 font-bold text-white shadow-lg shadow-blue-700/20 transition hover:-translate-y-0.5 hover:bg-blue-800">{service.slug === "business-websites" ? "Get a free website review" : "Request a quote"} <ArrowRight size={18} aria-hidden /></Link>
             </div>
           </Container>
         </section>
@@ -328,7 +328,7 @@ export default async function ServiceDetailPage({
       </FadeSection>
 
       <FadeSection>
-        <CTASection title={`Let’s Discuss ${service.title}`} subtitle="Tell us what your organisation needs and we will help identify a practical next step." buttonText={service.slug === "business-websites" ? "Request a Website Quote" : "Contact CustoNexus"} buttonLink="/contact" />
+        <CTASection title={service.slug === "business-websites" ? "Not Sure What Your Website Needs First?" : `Let’s Discuss ${service.title}`} subtitle={service.slug === "business-websites" ? "Request a free review for practical feedback on the public website before deciding what to rebuild or improve." : "Tell us what your organisation needs and we will help identify a practical next step."} buttonText={service.slug === "business-websites" ? "Get a Free Website Review" : "Contact CustoNexus"} buttonLink={service.slug === "business-websites" ? "/free-website-review" : "/contact"} />
       </FadeSection>
     </PageWrapper>
   );

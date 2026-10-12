@@ -16,6 +16,7 @@ const publicPaths = [
   "/constitution",
   "/faqs",
   "/contact",
+  "/free-website-review",
   "/robots.txt",
   "/sitemap.xml",
   "/manifest.webmanifest",

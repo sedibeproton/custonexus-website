@@ -53,6 +53,11 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/free-website-review" className="font-semibold text-blue-300 transition hover:text-white">
+                  Free Website Review
+                </Link>
+              </li>
+              <li>
                 <Link href="/contact" className="transition hover:text-white">
                   Contact
                 </Link>

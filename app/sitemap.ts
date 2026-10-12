@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { servicePages } from "@/lib/service-pages";
 
 const siteUrl = "https://custonexus.com";
-const lastModified = new Date("2026-09-10");
+const lastModified = new Date("2026-10-12");
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const routes: MetadataRoute.Sitemap = [
@@ -14,6 +14,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${siteUrl}/faqs`, lastModified, changeFrequency: "monthly", priority: 0.7 },
     { url: `${siteUrl}/constitution`, lastModified, changeFrequency: "yearly", priority: 0.6 },
     { url: `${siteUrl}/contact`, lastModified, changeFrequency: "monthly", priority: 0.7 },
+    { url: `${siteUrl}/free-website-review`, lastModified, changeFrequency: "monthly", priority: 0.9 },
   ];
 
   return [

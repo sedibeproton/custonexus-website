@@ -4,8 +4,8 @@ import { deleteEnquiry } from "@/lib/enquiries";
 import { requireBusinessAccess } from "@/lib/business/api";
 import { normalisePhone, validateEnquiryContact, validateEnquiryDetails } from "@/lib/enquiry-validation";
 
-const allowedServices = new Set(["business-website", "website-support", "business-system", "healthcare-technology", "medical-equipment", "professional-services", "strategic-partnerships"]);
-const allowedIntents = new Set(["quote", "callback", "general"]);
+const allowedServices = new Set(["business-website", "website-review", "website-support", "business-system", "healthcare-technology", "medical-equipment", "professional-services", "strategic-partnerships"]);
+const allowedIntents = new Set(["quote", "callback", "general", "review"]);
 const allowedContact = new Set(["call", "email", "whatsapp"]);
 
 function clean(value: unknown, max = 2000) {
@@ -25,7 +25,7 @@ export async function POST(request: Request) {
   const service = clean(body.service, 50);
   const preferredContact = clean(body.preferredContact, 30);
   const fullName = clean(body.fullName, 120);
-  const company = clean(body.company, 160);
+  const company = clean(body.company, 160) || (service === "website-review" ? "Not provided" : "");
   const email = clean(body.email, 200).toLowerCase();
   const phone = normalisePhone(clean(body.phone, 40));
   const consent = body.consent === true;
@@ -39,6 +39,7 @@ export async function POST(request: Request) {
     ...validateEnquiryDetails({ requirements: details.requirements, timeline: details.timeline, currentWebsite: details.currentWebsite }),
     ...validateEnquiryContact({ fullName, company, email, phone, preferredContact }),
   };
+  if (service === "website-review" && !details.currentWebsite) validationErrors.currentWebsite = "Enter the website you would like us to review.";
   if (Object.keys(validationErrors).length) return Response.json({ error: "Please correct the highlighted information.", fields: validationErrors }, { status: 400 });
   if (!consent) return Response.json({ error: "Please confirm that we may contact you about this enquiry." }, { status: 400 });
 

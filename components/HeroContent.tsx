@@ -26,7 +26,7 @@ export default function HeroContent() {
           Professional websites, business systems and custom digital solutions for companies, practices and healthcare organisations.
         </motion.p>
         <motion.div variants={reveal} className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-          <Link href="/contact" className="group inline-flex items-center justify-center gap-3 rounded-2xl bg-blue-700 px-7 py-4 font-bold text-white shadow-[0_14px_35px_rgba(29,78,216,.25)] transition hover:-translate-y-0.5 hover:bg-blue-800">Start a project <ArrowRight size={19} aria-hidden className="transition group-hover:translate-x-1" /></Link>
+          <Link href="/free-website-review" className="group inline-flex items-center justify-center gap-3 rounded-2xl bg-blue-700 px-7 py-4 font-bold text-white shadow-[0_14px_35px_rgba(29,78,216,.25)] transition hover:-translate-y-0.5 hover:bg-blue-800">Get a free website review <ArrowRight size={19} aria-hidden className="transition group-hover:translate-x-1" /></Link>
           <Link href="/services" className="inline-flex items-center justify-center rounded-2xl border border-slate-200 bg-white/80 px-7 py-4 font-bold text-blue-950 shadow-sm backdrop-blur transition hover:-translate-y-0.5 hover:border-blue-300 hover:bg-white">Explore services</Link>
           <a href={createWhatsAppUrl(whatsappMessages.project)} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-4 font-bold text-emerald-700 transition hover:bg-emerald-50"><MessageCircle size={19} aria-hidden /> WhatsApp us</a>
         </motion.div>

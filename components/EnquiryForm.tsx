@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { ArrowLeft, ArrowRight, Check, LoaderCircle, MessageCircle } from "lucide-react";
 import { validateEnquiryContact, validateEnquiryDetails } from "@/lib/enquiry-validation";
+import { trackConversion } from "@/lib/analytics";
 
 type FormState = Record<string, string | boolean>;
 
@@ -78,7 +79,7 @@ export default function EnquiryForm() {
         }
         throw new Error(result.error || "Unable to submit enquiry.");
       }
-      setReference(result.reference); setStatus("success"); setStep(4);
+      setReference(result.reference); setStatus("success"); setStep(4); trackConversion("enquiry_submitted", { service: text("service"), intent: text("intent") });
     } catch (error) {
       setStatus("error");
       setMessage(error instanceof TypeError
