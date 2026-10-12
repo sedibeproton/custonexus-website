@@ -22,7 +22,7 @@ const navItems: NavItem[] = [
       { href: "/services", label: "All Services", description: "Explore our complete service portfolio" },
       { href: "/services/business-websites", label: "Custom Websites", description: "Purpose-built websites, responsive frontend and custom functionality" },
       { href: "/services/website-support", label: "Website Support", description: "Redesigns, maintenance, fixes and technical support" },
-      { href: "/services/business-systems", label: "Business Systems", description: "Dashboards, portals, forms, applications and automation" },
+      { href: "/services/business-systems", label: "Application Development", description: "Web and desktop applications, redesign, integration and automation" },
       { href: "/services/healthcare-technology", label: "Healthcare Technology", description: "Healthcare websites, software and connected systems" },
       { href: "/services/professional-services", label: "Professional Services", description: "Consulting, project and flexible technical support" },
       { href: "/services/strategic-partnerships", label: "Strategic Partnerships", description: "Technology, supplier and delivery collaboration" },

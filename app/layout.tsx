@@ -1,7 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import BackgroundDecor from "@/components/BackgroundDecor";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 
 
@@ -47,6 +46,10 @@ export const metadata: Metadata = {
     "website maintenance South Africa",
     "WordPress support South Africa",
     "custom software development South Africa",
+    "application design South Africa",
+    "Windows desktop application development",
+    "application modernisation",
+    "software integration South Africa",
     "business systems development",
     "custom web applications South Africa",
     "digital health solutions",
@@ -68,7 +71,7 @@ export const metadata: Metadata = {
   authors: [{ name: "CustoNexus Technologies", url: "/" }],
   creator: "CustoNexus Technologies",
   publisher: "CustoNexus Technologies",
-  category: "Website development, business software and healthcare technology",
+  category: "Website development, application development, software integration and healthcare technology",
 
   alternates: { canonical: "/" },
 
@@ -94,14 +97,14 @@ export const metadata: Metadata = {
       },
       {
         url: "/logos/logo-mark.png",
-        sizes: "1024x1024",
+        sizes: "512x512",
         type: "image/png",
       },
     ],
     shortcut: "/favicon.ico",
     apple: {
       url: "/logos/logo-mark.png",
-      sizes: "1024x1024",
+      sizes: "512x512",
       type: "image/png",
     },
   },
@@ -109,12 +112,12 @@ export const metadata: Metadata = {
   openGraph: {
     title: "CustoNexus Technologies",
     description:
-      "Professional websites, business systems and custom digital solutions for South African organisations.",
+      "Professional websites, custom applications, software integration and digital solutions for South African organisations.",
     url: "/",
     siteName: "CustoNexus Technologies",
     locale: "en_ZA",
     type: "website",
-    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "CustoNexus Technologies — websites, business systems and custom digital solutions" }],
+    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "CustoNexus Technologies — websites, applications and digital solutions" }],
   },
 
   twitter: {
@@ -147,8 +150,8 @@ const organizationJsonLd = {
         "@type": "ImageObject",
         url: "https://custonexus.com/logos/logo-mark.png",
         contentUrl: "https://custonexus.com/logos/logo-mark.png",
-        width: 1024,
-        height: 1024,
+        width: 512,
+        height: 512,
         caption: "CustoNexus Technologies",
       },
       email: "info@custonexus.com",
@@ -210,7 +213,6 @@ export default function RootLayout({
         >
           Skip to main content
         </a>
-        <BackgroundDecor />
         <div className="relative z-10 flex min-h-screen w-full flex-col">
           {children}
         </div>

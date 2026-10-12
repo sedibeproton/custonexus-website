@@ -8,8 +8,8 @@ const services = [
   { icon: MonitorSmartphone, title: "Custom Business Websites", text: "Purpose-built, professionally coded websites shaped around your brand, customer journey and required functionality.", href: "/services/business-websites", action: "Build a custom website" },
   { icon: RefreshCw, title: "Website Redesign", text: "Modernise an outdated, slow or ineffective website with clearer content, stronger usability and a better customer journey.", href: "/services/website-support", action: "Improve an existing site" },
   { icon: Wrench, title: "Website Maintenance & Support", text: "Practical troubleshooting, responsive fixes, content updates and technical care for suitable existing websites.", href: "/services/website-support", action: "Get website support" },
-  { icon: Blocks, title: "Custom Business Systems", text: "Dashboards, portals, booking tools, digital forms and database applications built around your workflow.", href: "/services/business-systems", action: "Explore business systems" },
-  { icon: Code2, title: "Custom Software & Automation", text: "Purpose-built web applications, selected software development, integrations and responsible process automation.", href: "/services/business-systems", action: "Discuss custom software" },
+  { icon: Blocks, title: "Application Design & Development", text: "Custom web and Windows desktop applications, dashboards, portals and reporting tools built around your users.", href: "/services/business-systems", action: "Discuss an application" },
+  { icon: Code2, title: "Software Modernisation & Integration", text: "Application redesign, legacy software assessment, compatible integrations and responsible workflow automation.", href: "/services/business-systems", action: "Explore software services" },
   { icon: HeartPulse, title: "Healthcare Technology", text: "Websites, software and connected digital solutions shaped by an understanding of healthcare environments.", href: "/services/healthcare-technology", action: "Explore healthcare technology" },
 ] as const;
 

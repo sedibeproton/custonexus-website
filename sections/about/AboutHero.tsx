@@ -13,7 +13,7 @@ export default function AboutHero() {
 
       <ImageFrame
         src="/images/about-hero-identity-v2.png"
-        alt="Healthcare professionals collaborating"
+        alt="CustoNexus professionals collaborating on technology solutions"
         fill
         priority
         variant="plain"
@@ -46,7 +46,7 @@ export default function AboutHero() {
             Building Technology With Practical Purpose
 
             <span className="block text-blue-300">
-              For Businesses and Healthcare.
+              For Businesses That Want to Work Better.
             </span>
 
           </h1>
@@ -54,8 +54,8 @@ export default function AboutHero() {
           <p className="mt-7 max-w-2xl text-lg leading-8 text-slate-200 sm:text-xl sm:leading-9">
 
             CustoNexus Technologies is a young South African company building
-            professional websites, business systems and custom digital solutions,
-            with healthcare remaining an important long-term specialisation.
+            professional websites, custom applications and digital solutions,
+            while developing specialist capability for healthcare organisations.
 
           </p>
 

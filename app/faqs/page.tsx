@@ -21,9 +21,9 @@ import SectionHeader from "@/components/SectionHeader";
 import { createWhatsAppUrl, whatsappMessages } from "@/lib/whatsapp";
 
 export const metadata: Metadata = {
-  title: "Website, Software & Technology Services FAQs",
+  title: "Technology Services FAQs",
   description:
-    "Answers about CustoNexus custom website development, redesigns, support, custom software, business systems and healthcare technology services.",
+    "Answers about custom website development, redesigns, maintenance, business applications, project scoping and specialist technology services.",
   alternates: { canonical: "/faqs" },
   openGraph: {
     title: "Technology Services FAQs | CustoNexus Technologies",

@@ -26,13 +26,13 @@ const items = [
     icon: <Lightbulb className="h-7 w-7" />,
     title: "Innovation With Purpose",
     description:
-      "Technology is valuable only when it improves healthcare experiences for people.",
+      "Technology is valuable when it improves a customer journey, removes avoidable work or gives an organisation better control.",
   },
   {
     icon: <Users className="h-7 w-7" />,
     title: "People First",
     description:
-      "Healthcare professionals, patients and partners remain at the centre of everything we create.",
+      "Customers, users, staff and partners remain central to the decisions we make and the systems we create.",
   },
 ];
 

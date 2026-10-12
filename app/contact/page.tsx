@@ -9,8 +9,8 @@ import PageWrapper from "@/components/PageWrapper";
 import { createWhatsAppUrl, whatsappMessages } from "@/lib/whatsapp";
 
 export const metadata: Metadata = {
-  title: "Contact & Start a Technology Project",
-  description: "Request a custom website, redesign, maintenance, business system, custom software or healthcare technology consultation from CustoNexus.",
+  title: "Contact & Request a Quote",
+  description: "Contact CustoNexus about a custom website, website redesign, maintenance, business application, automation or specialist technology requirement.",
   alternates: { canonical: "/contact" },
   openGraph: { title: "Start a Project with CustoNexus Technologies", description: "Tell CustoNexus about your website, business system, software or healthcare technology requirement.", url: "/contact", images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "Contact CustoNexus Technologies" }] },
   twitter: { card: "summary_large_image", title: "Start a Project with CustoNexus Technologies", description: "Request a website, business system or technology consultation.", images: ["/opengraph-image"] },

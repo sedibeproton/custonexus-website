@@ -25,7 +25,7 @@ const steps = [
     icon: <PencilRuler size={30} />,
     title: "Design",
     description:
-      "Together we create practical, people-centred healthcare solutions.",
+      "Together we shape a practical solution around the approved users, workflow and outcome.",
   },
   {
     icon: <Rocket size={30} />,

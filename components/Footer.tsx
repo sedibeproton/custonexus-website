@@ -14,7 +14,7 @@ export default function Footer() {
           <div>
             <div className="inline-flex rounded-2xl bg-white px-4 py-2 shadow-2xl"><Logo /></div>
             <p className="mt-6 max-w-sm leading-8 text-slate-400">
-              Websites, business systems and custom digital solutions for South African businesses and healthcare organisations.
+              Websites, custom applications, software integration and digital solutions for South African businesses, with specialist healthcare capability.
             </p>
             <p className="mt-6 font-semibold text-blue-400">
               Technology that helps organisations work better.

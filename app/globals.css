@@ -164,6 +164,24 @@ p {
   animation: decor-drift-reverse 18s ease-in-out infinite;
 }
 
+@keyframes section-reveal {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.cn-section-reveal {
+  opacity: 1;
+}
+
+@supports (animation-timeline: view()) {
+  .cn-section-reveal {
+    animation: section-reveal 1ms both;
+    animation-delay: var(--reveal-delay, 0s);
+    animation-timeline: view();
+    animation-range: entry 0% entry 22%;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after {

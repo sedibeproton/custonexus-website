@@ -21,19 +21,19 @@ export default function WhyWeExist() {
         <FeatureCard
           icon={<HeartHandshake size={32} />}
           title="People First"
-          description="Healthcare begins and ends with people. Every solution we create is designed to support healthcare professionals and improve patient experiences."
+          description="Useful technology begins with people. We design around the customers, teams and stakeholders who need to understand, use and trust each solution."
         />
 
         <FeatureCard
           icon={<Handshake size={32} />}
           title="Trusted Partnerships"
-          description="Meaningful collaboration creates better outcomes. We believe long-term partnerships are the foundation of sustainable healthcare innovation."
+          description="Clear communication and shared responsibility create better outcomes. We work to build relationships based on trust, realistic expectations and accountable delivery."
         />
 
         <FeatureCard
           icon={<Lightbulb size={32} />}
           title="Purposeful Innovation"
-          description="Innovation should solve real healthcare challenges, simplify complexity and create lasting value for those we serve."
+          description="Innovation should solve a real customer or operational problem, simplify avoidable complexity and create practical value for the organisation."
         />
       </div>
     </Section>

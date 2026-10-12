@@ -2,9 +2,9 @@ export const servicePages = [
   {
     slug: "business-websites",
     title: "Custom Business Websites",
-    pageTitle: "Custom Website Design & Development South Africa",
+    pageTitle: "Website Design & Development",
     description:
-      "Custom business website design and development for South African companies, professional practices, consultants, startups and growing organisations.",
+      "CustoNexus builds professional, mobile-friendly business websites designed to showcase your services, strengthen credibility and encourage enquiries.",
     introduction:
       "We custom-design and professionally develop purpose-built websites around your brand, customers and business goals—not around the limitations of an off-the-shelf theme.",
     highlights: [
@@ -32,9 +32,9 @@ export const servicePages = [
   {
     slug: "website-support",
     title: "Website Maintenance & Technical Support",
-    pageTitle: "Website Redesign, Maintenance & Technical Support",
+    pageTitle: "Website Support & Redesign",
     description:
-      "Website redesign, maintenance and technical support for custom and suitable existing websites, with selected WordPress assistance where appropriate.",
+      "Keep your business website maintained, updated and supported with practical website maintenance, redesign and technical assistance from CustoNexus.",
     introduction:
       "We help businesses improve websites that are outdated, difficult to manage, performing poorly or no longer supporting the way the organisation works.",
     highlights: [
@@ -59,38 +59,42 @@ export const servicePages = [
   },
   {
     slug: "business-systems",
-    title: "Business Systems & Custom Software",
-    pageTitle: "Custom Business Systems & Web Applications",
+    title: "Application Design & Development",
+    pageTitle: "Custom Application Design & Development",
     description:
-      "Custom web applications, dashboards, client portals, booking systems, digital forms, database applications and workflow automation for South African businesses.",
+      "Custom web and desktop applications, application redesign, software modernisation, business systems and integration solutions from CustoNexus.",
     introduction:
-      "We explore and build practical digital systems around the way your organisation works—especially where spreadsheets, paperwork or repetitive processes are creating friction.",
+      "We design, develop, redesign and modernise practical software around the way your organisation works, from customer-facing web applications to Windows desktop tools and secure internal systems.",
     highlights: [
       "Custom web applications",
+      "Windows desktop applications",
+      "Application design and prototyping",
+      "Application redesign and modernisation",
       "Internal dashboards and reporting tools",
       "Client and customer portals",
       "Booking and availability systems",
       "Digital forms and approval workflows",
       "Database-backed business applications",
-      "Integrations and process automation",
+      "API, database and compatible device integrations",
     ],
     sections: [
-      { title: "Internal Business Systems", text: "We can build secure tools for managing clients, documents, requests, records, quotations, operational tasks and other structured business information." },
-      { title: "Customer-Facing Portals", text: "Booking journeys, client portals, application forms and self-service workflows can reduce repetitive administration while giving customers a clearer experience." },
-      { title: "Workflow & Database Applications", text: "Where spreadsheets or paper-based processes are becoming difficult to control, we can explore a database-backed application designed around the actual workflow." },
-      { title: "Integrations & Automation", text: "We assess APIs, information flows and repetitive tasks to identify responsible opportunities for integration and automation without promising unsupported connections." },
+      { title: "Application Design & Development", text: "We design and build custom web applications, selected Windows desktop applications, client portals, dashboards, document tools and reporting software around defined users and requirements." },
+      { title: "Application Redesign & Modernisation", text: "We assess outdated interfaces, poor usability, performance concerns, compatibility issues, unreliable workflows and maintenance challenges. What can be improved depends on source-code access, licensing, architecture and technical feasibility." },
+      { title: "Business Software & Data", text: "Secure applications can support clients, documents, requests, records, quotations, operational tasks, data management and reporting where generic software does not fit the workflow." },
+      { title: "Integration & Automation", text: "We assess APIs, databases, external software, reporting workflows and compatible equipment interfaces. Integration is confirmed only where the systems, permissions, communication methods and project risks make it feasible." },
+      { title: "Troubleshooting & Maintenance", text: "Existing applications can be assessed for defects, usability improvements, maintenance needs and responsible enhancements, subject to access, documentation and the condition of the software." },
     ],
     pricing: [
-      { title: "Custom System", range: "Request a discovery consultation", text: "Complexity depends on users, roles, workflows, data, security, integrations, reporting and deployment requirements." },
+      { title: "Custom Application Project", range: "Request a discovery consultation", text: "Architecture, pricing and delivery schedules depend on users, workflows, platforms, data, security, integrations, reporting and deployment requirements." },
     ],
-    pricingNote: "Custom software is scoped in stages so the problem, users, responsibilities and acceptance criteria are understood before a build is approved.",
+    pricingNote: "Custom application work is individually scoped. Discovery confirms technical feasibility, source-code and licensing constraints, users, responsibilities and acceptance criteria before a build or modernisation project is approved.",
   },
   {
     slug: "healthcare-technology",
     title: "Healthcare Technology",
-    pageTitle: "Healthcare Website & Software Development",
+    pageTitle: "Healthcare Technology Solutions",
     description:
-      "Healthcare websites, software, portals, connected systems and specialised technology services from CustoNexus Technologies in South Africa.",
+      "Explore healthcare technology, medical equipment connectivity, custom diagnostic software and clinical engineering technical solutions from CustoNexus.",
     introduction:
       "We design and deliver practical digital solutions that help healthcare organisations communicate clearly, work efficiently and create better experiences for patients, professionals and partners.",
     highlights: [
@@ -109,18 +113,16 @@ export const servicePages = [
       { title: "Hosting, Maintenance & Company Email", text: "We can host and maintain the websites we deliver, monitor essential availability, coordinate updates and provide professional company email accounts. The appropriate plan depends on website scale, traffic, storage, support requirements, mailbox quantity and email storage." },
     ],
     pricing: [
-      { title: "Custom Starter Website", range: "R3,000 - R8,000", text: "A focused custom website, typically up to five pages, with responsive design, core content presentation, contact forms and essential search foundations." },
-      { title: "Custom Business Website", range: "R8,000 - R35,000", text: "A larger custom website, typically six to fifteen pages, with richer content, service journeys, booking requests, availability calendars, advanced forms or tailored business workflows." },
-      { title: "Advanced Website or Web Platform", range: "R35,000 - R150,000+", text: "Complex websites, portals and web applications involving user accounts, dashboards, payments, databases, automation, integrations or substantial custom processing." },
-      { title: "Custom Mobile or Multi-Platform App", range: "R30,000 - R100,000+", text: "Purpose-built mobile, progressive web or multi-platform applications. The final scope depends on user roles, functionality, integrations, security, testing and release requirements." },
-      { title: "Hosting, Maintenance & Company Email", range: "R120 - R600+ per month", text: "Hosting and maintenance plans can include professional company email accounts. Website size, traffic, storage, update frequency, support level, mailbox quantity and email storage determine the final monthly fee." },
+      { title: "Healthcare Website", range: "Request a tailored quote", text: "A custom public website shaped around the organisation, its audiences, required content, enquiry journey and approved functionality." },
+      { title: "Healthcare Portal or Application", range: "Request a discovery consultation", text: "Custom portals and applications involving users, dashboards, databases, automation, integrations or specialised information workflows." },
+      { title: "Hosting, Maintenance & Company Email", range: "Request a support proposal", text: "Hosting and maintenance can include professional company email. Scale, traffic, storage, support expectations and mailbox requirements determine the proposal." },
     ],
     pricingNote: "CustoNexus custom-designs and develops websites around the approved client requirements using appropriate modern technologies. Page count, content volume, booking and availability functions, forms, payments, integrations, user accounts and business processes determine the final quotation.",
   },
   {
     slug: "medical-equipment-consumables",
     title: "Medical Equipment & Consumables",
-    pageTitle: "Medical Equipment Supply, Calibration & Repairs",
+    pageTitle: "Medical Equipment Services",
     description:
       "Medical equipment supply, servicing, calibration and repairs in South Africa, plus PPE, medical consumables, autoclaves, defibrillators and patient monitors.",
     introduction:
@@ -141,21 +143,21 @@ export const servicePages = [
       { title: "Servicing, Calibration & Repairs", text: "We assess, service, calibrate and repair various types of medical equipment where the required technical capability, parts and manufacturer information are available. Every enquiry is reviewed against the equipment type, model, condition and applicable safety or compliance requirements before work is confirmed." },
     ],
     pricing: [
-      { title: "Inspection & Fault Assessment", range: "Free - R2,500", text: "Assessment pricing depends on the type and complexity of the equipment, its location and the diagnostic work required. Travel, specialist testing and collection may be quoted separately." },
-      { title: "Servicing or Calibration", range: "R70 - R8,000+ per item", text: "Indicative labour and technical-service range. Equipment type, calibration standard, certification requirements and specialist tools affect the final price." },
-      { title: "Medical Equipment Repairs", range: "R70 - R15,000+", text: "Repair pricing depends on the equipment type, fault and complexity. Replacement parts, manufacturer support and external specialist services are additional where required." },
+      { title: "Inspection & Fault Assessment", range: "Request an assessment", text: "Assessment pricing depends on the type and complexity of the equipment, its location and the diagnostic work required. Travel, specialist testing and collection may be quoted separately." },
+      { title: "Servicing or Calibration", range: "Quoted by equipment and scope", text: "Equipment type, calibration standard, certification requirements and specialist tools affect the final quotation." },
+      { title: "Medical Equipment Repairs", range: "Quoted after assessment", text: "Repair pricing depends on the equipment type, fault and complexity. Replacement parts, manufacturer support and external specialist services are additional where required." },
       { title: "Equipment & Consumable Supply", range: "Quoted to specification", text: "Pricing depends on product, brand, specification, quantity, supplier availability, delivery requirements and recurring supply arrangements." },
     ],
-    pricingNote: "Medical equipment work is accepted only after capability, safety and compliance review. Published ranges are planning estimates and exclude replacement parts, travel, delivery, third-party certification and specialist manufacturer services unless stated in the quotation.",
+    pricingNote: "Medical equipment work is accepted only after capability, safety and compliance review. Replacement parts, travel, delivery, third-party certification and specialist manufacturer services are identified separately where applicable.",
   },
   {
     slug: "professional-services",
     title: "Professional Services",
-    pageTitle: "Healthcare Consulting, Project Management & Technical Support",
+    pageTitle: "Technology & Project Services",
     description:
-      "Healthcare technology consulting, project planning, implementation support, digital strategy and managed services from CustoNexus Technologies in South Africa.",
+      "Technology consulting, project planning, implementation support and flexible technical capacity for businesses and healthcare organisations in South Africa.",
     introduction:
-      "Our professional services give healthcare organisations practical guidance and accountable delivery support for technology, operations and organisational improvement.",
+      "Our professional services give businesses and healthcare organisations practical guidance and accountable support for technology, projects and operational improvement.",
     highlights: [
       "Technology readiness assessments",
       "Digital strategy and roadmaps",
@@ -176,19 +178,19 @@ export const servicePages = [
       { title: "Side Projects Beyond Healthcare", text: "Healthcare remains our primary focus, but we also accept suitable side projects from individuals and organisations in other sectors. These may include websites, applications, consultations, project management, and the assessment or repair of electrical appliances and electronic devices. Each request is evaluated individually for safety, feasibility, parts availability, scope and fit before we commit to the work." },
     ],
     pricing: [
-      { title: "Consultation or Advisory Session", range: "R750 - R1,500 per hour", text: "Focused technology, operational, project or digital guidance. Larger assessments and written recommendations are quoted as a defined engagement." },
-      { title: "Project Planning & Management", range: "R8,000 - R45,000+", text: "Fixed-scope or monthly support depending on project duration, complexity, stakeholders, reporting and level of delivery ownership." },
+      { title: "Consultation or Advisory Session", range: "Request a scoped quote", text: "Focused technology, operational, project or digital guidance. Larger assessments and written recommendations are quoted as a defined engagement." },
+      { title: "Project Planning & Management", range: "Custom project proposal", text: "Fixed-scope or monthly support depending on project duration, complexity, stakeholders, reporting and level of delivery ownership." },
       { title: "Freelance Technician", range: "Quoted hourly rate", text: "For defined technical tasks, temporary capacity gaps or short-staffed teams. The rate depends on the required discipline, complexity, working hours, location, travel, tools and safety requirements." },
       { title: "Healthcare Facility Technical Support", range: "Custom monthly rate", text: "Recurring technical capacity under an agreed monthly scope. Pricing depends on included hours, equipment or systems covered, site frequency, response expectations, reporting and after-hours requirements." },
-      { title: "Electrical or Electronics Assessment", range: "R50 - R750", text: "Initial assessment for suitable non-healthcare appliances or electronic devices. Pricing depends on the equipment type and diagnostic work required; collection, travel and specialist testing may be additional." },
-      { title: "Electrical or Electronics Repair", range: "R50 - R5,000+", text: "Indicative labour range based on equipment type, fault and complexity. Components, replacement parts and external specialist work are quoted separately." },
+      { title: "Electrical or Electronics Assessment", range: "Request an assessment", text: "Initial assessment for suitable non-healthcare appliances or electronic devices. Pricing depends on the equipment type and diagnostic work required; collection, travel and specialist testing may be additional." },
+      { title: "Electrical or Electronics Repair", range: "Quoted after assessment", text: "Labour depends on equipment type, fault and complexity. Components, replacement parts and external specialist work are quoted separately." },
     ],
     pricingNote: "Technical-support rates are confirmed only after the required skills, scope, hours, location, access, tools, safety responsibilities and service expectations are understood. Side-project pricing depends on feasibility, safety, condition, parts availability and the work required. Custom websites and applications for non-healthcare customers are purpose-built around the approved requirements.",
   },
   {
     slug: "strategic-partnerships",
     title: "Strategic Partnerships",
-    pageTitle: "Healthcare Technology & Supplier Partnerships",
+    pageTitle: "Technology & Supplier Partnerships",
     description:
       "Strategic healthcare partnerships connecting technology providers, medical suppliers, implementation expertise and sustainable growth opportunities.",
     introduction:
@@ -207,12 +209,12 @@ export const servicePages = [
       { title: "Innovation & Growth", text: "We explore pilots, proofs of concept, market opportunities and long-term alliances that can deliver meaningful healthcare impact." },
     ],
     pricing: [
-      { title: "Partnership Discovery Session", range: "R2,500 - R8,000", text: "A structured working session to clarify the opportunity, participants, value proposition, responsibilities and practical next steps." },
-      { title: "Assessment & Partnership Planning", range: "R8,000 - R35,000+", text: "Research, stakeholder engagement, commercial planning, supplier evaluation or an implementation roadmap for a defined opportunity." },
-      { title: "Pilot or Proof of Concept", range: "R25,000 - R150,000+", text: "A scoped pilot involving solution design, coordination, implementation, measurement and reporting. Technology or equipment costs may be additional." },
+      { title: "Partnership Discovery Session", range: "Request a scoped proposal", text: "A structured working session to clarify the opportunity, participants, value proposition, responsibilities and practical next steps." },
+      { title: "Assessment & Partnership Planning", range: "Custom project proposal", text: "Research, stakeholder engagement, commercial planning, supplier evaluation or an implementation roadmap for a defined opportunity." },
+      { title: "Pilot or Proof of Concept", range: "Quoted to approved scope", text: "A scoped pilot involving solution design, coordination, implementation, measurement and reporting. Technology or equipment costs may be additional." },
       { title: "Long-Term Strategic Engagement", range: "Custom commercial proposal", text: "Distribution, joint delivery, growth and long-term partnership arrangements are structured around responsibilities, risk, investment and expected value." },
     ],
-    pricingNote: "Strategic partnerships are not treated as off-the-shelf packages. The indicative ranges cover defined discovery and delivery work; commercial partnerships may instead use retainers, project fees, revenue-sharing or another mutually agreed structure.",
+    pricingNote: "Strategic partnerships are not treated as off-the-shelf packages. Discovery, delivery work and any commercial arrangement are documented according to the opportunity, responsibilities, risk and expected value.",
   },
 ] as const;
 

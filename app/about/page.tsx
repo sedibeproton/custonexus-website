@@ -5,12 +5,12 @@ import AboutHero from "@/sections/about/AboutHero";
 import CTASection from "@/components/CTASection";
 
 export const metadata = {
-  title: "About CustoNexus Technologies",
+  title: "About Our Technology Company",
   description:
-    "Learn about CustoNexus Technologies, a South African technology company building websites, business systems and healthcare technology with practical purpose.",
+    "Learn about CustoNexus Technologies, a South African company building professional websites, custom business systems and practical digital solutions.",
   alternates: { canonical: "/about" },
-  openGraph: { title: "About CustoNexus Technologies", description: "Learn about our purpose, vision and commitment to meaningful healthcare technology, services and partnerships.", url: "/about", images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "About CustoNexus Technologies" }] },
-  twitter: { card: "summary_large_image", title: "About CustoNexus Technologies", description: "Our purpose, vision and commitment to better healthcare through technology and trusted partnerships.", images: ["/opengraph-image"] },
+  openGraph: { title: "About CustoNexus Technologies", description: "Our purpose, principles and approach to custom websites, business software and specialist technology services.", url: "/about", images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "About CustoNexus Technologies" }] },
+  twitter: { card: "summary_large_image", title: "About CustoNexus Technologies", description: "A South African technology company building useful websites, systems and digital solutions.", images: ["/opengraph-image"] },
   robots: { index: true, follow: true },
 };
 

@@ -13,7 +13,7 @@ function Frame({ children, label }: { children: React.ReactNode; label: string }
     <figure className="relative min-w-0 w-full max-w-full overflow-hidden rounded-[1.7rem] border border-slate-200/80 bg-white shadow-[0_28px_80px_rgba(7,26,61,.16)] sm:rounded-[2rem]">
       <div className="flex h-12 items-center gap-2 border-b border-slate-200 bg-slate-50 px-4">
         <span className="h-2.5 w-2.5 rounded-full bg-rose-400" /><span className="h-2.5 w-2.5 rounded-full bg-amber-400" /><span className="h-2.5 w-2.5 rounded-full bg-emerald-500" />
-        <div className="ml-2 flex h-7 min-w-0 flex-1 items-center gap-2 rounded-lg border border-slate-200 bg-white px-3 text-[10px] font-semibold text-slate-400 sm:text-xs"><Search size={12} aria-hidden /> yourbusiness.co.za</div>
+        <div className="ml-2 flex h-7 min-w-0 flex-1 items-center gap-2 rounded-lg border border-slate-200 bg-white px-3 text-[10px] font-semibold text-slate-600 sm:text-xs"><Search size={12} aria-hidden /> yourbusiness.co.za</div>
       </div>
       {children}
       <figcaption className="sr-only">{label}</figcaption>

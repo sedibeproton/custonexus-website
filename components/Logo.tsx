@@ -9,7 +9,9 @@ export default function Logo() {
         alt="CustoNexus Technologies"
         width={420}
         height={84}
-        priority
+        loading="eager"
+        sizes="(max-width: 639px) 190px, (max-width: 1023px) 280px, 320px"
+        quality={70}
         className="h-auto w-[190px] max-w-full sm:h-14 sm:w-auto lg:h-16"
       />
     </Link>

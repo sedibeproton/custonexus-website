@@ -1,6 +1,3 @@
-"use client";
-
-import { motion, useReducedMotion } from "framer-motion";
 import { ReactNode } from "react";
 
 interface FadeSectionProps {
@@ -14,30 +11,9 @@ export default function FadeSection({
   delay = 0,
   className = "",
 }: FadeSectionProps) {
-  const reduceMotion = useReducedMotion();
-
   return (
-    <motion.div
-      className={className}
-      initial={{
-        opacity: reduceMotion ? 1 : 0,
-        y: reduceMotion ? 0 : 24,
-      }}
-      whileInView={{
-        opacity: 1,
-        y: 0,
-      }}
-      viewport={{
-        once: true,
-        amount: 0.15,
-      }}
-      transition={{
-        duration: reduceMotion ? 0 : 0.65,
-        delay: reduceMotion ? 0 : delay,
-        ease: [0.22, 1, 0.36, 1],
-      }}
-    >
+    <div className={`cn-section-reveal ${className}`} style={{ "--reveal-delay": `${delay}s` } as React.CSSProperties}>
       {children}
-    </motion.div>
+    </div>
   );
 }

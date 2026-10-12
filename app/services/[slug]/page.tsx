@@ -44,13 +44,13 @@ const serviceRoadmaps = {
     ],
   },
   "business-systems": {
-    title: "From Operational Friction to a Working Digital System",
-    subtitle: "Custom systems begin with the process and its users—not with features chosen in isolation.",
-    note: "Larger systems may be delivered in phases so that risk, cost and learning remain manageable.",
+    title: "From Software Requirement to a Maintainable Application",
+    subtitle: "New applications and modernisation projects begin with users, workflows, constraints and technical feasibility—not features chosen in isolation.",
+    note: "Architecture, pricing and delivery schedules are individually scoped. Larger applications may be delivered in phases so that risk, cost and learning remain manageable.",
     steps: [
-      { number: "01", title: "Define the Problem", text: "Show us the spreadsheet, paperwork, messages or repetitive process that is slowing the organisation down." },
-      { number: "02", title: "Map Users & Workflow", text: "We clarify who uses the process, what information moves through it, where decisions happen and what must be protected." },
-      { number: "03", title: "Scope the Right First Version", text: "We define a practical first release, responsibilities, acceptance criteria, integrations and future possibilities." },
+      { number: "01", title: "Define the Requirement", text: "Tell us whether you need a new web or desktop application, an existing application redesigned, software modernised, or compatible systems integrated." },
+      { number: "02", title: "Assess Users, Software & Feasibility", text: "We clarify users, workflows, data, source-code and licensing constraints, current architecture, interfaces, security needs and integration methods." },
+      { number: "03", title: "Scope the Right First Version", text: "We define a practical first release or improvement phase, responsibilities, acceptance criteria, architecture, integrations and known limitations." },
       { number: "04", title: "Build Collaboratively", text: "We develop the approved system in clear stages and review progress with the people who will use it." },
       { number: "05", title: "Test With Real Scenarios", text: "The system is checked against agreed workflows, roles, data rules and operational scenarios before approval." },
       { number: "06", title: "Launch, Train & Improve", text: "We deploy the system, support handover or training and plan responsible improvements based on real use." },
@@ -151,6 +151,12 @@ export default async function ServiceDetailPage({
   const roadmap = serviceRoadmaps[service.slug];
   const seo = serviceSeoDetails[service.slug];
   const showcaseVariant = service.slug === "business-websites" ? "website" : service.slug === "website-support" ? "support" : service.slug === "business-systems" ? "systems" : null;
+  const websiteService = service.slug === "business-websites" || service.slug === "website-support";
+  const finalCta = service.slug === "business-systems"
+    ? { title: "Ready to Discuss an Application?", subtitle: "Tell us whether you need a new application, redesign, modernisation, integration or improvement so we can assess a practical next step.", text: "Discuss Your Application Project", href: "/contact" }
+    : websiteService
+      ? { title: "Not Sure What Your Website Needs First?", subtitle: "Request a free, no-obligation review of the public website before deciding what to rebuild, redesign or improve.", text: "Get a Free Website Review", href: "/free-website-review" }
+      : { title: `Let’s Discuss ${service.title}`, subtitle: "Tell us what your organisation needs and we will help identify a practical next step.", text: "Contact CustoNexus", href: "/contact" };
   const structuredData = {
     "@context": "https://schema.org",
     "@graph": [
@@ -298,7 +304,7 @@ export default async function ServiceDetailPage({
                 <p className="mt-4 max-w-3xl leading-8 text-slate-600">We will clarify the requirement and provide a written proposal covering deliverables, responsibilities, assumptions, timing and price before work begins.</p>
                 <p className="mt-4 text-sm leading-7 text-slate-500">{service.pricingNote}</p>
               </div>
-              <Link href={service.slug === "business-websites" ? "/free-website-review" : "/contact"} className="inline-flex items-center justify-center gap-2 rounded-2xl bg-blue-700 px-7 py-4 font-bold text-white shadow-lg shadow-blue-700/20 transition hover:-translate-y-0.5 hover:bg-blue-800">{service.slug === "business-websites" ? "Get a free website review" : "Request a quote"} <ArrowRight size={18} aria-hidden /></Link>
+              <Link href={websiteService ? "/free-website-review" : "/contact"} className="inline-flex items-center justify-center gap-2 rounded-2xl bg-blue-700 px-7 py-4 font-bold text-white shadow-lg shadow-blue-700/20 transition hover:-translate-y-0.5 hover:bg-blue-800">{websiteService ? "Get a free website review" : "Request a quote"} <ArrowRight size={18} aria-hidden /></Link>
             </div>
           </Container>
         </section>
@@ -328,7 +334,7 @@ export default async function ServiceDetailPage({
       </FadeSection>
 
       <FadeSection>
-        <CTASection title={service.slug === "business-websites" ? "Not Sure What Your Website Needs First?" : `Let’s Discuss ${service.title}`} subtitle={service.slug === "business-websites" ? "Request a free review for practical feedback on the public website before deciding what to rebuild or improve." : "Tell us what your organisation needs and we will help identify a practical next step."} buttonText={service.slug === "business-websites" ? "Get a Free Website Review" : "Contact CustoNexus"} buttonLink={service.slug === "business-websites" ? "/free-website-review" : "/contact"} />
+        <CTASection title={finalCta.title} subtitle={finalCta.subtitle} buttonText={finalCta.text} buttonLink={finalCta.href} />
       </FadeSection>
     </PageWrapper>
   );

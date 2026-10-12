@@ -11,11 +11,11 @@ import TrustSection from "@/sections/TrustSection";
 import WhyChooseUs from "@/sections/WhyChooseUs";
 
 export const metadata = {
-  title: "Website Design & Custom Business Systems South Africa",
-  description: "Custom website design and development, website redesign, custom web applications and business systems from CustoNexus Technologies in South Africa.",
+  title: { absolute: "Website & Application Development | CustoNexus" },
+  description: "CustoNexus designs, develops and modernises websites and custom applications for South African businesses, with software integration and technical support.",
   alternates: { canonical: "/" },
-  openGraph: { title: "Website Design & Custom Business Systems South Africa", description: "Professional websites, website support and custom digital systems for South African businesses and healthcare organisations.", url: "/", images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "CustoNexus Technologies — business websites and custom systems" }] },
-  twitter: { card: "summary_large_image", title: "Website Design & Custom Business Systems South Africa", description: "Professional websites, website support and custom digital systems for South African organisations.", images: ["/opengraph-image"] },
+  openGraph: { title: "Website & Application Development", description: "Custom websites, web and desktop applications, software modernisation and integration for South African businesses.", url: "/", images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "CustoNexus Technologies — websites, applications and digital solutions" }] },
+  twitter: { card: "summary_large_image", title: "Website & Application Development", description: "Custom websites, applications, software modernisation and integration for South African businesses.", images: ["/opengraph-image"] },
   robots: { index: true, follow: true },
 };
 

@@ -1,12 +1,4 @@
-"use client";
-
-import { usePathname } from "next/navigation";
-
 export default function BackgroundDecor() {
-  const pathname = usePathname();
-
-  if (pathname.startsWith("/secure")) return null;
-
   return (
     <div
       aria-hidden="true"

@@ -11,11 +11,11 @@ import WhyCustoNexus from "@/sections/solutions/WhyCustoNexus";
 import FutureInnovation from "@/sections/solutions/FutureInnovation";
 
 export const metadata = {
-  title: "Business Technology Solutions",
+  title: "Software Integration & Automation",
   description:
-    "Explore business websites, custom applications, dashboards, portals, workflow systems and healthcare technology solutions from CustoNexus.",
+    "Explore custom applications, software modernisation, integrations, dashboards, client portals, document management and workflow automation.",
   alternates: { canonical: "/solutions" },
-  openGraph: { title: "Business Technology Solutions from CustoNexus", description: "Websites, custom systems, workflow tools and healthcare technology for South African organisations.", url: "/solutions", images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "CustoNexus business technology solutions" }] },
+  openGraph: { title: "Application, Integration & Digital Solutions", description: "Custom applications, software modernisation, integration, workflow tools and healthcare technology.", url: "/solutions", images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "CustoNexus business technology solutions" }] },
   twitter: { card: "summary_large_image", title: "Business Technology Solutions from CustoNexus", description: "Websites, custom systems and practical digital solutions.", images: ["/opengraph-image"] },
   robots: { index: true, follow: true },
 };
@@ -27,7 +27,7 @@ export default function SolutionsPage() {
       <PageHero
         eyebrow="Solutions"
         title="Digital Solutions Built Around Real Work."
-        subtitle="Websites, portals, dashboards, business applications and workflow tools for organisations that need technology to solve a specific problem."
+        subtitle="Websites, web and desktop applications, portals, integrations and workflow tools for organisations that need technology to solve a specific problem."
       />
 
       <FadeSection>

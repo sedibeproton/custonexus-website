@@ -34,14 +34,15 @@ export const serviceSeoDetails: Record<string, ServiceSeoDetails> = {
   },
   "business-systems": {
     image: "/images/healthcare-technology.jpg",
-    imageAlt: "Custom dashboard and business workflow system",
-    audiences: ["Businesses relying heavily on spreadsheets or paperwork", "Teams managing repetitive administrative processes", "Service organisations needing booking or client portals", "Organisations with specialised software requirements"],
-    challenges: ["Important information is spread across files and messages", "Repetitive data entry consumes staff time", "Customers cannot complete common requests online", "Off-the-shelf software does not match the required workflow"],
-    outcomes: ["A clearly defined digital workflow", "Structured information and appropriate access controls", "Reduced avoidable administration", "A scalable system with documented responsibilities and support"],
+    imageAlt: "Custom application design and business workflow planning",
+    audiences: ["Businesses needing a new web or Windows desktop application", "Teams modernising unreliable or outdated software", "Service organisations needing portals, dashboards or document tools", "Organisations assessing integrations or specialised software requirements"],
+    challenges: ["Existing software is difficult to use or maintain", "Important information is spread across files and messages", "Repetitive data entry consumes staff time", "Systems cannot exchange information through a suitable supported method"],
+    outcomes: ["A clearly scoped application or modernisation plan", "Improved interfaces, workflows and maintainability", "Structured information and appropriate access controls", "A feasible integration and support path with documented limitations"],
     faqs: [
-      { question: "What kinds of business systems can you build?", answer: "Examples include internal dashboards, client portals, booking systems, digital forms, approval workflows, document systems, database applications and integrations, subject to discovery and scope." },
+      { question: "What kinds of applications can you build?", answer: "Examples include custom web applications, selected Windows desktop applications, internal dashboards, client portals, document and reporting systems, database applications and integrations, subject to discovery and scope." },
+      { question: "Can you redesign or modernise our existing application?", answer: "Potentially. We assess its interface, usability, performance, compatibility, source-code access, licensing, architecture and maintenance condition before confirming what can be changed responsibly." },
       { question: "Can you replace our spreadsheets with a custom application?", answer: "Potentially. We first understand the data, users, rules, reporting and risks before recommending whether a custom database application is justified." },
-      { question: "Can the system connect to software we already use?", answer: "Where the existing platforms provide appropriate APIs or integration methods, we can assess feasibility and define a responsible integration approach." },
+      { question: "Can the application connect to software or equipment we already use?", answer: "Where the existing systems or compatible devices provide appropriate APIs, database access or documented communication interfaces, we can assess feasibility and define a responsible integration approach." },
     ],
   },
   "healthcare-technology": {
