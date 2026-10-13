@@ -322,6 +322,7 @@ export default function FAQsPage() {
               <div className="mt-7">
                 <PrimaryButton href="/contact">View All Contact Options <ArrowRight size={18} /></PrimaryButton>
               </div>
+              <Link href="/free-website-review" className="mt-5 inline-flex items-center gap-2 font-bold text-blue-700 underline underline-offset-4">Get a Free Website Review <ArrowRight size={17} aria-hidden /></Link>
               <Link href="/services" className="mt-7 inline-flex items-center font-semibold text-blue-700 underline-offset-4 hover:underline">Explore all CustoNexus services</Link>
             </div>
           </Container>

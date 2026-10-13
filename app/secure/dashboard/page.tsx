@@ -1,8 +1,9 @@
 import Link from "next/link";
-import { Archive, ArrowRight, Landmark, ShieldCheck } from "lucide-react";
+import { Archive, ArrowRight, CalendarDays, Landmark, ShieldCheck } from "lucide-react";
 import { requireSecurePage } from "@/lib/business/page-auth";
 
 const workspaceCards = [
+  {title:"Appointments",description:"Review consultation bookings and manage public availability.",href:"/secure/appointments",action:"Manage appointments",icon:CalendarDays,accent:"from-indigo-600 to-blue-900",adminOnly:true},
   {
     title: "Company Archive",
     description: "Store, organise and retrieve company files, records and enquiries.",
@@ -51,7 +52,7 @@ export default async function SecureDashboardPage() {
         </div>
       </header>
 
-      <section aria-label="Workspace areas" className={`mt-10 grid gap-6 ${cards.length === 3 ? "lg:grid-cols-3" : "md:grid-cols-2"}`}>
+      <section aria-label="Workspace areas" className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
         {cards.map(({ title, description, href, action, icon: Icon, accent }) => <Link key={href} href={href} className="group relative isolate min-h-80 overflow-hidden rounded-[2rem] border border-white/80 bg-white p-7 shadow-[0_18px_60px_rgba(15,23,42,0.08)] transition duration-300 hover:-translate-y-1.5 hover:shadow-[0_25px_75px_rgba(15,23,42,0.16)] sm:p-9">
           <div className={`absolute inset-x-0 top-0 h-2 bg-gradient-to-r ${accent}`} />
           <div className={`flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br ${accent} text-white shadow-lg`}><Icon aria-hidden="true" size={30}/></div>

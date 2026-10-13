@@ -1,0 +1,9 @@
+import assert from "node:assert/strict";
+import test from "node:test";
+import {johannesburgInstant,slotsForDay} from "../lib/consultation-slots.ts";
+const settings={durationMinutes:15,minimumNoticeMinutes:0,maximumAdvanceDays:60};
+const rules=[{weekday:1,startTime:"09:00",endTime:"10:00",enabled:true}];
+test("Johannesburg wall times convert to the correct UTC instant",()=>{assert.equal(johannesburgInstant("2026-10-19","09:00").toISOString(),"2026-10-19T07:00:00.000Z")});
+test("slot calculation respects duration, bookings and blocked periods",()=>{const slots=slotsForDay({date:"2026-10-19",now:new Date("2026-10-12T00:00:00Z"),settings,rules,blocks:[{startsAt:"2026-10-19T07:30:00Z",endsAt:"2026-10-19T07:45:00Z"}],bookings:[{startsAt:"2026-10-19T07:00:00Z",endsAt:"2026-10-19T07:15:00Z",status:"CONFIRMED"}]});assert.deepEqual(slots,["2026-10-19T07:15:00.000Z","2026-10-19T07:45:00.000Z"])});
+test("cancelled bookings do not consume a slot and minimum notice is enforced",()=>{const slots=slotsForDay({date:"2026-10-19",now:new Date("2026-10-19T07:05:00Z"),settings:{...settings,minimumNoticeMinutes:20},rules,blocks:[],bookings:[{startsAt:"2026-10-19T07:30:00Z",endsAt:"2026-10-19T07:45:00Z",status:"CANCELLED"}]});assert.deepEqual(slots,["2026-10-19T07:30:00.000Z","2026-10-19T07:45:00.000Z"])});
+test("pending and proposed bookings reserve their slots while declined requests do not",()=>{const slots=slotsForDay({date:"2026-10-19",now:new Date("2026-10-12T00:00:00Z"),settings,rules,blocks:[],bookings:[{startsAt:"2026-10-19T07:00:00Z",endsAt:"2026-10-19T07:15:00Z",status:"PENDING"},{startsAt:"2026-10-19T07:15:00Z",endsAt:"2026-10-19T07:30:00Z",status:"RESCHEDULE_PROPOSED"},{startsAt:"2026-10-19T07:30:00Z",endsAt:"2026-10-19T07:45:00Z",status:"DECLINED"}]});assert.deepEqual(slots,["2026-10-19T07:30:00.000Z","2026-10-19T07:45:00.000Z"])});

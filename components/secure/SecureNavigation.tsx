@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { Archive, LayoutDashboard, Landmark, LogOut, Menu, ShieldCheck, X } from "lucide-react";
+import { Archive, CalendarDays, LayoutDashboard, Landmark, LogOut, Menu, ShieldCheck, X } from "lucide-react";
 import { useState } from "react";
 import { authClient } from "@/lib/auth-client";
 
@@ -12,11 +12,11 @@ const workspaceLinks = [
   { href: "/secure/finance", label: "Financial", icon: Landmark },
 ] as const;
 
-const administrationLink = {
+const adminLinks = [{href:"/secure/appointments",label:"Appointments",icon:CalendarDays},{
   href: "/secure/administration",
   label: "Administration",
   icon: ShieldCheck,
-} as const;
+}] as const;
 
 export default function SecureNavigation({ isAdmin }: { isAdmin: boolean }) {
   const pathname = usePathname();
@@ -26,7 +26,7 @@ export default function SecureNavigation({ isAdmin }: { isAdmin: boolean }) {
 
   if (pathname === "/secure/login") return null;
 
-  const links = isAdmin ? [...workspaceLinks, administrationLink] : workspaceLinks;
+  const links = isAdmin ? [...workspaceLinks, ...adminLinks] : workspaceLinks;
 
   async function signOut() {
     setSigningOut(true);

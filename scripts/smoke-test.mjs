@@ -17,6 +17,8 @@ const publicPaths = [
   "/faqs",
   "/contact",
   "/free-website-review",
+  "/book-consultation",
+  "/healthcare",
   "/robots.txt",
   "/sitemap.xml",
   "/manifest.webmanifest",

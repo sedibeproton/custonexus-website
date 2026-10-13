@@ -7,6 +7,7 @@ import FadeSection from "@/components/FadeSection";
 import PageHero from "@/components/PageHero";
 import PageWrapper from "@/components/PageWrapper";
 import { createWhatsAppUrl, whatsappMessages } from "@/lib/whatsapp";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Contact & Request a Quote",
@@ -35,6 +36,7 @@ export default function ContactPage() {
             <p className="mt-5 text-lg leading-8 text-slate-600">Request a custom website, website redesign, technical maintenance, a custom business system, healthcare technology or professional project support.</p>
             <div className="mt-8 space-y-3">{methods.map(({ icon: Icon, label, value, href, external }) => <a key={label} href={href} target={external ? "_blank" : undefined} rel={external ? "noopener noreferrer" : undefined} className="group flex items-center gap-4 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm transition hover:-translate-y-0.5 hover:border-blue-300 hover:shadow-md"><span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-blue-700 transition group-hover:bg-blue-700 group-hover:text-white"><Icon size={21} aria-hidden /></span><span><span className="block text-xs font-bold uppercase tracking-wider text-slate-400">{label}</span><span className="mt-1 block font-semibold text-slate-900">{value}</span></span></a>)}</div>
             <div className="mt-7 flex items-start gap-3 rounded-2xl bg-blue-950 p-5 text-blue-100"><ShieldCheck className="mt-0.5 shrink-0 text-emerald-400" size={22} aria-hidden /><p className="text-sm leading-6">Your information is used only to understand and respond to your enquiry. Do not submit passwords, confidential patient information or sensitive system data.</p></div>
+            <div className="mt-5 grid gap-3"><Link href="/free-website-review" className="rounded-2xl border border-blue-200 bg-blue-50 px-5 py-4 text-center font-bold text-blue-800 transition hover:border-blue-400">Get a Free Website Review</Link><Link href="/book-consultation" className="w-full rounded-2xl border border-blue-200 bg-white px-5 py-4 text-center font-bold text-blue-800 transition hover:border-blue-400 hover:bg-blue-50">Book a 15-Minute Consultation</Link></div>
           </aside>
           <EnquiryForm />
         </div>

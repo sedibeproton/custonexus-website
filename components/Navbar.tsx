@@ -24,6 +24,7 @@ const navItems: NavItem[] = [
       { href: "/services/website-support", label: "Website Support", description: "Redesigns, maintenance, fixes and technical support" },
       { href: "/services/business-systems", label: "Application Development", description: "Web and desktop applications, redesign, integration and automation" },
       { href: "/services/healthcare-technology", label: "Healthcare Technology", description: "Healthcare websites, software and connected systems" },
+      { href: "/healthcare", label: "Healthcare Overview", description: "Healthcare-focused websites, applications and technical solutions" },
       { href: "/services/professional-services", label: "Professional Services", description: "Consulting, project and flexible technical support" },
       { href: "/services/strategic-partnerships", label: "Strategic Partnerships", description: "Technology, supplier and delivery collaboration" },
       { href: "/services/medical-equipment-consumables", label: "Medical Equipment", description: "Specialist enquiries, servicing and consumables" },

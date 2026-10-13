@@ -153,7 +153,7 @@ export default async function ServiceDetailPage({
   const showcaseVariant = service.slug === "business-websites" ? "website" : service.slug === "website-support" ? "support" : service.slug === "business-systems" ? "systems" : null;
   const websiteService = service.slug === "business-websites" || service.slug === "website-support";
   const finalCta = service.slug === "business-systems"
-    ? { title: "Ready to Discuss an Application?", subtitle: "Tell us whether you need a new application, redesign, modernisation, integration or improvement so we can assess a practical next step.", text: "Discuss Your Application Project", href: "/contact" }
+    ? { title: "Ready to Discuss an Application?", subtitle: "Tell us whether you need a new application, redesign, modernisation, integration or improvement so we can assess a practical next step.", text: "Book a 15-Minute Consultation", href: "/book-consultation" }
     : websiteService
       ? { title: "Not Sure What Your Website Needs First?", subtitle: "Request a free, no-obligation review of the public website before deciding what to rebuild, redesign or improve.", text: "Get a Free Website Review", href: "/free-website-review" }
       : { title: `Let’s Discuss ${service.title}`, subtitle: "Tell us what your organisation needs and we will help identify a practical next step.", text: "Contact CustoNexus", href: "/contact" };

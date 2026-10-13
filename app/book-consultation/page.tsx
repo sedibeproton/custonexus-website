@@ -1,0 +1,13 @@
+import type { Metadata } from "next";
+import { CalendarCheck2,Clock3,MessageSquareText } from "lucide-react";
+import ConsultationBookingForm from "@/components/ConsultationBookingForm";
+import Container from "@/components/Container";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import ConsultationUnavailable from "@/components/ConsultationUnavailable";
+import {isConsultationBookingEnabled} from "@/lib/consultation-feature";
+
+export const dynamic="force-dynamic";
+
+export const metadata:Metadata={title:"Book a Consultation",description:"Book a consultation with CustoNexus to discuss website development, application design, software integration or other technology projects.",alternates:{canonical:"/book-consultation"},openGraph:{title:"Book a Consultation with CustoNexus Technologies",description:"Choose an available time to discuss your technology project.",url:"/book-consultation",images:[{url:"/opengraph-image",width:1200,height:630,alt:"CustoNexus Technologies consultation booking"}]},twitter:{card:"summary_large_image",title:"Book a Consultation with CustoNexus Technologies",description:"Choose an available time to discuss your technology project.",images:["/opengraph-image"]}};
+export default function BookConsultationPage(){const enabled=isConsultationBookingEnabled();return <><Navbar/><main id="main-content" className="bg-[radial-gradient(circle_at_top_right,#dbeafe_0,transparent_34%),linear-gradient(180deg,#f8fbff_0%,#fff_100%)] pb-20 pt-32 sm:pt-40"><Container><div className="grid gap-10 lg:grid-cols-[.78fr_1.22fr] lg:items-start"><section className="lg:sticky lg:top-28"><p className="text-sm font-bold uppercase tracking-[.2em] text-blue-700">Focused project discovery</p><h1 className="mt-4 text-4xl font-bold tracking-tight text-[#071a3d] sm:text-5xl">Book a 15-minute consultation.</h1><p className="mt-5 text-lg leading-8 text-slate-600">Choose a suitable time to discuss your goals, current challenges and the practical next step for your project.</p><div className="mt-8 grid gap-4">{[[CalendarCheck2,"Choose a live available time"],[MessageSquareText,"Tell us what you need"],[Clock3,"Get a focused 15-minute discussion"]].map(([Icon,text])=><div key={String(text)} className="flex items-center gap-4 rounded-2xl border border-blue-100 bg-white/80 p-4 font-semibold text-slate-700"><span className="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-50 text-blue-700"><Icon size={21}/></span>{String(text)}</div>)}</div><p className="mt-7 text-sm leading-6 text-slate-500">A consultation request is only confirmed after CustoNexus reviews and approves it.</p></section>{enabled?<ConsultationBookingForm/>:<ConsultationUnavailable/>}</div></Container></main><Footer/></>}

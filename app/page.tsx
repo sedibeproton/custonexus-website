@@ -6,6 +6,7 @@ import DigitalCraftsmanship from "@/sections/DigitalCraftsmanship";
 import Foundation from "@/sections/Foundation";
 import Hero from "@/sections/Hero";
 import Purpose from "@/sections/Purpose";
+import SelectedWork from "@/sections/SelectedWork";
 import SolutionsPreview from "@/sections/SolutionsPreview";
 import TrustSection from "@/sections/TrustSection";
 import WhyChooseUs from "@/sections/WhyChooseUs";
@@ -19,7 +20,7 @@ export const metadata = {
   robots: { index: true, follow: true },
 };
 
-const sections = [SolutionsPreview, DigitalCraftsmanship, Purpose, AboutPreview, TrustSection, WhyChooseUs, Foundation, CallToAction];
+const sections = [SolutionsPreview, DigitalCraftsmanship, Purpose, AboutPreview, SelectedWork, TrustSection, WhyChooseUs, Foundation, CallToAction];
 
 export default function Home() {
   return (

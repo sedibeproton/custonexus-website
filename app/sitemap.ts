@@ -15,6 +15,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${siteUrl}/constitution`, lastModified, changeFrequency: "yearly", priority: 0.6 },
     { url: `${siteUrl}/contact`, lastModified, changeFrequency: "monthly", priority: 0.7 },
     { url: `${siteUrl}/free-website-review`, lastModified, changeFrequency: "monthly", priority: 0.9 },
+    { url: `${siteUrl}/book-consultation`, lastModified, changeFrequency: "weekly", priority: 0.9 },
+    { url: `${siteUrl}/healthcare`, lastModified, changeFrequency: "monthly", priority: 0.9 },
   ];
 
   return [

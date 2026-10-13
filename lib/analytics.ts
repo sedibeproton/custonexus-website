@@ -2,7 +2,8 @@ export type ConversionEvent =
   | "contact_click"
   | "enquiry_submitted"
   | "website_review_cta"
-  | "generate_lead";
+  | "generate_lead"
+  | "consultation_booked";
 
 type EventDetails = Record<string, string | number | boolean | undefined>;
 

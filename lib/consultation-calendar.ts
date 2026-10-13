@@ -1,0 +1,10 @@
+export type CalendarCell={date:string;day:number;inMonth:boolean};
+
+function pad(value:number){return String(value).padStart(2,"0")}
+export function parseMonth(value:string){const match=/^(\d{4})-(\d{2})$/.exec(value);if(!match)throw new Error("Enter a valid month.");const year=Number(match[1]),month=Number(match[2]);if(year<2000||year>2999||month<1||month>12)throw new Error("Enter a valid month.");return{year,month}}
+export function formatDate(year:number,month:number,day:number){return`${year}-${pad(month)}-${pad(day)}`}
+export function daysInMonth(year:number,month:number){return new Date(Date.UTC(year,month,0)).getUTCDate()}
+export function shiftMonth(value:string,offset:number){const{year,month}=parseMonth(value),date=new Date(Date.UTC(year,month-1+offset,1));return`${date.getUTCFullYear()}-${pad(date.getUTCMonth()+1)}`}
+export function monthGrid(value:string):CalendarCell[]{const{year,month}=parseMonth(value),first=new Date(Date.UTC(year,month-1,1)),mondayOffset=(first.getUTCDay()+6)%7,total=daysInMonth(year,month),previous=month===1?{year:year-1,month:12}:{year,month:month-1},previousTotal=daysInMonth(previous.year,previous.month),cells:CalendarCell[]=[];for(let index=0;index<42;index++){const relative=index-mondayOffset+1;if(relative<1){const day=previousTotal+relative;cells.push({date:formatDate(previous.year,previous.month,day),day,inMonth:false})}else if(relative>total){const next=month===12?{year:year+1,month:1}:{year,month:month+1},day=relative-total;cells.push({date:formatDate(next.year,next.month,day),day,inMonth:false})}else cells.push({date:formatDate(year,month,relative),day:relative,inMonth:true})}return cells}
+export function monthIntersectsRange(month:string,minimumDate:string,maximumDate:string){const{year,month:number}=parseMonth(month),start=formatDate(year,number,1),end=formatDate(year,number,daysInMonth(year,number));return end>=minimumDate&&start<=maximumDate}
+export function changeCalendarDate(nextDate:string){return{date:nextDate,selectedSlot:""}}

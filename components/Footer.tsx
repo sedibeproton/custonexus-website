@@ -47,6 +47,7 @@ export default function Footer() {
                   Services
                 </Link>
               </li>
+              <li><Link href="/healthcare" className="transition hover:text-white">Healthcare</Link></li>
               <li>
                 <Link href="/faqs" className="transition hover:text-white">
                   FAQs

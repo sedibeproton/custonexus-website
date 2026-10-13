@@ -1,0 +1,1 @@
+export const consultationTypes=["Website Design & Development","Website Redesign","Application Design & Development","Application Redesign & Modernisation","Software Integration & Automation","Healthcare Technology","General Consultation"] as const;
