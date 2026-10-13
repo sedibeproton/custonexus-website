@@ -18,7 +18,7 @@ const adminLinks = [{href:"/secure/appointments",label:"Appointments",icon:Calen
   icon: ShieldCheck,
 }] as const;
 
-export default function SecureNavigation({ isAdmin }: { isAdmin: boolean }) {
+export default function SecureNavigation({ isAdmin, pendingAppointments = 0 }: { isAdmin: boolean; pendingAppointments?: number }) {
   const pathname = usePathname();
   const router = useRouter();
   const [open, setOpen] = useState(false);
@@ -53,6 +53,7 @@ export default function SecureNavigation({ isAdmin }: { isAdmin: boolean }) {
               <Link key={href} href={href} aria-current={active ? "page" : undefined} className={`flex items-center gap-2 rounded-xl px-3.5 py-2.5 text-sm font-bold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 ${active ? "bg-blue-50 text-blue-800" : "text-slate-600 hover:bg-slate-50 hover:text-slate-950"}`}>
                 <Icon aria-hidden="true" size={17} />
                 {label}
+                {href === "/secure/appointments" && pendingAppointments > 0 && <span className="flex min-w-5 items-center justify-center rounded-full bg-amber-500 px-1.5 py-0.5 text-[10px] font-black text-slate-950" aria-label={`${pendingAppointments} appointments awaiting approval`}>{pendingAppointments > 99 ? "99+" : pendingAppointments}</span>}
               </Link>
             );
           })}
@@ -77,6 +78,7 @@ export default function SecureNavigation({ isAdmin }: { isAdmin: boolean }) {
               <Link key={href} href={href} aria-current={active ? "page" : undefined} onClick={() => setOpen(false)} className={`flex items-center gap-3 rounded-xl px-4 py-3 font-bold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 ${active ? "bg-blue-50 text-blue-800" : "text-slate-700 hover:bg-blue-50 hover:text-blue-800"}`}>
                 <Icon aria-hidden="true" size={18} />
                 {label}
+                {href === "/secure/appointments" && pendingAppointments > 0 && <span className="ml-auto flex min-w-6 items-center justify-center rounded-full bg-amber-500 px-2 py-1 text-xs font-black text-slate-950" aria-label={`${pendingAppointments} appointments awaiting approval`}>{pendingAppointments > 99 ? "99+" : pendingAppointments}</span>}
               </Link>
             );
           })}
