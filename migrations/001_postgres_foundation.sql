@@ -119,7 +119,7 @@ CREATE TABLE IF NOT EXISTS company_settings (
   registration_number text,
   vat_number text,
   address text,
-  phone text NOT NULL DEFAULT '+27 72 270 1087',
+  phone text NOT NULL DEFAULT '+27 79 615 5204',
   email text NOT NULL DEFAULT 'info@custonexus.com',
   website text NOT NULL DEFAULT 'https://custonexus.com',
   quote_validity_days integer NOT NULL DEFAULT 30 CHECK (quote_validity_days > 0),

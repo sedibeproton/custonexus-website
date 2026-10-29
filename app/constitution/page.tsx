@@ -173,8 +173,8 @@ export default function ConstitutionPage() {
                   <p className="mt-2 text-slate-600">Founded in South Africa in 2026.</p>
                   <div className="mt-5 flex flex-col gap-3 text-sm font-semibold text-slate-700 sm:flex-row sm:flex-wrap">
                     <a href="mailto:info@custonexus.com" className="inline-flex items-center justify-center gap-2 transition hover:text-blue-700 sm:justify-start"><Mail size={17} className="text-blue-700" />info@custonexus.com</a>
-                    <a href="tel:+27722701087" className="inline-flex items-center justify-center gap-2 transition hover:text-blue-700 sm:justify-start"><Phone size={17} className="text-blue-700" />072 270 1087</a>
-                    <a href="https://wa.me/27722701087?text=Hello%20CustoNexus%2C%20I%20would%20like%20to%20connect%20with%20the%20founder." target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 transition hover:text-emerald-700 sm:justify-start"><MessageCircle size={17} className="text-emerald-600" />WhatsApp</a>
+                    <a href="tel:+27796155204" className="inline-flex items-center justify-center gap-2 transition hover:text-blue-700 sm:justify-start"><Phone size={17} className="text-blue-700" />079 615 5204</a>
+                    <a href="https://wa.me/27796155204?text=Hello%20CustoNexus%2C%20I%20would%20like%20to%20connect%20with%20the%20founder." target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 transition hover:text-emerald-700 sm:justify-start"><MessageCircle size={17} className="text-emerald-600" />WhatsApp</a>
                   </div>
                 </div>
               </div>

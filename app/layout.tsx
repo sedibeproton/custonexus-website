@@ -155,7 +155,7 @@ const organizationJsonLd = {
         caption: "CustoNexus Technologies",
       },
       email: "info@custonexus.com",
-      telephone: "+27 72 270 1087",
+      telephone: "+27 79 615 5204",
       address: { "@type": "PostalAddress", addressCountry: "ZA" },
       sameAs: [
         "https://www.linkedin.com/company/custonexus-technologies/about/",
@@ -164,7 +164,7 @@ const organizationJsonLd = {
       ],
       contactPoint: {
         "@type": "ContactPoint",
-        telephone: "+27 72 270 1087",
+        telephone: "+27 79 615 5204",
         email: "info@custonexus.com",
         contactType: "customer service",
         areaServed: "ZA",

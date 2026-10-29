@@ -26,7 +26,7 @@ export const whatsappMessages = {
     "Hello CustoNexus Technologies, I have an enquiry after reading your Constitution.",
 } as const;
 
-const whatsappNumber = "27722701087";
+const whatsappNumber = "27796155204";
 
 export function createWhatsAppUrl(message: string) {
   return `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;

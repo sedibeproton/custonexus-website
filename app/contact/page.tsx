@@ -19,8 +19,8 @@ export const metadata: Metadata = {
 };
 
 const methods = [
-  { icon: MessageCircle, label: "WhatsApp", value: "Message 072 270 1087", href: createWhatsAppUrl(whatsappMessages.project), external: true },
-  { icon: Phone, label: "Phone", value: "Call 072 270 1087", href: "tel:+27722701087" },
+  { icon: MessageCircle, label: "WhatsApp", value: "Message 079 615 5204", href: createWhatsAppUrl(whatsappMessages.project), external: true },
+  { icon: Phone, label: "Phone", value: "Call 079 615 5204", href: "tel:+27796155204" },
   { icon: Mail, label: "Email", value: "info@custonexus.com", href: "mailto:info@custonexus.com" },
 ];
 

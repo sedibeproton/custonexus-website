@@ -59,7 +59,7 @@ const faqGroups = [
       {
         question: "How do we begin an enquiry?",
         answer:
-          "Contact us by WhatsApp or phone on 072 270 1087, or email info@custonexus.com. Tell us what you need, your organisation type and any important timeline so we can recommend a sensible next step.",
+          "Contact us by WhatsApp or phone on 079 615 5204, or email info@custonexus.com. Tell us what you need, your organisation type and any important timeline so we can recommend a sensible next step.",
       },
       {
         question: "How will my project be priced?",
@@ -314,7 +314,7 @@ export default function FAQsPage() {
             <div className="mx-auto max-w-4xl rounded-[2rem] border border-blue-100 bg-white p-8 text-center shadow-xl shadow-blue-950/5 sm:p-12">
               <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-blue-700 text-white shadow-lg shadow-blue-700/20"><MessageCircle size={30} aria-hidden /></div>
               <h2 className="mt-7 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">Still have a question?</h2>
-              <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-slate-600">Speak with us directly on 072 270 1087 or email info@custonexus.com. We will help you identify the right service or next step.</p>
+              <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-slate-600">Speak with us directly on 079 615 5204 or email info@custonexus.com. We will help you identify the right service or next step.</p>
               <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row sm:flex-wrap sm:gap-4">
                 <a href={createWhatsAppUrl(whatsappMessages.faqs)} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full bg-blue-700 px-7 py-4 font-semibold text-white shadow-lg transition hover:-translate-y-1 hover:bg-blue-800"><MessageCircle size={19} aria-hidden /> WhatsApp Us</a>
                 <a href="mailto:info@custonexus.com" className="inline-flex items-center gap-2 rounded-full border border-blue-200 px-7 py-4 font-semibold text-blue-700 transition hover:border-blue-700 hover:bg-blue-50"><Mail size={19} aria-hidden /> Email Us</a>
