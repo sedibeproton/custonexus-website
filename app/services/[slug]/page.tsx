@@ -174,7 +174,7 @@ export default async function ServiceDetailPage({
         name: service.title,
         description: service.description,
         url: pageUrl,
-        provider: { "@type": "Organization", name: "CustoNexus Technologies", url: siteUrl },
+        provider: { "@id": `${siteUrl}/#organization` },
         areaServed: { "@type": "Country", name: "South Africa" },
       },
       {

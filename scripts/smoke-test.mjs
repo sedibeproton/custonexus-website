@@ -19,6 +19,9 @@ const publicPaths = [
   "/free-website-review",
   "/book-consultation",
   "/healthcare",
+  "/healthcare/medical-practice-websites",
+  "/healthcare/software-portals",
+  "/healthcare/system-integrations",
   "/robots.txt",
   "/sitemap.xml",
   "/manifest.webmanifest",
@@ -73,11 +76,18 @@ for (const path of htmlPaths) {
   const canonical = path === "/" ? "https://custonexus.com" : `https://custonexus.com${path}`;
   const h1Count = (html.match(/<h1(?:\s|>)/gi) || []).length;
   if (!title) failures.push(`Missing title: ${path}`);
-  else if (pageTitles.has(title)) failures.push(`Duplicate title on ${path} and ${pageTitles.get(title)}: ${title}`);
-  else pageTitles.set(title, path);
+  else {
+    const readableTitle = title.replaceAll("&amp;", "&").replaceAll("&#x27;", "'").replaceAll("&quot;", '"');
+    if (readableTitle.length > 70) failures.push(`Excessively long title (${readableTitle.length} characters): ${path}`);
+    if (pageTitles.has(title)) failures.push(`Duplicate title on ${path} and ${pageTitles.get(title)}: ${title}`);
+    else pageTitles.set(title, path);
+  }
   if (!description) failures.push(`Missing meta description: ${path}`);
-  else if (pageDescriptions.has(description)) failures.push(`Duplicate meta description on ${path} and ${pageDescriptions.get(description)}`);
-  else pageDescriptions.set(description, path);
+  else {
+    if (description.length > 165) failures.push(`Excessively long meta description (${description.length} characters): ${path}`);
+    if (pageDescriptions.has(description)) failures.push(`Duplicate meta description on ${path} and ${pageDescriptions.get(description)}`);
+    else pageDescriptions.set(description, path);
+  }
   if (!html.includes(`rel="canonical" href="${canonical}"`)) failures.push(`Incorrect canonical URL: ${path}`);
   if (h1Count !== 1) failures.push(`${path} contains ${h1Count} H1 elements; expected 1`);
   if (html.includes('name="robots" content="noindex')) failures.push(`Public page is accidentally noindex: ${path}`);

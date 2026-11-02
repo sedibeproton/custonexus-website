@@ -83,6 +83,11 @@ const faqGroups = [
           "Use the project enquiry form and share the business type, pages, content readiness, required functionality and timeline. We will clarify the requirement and provide a written proposal rather than forcing the project into a generic package.",
       },
       {
+        question: "How much does a business website cost in South Africa?",
+        answer:
+          "The cost depends on the number and complexity of pages, content readiness, custom design, forms, bookings, integrations, user accounts, hosting and support. CustoNexus first clarifies the requirement and then provides a written South African rand quotation with inclusions, exclusions and payment milestones.",
+      },
+      {
         question: "Can you redesign or improve an existing website?",
         answer:
           "Yes. We can review an existing website’s structure, usability, responsiveness, content presentation, performance and search foundations, then recommend either focused improvements or a complete rebuild.",
@@ -98,9 +103,34 @@ const faqGroups = [
           "Yes. Support can include hosting coordination, company email, content updates, issue resolution, performance reviews, maintenance and ongoing improvement under an agreed scope.",
       },
       {
+        question: "Can you host the website and provide business email?",
+        answer:
+          "Yes. Where appropriate, a proposal can include website hosting, maintenance and professional email using the client domain. Pricing depends on traffic, storage, mailbox quantity, email storage, backups, support expectations and any third-party provider costs.",
+      },
+      {
+        question: "Who owns the website or software source code?",
+        answer:
+          "Ownership, licences, third-party components, access and handover are defined in the written proposal or agreement. We do not assume that every project has the same ownership model, particularly where licensed services, reusable components or existing client software are involved.",
+      },
+      {
         question: "Can you integrate different systems or platforms?",
         answer:
           "Yes. We support integration discovery, API and data-flow planning, interoperability coordination, testing and deployment. Feasibility depends on the systems involved and the access provided by each platform.",
+      },
+      {
+        question: "How much does custom software development cost?",
+        answer:
+          "Custom software is priced after discovery because users, workflows, platforms, data, security, integrations, reporting and deployment requirements can change the work substantially. We normally recommend a clearly scoped first version or phased roadmap before providing the full delivery proposal.",
+      },
+      {
+        question: "What information is needed for an automation or integration project?",
+        answer:
+          "We need to understand the current workflow, systems, repeated tasks, data involved, users, permissions, available APIs or database access, expected result and what should happen when an integration fails. Vendor documentation and authorised technical access are often required before feasibility can be confirmed.",
+      },
+      {
+        question: "What must be considered for healthcare software?",
+        answer:
+          "Healthcare software discovery must consider intended users, information sensitivity, access controls, authentication, audit needs, retention, backups, hosting, integrations, operational ownership and whether the intended function could require legal, clinical, cybersecurity or regulatory expertise. Custom software is not automatically approved for clinical use or legally compliant.",
       },
       {
         question: "How long does a website or app project take?",

@@ -2,6 +2,7 @@ export type ConversionEvent =
   | "contact_click"
   | "enquiry_submitted"
   | "website_review_cta"
+  | "website_review_submitted"
   | "generate_lead"
   | "consultation_booked";
 
@@ -11,6 +12,7 @@ const allowedParameters: Record<ConversionEvent, ReadonlySet<string>> = {
   contact_click: new Set(["method", "page_path"]),
   enquiry_submitted: new Set(["service", "intent"]),
   website_review_cta: new Set(["page_path", "link_text"]),
+  website_review_submitted: new Set(["form_name", "lead_type"]),
   generate_lead: new Set(["form_name", "lead_type"]),
   consultation_booked: new Set(["consultation_type", "booking_source"]),
 };

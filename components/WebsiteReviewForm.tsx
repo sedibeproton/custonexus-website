@@ -11,6 +11,7 @@ const fieldClass = "mt-2 w-full rounded-2xl border border-slate-200 bg-white px-
 
 export default function WebsiteReviewForm() {
   const [form,setForm]=useState(initial);
+  const [isTest,setIsTest]=useState(false);
   const [errors,setErrors]=useState<Record<string,string>>({});
   const [status,setStatus]=useState<"idle"|"sending"|"success"|"error">("idle");
   const [message,setMessage]=useState("");
@@ -33,10 +34,10 @@ export default function WebsiteReviewForm() {
     const next=validate();setErrors(next);if(Object.keys(next).length)return;
     setStatus("sending");setMessage("");
     try{
-      const response=await fetch("/api/enquiries",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({...form,intent:"review",service:"website-review",projectType:"website-review",consent:true,details:{currentWebsite:form.currentWebsite,mainConcern:form.mainConcern,requirements:`Website review requested${form.mainConcern.trim()?`: ${form.mainConcern.trim()}`:" for a business website."}`,timeline:"Initial review"}})});
+      const response=await fetch("/api/enquiries",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({...form,intent:"review",service:"website-review",projectType:"website-review",consent:true,details:{currentWebsite:form.currentWebsite,mainConcern:form.mainConcern,requirements:`Website review requested${form.mainConcern.trim()?`: ${form.mainConcern.trim()}`:" for a business website."}`,timeline:"Initial review",submissionType:isTest?"test":"genuine"}})});
       const result=await response.json();
       if(!response.ok){if(result.fields)setErrors(result.fields);throw new Error(result.error||"Unable to request the review.");}
-      setReference(result.reference);setStatus("success");trackConversion("generate_lead",{form_name:"free_website_review",lead_type:"website_review"});
+      const storedReference=typeof result.reference==="string"?result.reference:"";setReference(storedReference);setStatus("success");if(storedReference&&!isTest){trackConversion("website_review_submitted",{form_name:"free_website_review",lead_type:"website_review"});trackConversion("generate_lead",{form_name:"free_website_review",lead_type:"website_review"});}
     }catch(error){setStatus("error");setMessage(error instanceof TypeError?"We could not connect. Please try again or use WhatsApp.":error instanceof Error?error.message:"Unable to request the review.");}
   }
 
@@ -52,6 +53,7 @@ export default function WebsiteReviewForm() {
       <div className="sm:col-span-2"><label className="block text-sm font-bold text-slate-800">What is your main business goal for the website? (optional)<textarea value={form.mainConcern} onChange={e=>set("mainConcern",e.target.value)} maxLength={1000} rows={4} className={fieldClass} placeholder="For example: generate more enquiries, explain services clearly, improve mobile usability or prepare for a redesign"/></label></div>
     </div>
     <fieldset className="mt-6"><legend className="text-sm font-bold text-slate-800">How should we contact you?</legend><div className="mt-3 flex flex-wrap gap-3">{[["email","Email"],["whatsapp","WhatsApp"]].map(([value,label])=><label key={value} className={`cursor-pointer rounded-xl border px-4 py-3 font-semibold ${form.preferredContact===value?"border-blue-600 bg-blue-50 text-blue-800":"border-slate-200 text-slate-600"}`}><input className="sr-only" type="radio" name="preferredContact" value={value} checked={form.preferredContact===value} onChange={()=>set("preferredContact",value)}/>{label}</label>)}</div></fieldset>
+    <details className="mt-6 rounded-2xl border border-slate-200 bg-slate-50 p-4 text-sm text-slate-700"><summary className="cursor-pointer font-semibold">Testing this form?</summary><label className="mt-3 flex items-start gap-3 leading-6"><input type="checkbox" checked={isTest} onChange={event=>setIsTest(event.target.checked)} className="mt-1 h-4 w-4 accent-blue-700"/><span>Mark this as a test request. It will be stored for verification but excluded from lead analytics.</span></label></details>
     <div className="absolute -left-[10000px]" aria-hidden><label>Website<input tabIndex={-1} autoComplete="off" value={form.website} onChange={e=>set("website",e.target.value)}/></label></div>
     {status==="error"&&<p role="alert" className="mt-5 rounded-xl bg-red-50 p-4 text-sm font-semibold text-red-700">{message}</p>}
     <button disabled={status==="sending"} className="mt-7 inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-blue-700 px-7 py-4 font-bold text-white shadow-lg transition hover:bg-blue-800 disabled:opacity-60 sm:w-auto">{status==="sending"?<><LoaderCircle className="animate-spin" size={19}/>Sending…</>:<>Request my free review <ArrowRight size={19}/></>}</button>

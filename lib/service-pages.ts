@@ -2,9 +2,9 @@ export const servicePages = [
   {
     slug: "business-websites",
     title: "Custom Business Websites",
-    pageTitle: "Website Design & Development",
+    pageTitle: "Custom Websites in South Africa",
     description:
-      "CustoNexus builds professional, mobile-friendly business websites designed to showcase your services, strengthen credibility and encourage enquiries.",
+      "Custom website design and development for South African businesses that need a professional mobile-friendly site to explain services and generate enquiries.",
     introduction:
       "We custom-design and professionally develop purpose-built websites around your brand, customers and business goals—not around the limitations of an off-the-shelf theme.",
     highlights: [
@@ -32,9 +32,9 @@ export const servicePages = [
   {
     slug: "website-support",
     title: "Website Maintenance & Technical Support",
-    pageTitle: "Website Support & Redesign",
+    pageTitle: "Website Redesign & Maintenance",
     description:
-      "Keep your business website maintained, updated and supported with practical website maintenance, redesign and technical assistance from CustoNexus.",
+      "Website redesign, maintenance and technical support for South African businesses with outdated, unreliable or underperforming websites.",
     introduction:
       "We help businesses improve websites that are outdated, difficult to manage, performing poorly or no longer supporting the way the organisation works.",
     highlights: [
@@ -60,9 +60,9 @@ export const servicePages = [
   {
     slug: "business-systems",
     title: "Application Design & Development",
-    pageTitle: "Custom Application Design & Development",
+    pageTitle: "Custom Software & Business Systems",
     description:
-      "Custom web and desktop applications, application redesign, software modernisation, business systems and integration solutions from CustoNexus.",
+      "Custom software development, web and desktop applications, business systems, automation and software integrations for South African organisations.",
     introduction:
       "We design, develop, redesign and modernise practical software around the way your organisation works, from customer-facing web applications to Windows desktop tools and secure internal systems.",
     highlights: [
@@ -92,9 +92,9 @@ export const servicePages = [
   {
     slug: "healthcare-technology",
     title: "Healthcare Technology",
-    pageTitle: "Healthcare Technology Solutions",
+    pageTitle: "Healthcare Websites & Software",
     description:
-      "Explore healthcare technology, medical equipment connectivity, custom diagnostic software and clinical engineering technical solutions from CustoNexus.",
+      "Healthcare website development, patient-facing portals, custom software and responsible system-integration planning for South African healthcare organisations.",
     introduction:
       "We design and deliver practical digital solutions that help healthcare organisations communicate clearly, work efficiently and create better experiences for patients, professionals and partners.",
     highlights: [
