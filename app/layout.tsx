@@ -143,7 +143,8 @@ const organizationJsonLd = {
     {
       "@type": "Organization",
       "@id": "https://custonexus.com/#organization",
-      name: "CustoNexus Technologies",
+      name: "CustoNexus Technologies (Pty) Ltd",
+      alternateName: "CustoNexus Technologies",
       url: "https://custonexus.com",
       foundingDate: "2026",
       logo: {

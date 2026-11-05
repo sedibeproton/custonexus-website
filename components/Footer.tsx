@@ -43,6 +43,11 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/portfolio" className="transition hover:text-white">
+                  Portfolio
+                </Link>
+              </li>
+              <li>
                 <Link href="/services" className="transition hover:text-white">
                   Services
                 </Link>
@@ -105,7 +110,7 @@ export default function Footer() {
 
         <div className="mt-9 border-t border-slate-800 pt-6">
           <div className="flex flex-col justify-between gap-4 text-sm text-slate-500 md:flex-row md:items-center">
-            <p>© 2026 CustoNexus Technologies. All Rights Reserved.</p>
+            <p>© 2026 CustoNexus Technologies (Pty) Ltd. All Rights Reserved.</p>
             <Link href="/secure/login" className="inline-flex items-center gap-2 transition hover:text-white">
               <LockKeyhole size={15} /> Secure Archive
             </Link>

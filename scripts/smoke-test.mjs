@@ -12,6 +12,7 @@ const publicPaths = [
   "/services/professional-services",
   "/services/strategic-partnerships",
   "/services/side-projects",
+  "/portfolio",
   "/solutions",
   "/constitution",
   "/faqs",

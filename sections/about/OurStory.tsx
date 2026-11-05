@@ -15,9 +15,9 @@ export default function OurStory() {
           />
 
           <p className="text-lg leading-9 text-slate-600">
-            CustoNexus Technologies was founded in South Africa in 2026 with a
-            belief that well-designed technology should make organisations more
-            capable and people&apos;s experiences more straightforward.
+            CustoNexus Technologies (Pty) Ltd was founded in South Africa in 2026
+            with a belief that well-designed technology should make organisations
+            more capable and people&apos;s experiences more straightforward.
           </p>
 
           <p className="mt-6 text-lg leading-9 text-slate-600">
