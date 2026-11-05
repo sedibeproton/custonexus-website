@@ -50,9 +50,9 @@ export const portfolioProjects: readonly PortfolioProject[] = [
     capabilities: ["Professional Website", "Responsive Design", "Healthcare Experience"],
     href: "https://sedibembhelephysio.co.za",
     external: true,
-    publicationStatus: "draft",
+    publicationStatus: "published",
     publicationNote:
-      "Obtain written client permission to use the practice name, branding, website reference and any genuine screenshots before publication.",
+      "The practice owner confirmed permission to publish the practice name, branding, live website reference and genuine website screenshots.",
   },
 ] as const;
 

@@ -66,8 +66,14 @@ export default function PortfolioPage() {
                     <ul className="mt-6 flex flex-wrap gap-2" aria-label="Project capabilities">
                       {project.capabilities.map((capability) => <li key={capability} className="rounded-full border border-blue-100 bg-blue-50 px-3 py-1.5 text-xs font-bold text-blue-800">{capability}</li>)}
                     </ul>
-                    <Link href={project.href} className="mt-7 inline-flex items-center gap-2 rounded-full font-bold text-blue-700 underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-600">
-                      Explore related capability <ArrowRight size={17} aria-hidden />
+                    <Link
+                      href={project.href}
+                      target={project.external ? "_blank" : undefined}
+                      rel={project.external ? "noopener noreferrer" : undefined}
+                      aria-label={project.external ? `View the ${project.title} live website (opens in a new tab)` : undefined}
+                      className="mt-7 inline-flex items-center gap-2 rounded-full font-bold text-blue-700 underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-600"
+                    >
+                      {project.external ? "View live website" : "Explore related capability"} <ArrowRight size={17} aria-hidden />
                     </Link>
                   </div>
                 </article>
