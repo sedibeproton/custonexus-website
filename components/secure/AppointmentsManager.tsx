@@ -1,6 +1,6 @@
 "use client";
 
-import { CalendarPlus, MessageCircle } from "lucide-react";
+import { CalendarPlus, MessageCircle, Trash2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -74,6 +74,7 @@ export default function AppointmentsManager({ initialBookings }: { initialBookin
       setBusy("");
     }
   }
+  async function remove(row:BookingRecord){if(!window.confirm(`Permanently delete appointment ${row.reference} for ${row.customerName}?`))return;setBusy(row.id);setError("");try{const response=await fetch("/api/business/appointments",{method:"DELETE",headers:{"Content-Type":"application/json"},body:JSON.stringify({id:row.id})}),result=await response.json();if(!response.ok)throw new Error(result.error||"Unable to delete appointment.");setBookings(current=>current.filter(item=>item.id!==row.id));router.refresh();}catch(reason){setError(reason instanceof Error?reason.message:"Unable to delete appointment.");}finally{setBusy("");}}
 
   function review(id: string, decision: "APPROVE" | "DECLINE" | "PROPOSE_RESCHEDULE") {
     const localTime = proposedTimes[id];
@@ -119,6 +120,7 @@ export default function AppointmentsManager({ initialBookings }: { initialBookin
                 <a href={whatsappHref(row)} target="_blank" rel="noopener noreferrer" aria-label={`Contact ${row.customerName} on WhatsApp (opens in a new tab)`} className="inline-flex items-center gap-2 rounded-xl border border-emerald-300 bg-emerald-50 px-3 py-2 text-sm font-bold text-emerald-800 transition hover:bg-emerald-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-700"><MessageCircle size={17} aria-hidden />WhatsApp</a>
                 {row.status === "CONFIRMED" && <button type="button" onClick={() => downloadCalendar(row)} className="inline-flex items-center gap-2 rounded-xl border border-blue-200 bg-blue-50 px-3 py-2 text-sm font-bold text-blue-800 transition hover:bg-blue-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700"><CalendarPlus size={17} aria-hidden />Calendar file</button>}
                 {row.status === "CONFIRMED" && <select aria-label={`Update status for ${row.customerName}`} disabled={busy === row.id} value={row.status} onChange={(event) => void patch(row.id, { status: event.target.value })} className="rounded-xl border border-slate-300 px-3 py-2 font-semibold"><option value={row.status}>{labels[row.status]}</option><option value="COMPLETED">Completed</option><option value="NO_SHOW">No show</option><option value="CANCELLED">Cancelled</option></select>}
+                <button type="button" disabled={busy===row.id} onClick={()=>void remove(row)} aria-label={`Delete appointment ${row.reference}`} className="inline-flex items-center gap-2 rounded-xl border border-red-200 bg-red-50 px-3 py-2 text-sm font-bold text-red-700 transition hover:bg-red-100 disabled:opacity-50"><Trash2 size={17} aria-hidden/>Delete</button>
               </div>
             </div>
 
