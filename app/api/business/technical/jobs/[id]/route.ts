@@ -1,0 +1,4 @@
+import { body, businessError, requireBusinessAccess } from "@/lib/business/api";
+import { getTechnicalCertificateForJob, getTechnicalJob, updateTechnicalJob } from "@/lib/business/technical-service";
+export async function GET(_request:Request,{params}:{params:Promise<{id:string}>}){const auth=await requireBusinessAccess();if("error" in auth)return auth.error;const job=await getTechnicalJob((await params).id);if(!job)return Response.json({error:"Job card not found."},{status:404});return Response.json({job,certificate:await getTechnicalCertificateForJob(job.id)});}
+export async function PATCH(request:Request,{params}:{params:Promise<{id:string}>}){const auth=await requireBusinessAccess();if("error" in auth)return auth.error;try{return Response.json(await updateTechnicalJob((await params).id,await body(request),auth.access.session.user.id));}catch(error){return businessError(error);}}

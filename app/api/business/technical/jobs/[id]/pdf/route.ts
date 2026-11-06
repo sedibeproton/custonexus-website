@@ -1,0 +1,3 @@
+import { requireBusinessAccess } from "@/lib/business/api";
+import { buildJobCardPdf } from "@/lib/business/technical-service";
+export async function GET(_request:Request,{params}:{params:Promise<{id:string}>}){const auth=await requireBusinessAccess();if("error" in auth)return auth.error;try{const pdf=await buildJobCardPdf((await params).id);return new Response(new Uint8Array(pdf.bytes),{headers:{"Content-Type":"application/pdf","Content-Disposition":`attachment; filename="${pdf.number}.pdf"`,"Cache-Control":"private, no-store","X-Content-Type-Options":"nosniff"}});}catch{return Response.json({error:"Job card PDF could not be generated."},{status:404});}}

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { Archive, CalendarDays, LayoutDashboard, Landmark, LogOut, Menu, ShieldCheck, X } from "lucide-react";
+import { Archive, CalendarDays, LayoutDashboard, Landmark, LogOut, Menu, ShieldCheck, Wrench, X } from "lucide-react";
 import { useState } from "react";
 import { authClient } from "@/lib/auth-client";
 
@@ -10,6 +10,7 @@ const workspaceLinks = [
   { href: "/secure/dashboard", label: "Workspace", icon: LayoutDashboard },
   { href: "/secure/archive", label: "Archive", icon: Archive },
   { href: "/secure/finance", label: "Financial", icon: Landmark },
+  { href: "/secure/technical", label: "Technical", icon: Wrench },
 ] as const;
 
 const adminLinks = [{href:"/secure/appointments",label:"Appointments",icon:CalendarDays},{
