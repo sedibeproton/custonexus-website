@@ -38,7 +38,7 @@ export default async function SecureDashboardPage() {
   const access = await requireSecurePage();
   const cards = workspaceCards.filter((card) => !card.adminOnly || access.isAdmin);
 
-  return <main className="min-h-screen bg-[radial-gradient(circle_at_top_left,_#dbeafe_0,_transparent_34%),linear-gradient(180deg,#f8fafc_0%,#eef2f7_100%)] px-4 py-16 sm:px-6 sm:py-24">
+  return <main className="min-h-screen bg-[radial-gradient(circle_at_top_left,_#dbeafe_0,_transparent_34%),linear-gradient(180deg,#f8fafc_0%,#eef2f7_100%)] px-4 py-6 sm:px-6 sm:py-14">
     <div className="mx-auto max-w-7xl">
       <header className="flex flex-col gap-6 border-b border-slate-200 pb-9 lg:flex-row lg:items-end lg:justify-between">
         <div>
@@ -53,7 +53,7 @@ export default async function SecureDashboardPage() {
         </div>
       </header>
 
-      <section aria-label="Workspace areas" className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+      <section aria-label="Workspace areas" className="mt-6 grid gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-3">
         {cards.map(({ title, description, href, action, icon: Icon, accent }) => <Link key={href} href={href} className="group relative isolate min-h-80 overflow-hidden rounded-[2rem] border border-white/80 bg-white p-7 shadow-[0_18px_60px_rgba(15,23,42,0.08)] transition duration-300 hover:-translate-y-1.5 hover:shadow-[0_25px_75px_rgba(15,23,42,0.16)] sm:p-9">
           <div className={`absolute inset-x-0 top-0 h-2 bg-gradient-to-r ${accent}`} />
           <div className={`flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br ${accent} text-white shadow-lg`}><Icon aria-hidden="true" size={30}/></div>

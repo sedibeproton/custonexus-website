@@ -16,23 +16,24 @@ export default function CreateFolderButton({ parentId }: { parentId: string | nu
     setSaving(true);
     setError("");
 
-    const response = await fetch("/api/folders", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name, parentId }),
-    });
-    const result = await response.json();
-
-    if (!response.ok) {
-      setError(result.error || "Unable to create folder.");
+    try {
+      const response = await fetch("/api/folders", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, parentId }),
+      });
+      if (!response.ok) {
+        const result = await response.json().catch(() => null);
+        throw new Error(result?.error || "Unable to create folder.");
+      }
+      setName("");
+      setOpen(false);
+      router.refresh();
+    } catch (cause) {
+      setError(cause instanceof Error ? cause.message : "Unable to create folder.");
+    } finally {
       setSaving(false);
-      return;
     }
-
-    setName("");
-    setOpen(false);
-    setSaving(false);
-    router.refresh();
   }
 
   return (
@@ -64,7 +65,7 @@ export default function CreateFolderButton({ parentId }: { parentId: string | nu
               onChange={(event) => setName(event.target.value)}
               className="mt-2 w-full rounded-xl border border-slate-300 px-4 py-3 outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-100"
             />
-            {error && <p className="mt-3 text-sm text-red-600">{error}</p>}
+            {error && <p role="alert" className="mt-3 text-sm text-red-600">{error}</p>}
             <div className="mt-6 flex justify-end gap-3">
               <button type="button" onClick={() => setOpen(false)} className="rounded-xl px-4 py-3 text-sm font-semibold text-slate-600">Cancel</button>
               <button disabled={saving} className="rounded-xl bg-blue-700 px-5 py-3 text-sm font-semibold text-white disabled:opacity-60">

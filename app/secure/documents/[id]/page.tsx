@@ -51,13 +51,13 @@ export default async function DocumentDetailsPage({
   }
 
   return (
-    <main className="min-h-screen bg-slate-100 px-4 py-24 sm:px-6">
+    <main className="min-h-screen bg-slate-100 px-4 py-5 sm:px-6 sm:py-10">
       <div className="mx-auto max-w-4xl">
 
         {/* Top navigation */}
         <div className="mb-8">
           <Link
-            href="/secure/documents"
+            href={document.folderId ? `/secure/documents?folder=${encodeURIComponent(document.folderId)}` : "/secure/documents"}
             className="inline-flex items-center rounded-xl border border-slate-200 bg-white px-5 py-3 text-sm font-semibold text-slate-700 transition hover:border-blue-200 hover:bg-blue-50 hover:text-blue-700"
           >
             ← Back to Documents

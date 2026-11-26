@@ -1,21 +1,13 @@
-import { headers } from "next/headers";
-import { notFound, redirect } from "next/navigation";
 import Link from "next/link";
-import { ChevronRight, File, Folder, HardDrive, LayoutDashboard, Upload } from "lucide-react";
-
-import { auth } from "@/lib/auth";
-import {
-  getDocumentsByFolder,
-  getFolderBreadcrumbs,
-  getFolderById,
-  getFolders,
-  getAllFolders,
-} from "@/lib/documents";
+import { notFound } from "next/navigation";
+import { ArrowLeft, ChevronRight, Search, Upload } from "lucide-react";
 import CreateFolderButton from "@/components/CreateFolderButton";
-import ExplorerItemActions from "@/components/secure/ExplorerItemActions";
-import { getAccountAccess } from "@/lib/admin-access";
+import ExplorerList from "@/components/secure/ExplorerList";
+import { requireSecurePage } from "@/lib/business/page-auth";
+import { getAllFolders, getDocumentsByFolder, getFolderBreadcrumbs, getFolderById, getFolders } from "@/lib/documents";
 
-type PageProps = { searchParams: Promise<{ folder?: string }> };
+type PageProps = { searchParams: Promise<{ folder?: string | string[]; q?: string | string[] }> };
+const filesUrl = (id?: string | null) => id ? `/secure/documents?folder=${encodeURIComponent(id)}` : "/secure/documents";
 
 function formatFileSize(size: number) {
   if (size < 1024) return `${size} B`;
@@ -24,98 +16,67 @@ function formatFileSize(size: number) {
 }
 
 export default async function FileExplorerPage({ searchParams }: PageProps) {
-  const session = await auth.api.getSession({ headers: await headers() });
-  if (!session) redirect("/secure/login");
-  const access=await getAccountAccess(await headers());
+  const access = await requireSecurePage();
+  const params = await searchParams;
+  const folderId = typeof params.folder === "string" ? params.folder || null : null;
+  const query = typeof params.q === "string" ? params.q.trim().slice(0, 120) : "";
+  const current = folderId ? await getFolderById(folderId) : null;
+  if (folderId && !current) notFound();
 
-  const { folder: requestedFolderId } = await searchParams;
-  const folderId = requestedFolderId || null;
-  const currentFolder = folderId ? await getFolderById(folderId) : undefined;
-  if (folderId && !currentFolder) notFound();
+  const [folders, files, breadcrumbs, allFolders] = await Promise.all([
+    getFolders(folderId), getDocumentsByFolder(folderId), folderId ? getFolderBreadcrumbs(folderId) : [], getAllFolders(),
+  ]);
+  const matches = (name: string) => name.toLowerCase().includes(query.toLowerCase());
+  const destinations = allFolders.map(({ id, name }) => ({ id, name }));
+  const rows = [
+    ...folders.filter(({ name }) => matches(name)).map(({ id, name }) => ({
+      kind: "folder" as const, id, name, meta: "Folder", href: filesUrl(id),
+    })),
+    ...files.filter(({ originalName }) => matches(originalName)).map(({ id, originalName, size }) => ({
+      kind: "file" as const, id, name: originalName, meta: formatFileSize(size), href: `/secure/documents/${encodeURIComponent(id)}`,
+    })),
+  ];
 
-  const folders = await getFolders(folderId);
-  const files = await getDocumentsByFolder(folderId);
-  const breadcrumbs = folderId ? await getFolderBreadcrumbs(folderId) : [];
-  const allFolders=await getAllFolders();
-  const uploadHref = folderId
-    ? `/secure/upload?folder=${encodeURIComponent(folderId)}`
-    : "/secure/upload";
-
-  return (
-    <main className="min-h-screen bg-slate-100 px-4 py-16 sm:px-6">
-      <div className="mx-auto max-w-7xl">
-        <div className="mb-6 flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
-          <div>
-            <p className="text-sm font-semibold uppercase tracking-wide text-blue-700">Founder Archive</p>
-            <h1 className="mt-1 text-3xl font-bold text-slate-900 sm:text-4xl">Files</h1>
-            <p className="mt-2 text-slate-600">Browse and organise your secure company archive.</p>
-          </div>
-          <Link href="/secure/dashboard" className="inline-flex items-center gap-2 text-sm font-semibold text-slate-600 hover:text-blue-700">
-            <LayoutDashboard size={17} /> Dashboard
+  return <main className="min-h-screen bg-slate-100 px-3 py-5 sm:px-6 sm:py-10">
+    <div className="mx-auto max-w-5xl">
+      <Link href={current ? filesUrl(current.parentId) : "/secure/archive"} className="inline-flex min-h-11 items-center gap-2 rounded-lg text-sm font-semibold text-blue-800">
+        <ArrowLeft size={17} aria-hidden /> {current ? "Up one folder" : "Company archive"}
+      </Link>
+      <header className="mb-4 mt-1 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+        <div className="min-w-0">
+          <p className="text-xs font-bold uppercase tracking-wider text-blue-800">File explorer</p>
+          <h1 className="mt-1 break-words text-2xl font-bold text-slate-950 sm:text-4xl">{current?.name ?? "Files"}</h1>
+          <p className="mt-1 text-sm text-slate-600">{folders.length} {folders.length === 1 ? "folder" : "folders"} · {files.length} {files.length === 1 ? "file" : "files"}</p>
+        </div>
+        <div className="flex flex-wrap gap-2">
+          <Link href={folderId ? `/secure/upload?folder=${encodeURIComponent(folderId)}` : "/secure/upload"} className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-blue-800 px-4 text-sm font-bold text-white hover:bg-blue-900">
+            <Upload size={17} aria-hidden /> Upload file
           </Link>
+          <CreateFolderButton parentId={folderId} />
         </div>
-
-        <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
-          <div className="flex flex-col gap-4 border-b border-slate-200 p-5 sm:flex-row sm:items-center sm:justify-between">
-            <nav aria-label="Folder path" className="flex min-w-0 flex-wrap items-center gap-1 text-sm">
-              <Link href="/secure/documents" className="flex items-center gap-2 rounded-lg px-2 py-1 font-semibold text-blue-700 hover:bg-blue-50">
-                <HardDrive size={17} /> My files
-              </Link>
-              {breadcrumbs.map((folder) => (
-                <span key={folder.id} className="flex min-w-0 items-center gap-1">
-                  <ChevronRight size={16} className="text-slate-400" />
-                  <Link href={`/secure/documents?folder=${folder.id}`} className="max-w-48 truncate rounded-lg px-2 py-1 font-medium text-slate-700 hover:bg-slate-100">
-                    {folder.name}
-                  </Link>
-                </span>
-              ))}
-            </nav>
-            <div className="flex flex-wrap gap-3">
-              <CreateFolderButton parentId={folderId} />
-              <Link href={uploadHref} className="inline-flex items-center gap-2 rounded-xl bg-blue-700 px-4 py-3 text-sm font-semibold text-white hover:bg-blue-800">
-                <Upload size={18} /> Upload file
-              </Link>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-[minmax(0,1fr)_auto] border-b border-slate-200 bg-slate-50 px-6 py-3 text-xs font-semibold uppercase tracking-wide text-slate-500 sm:grid-cols-[minmax(0,1fr)_140px_230px]">
-            <span>Name</span><span className="hidden sm:block">Size</span><span>Actions</span>
-          </div>
-
-          {folders.map((folder) => (
-            <div key={folder.id} className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 border-b border-slate-100 px-6 py-4 hover:bg-blue-50/40 sm:grid-cols-[minmax(0,1fr)_140px_230px]">
-              <Link href={`/secure/documents?folder=${folder.id}`} className="flex min-w-0 items-center gap-3 font-semibold text-slate-900">
-                <Folder className="shrink-0 fill-blue-100 text-blue-600" size={27} />
-                <span className="truncate">{folder.name}</span>
-              </Link>
-              <span className="hidden text-sm text-slate-400 sm:block">Folder</span>
-              <ExplorerItemActions kind="folder" id={folder.id} name={folder.name} folders={allFolders} currentFolderId={folderId} isAdmin={Boolean(access?.isAdmin)}/>
-            </div>
-          ))}
-
-          {files.map((file) => (
-            <div key={file.id} className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 border-b border-slate-100 px-6 py-4 last:border-b-0 hover:bg-slate-50 sm:grid-cols-[minmax(0,1fr)_140px_230px]">
-              <Link href={`/secure/documents/${file.id}`} className="flex min-w-0 items-center gap-3 font-medium text-slate-900">
-                <File className="shrink-0 text-slate-500" size={25} />
-                <span className="truncate">{file.originalName}</span>
-              </Link>
-              <span className="hidden text-sm text-slate-500 sm:block">{formatFileSize(file.size)}</span>
-              <div className="flex flex-wrap items-center gap-3">
-                <Link href={`/api/documents/${file.id}?download=true`} className="text-sm font-semibold text-blue-700">Download</Link>
-                <ExplorerItemActions kind="file" id={file.id} name={file.originalName} folders={allFolders} currentFolderId={folderId} isAdmin={Boolean(access?.isAdmin)}/>
-              </div>
-            </div>
-          ))}
-
-          {folders.length === 0 && files.length === 0 && (
-            <div className="px-6 py-20 text-center">
-              <Folder className="mx-auto text-slate-300" size={52} />
-              <h2 className="mt-4 text-xl font-bold text-slate-900">This folder is empty</h2>
-              <p className="mt-2 text-slate-500">Create a folder or upload a file to get started.</p>
-            </div>
-          )}
-        </div>
-      </div>
-    </main>
-  );
+      </header>
+      <section aria-label="Folder contents" className="rounded-2xl border border-slate-200 bg-white shadow-sm">
+        {current && <nav aria-label="Folder path" className="flex items-center gap-1 overflow-x-auto border-b border-slate-100 px-3 text-sm">
+          <Link href={filesUrl()} className="shrink-0 py-3 font-semibold text-blue-800">My files</Link>
+          {breadcrumbs.map((folder) => <span key={folder.id} className="flex shrink-0 items-center gap-1">
+            <ChevronRight size={14} aria-hidden className="text-slate-500" />
+            <Link href={filesUrl(folder.id)} aria-current={folder.id === folderId ? "page" : undefined} className="max-w-48 truncate py-3 text-slate-700">{folder.name}</Link>
+          </span>)}
+        </nav>}
+        <form action="/secure/documents" className="flex flex-wrap items-center gap-2 border-b border-slate-100 p-3">
+          {folderId && <input type="hidden" name="folder" value={folderId} />}
+          <label className="relative min-w-0 flex-1">
+            <span className="sr-only">Search this folder</span>
+            <Search size={17} aria-hidden className="pointer-events-none absolute left-3 top-3.5 text-slate-500" />
+            <input key={query} name="q" type="search" maxLength={120} defaultValue={query} placeholder="Search this folder" className="h-11 w-full rounded-xl border border-slate-300 pl-9 pr-2 text-base" />
+          </label>
+          <button className="min-h-11 rounded-xl border border-slate-300 px-3 text-sm font-bold text-blue-800">Search</button>
+          {query && <Link href={filesUrl(folderId)} className="rounded-lg px-2 py-2 text-sm font-semibold text-blue-800">Clear</Link>}
+        </form>
+        <ExplorerList key={JSON.stringify([folderId, query])} rows={rows} folders={destinations}
+          folderId={folderId} folderName={current?.name ?? "My files"} accountId={access.session.user.id}
+          isAdmin={access.isAdmin} filtered={Boolean(query)} />
+      </section>
+    </div>
+  </main>;
 }

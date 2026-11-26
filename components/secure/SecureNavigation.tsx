@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { Archive, CalendarDays, LayoutDashboard, Landmark, LogOut, Menu, ShieldCheck, Wrench, X } from "lucide-react";
+import { Archive, CalendarDays, Files, LayoutDashboard, Landmark, LogOut, Menu, ShieldCheck, Wrench, X } from "lucide-react";
 import { useState } from "react";
 import { authClient } from "@/lib/auth-client";
 
@@ -47,7 +47,7 @@ export default function SecureNavigation({ isAdmin, pendingAppointments = 0 }: {
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-1 lg:flex" aria-label="Secure workspace navigation">
+        <nav className="hidden items-center gap-1 xl:flex" aria-label="Secure workspace navigation">
           {links.map(({ href, label, icon: Icon }) => {
             const active = pathname === href || pathname.startsWith(`${href}/`);
             return (
@@ -61,18 +61,26 @@ export default function SecureNavigation({ isAdmin, pendingAppointments = 0 }: {
         </nav>
 
         <div className="flex items-center gap-2">
+          <Link href="/secure/documents" onClick={() => setOpen(false)} aria-label="Browse files" aria-current={pathname === "/secure/documents" ? "page" : undefined}
+            className={`flex min-h-11 items-center gap-2 rounded-xl border px-3 text-sm font-bold focus-visible:ring-2 focus-visible:ring-blue-600 ${pathname.startsWith("/secure/documents") || pathname === "/secure/upload" ? "border-blue-200 bg-blue-50 text-blue-800" : "border-slate-200 text-slate-700"}`}>
+            <Files size={17} aria-hidden /> Files
+          </Link>
           <button type="button" onClick={() => void signOut()} disabled={signingOut} className="hidden items-center gap-2 rounded-xl border border-slate-200 px-3.5 py-2.5 text-sm font-bold text-slate-600 transition hover:border-red-200 hover:text-red-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 disabled:opacity-50 sm:flex">
             <LogOut aria-hidden="true" size={17} />
             {signingOut ? "Signing out..." : "Sign out"}
           </button>
-          <button type="button" onClick={() => setOpen((value) => !value)} aria-expanded={open} aria-controls="secure-mobile-nav" aria-label={open ? "Close workspace menu" : "Open workspace menu"} className="flex h-10 w-10 items-center justify-center rounded-xl border border-slate-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 lg:hidden">
+          <button id="secure-menu-toggle" type="button" onClick={() => setOpen((value) => !value)} aria-expanded={open} aria-controls="secure-mobile-nav" aria-label={open ? "Close workspace menu" : "Open workspace menu"} className="flex size-11 shrink-0 items-center justify-center rounded-xl border border-slate-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 xl:hidden">
             {open ? <X aria-hidden="true" size={20} /> : <Menu aria-hidden="true" size={20} />}
           </button>
         </div>
       </div>
 
       {open && (
-        <nav id="secure-mobile-nav" aria-label="Secure mobile navigation" className="mx-auto grid max-w-7xl gap-1 border-t border-slate-100 py-3 lg:hidden">
+        <nav id="secure-mobile-nav" aria-label="Secure mobile navigation" onKeyDown={(event) => {
+          if (event.key !== "Escape") return;
+          setOpen(false);
+          document.getElementById("secure-menu-toggle")?.focus();
+        }} className="mx-auto grid max-h-[calc(100dvh-5rem)] max-w-7xl gap-1 overflow-y-auto overscroll-contain border-t border-slate-100 py-3 xl:hidden">
           {links.map(({ href, label, icon: Icon }) => {
             const active = pathname === href || pathname.startsWith(`${href}/`);
             return (
