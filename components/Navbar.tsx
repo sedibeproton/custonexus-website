@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ArrowUpRight, ChevronDown, LockKeyhole, Menu, X } from "lucide-react";
 import Container from "./Container";
 import Logo from "./Logo";
@@ -31,6 +31,7 @@ const navItems: NavItem[] = [
     ],
   },
   { href: "/solutions", label: "Solutions" },
+  { href: "/pricing", label: "Pricing" },
   { href: "/portfolio", label: "Portfolio" },
   {
     href: "/about",
@@ -57,6 +58,8 @@ const navItems: NavItem[] = [
 export default function Navbar() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const [expanded, setExpanded] = useState<string | null>(null);
+  const menuButton = useRef<HTMLButtonElement>(null);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -67,6 +70,10 @@ export default function Navbar() {
   }, []);
 
   const isActive = (href: string) => href === "/" ? pathname === "/" : pathname.startsWith(href);
+  const closeMenu = () => {
+    setOpen(false);
+    setExpanded(null);
+  };
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-5 sm:pt-4">
@@ -101,23 +108,35 @@ export default function Navbar() {
             <Link href="/contact" className="group inline-flex items-center gap-2 rounded-xl bg-blue-700 px-5 py-3 text-sm font-bold text-white shadow-lg shadow-blue-700/20 transition hover:-translate-y-0.5 hover:bg-blue-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2">Start a project <ArrowUpRight aria-hidden size={17} className="transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" /></Link>
           </div>
 
-          <button type="button" onClick={() => setOpen((value) => !value)} aria-expanded={open} aria-controls="mobile-navigation" aria-label={open ? "Close navigation" : "Open navigation"} className="flex h-11 w-11 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-800 transition hover:border-blue-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 xl:hidden">{open ? <X aria-hidden size={21} /> : <Menu aria-hidden size={21} />}</button>
+          <button ref={menuButton} type="button" onClick={() => open ? closeMenu() : setOpen(true)} aria-expanded={open} aria-controls="mobile-navigation" aria-label={open ? "Close navigation" : "Open navigation"} className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-800 transition hover:border-blue-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 xl:hidden">{open ? <X aria-hidden size={21} /> : <Menu aria-hidden size={21} />}</button>
         </div>
 
-        <div id="mobile-navigation" className={`grid transition-[grid-template-rows,opacity] duration-300 xl:hidden ${open ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
+        <div id="mobile-navigation" hidden={!open} className="xl:hidden" onKeyDown={(event) => {
+          if (event.key !== "Escape") return;
+          closeMenu();
+          menuButton.current?.focus();
+        }}>
           <div className="overflow-hidden">
-            <nav aria-label="Mobile navigation" className="max-h-[calc(100vh-7rem)] overflow-y-auto border-t border-slate-100 pb-2 pt-4">
+            <nav aria-label="Mobile navigation" className="mt-3 max-h-[calc(100dvh-7rem)] overscroll-contain overflow-y-auto rounded-xl border border-slate-200 bg-white p-2">
               {navItems.map((item) => (
                 <div key={item.href} className="mb-1">
-                  <Link href={item.href} onClick={() => setOpen(false)} className={`block rounded-xl px-4 py-3 font-semibold ${isActive(item.href) ? "bg-blue-50 text-blue-800" : "text-slate-700 hover:bg-slate-50"}`}>{item.label}</Link>
-                  {item.children && <div className="ml-4 grid border-l border-blue-100 pl-3 sm:grid-cols-2">
-                    {item.children.slice(1).map((child) => <Link key={child.href} href={child.href} onClick={() => setOpen(false)} className="rounded-lg px-3 py-2 text-sm text-slate-600 hover:bg-blue-50 hover:text-blue-800">{child.label}</Link>)}
-                  </div>}
+                  {item.children ? (
+                    <>
+                      <button type="button" aria-expanded={expanded === item.href} aria-controls={`mobile-group-${item.href.slice(1)}`} onClick={() => setExpanded(expanded === item.href ? null : item.href)} className={`flex w-full items-center justify-between rounded-xl px-4 py-3 text-left font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-600 ${isActive(item.href) || item.children.some((child) => pathname === child.href) ? "bg-blue-50 text-blue-800" : "text-slate-700 hover:bg-slate-50"}`}>
+                        {item.label}<ChevronDown aria-hidden size={18} className={expanded === item.href ? "rotate-180" : ""} />
+                      </button>
+                      <div id={`mobile-group-${item.href.slice(1)}`} hidden={expanded !== item.href}>
+                        <div className="my-1 ml-4 grid border-l border-blue-100 pl-2 sm:grid-cols-2">
+                          {item.children.map((child) => <Link key={child.href} href={child.href} aria-current={pathname === child.href ? "page" : undefined} onClick={closeMenu} className="rounded-lg px-3 py-3 text-sm text-slate-700 hover:bg-blue-50 aria-[current=page]:font-bold aria-[current=page]:text-blue-800">{child.label}</Link>)}
+                        </div>
+                      </div>
+                    </>
+                  ) : <Link href={item.href} aria-current={pathname === item.href ? "page" : undefined} onClick={closeMenu} className={`block rounded-xl px-4 py-3 font-semibold ${isActive(item.href) ? "bg-blue-50 text-blue-800" : "text-slate-700 hover:bg-slate-50"}`}>{item.label}</Link>}
                 </div>
               ))}
               <div className="mt-3 grid gap-1 sm:grid-cols-2">
-                <Link href="/contact" onClick={() => setOpen(false)} className="rounded-xl bg-blue-700 px-4 py-3 font-bold text-white">Contact us</Link>
-                <Link href="/secure/login" onClick={() => setOpen(false)} className="flex items-center gap-2 rounded-xl px-4 py-3 font-semibold text-slate-600"><LockKeyhole aria-hidden size={17} /> Secure Archive</Link>
+                <Link href="/contact" onClick={closeMenu} className="rounded-xl bg-blue-700 px-4 py-3 font-bold text-white">Contact us</Link>
+                <Link href="/secure/login" onClick={closeMenu} className="flex items-center gap-2 rounded-xl px-4 py-3 font-semibold text-slate-600"><LockKeyhole aria-hidden size={17} /> Secure Archive</Link>
               </div>
             </nav>
           </div>

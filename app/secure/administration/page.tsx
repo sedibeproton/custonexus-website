@@ -5,6 +5,7 @@ import { requireSecurePage } from "@/lib/business/page-auth";
 export default async function AdministrationPage() {
   const access = await requireSecurePage(true);
   const areas = [
+    { title: "Pricing Management", description: "Edit, preview and publish the public pricing catalogue.", href: "/secure/administration/pricing", action: "Manage pricing", icon: Landmark },
     { title: "User management", description: "Create accounts, reset passwords, assign administrator roles and remove access.", href: "/secure/users", action: "Manage users", icon: UsersRound },
     { title: "Company settings", description: "Maintain company identity, document terms, tax configuration and protected banking details.", href: "/secure/settings/company", action: "Open settings", icon: Building2 },
     { title: "Bank accounts", description: "Add payment accounts and control which banking details can be selected on financial documents.", href: "/secure/settings/banking", action: "Manage bank accounts", icon: Landmark },

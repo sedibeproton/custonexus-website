@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Mail, MapPin, MessageCircle, Phone, ShieldCheck } from "lucide-react";
 
 import Container from "@/components/Container";
+import { getPublicPricing } from "@/lib/pricing-store";
 import EnquiryForm from "@/components/EnquiryForm";
 import FadeSection from "@/components/FadeSection";
 import PageHero from "@/components/PageHero";
@@ -22,9 +23,11 @@ const methods = [
   { icon: MessageCircle, label: "WhatsApp", value: "Message 079 615 5204", href: createWhatsAppUrl(whatsappMessages.project), external: true },
   { icon: Phone, label: "Phone", value: "Call 079 615 5204", href: "tel:+27796155204" },
   { icon: Mail, label: "Email", value: "info@custonexus.com", href: "mailto:info@custonexus.com" },
+  { icon: Mail, label: "Business contact", value: "goodwill@custonexus.com", href: "mailto:goodwill@custonexus.com" },
 ];
 
-export default function ContactPage() {
+export default async function ContactPage({ searchParams }: { searchParams: Promise<{ package?: string | string[] }> }) {
+  const selected = (await searchParams).package;
   return (
     <PageWrapper>
       <PageHero eyebrow="Projects · Quotes · Support" title="What Would You Like to Build or Improve?" subtitle="Tell us about the business, the current problem and the outcome you need. We will respond with useful questions and a practical next step." />
@@ -38,7 +41,7 @@ export default function ContactPage() {
             <div className="mt-7 flex items-start gap-3 rounded-2xl bg-blue-950 p-5 text-blue-100"><ShieldCheck className="mt-0.5 shrink-0 text-emerald-400" size={22} aria-hidden /><p className="text-sm leading-6">Your information is used only to understand and respond to your enquiry. Do not submit passwords, confidential patient information or sensitive system data.</p></div>
             <div className="mt-5 grid gap-3"><Link href="/free-website-review" className="rounded-2xl border border-blue-200 bg-blue-50 px-5 py-4 text-center font-bold text-blue-800 transition hover:border-blue-400">Get a Free Website Review</Link><Link href="/book-consultation" className="w-full rounded-2xl border border-blue-200 bg-white px-5 py-4 text-center font-bold text-blue-800 transition hover:border-blue-400 hover:bg-blue-50">Book a 15-Minute Consultation</Link></div>
           </aside>
-          <EnquiryForm />
+          <EnquiryForm key={typeof selected === "string" ? selected : ""} prices={await getPublicPricing()} initialPackage={typeof selected === "string" ? selected : undefined} />
         </div>
       </Container></section></FadeSection>
       <FadeSection><section className="bg-white py-16 sm:py-20"><Container><div className="grid gap-6 rounded-[2rem] border border-blue-100 bg-blue-50/60 p-7 sm:grid-cols-[auto_1fr] sm:items-center sm:p-10"><div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white text-blue-700 shadow-md"><MapPin size={29} aria-hidden /></div><div><p className="text-xs font-bold uppercase tracking-[0.24em] text-blue-700">Based in South Africa · Built to grow</p><h2 className="mt-3 text-2xl font-semibold text-blue-950 sm:text-3xl">Technology services for businesses, practices and healthcare organisations.</h2><p className="mt-3 leading-7 text-slate-600">We review each request in context and clearly explain what can be delivered, what information is still needed and what the next step will be.</p></div></div></Container></section></FadeSection>

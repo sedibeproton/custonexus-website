@@ -1,2 +1,18 @@
-import FinancialDocumentForm from"@/components/secure/FinancialDocumentForm";import SecurePageHeader from"@/components/secure/SecurePageHeader";import{requireSecurePage}from"@/lib/business/page-auth";import{getCompanySettings,listClients}from"@/lib/business/service";
-export default async function NewQuotePage(){await requireSecurePage();const[clients,settings]=await Promise.all([listClients(),getCompanySettings()]);return <main className="min-h-screen bg-slate-100 px-4 py-16 sm:px-6"><div className="mx-auto max-w-7xl"><SecurePageHeader eyebrow="Quotes" title="New quote" description="Build an itemized customer quotation with an exact live financial summary."/><div className="mt-7"><FinancialDocumentForm kind="quote" clients={clients} settings={settings}/></div></div></main>}
+import FinancialDocumentForm from "@/components/secure/FinancialDocumentForm";
+import SecurePageHeader from "@/components/secure/SecurePageHeader";
+import { requireSecurePage } from "@/lib/business/page-auth";
+import { getCompanySettings, listClients } from "@/lib/business/service";
+import { getPublicPricing } from "@/lib/pricing-store";
+
+export default async function NewQuotePage() {
+  const access = await requireSecurePage();
+  const [clients, settings, catalogue] = await Promise.all([
+    listClients(), getCompanySettings(), access.isAdmin ? getPublicPricing() : [],
+  ]);
+  return <main className="min-h-screen bg-slate-100 px-4 py-16 sm:px-6">
+    <div className="mx-auto max-w-7xl">
+      <SecurePageHeader eyebrow="Quotes" title="New quote" description="Build an itemized customer quotation with an exact live financial summary." />
+      <div className="mt-7"><FinancialDocumentForm kind="quote" clients={clients} settings={settings} catalogue={catalogue} /></div>
+    </div>
+  </main>;
+}

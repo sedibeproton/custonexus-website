@@ -11,7 +11,7 @@ export default function CompanySettingsForm({ settings }: { settings: CompanySet
     event.preventDefault(); setError(""); setMessage("");
     const form = new FormData(event.currentTarget);
     const payload: Record<string, unknown> = Object.fromEntries(form);
-    for (const name of ["vatEnabled", "showBankOnQuotes", "showBankOnInvoices"]) payload[name] = form.get(name) === "on";
+    for (const name of ["vatRegistered","vatEnabled", "showBankOnQuotes", "showBankOnInvoices"]) payload[name] = form.get(name) === "on";
     try {
       const response = await fetch("/api/business/settings", { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
       const data = await response.json(); if (!response.ok) throw new Error(data.error); setMessage("Company settings saved.");
@@ -24,7 +24,10 @@ export default function CompanySettingsForm({ settings }: { settings: CompanySet
       {field("registrationNumber", "Registration number", settings.registrationNumber)}{field("vatNumber", "VAT number", settings.vatNumber)}
       {field("email", "Email", settings.email, "email")}{field("phone", "Telephone", settings.phone)}{field("website", "Website", settings.website, "url")}{field("logoPath", "Logo path", settings.logoPath)}
       <label className="text-sm font-bold sm:col-span-2">Business address<textarea name="address" defaultValue={settings.address || ""} rows={3} className={input}/></label>
-      <label className="flex items-center gap-3 text-sm font-bold"><input name="vatEnabled" type="checkbox" defaultChecked={settings.vatEnabled}/> VAT registered/enabled</label>
+      <label className="flex items-center gap-3 text-sm font-bold"><input name="vatEnabled" type="checkbox" defaultChecked={settings.vatEnabled}/> Enable VAT charging from effective date</label>
+      <label><input name="vatRegistered" type="checkbox" defaultChecked={settings.vatRegistered}/> VAT registered</label>
+      {field("vatEffectiveDate", "Registration effective date", settings.vatEffectiveDate, "date")}
+      {!settings.vatRegistered && <p>VAT registered: No · VAT charging: Disabled · VAT registration number: Not applicable</p>}
       {field("vatPercent", "VAT percentage", (settings.vatBasisPoints / 100).toFixed(2))}{field("quoteValidityDays", "Default quote validity days", String(settings.quoteValidityDays), "number")}{field("invoicePaymentDays", "Default invoice payment days", String(settings.invoicePaymentDays), "number")}
     </section>
     <section className="grid gap-5 rounded-3xl bg-white p-7 shadow-sm sm:grid-cols-2">

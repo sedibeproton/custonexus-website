@@ -297,12 +297,13 @@ export default async function ServiceDetailPage({
       <FadeSection>
         <section className="border-y border-blue-100 bg-blue-50 py-16 sm:py-24">
           <Container>
-            <SectionHeader eyebrow="Clear Project Scoping" title="Receive a Quote Built Around the Actual Work" subtitle="We are currently pricing each engagement according to its real scope rather than forcing different businesses into a fixed package." />
+            <SectionHeader eyebrow="Pricing" title="Starting prices and quotations" subtitle="Compare base scopes and request a confirmed price for your project." />
+            {(await getPublicPricingGroups()).filter((group) => group.service === service.slug).map(({ title, note, entries }) => <div key={title} className="mb-8"><h2 className="text-xl font-bold text-blue-950">{title}</h2><p className="mt-2 text-slate-700">{note}</p><PricingCards entries={entries} /></div>)}
             <div className="mx-auto grid max-w-5xl gap-6 rounded-[2rem] border border-blue-100 bg-white p-6 shadow-xl shadow-blue-950/5 lg:grid-cols-[1fr_auto] lg:items-center lg:p-10">
               <div>
                 <h2 className="text-2xl font-bold text-slate-950">Tell us what you are trying to improve.</h2>
                 <p className="mt-4 max-w-3xl leading-8 text-slate-600">We will clarify the requirement and provide a written proposal covering deliverables, responsibilities, assumptions, timing and price before work begins.</p>
-                <p className="mt-4 text-sm leading-7 text-slate-500">{service.pricingNote}</p>
+                <p className="mt-4 text-sm leading-7 text-slate-600">{service.pricingNote}</p>
               </div>
               <Link href={websiteService ? "/free-website-review" : "/contact"} className="inline-flex items-center justify-center gap-2 rounded-2xl bg-blue-700 px-7 py-4 font-bold text-white shadow-lg shadow-blue-700/20 transition hover:-translate-y-0.5 hover:bg-blue-800">{websiteService ? "Get a free website review" : "Request a quote"} <ArrowRight size={18} aria-hidden /></Link>
             </div>
@@ -339,3 +340,5 @@ export default async function ServiceDetailPage({
     </PageWrapper>
   );
 }
+import PricingCards from "@/components/PricingCards";
+import { getPublicPricingGroups } from "@/lib/pricing-store";

@@ -18,7 +18,7 @@ export async function generateFinancialPdf(snapshot:FinancialSnapshot){
   doc.fillColor(navy).font("Helvetica-Bold").fontSize(25).text(snapshot.kind==="quote"?"QUOTATION":"INVOICE",340,45,{width:210,align:"right"});
   doc.fillColor(blue).fontSize(12).text(snapshot.number,340,78,{width:210,align:"right"});
   doc.moveTo(42,115).lineTo(553,115).lineWidth(2).strokeColor(blue).stroke();
-  const companyIdentity=[snapshot.company.legalName,snapshot.company.registrationNumber?`Registration: ${snapshot.company.registrationNumber}`:null,snapshot.company.vatNumber?`VAT: ${snapshot.company.vatNumber}`:null,`${snapshot.company.email}  |  ${snapshot.company.phone}`,snapshot.company.website].filter(Boolean).join("\n");
+  const companyIdentity=[snapshot.company.legalName,snapshot.company.registrationNumber?`Registration: ${snapshot.company.registrationNumber}`:null,snapshot.taxType!=="NONE"&&snapshot.company.vatNumber?`VAT: ${snapshot.company.vatNumber}`:null,`${snapshot.company.email}  |  ${snapshot.company.phone}`,snapshot.company.website].filter(Boolean).join("\n");
   doc.fillColor(slate).font("Helvetica").fontSize(8.5).text(companyIdentity,42,128,{width:255,lineGap:2});
   doc.font("Helvetica-Bold").fillColor(navy).text(snapshot.kind==="quote"?"ISSUE DATE":"INVOICE DATE",340,128,{width:100}).text(snapshot.kind==="quote"?"VALID UNTIL":"DUE DATE",340,150,{width:100}).font("Helvetica").fillColor(slate).text(snapshot.issueDate,450,128,{width:100,align:"right"}).text(snapshot.secondaryDate,450,150,{width:100,align:"right"});
   if(snapshot.reference)doc.font("Helvetica-Bold").fillColor(navy).text("REFERENCE",340,172,{width:100}).font("Helvetica").fillColor(slate).text(snapshot.reference,430,172,{width:120,align:"right"});

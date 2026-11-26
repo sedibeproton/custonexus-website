@@ -4,6 +4,7 @@ import { useState } from "react";
 import { ArrowLeft, ArrowRight, Check, LoaderCircle, MessageCircle } from "lucide-react";
 import { validateEnquiryContact, validateEnquiryDetails } from "@/lib/enquiry-validation";
 import { trackConversion } from "@/lib/analytics";
+import { enquiryService, pricingLabel, type PricingEntry } from "@/lib/pricing";
 
 type FormState = Record<string, string | boolean>;
 
@@ -20,9 +21,12 @@ const services = [
 const inputClass = "mt-2 w-full rounded-2xl border border-slate-200 bg-white px-4 py-3.5 text-slate-950 outline-none transition placeholder:text-slate-400 focus:border-blue-500 focus:ring-4 focus:ring-blue-100";
 const labelClass = "block text-sm font-bold text-slate-800";
 
-export default function EnquiryForm() {
+export default function EnquiryForm({ initialPackage, prices }: { initialPackage?: string; prices: PricingEntry[] }) {
+  const findPrice = (id: unknown) => prices.find((entry) => entry.id === id);
+  const initial = findPrice(initialPackage);
   const [step, setStep] = useState(1);
-  const [form, setForm] = useState<FormState>({ intent: "quote", service: "business-website", projectType: "website", preferredContact: "whatsapp", consent: false, website: "" });
+  const [form, setForm] = useState<FormState>({ intent: "quote", service: initial ? enquiryService(initial.service) : "business-website", packageId: initial?.id ?? "", projectType: initial?.id === "healthcare-practice-website" || !initial || initial.service === "business-websites" ? "website" : "", preferredContact: "whatsapp", consent: false, website: "" });
+  const selectedPackage = findPrice(form.packageId);
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
   const [reference, setReference] = useState("");
@@ -40,6 +44,7 @@ export default function EnquiryForm() {
   const chooseService = (service: string) => setForm((current) => ({
     ...current,
     service,
+    packageId: "",
     projectType: service === "healthcare-technology"
       ? String(current.projectType || "website")
       : service === "business-website" ? "website" : "",
@@ -70,7 +75,7 @@ export default function EnquiryForm() {
     const detailKeys = ["websiteType", "pageCount", "audience", "features", "contentStatus", "currentWebsite", "supportNeed", "appType", "platform", "users", "integrations", "process", "data", "equipmentRequestType", "productNames", "specifications", "quantity", "deliveryLocation", "supportType", "engagementType", "technicalTasks", "challenge", "partnershipType", "proposal", "requirements", "timeline", "budget"];
     const details = Object.fromEntries(detailKeys.map((key) => [key, text(key)]).filter(([, value]) => value));
     try {
-      const response = await fetch("/api/enquiries", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ ...form, details }) });
+      const response = await fetch("/api/enquiries", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ ...form, details, packagePrice: selectedPackage && pricingLabel(selectedPackage), packageDescription: selectedPackage?.description }) });
       const result = await response.json();
       if (!response.ok) {
         if (result.fields && typeof result.fields === "object") {
@@ -98,6 +103,18 @@ export default function EnquiryForm() {
       <div className="border-b border-slate-100 bg-slate-50 px-5 py-5 sm:px-8"><div className="flex items-center justify-between gap-4"><div><p className="text-xs font-bold uppercase tracking-[0.22em] text-blue-700">Guided enquiry</p><p className="mt-1 text-sm text-slate-500">Step {step} of 4</p></div><div className="flex gap-2">{[1,2,3,4].map((number) => <span key={number} className={`h-2 rounded-full transition-all ${number <= step ? "w-8 bg-blue-700" : "w-4 bg-slate-200"}`} />)}</div></div></div>
       <div className="p-5 sm:p-8 lg:p-10">
         {step === 1 && <div><h2 className="text-2xl font-semibold text-blue-950 sm:text-3xl">What would you like help with?</h2><p className="mt-3 text-slate-600">Your answers determine the next questions.</p>
+          <label className="mt-5 block text-sm font-bold">Package or priced service (optional)
+            <select className={inputClass} value={selectedPackage?.id ?? ""} onChange={(event) => {
+              const entry = findPrice(event.target.value);
+              if (entry) chooseService(enquiryService(entry.service));
+              set("packageId", entry?.id ?? "");
+              if (entry?.id === "healthcare-practice-website") set("projectType", "website");
+            }}>
+              <option value="">Choose a service below</option>
+              {prices.map((entry) => <option key={entry.id} value={entry.id}>{entry.name} · {pricingLabel(entry)}</option>)}
+            </select>
+          </label>
+          {selectedPackage && <p className="mt-2 text-sm text-blue-800">{pricingLabel(selectedPackage)}. Final scope and price are confirmed by quotation.</p>}
           <fieldset className="mt-7"><legend className={labelClass}>What would you like us to do?</legend><div className="mt-3 grid gap-3 sm:grid-cols-3">{[["quote","Prepare a quote"],["callback","Request a callback"],["general","Discuss an idea"]].map(([value,label]) => <Choice key={value} name="intent" value={value} label={label} selected={form.intent === value} onChange={() => set("intent", value)} />)}</div></fieldset>
           <fieldset className="mt-7"><legend className={labelClass}>What do you need?</legend><div className="mt-3 grid gap-3 sm:grid-cols-2">{services.map(([value,label,description]) => <Choice key={value} name="service" value={value} label={label} description={description} selected={form.service === value} onChange={() => chooseService(value)} />)}</div></fieldset>
           {form.service === "healthcare-technology" && <fieldset className="mt-7"><legend className={labelClass}>What are you planning?</legend><div className="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">{[["website","Healthcare website"],["app","Healthcare app"],["portal","Portal or dashboard"],["integration","Integration or other"]].map(([value,label]) => <Choice key={value} name="projectType" value={value} label={label} selected={form.projectType === value} onChange={() => set("projectType", value)} />)}</div></fieldset>}

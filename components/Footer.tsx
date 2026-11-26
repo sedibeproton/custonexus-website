@@ -27,6 +27,7 @@ export default function Footer() {
           <div>
             <h3 className="mb-6 text-xs font-bold uppercase tracking-[0.25em] text-blue-300">Explore</h3>
             <ul className="space-y-3 text-slate-300">
+              <li><Link href="/pricing" className="transition hover:text-white">Pricing</Link></li>
               <li>
                 <Link href="/about" className="transition hover:text-white">
                   About

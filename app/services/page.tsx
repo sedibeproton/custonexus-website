@@ -4,6 +4,7 @@ import { ArrowRight, Blocks, BriefcaseBusiness, CheckCircle2, Handshake, HeartPu
 
 import Container from "@/components/Container";
 import CTASection from "@/components/CTASection";
+import PricingPreview from "@/components/PricingPreview";
 import FadeSection from "@/components/FadeSection";
 import PageHero from "@/components/PageHero";
 import PageWrapper from "@/components/PageWrapper";
@@ -64,6 +65,7 @@ export default function ServicesPage() {
       <FadeSection><section className="bg-white py-16 sm:py-24"><Container><div className="mx-auto max-w-5xl rounded-[2rem] border border-blue-100 bg-blue-50 p-7 text-center sm:p-12"><p className="text-xs font-bold uppercase tracking-[0.24em] text-blue-700">Clear Project Scoping</p><h2 className="mt-4 text-3xl font-bold text-blue-950 sm:text-4xl">No forced package. No surprise scope.</h2><p className="mx-auto mt-5 max-w-3xl text-lg leading-8 text-slate-600">We first understand the requirement, then provide a written proposal covering the work, responsibilities, timing, assumptions and price.</p><Link href="/contact" className="group mt-8 inline-flex items-center gap-2 rounded-2xl bg-blue-700 px-7 py-4 font-bold text-white">Tell us about your project <ArrowRight size={18} aria-hidden className="transition group-hover:translate-x-1" /></Link></div></Container></section></FadeSection>
 
       <FadeSection><CTASection title="Have a Website or Application in Mind?" subtitle="Tell us what your business needs to build, redesign, integrate or improve. We will help identify a practical next step." buttonText="Start a Project" buttonLink="/contact" /></FadeSection>
+      <PricingPreview ids={["starter-website", "website-redesign", "web-application-development", "equipment-assessment"]} />
     </PageWrapper>
   );
 }

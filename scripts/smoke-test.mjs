@@ -4,6 +4,7 @@ const publicPaths = [
   "/",
   "/about",
   "/services",
+  "/pricing",
   "/services/business-websites",
   "/services/website-support",
   "/services/business-systems",

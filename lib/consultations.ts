@@ -15,11 +15,37 @@ export type AvailabilityRule={id:string;weekday:number;startTime:string;endTime:
 export type BlockedPeriod={id:string;startsAt:string;endsAt:string;reason:string|null};
 export type BookingRecord={id:string;reference:string;status:BookingStatus;consultationType:string;customerName:string;email:string;phone:string;businessName:string|null;projectDescription:string|null;startsAt:string;endsAt:string;timezone:string;reviewNote:string|null;createdAt:string};
 
-const sqlite=getPersistenceBackend()==="sqlite"?new Database("./sqlite.db"):null;
-sqlite?.exec(`CREATE TABLE IF NOT EXISTS consultationSettings(id TEXT PRIMARY KEY,durationMinutes INTEGER NOT NULL,minimumNoticeMinutes INTEGER NOT NULL,maximumAdvanceDays INTEGER NOT NULL,timezone TEXT NOT NULL);INSERT OR IGNORE INTO consultationSettings VALUES('default',15,1440,60,'Africa/Johannesburg');CREATE TABLE IF NOT EXISTS consultationAvailabilityRules(id TEXT PRIMARY KEY,weekday INTEGER NOT NULL,startTime TEXT NOT NULL,endTime TEXT NOT NULL,enabled INTEGER NOT NULL DEFAULT 1,UNIQUE(weekday,startTime,endTime));CREATE TABLE IF NOT EXISTS consultationBlockedPeriods(id TEXT PRIMARY KEY,startsAt TEXT NOT NULL,endsAt TEXT NOT NULL,reason TEXT,createdBy TEXT,createdAt TEXT NOT NULL);CREATE TABLE IF NOT EXISTS consultationBookings(id TEXT PRIMARY KEY,reference TEXT NOT NULL UNIQUE,status TEXT NOT NULL,consultationType TEXT NOT NULL,customerName TEXT NOT NULL,email TEXT NOT NULL,phone TEXT NOT NULL,businessName TEXT,projectDescription TEXT,startsAt TEXT NOT NULL,endsAt TEXT NOT NULL,timezone TEXT NOT NULL,confirmationSentAt TEXT,companyNotificationSentAt TEXT,reviewNote TEXT,reviewedAt TEXT,reviewedBy TEXT,decisionNotificationSentAt TEXT,createdAt TEXT NOT NULL,updatedAt TEXT NOT NULL);`);
-if(sqlite){const columns=new Set((sqlite.prepare("PRAGMA table_info(consultationBookings)").all() as Array<{name:string}>).map(column=>column.name));for(const[column,type]of [["reviewNote","TEXT"],["reviewedAt","TEXT"],["reviewedBy","TEXT"],["decisionNotificationSentAt","TEXT"]] as const)if(!columns.has(column))sqlite.exec(`ALTER TABLE consultationBookings ADD COLUMN ${column} ${type}`);sqlite.exec("DROP INDEX IF EXISTS consultationActiveStart;CREATE UNIQUE INDEX consultationActiveStart ON consultationBookings(startsAt) WHERE status IN ('PENDING','CONFIRMED','RESCHEDULE_PROPOSED');")}
-if(sqlite){const count=(sqlite.prepare("SELECT COUNT(*) count FROM consultationAvailabilityRules").get() as {count:number}).count;if(count===0){const insert=sqlite.prepare("INSERT INTO consultationAvailabilityRules(id,weekday,startTime,endTime,enabled) VALUES(?,?,?,?,1)");const seed=sqlite.transaction(()=>{for(let weekday=1;weekday<=5;weekday++)insert.run(`default-${weekday}`,weekday,"09:00","16:00")});seed()}}
-function db(){if(!sqlite)throw new Error("SQLite consultation storage is unavailable.");return sqlite}
+let sqlite: Database.Database | undefined;
+
+function db() {
+  if (getPersistenceBackend() !== "sqlite") throw new Error("SQLite consultation storage is unavailable.");
+  if (sqlite) return sqlite;
+
+  const connection = new Database("./sqlite.db", { timeout: 10000 });
+  try {
+    connection.transaction(() => {
+      connection.exec(`CREATE TABLE IF NOT EXISTS consultationSettings(id TEXT PRIMARY KEY,durationMinutes INTEGER NOT NULL,minimumNoticeMinutes INTEGER NOT NULL,maximumAdvanceDays INTEGER NOT NULL,timezone TEXT NOT NULL);INSERT OR IGNORE INTO consultationSettings VALUES('default',15,1440,60,'Africa/Johannesburg');CREATE TABLE IF NOT EXISTS consultationAvailabilityRules(id TEXT PRIMARY KEY,weekday INTEGER NOT NULL,startTime TEXT NOT NULL,endTime TEXT NOT NULL,enabled INTEGER NOT NULL DEFAULT 1,UNIQUE(weekday,startTime,endTime));CREATE TABLE IF NOT EXISTS consultationBlockedPeriods(id TEXT PRIMARY KEY,startsAt TEXT NOT NULL,endsAt TEXT NOT NULL,reason TEXT,createdBy TEXT,createdAt TEXT NOT NULL);CREATE TABLE IF NOT EXISTS consultationBookings(id TEXT PRIMARY KEY,reference TEXT NOT NULL UNIQUE,status TEXT NOT NULL,consultationType TEXT NOT NULL,customerName TEXT NOT NULL,email TEXT NOT NULL,phone TEXT NOT NULL,businessName TEXT,projectDescription TEXT,startsAt TEXT NOT NULL,endsAt TEXT NOT NULL,timezone TEXT NOT NULL,confirmationSentAt TEXT,companyNotificationSentAt TEXT,reviewNote TEXT,reviewedAt TEXT,reviewedBy TEXT,decisionNotificationSentAt TEXT,createdAt TEXT NOT NULL,updatedAt TEXT NOT NULL);`);
+      const columns = new Set((connection.prepare("PRAGMA table_info(consultationBookings)").all() as { name: string }[]).map(({ name }) => name));
+      for (const column of ["reviewNote", "reviewedAt", "reviewedBy", "decisionNotificationSentAt"]) {
+        if (!columns.has(column)) connection.exec(`ALTER TABLE consultationBookings ADD COLUMN ${column} TEXT`);
+      }
+      const index = connection.prepare("SELECT sql FROM sqlite_master WHERE type='index' AND name=?").get("consultationActiveStart") as { sql: string } | undefined;
+      if (!index?.sql.includes("'RESCHEDULE_PROPOSED'") || !index.sql.includes("'PENDING'") || !index.sql.includes("'CONFIRMED'")) {
+        connection.exec("DROP INDEX IF EXISTS consultationActiveStart");
+        connection.exec("CREATE UNIQUE INDEX consultationActiveStart ON consultationBookings(startsAt) WHERE status IN ('PENDING','CONFIRMED','RESCHEDULE_PROPOSED')");
+      }
+      if (!connection.prepare("SELECT 1 FROM consultationAvailabilityRules LIMIT 1").get()) {
+        const insert = connection.prepare("INSERT INTO consultationAvailabilityRules(id,weekday,startTime,endTime,enabled) VALUES(?,?,?,?,1)");
+        for (let weekday = 1; weekday <= 5; weekday++) insert.run(`default-${weekday}`, weekday, "09:00", "16:00");
+      }
+    }).immediate();
+    sqlite = connection;
+    return sqlite;
+  } catch (error) {
+    connection.close();
+    throw error;
+  }
+}
 const iso=(value:unknown)=>value instanceof Date?value.toISOString():new Date(String(value)).toISOString();
 const mapBooking=(r:Record<string,unknown>):BookingRecord=>({id:String(r.id),reference:String(r.reference),status:String(r.status) as BookingStatus,consultationType:String(r.consultation_type??r.consultationType),customerName:String(r.customer_name??r.customerName),email:String(r.email),phone:String(r.phone),businessName:r.business_name??r.businessName?String(r.business_name??r.businessName):null,projectDescription:r.project_description??r.projectDescription?String(r.project_description??r.projectDescription):null,startsAt:iso(r.starts_at??r.startsAt),endsAt:iso(r.ends_at??r.endsAt),timezone:String(r.timezone),reviewNote:r.review_note??r.reviewNote?String(r.review_note??r.reviewNote):null,createdAt:iso(r.created_at??r.createdAt)});
 

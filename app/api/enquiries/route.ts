@@ -1,4 +1,6 @@
 import { randomUUID } from "crypto";
+import { getPublicPricing } from "@/lib/pricing-store";
+import { enquiryService, pricingLabel } from "@/lib/pricing";
 import { insertEnquiry } from "@/lib/enquiries";
 import { deleteEnquiry } from "@/lib/enquiries";
 import { requireBusinessAccess } from "@/lib/business/api";
@@ -33,6 +35,23 @@ export async function POST(request: Request) {
     ? body.details as Record<string, unknown>
     : {};
   const details = Object.fromEntries(Object.entries(rawDetails).map(([key, value]) => [key.slice(0, 80), clean(value, 2000)]).filter(([, value]) => value));
+  delete details.packageId;
+  delete details.packageName;
+  delete details.packagePrice;
+  delete details.packageDescription;
+  delete details.packagePriceZar;
+  try {
+  const packageEntry = body.packageId ? (await getPublicPricing()).find(({ id }) => id === body.packageId) : undefined;
+  if (body.packageId && (!packageEntry || enquiryService(packageEntry.service) !== service)) {
+    return Response.json({ error: "Choose a valid package for the selected service." }, { status: 400 });
+  }
+  if (packageEntry && (body.packagePrice !== pricingLabel(packageEntry) || body.packageDescription !== packageEntry.description)) {
+    return Response.json({ error: "This package has changed. Reload the enquiry page to review the current details." }, { status: 409 });
+  }
+  const storedDetails = {
+    ...details,
+    ...(packageEntry && { packageId: packageEntry.id, packageName: packageEntry.name, packagePrice: pricingLabel(packageEntry), packageDescription: packageEntry.description, packagePriceZar: packageEntry.price }),
+  };
 
   if (!allowedIntents.has(intent) || !allowedServices.has(service) || !allowedContact.has(preferredContact)) return Response.json({ error: "Choose valid enquiry options." }, { status: 400 });
   const validationErrors = {
@@ -43,13 +62,14 @@ export async function POST(request: Request) {
   if (Object.keys(validationErrors).length) return Response.json({ error: "Please correct the highlighted information.", fields: validationErrors }, { status: 400 });
   if (!consent) return Response.json({ error: "Please confirm that we may contact you about this enquiry." }, { status: 400 });
 
-  try {
     const id = randomUUID();
     const reference = id.slice(0, 8).toUpperCase();
     const projectType = clean(body.projectType, 80) || null;
     const role = clean(body.role, 120) || null;
     const location = clean(body.location, 160) || null;
-    await insertEnquiry({ id, createdAt: new Date().toISOString(), intent, service, projectType, fullName, company, role, email, phone, location, preferredContact, details: JSON.stringify(details).slice(0, 20000) });
+    const detailsJson = JSON.stringify(storedDetails);
+    if (detailsJson.length > 20000) return Response.json({ error: "Please shorten the enquiry details." }, { status: 413 });
+    await insertEnquiry({ id, createdAt: new Date().toISOString(), intent, service, projectType, fullName, company, role, email, phone, location, preferredContact, details: detailsJson });
     console.info("New website enquiry stored", { id, service, intent, preferredContact });
     return Response.json({ success: true, reference });
   } catch (error) {

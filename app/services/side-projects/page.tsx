@@ -16,6 +16,7 @@ import CTASection from "@/components/CTASection";
 import FadeSection from "@/components/FadeSection";
 import PageHero from "@/components/PageHero";
 import PageWrapper from "@/components/PageWrapper";
+import PricingPreview from "@/components/PricingPreview";
 import SectionHeader from "@/components/SectionHeader";
 
 const siteUrl = "https://custonexus.com";
@@ -180,6 +181,7 @@ export default function SideProjectsPage() {
       <FadeSection>
         <CTASection title="Let’s Discuss Your Side Project" subtitle="Tell us what you need, what success looks like and when you would like to begin. We will review the request and recommend the next practical step." buttonText="Start a Side-Project Enquiry" buttonLink="/contact" />
       </FadeSection>
+      <PricingPreview ids={["side-projects-and-innovation"]} />
     </PageWrapper>
   );
 }

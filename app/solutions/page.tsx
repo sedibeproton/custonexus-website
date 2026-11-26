@@ -1,4 +1,5 @@
 import PageWrapper from "@/components/PageWrapper";
+import PricingPreview from "@/components/PricingPreview";
 import PageHero from "@/components/PageHero";
 import CTASection from "@/components/CTASection";
 import FadeSection from "@/components/FadeSection";
@@ -63,6 +64,7 @@ export default function SolutionsPage() {
         />
       </FadeSection>
 
+      <PricingPreview ids={["business-process-automation", "api-and-system-integration", "custom-business-dashboards", "custom-healthcare-software"]} />
     </PageWrapper>
   );
 }
