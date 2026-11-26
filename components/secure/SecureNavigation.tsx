@@ -5,6 +5,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { Archive, CalendarDays, Files, LayoutDashboard, Landmark, LogOut, Menu, ShieldCheck, Wrench, X } from "lucide-react";
 import { useState } from "react";
 import { authClient } from "@/lib/auth-client";
+import { findWorkspaceSection, inWorkspaceRoute } from "./workspace-sections";
 
 const workspaceLinks = [
   { href: "/secure/dashboard", label: "Workspace", icon: LayoutDashboard },
@@ -28,6 +29,9 @@ export default function SecureNavigation({ isAdmin, pendingAppointments = 0 }: {
   if (pathname === "/secure/login") return null;
 
   const links = isAdmin ? [...workspaceLinks, ...adminLinks] : workspaceLinks;
+  const section = findWorkspaceSection(pathname, isAdmin);
+  const activeLink = section && [...section.links].sort((a, b) => b.href.length - a.href.length)
+    .find(({ href }) => inWorkspaceRoute(pathname, href));
 
   async function signOut() {
     setSigningOut(true);
@@ -49,7 +53,7 @@ export default function SecureNavigation({ isAdmin, pendingAppointments = 0 }: {
 
         <nav className="hidden items-center gap-1 xl:flex" aria-label="Secure workspace navigation">
           {links.map(({ href, label, icon: Icon }) => {
-            const active = pathname === href || pathname.startsWith(`${href}/`);
+            const active = pathname === href || section?.href === href;
             return (
               <Link key={href} href={href} aria-current={active ? "page" : undefined} className={`flex items-center gap-2 rounded-xl px-3.5 py-2.5 text-sm font-bold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 ${active ? "bg-blue-50 text-blue-800" : "text-slate-600 hover:bg-slate-50 hover:text-slate-950"}`}>
                 <Icon aria-hidden="true" size={17} />
@@ -82,7 +86,7 @@ export default function SecureNavigation({ isAdmin, pendingAppointments = 0 }: {
           document.getElementById("secure-menu-toggle")?.focus();
         }} className="mx-auto grid max-h-[calc(100dvh-5rem)] max-w-7xl gap-1 overflow-y-auto overscroll-contain border-t border-slate-100 py-3 xl:hidden">
           {links.map(({ href, label, icon: Icon }) => {
-            const active = pathname === href || pathname.startsWith(`${href}/`);
+            const active = pathname === href || section?.href === href;
             return (
               <Link key={href} href={href} aria-current={active ? "page" : undefined} onClick={() => setOpen(false)} className={`flex items-center gap-3 rounded-xl px-4 py-3 font-bold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 ${active ? "bg-blue-50 text-blue-800" : "text-slate-700 hover:bg-blue-50 hover:text-blue-800"}`}>
                 <Icon aria-hidden="true" size={18} />
@@ -97,6 +101,12 @@ export default function SecureNavigation({ isAdmin, pendingAppointments = 0 }: {
           </button>
         </nav>
       )}
+      {!open && section && <nav key={section.href} aria-label={`${section.label} navigation`} className="mx-auto flex max-w-7xl flex-wrap items-center gap-x-1 border-t border-slate-100 py-1.5">
+        <Link href={section.href} aria-current={!activeLink && pathname === section.href ? "page" : undefined}
+          className={`inline-flex min-h-10 shrink-0 items-center rounded-lg px-2.5 text-xs font-bold focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-600 sm:text-sm ${!activeLink ? "bg-blue-100 text-blue-900" : "text-slate-700"}`}>{section.label}</Link>
+        {section.links.map(({ href, label }) => <Link key={href} href={href} aria-current={activeLink?.href === href ? "location" : undefined}
+          className={`inline-flex min-h-10 shrink-0 items-center rounded-lg px-2.5 text-xs font-semibold focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-600 sm:text-sm ${activeLink?.href === href ? "bg-blue-100 text-blue-900" : "text-slate-700 hover:bg-slate-100"}`}>{label}</Link>)}
+      </nav>}
     </header>
   );
 }

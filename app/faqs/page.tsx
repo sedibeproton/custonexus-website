@@ -3,6 +3,7 @@ import Link from "next/link";
 import {
   ArrowRight,
   BriefcaseBusiness,
+  CalendarDays,
   Handshake,
   HeartPulse,
   HelpCircle,
@@ -10,6 +11,7 @@ import {
   Mail,
   MessageCircle,
   Plus,
+  Tag,
 } from "lucide-react";
 
 import Container from "@/components/Container";
@@ -23,7 +25,7 @@ import { createWhatsAppUrl, whatsappMessages } from "@/lib/whatsapp";
 export const metadata: Metadata = {
   title: "Technology Services FAQs",
   description:
-    "Answers about custom website development, redesigns, maintenance, business applications, project scoping and specialist technology services.",
+    "Answers about CustoNexus pricing, VAT, hosting, consultations, custom websites, software and healthcare technology in South Africa.",
   alternates: { canonical: "/faqs" },
   openGraph: {
     title: "Technology Services FAQs | CustoNexus Technologies",
@@ -36,7 +38,47 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 };
 
-const faqGroups = [
+const faqGroups: { id: string; title: string; questions: { question: string; answer: string; link?: { href: string; label: string } }[] }[] = [
+  {
+    id: "pricing",
+    title: "Pricing, VAT & Quotations",
+    questions: [
+      {
+        question: "Where can I see your prices?",
+        answer: "Our pricing page lists current packages and indicative prices in South African rand. It shows the scope and whether the charge is once-off, recurring or based on a quotation.",
+        link: { href: "/pricing", label: "Compare current packages" },
+      },
+      {
+        question: "Do you charge VAT?",
+        answer: "CustoNexus Technologies (Pty) Ltd is currently not registered for VAT. No VAT is charged on our services or products.",
+      },
+      {
+        question: "What does a starting price cover?",
+        answer: "It covers the listed base scope. We confirm the final price, inclusions, timing and any third-party costs in writing. Hosting, domains, subscriptions and maintenance are separate unless included in the quote. Additional work requires your approval.",
+      },
+      {
+        question: "How do I request a quote for a specific package?",
+        answer: "Choose Request a Quote on the package card. The enquiry form opens with that package selected. Tell us what you need and include a timeline and budget if you have one.",
+        link: { href: "/pricing", label: "Find a package and request a quote" },
+      },
+    ],
+  },
+  {
+    id: "consultations",
+    title: "Consultations & Website Reviews",
+    questions: [
+      {
+        question: "Is my consultation confirmed when I submit a request?",
+        answer: "Your selected time is a request. CustoNexus reviews it and may confirm it, propose a different time or decline it. Times shown on the booking calendar are in South African time.",
+        link: { href: "/book-consultation", label: "Request a consultation" },
+      },
+      {
+        question: "What does the free website review cover?",
+        answer: "We take an initial look at your existing website and the business goal you share, then suggest a practical next step. A detailed technical or security audit is scoped separately.",
+        link: { href: "/free-website-review", label: "Request a free website review" },
+      },
+    ],
+  },
   {
     id: "general",
     title: "About CustoNexus",
@@ -64,7 +106,8 @@ const faqGroups = [
       {
         question: "How will my project be priced?",
         answer:
-          "We currently quote each project according to its scope. The written proposal accounts for content, functionality, users, integrations, timelines, support and any third-party costs before work begins.",
+          "We use published package prices as a starting point where applicable. The written quote reflects your scope, including content, functionality, users, integrations, timing, support and third-party costs.",
+        link: { href: "/pricing", label: "See the pricing catalogue" },
       },
     ],
   },
@@ -86,6 +129,7 @@ const faqGroups = [
         question: "How much does a business website cost in South Africa?",
         answer:
           "The cost depends on the number and complexity of pages, content readiness, custom design, forms, bookings, integrations, user accounts, hosting and support. CustoNexus first clarifies the requirement and then provides a written South African rand quotation with inclusions, exclusions and payment milestones.",
+        link: { href: "/pricing", label: "Compare website packages" },
       },
       {
         question: "Can you redesign or improve an existing website?",
@@ -106,6 +150,7 @@ const faqGroups = [
         question: "Can you host the website and provide business email?",
         answer:
           "Yes. Where appropriate, a proposal can include website hosting, maintenance and professional email using the client domain. Pricing depends on traffic, storage, mailbox quantity, email storage, backups, support expectations and any third-party provider costs.",
+        link: { href: "/pricing", label: "See hosting, email and maintenance pricing" },
       },
       {
         question: "Who owns the website or software source code?",
@@ -121,6 +166,7 @@ const faqGroups = [
         question: "How much does custom software development cost?",
         answer:
           "Custom software is priced after discovery because users, workflows, platforms, data, security, integrations, reporting and deployment requirements can change the work substantially. We normally recommend a clearly scoped first version or phased roadmap before providing the full delivery proposal.",
+        link: { href: "/pricing", label: "See software starting prices" },
       },
       {
         question: "What information is needed for an automation or integration project?",
@@ -260,6 +306,9 @@ const faqGroups = [
 ];
 
 const categoryLinks = [
+  { icon: Tag, label: "Pricing & VAT", href: "#pricing" },
+  { icon: CalendarDays, label: "Consultations & Reviews", href: "#consultations" },
+  { icon: HelpCircle, label: "About CustoNexus", href: "#general" },
   { icon: Laptop, label: "Websites & Technology", href: "#technology" },
   { icon: HeartPulse, label: "Equipment & Consumables", href: "#equipment" },
   { icon: BriefcaseBusiness, label: "Professional Services", href: "#professional-services" },
@@ -290,16 +339,16 @@ export default function FAQsPage() {
       <PageHero
         eyebrow="Frequently Asked Questions"
         title="Helpful Answers. Clear Next Steps."
-        subtitle="Explore common questions about custom websites, redesigns, website support, custom systems, professional services and healthcare technology."
+        subtitle="Find answers about pricing, quotes, consultations and the technology services we provide."
       />
 
       <FadeSection>
         <section className="border-b border-slate-200 bg-slate-50 py-8 sm:py-10">
           <Container>
-            <nav aria-label="FAQ categories" className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            <nav aria-label="FAQ categories" className="grid grid-cols-2 gap-2 lg:grid-cols-4">
               {categoryLinks.map(({ icon: Icon, label, href }) => (
-                <a key={href} href={href} className="flex items-center gap-3 rounded-2xl border border-slate-200 bg-white p-4 font-semibold text-slate-800 shadow-sm transition hover:-translate-y-0.5 hover:border-blue-300 hover:text-blue-700 hover:shadow-md">
-                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-blue-700"><Icon size={21} aria-hidden /></span>
+                <a key={href} href={href} className="flex min-h-12 items-center gap-2 rounded-xl border border-slate-200 bg-white p-2.5 text-sm font-semibold text-slate-800 hover:border-blue-300 hover:text-blue-700 focus-visible:ring-2 focus-visible:ring-blue-600 sm:p-4">
+                  <span className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-blue-50 text-blue-700"><Icon size={17} aria-hidden /></span>
                   {label}
                 </a>
               ))}
@@ -309,7 +358,7 @@ export default function FAQsPage() {
       </FadeSection>
 
       <FadeSection>
-        <section className="bg-white py-16 sm:py-24">
+        <section className="bg-white py-10 sm:py-16">
           <Container>
             <SectionHeader eyebrow="Helpful Information" title="What Would You Like to Know?" subtitle="Choose a category above or browse the questions below. Every answer reflects our current services and engagement approach." />
 
@@ -323,11 +372,14 @@ export default function FAQsPage() {
                   <div className="space-y-4">
                     {group.questions.map((item) => (
                       <details key={item.question} className="group rounded-2xl border border-slate-200 bg-slate-50 open:border-blue-200 open:bg-white open:shadow-lg">
-                        <summary className="flex cursor-pointer list-none items-center justify-between gap-5 px-6 py-5 text-left font-semibold text-slate-900 marker:hidden sm:px-7">
+                        <summary className="flex cursor-pointer list-none items-center justify-between gap-3 rounded-2xl px-4 py-3 text-left font-semibold text-slate-900 marker:hidden focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-600 sm:px-7 sm:py-5">
                           <span>{item.question}</span>
                           <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white text-blue-700 shadow-sm transition-transform duration-300 group-open:rotate-45"><Plus size={19} aria-hidden /></span>
                         </summary>
-                        <div className="border-t border-slate-100 px-6 py-5 leading-8 text-slate-600 sm:px-7">{item.answer}</div>
+                        <div className="border-t border-slate-100 px-4 py-4 leading-7 text-slate-600 sm:px-7">
+                          <p>{item.answer}</p>
+                          {item.link && <Link href={item.link.href} className="mt-2 inline-flex min-h-11 items-center font-semibold text-blue-800 underline underline-offset-4">{item.link.label}</Link>}
+                        </div>
                       </details>
                     ))}
                   </div>

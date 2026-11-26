@@ -1,2 +1,14 @@
 import Link from "next/link";
-export default function SecurePageHeader({eyebrow,title,description,actionHref,actionLabel}:{eyebrow:string;title:string;description:string;actionHref?:string;actionLabel?:string}){return <><Link href="/secure/dashboard" className="text-sm font-bold text-blue-700">← Dashboard</Link><div className="mt-5 flex flex-col gap-5 rounded-3xl bg-gradient-to-br from-blue-900 to-slate-950 p-7 text-white shadow-xl sm:p-9 lg:flex-row lg:items-end lg:justify-between"><div><p className="text-xs font-bold uppercase tracking-[0.2em] text-blue-200">{eyebrow}</p><h1 className="mt-2 text-3xl font-bold sm:text-4xl">{title}</h1><p className="mt-3 max-w-2xl text-blue-100">{description}</p></div>{actionHref&&<Link href={actionHref} className="rounded-xl bg-white px-5 py-3 text-center text-sm font-bold text-blue-800">{actionLabel}</Link>}</div></>}
+
+type Props = { eyebrow: string; title: string; description: string; actionHref?: string; actionLabel?: string };
+
+export default function SecurePageHeader({ eyebrow, title, description, actionHref, actionLabel }: Props) {
+  return <header className="flex flex-col gap-4 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-7 lg:flex-row lg:items-center lg:justify-between">
+    <div className="min-w-0">
+      <p className="text-xs font-bold uppercase tracking-wider text-blue-800">{eyebrow}</p>
+      <h1 className="mt-2 break-words text-2xl font-bold text-slate-950 sm:text-4xl">{title}</h1>
+      <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-600 sm:text-base">{description}</p>
+    </div>
+    {actionHref && actionLabel && <Link href={actionHref} className="inline-flex min-h-11 items-center justify-center rounded-xl bg-blue-800 px-4 py-2 text-sm font-bold text-white hover:bg-blue-900 focus-visible:ring-2 focus-visible:ring-blue-600 lg:shrink-0">{actionLabel}</Link>}
+  </header>;
+}

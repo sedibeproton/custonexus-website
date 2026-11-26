@@ -47,6 +47,8 @@ const navItems: NavItem[] = [
     label: "FAQs",
     children: [
       { href: "/faqs", label: "All Questions" },
+      { href: "/faqs#pricing", label: "Pricing & VAT" },
+      { href: "/faqs#consultations", label: "Consultations & Reviews" },
       { href: "/faqs#technology", label: "Technology & Websites" },
       { href: "/faqs#equipment", label: "Equipment & Consumables" },
       { href: "/faqs#professional-services", label: "Professional Services" },

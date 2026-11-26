@@ -27,7 +27,7 @@ export default async function InvoicePage({
     const [clients, settings] = await Promise.all([listClients(), getCompanySettings()]);
 
     return (
-      <main className="min-h-screen bg-slate-100 px-4 py-16 sm:px-6">
+      <main className="min-h-screen bg-slate-100 px-3 py-5 sm:px-6 sm:py-10">
         <div className="mx-auto max-w-7xl">
           <SecurePageHeader
             eyebrow={`Draft · ${invoice.invoiceNumber}`}
@@ -58,7 +58,7 @@ export default async function InvoicePage({
   const payments = await listPayments(invoice.id);
 
   return (
-    <main className="min-h-screen bg-slate-100 px-4 py-16 sm:px-6">
+    <main className="min-h-screen bg-slate-100 px-3 py-5 sm:px-6 sm:py-10">
       <div className="mx-auto max-w-6xl">
         <SecurePageHeader
           eyebrow={`${invoice.status} · ${invoice.invoiceNumber}`}
